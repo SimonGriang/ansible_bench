@@ -1,0 +1,42 @@
+[project]
+name = "ansible_bench"
+version = "0.0.1"
+authors = [
+  { name="Simon Göttsberger", email="simon.goettsberger@stud.th-rosenheim.de" },
+]
+description = "Benchmark creation Framework for Ansible Playbooks/Roles"
+readme = "README.md"
+requires-python = "=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "requests",
+    "numpy",
+    "langchain",
+    "langchain_community",
+    "langchain-ollama",
+    "torch",
+    "transformers",
+    "einops",
+    "bidict",
+    "comment_parser",
+    "python-magic-bin; platform_system=='Windows'",
+    "sentencepiece",
+    "protobuf",
+    "tqdm"
+]
+
+[project.urls]
+Homepage = ""
+Issues = ""
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+
+
+

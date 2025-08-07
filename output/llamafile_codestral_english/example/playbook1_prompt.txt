@@ -1,0 +1,7 @@
+ "You are a professional developer. Below you will receive task descriptions from which you should generate an Ansible Playbook. Here are the tasks:
+
+Task 1: Install Apache Webserver
+Description Task 1: Use the apt package manager to install Apache2 on the targeted hosts. Make sure to update the package cache before installation.
+
+Task 2: Enable and Start Apache
+Description Task 2: Configure the Apache service to start automatically at boot and ensure it is currently running."</s>

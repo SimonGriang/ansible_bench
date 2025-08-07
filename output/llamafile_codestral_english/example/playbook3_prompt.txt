@@ -1,0 +1,18 @@
+ The reconstructed prompt is:
+
+"You are a professional developer. Below you will receive task descriptions from which you should generate an Ansible Playbook. Name the tasks exactly as I provide them here:
+
+Task 1: Git installieren
+Description Task 1: Install the Git package on the target machine to enable version control.
+
+Task 2: Python3 + pip installieren
+Description Task 2: Install Python3 and pip (Python package installer) on the target machine to support the execution of the Python-based project.
+
+Task 3: Projektverzeichnis klonen
+Description Task 3: Clone the project repository from the specified URL to the designated project directory on the target machine.
+
+Task 4: Abhängigkeiten installieren
+Description Task 4: Install the necessary dependencies for the project from the requirements.txt file located in the project directory using pip.
+
+Task 5: App starten (z.B. Flask)
+Description Task 5: Start the application (like Flask) by executing the app.py script in the project directory. Run the script in the background and create a marker file to ensure that the app is running."</s>
