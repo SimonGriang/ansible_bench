@@ -1,2 +1,2 @@
 # KI gestützte IT-Automatisierung: Optimierung des Konfigurationsmanagements durch LLMbasierte Skriptgenerierung
-This Repository provides the code and some additional information on the master thesis **KI gestützte IT-Automatisierung: Optimierung des Konfigurationsmanagements durch LLMbasierte Skriptgenerierung** by **Simon Göttsberger** at the **Technical University of Applied Sciences Rosenheim**. 
+This Repository provides the code and some additional information on the master thesis **"KI gestützte IT-Automatisierung: Optimierung des Konfigurationsmanagements durch LLMbasierte Skriptgenerierung"** by **Simon Göttsberger** at the **Technical University of Applied Sciences Rosenheim**. 
