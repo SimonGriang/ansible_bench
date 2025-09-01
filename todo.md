@@ -1,5 +1,9 @@
 # 📝 ToDo-Liste
 
+## Aktueller Arbeitsschritt
+
+--> Auf THRO Infra operation_mode "prompt" mit Deepseek-R1 laufen lassen, davor pull durchführen!
+
 ## Aufgaben
 
 - [X] Args & template umbauen auf template_type + language
