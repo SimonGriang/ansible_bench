@@ -3,14 +3,16 @@ from llm_abstraction import LLMSettings
 import yaml
 
 
-class TranslationMetadata:
+class GenerationMetadata:
     """Metadata for source code translations between programming languages"""
 
-    def __init__(self, llm_name: str, llm_engine: str, llm_settings: LLMSettings, template_types: list[str]):
+    def __init__(self, operation_mode:str, llm_name: str, llm_engine: str, llm_settings: LLMSettings, template_types: list[str], language: str):
+        self.operation_mode = operation_mode
         self.llm_name = llm_name
         self.llm_engine = llm_engine
         self.llm_settings = llm_settings
         self.template_types = template_types
+        self.language = language
 
     def to_dict(self):
         metadata_dict = {
@@ -35,10 +37,10 @@ class TranslationMetadata:
         print(yaml_str)
 
 
-def load_tranlation_metadata(file_path: Path | str) -> TranslationMetadata:
+def load_tranlation_metadata(file_path: Path | str) -> GenerationMetadata:
     with open(file_path, "r") as f:
         metadata_dict = yaml.load(f)
-    return TranslationMetadata(
+    return GenerationMetadata(
         metadata_dict["llm_name"],
         metadata_dict["llm_engine"],
         LLMSettings(
@@ -53,7 +55,7 @@ def load_tranlation_metadata(file_path: Path | str) -> TranslationMetadata:
 
 if __name__ == "__main__":
 
-    tm = TranslationMetadata(
+    tm = GenerationMetadata(
         "mistral", "llamafile", LLMSettings(top_k=50, top_p=0.95, temperature=0.7, repeat_penalty=1.1), ["LIT"]
     )
     print(tm.to_dict())

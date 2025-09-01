@@ -8,9 +8,16 @@
             "name": "Python Debugger: Current File with Arguments",
             "type": "debugpy",
             "request": "launch",
-            "program": "${file}/ansible_bench/src/ansible_bench_code/create_benchmark.py",
+            "program": "${workspaceFolder}/src/ansible_bench_code/ansible_generator.py",
             "console": "integratedTerminal",
-            "args": ["-m", "codestral", "-e", "llamafile", "-d", "example", "-tt", "english"]
+            "cwd": "${workspaceFolder}/src/ansible_bench_code",
+            "args": [                
+                "-m", "codestral",
+                "-e", "llamafile", "benchmark",
+                "-d", "example",
+                "-tt", "exact",
+                "-p", "prompts/llamafile_codestral_english_exact/example"
+            ]
         }
     ]
 }

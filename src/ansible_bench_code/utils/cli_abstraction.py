@@ -4,14 +4,29 @@ import argparse
 from dataclasses import dataclass
 
 @dataclass
-class CLIArguments(argparse.Namespace):
+class CLIArgumentsBase(argparse.Namespace):
+    operation_mode:str
     engine: str
     model: str
-    dataset: str
-    template_type: str
-
-@dataclass
-class CLIArgumentsTranslation(CLIArguments):
     top_k: int
     top_p: float
     temperature: float
+
+@dataclass
+class CLIArgumentsPrompt(CLIArgumentsBase):
+    dataset: str
+    template_type: str
+    language: str
+
+@dataclass
+class CLIArgumentsBenchmark(CLIArgumentsBase):
+    dataset: str
+    template_type: str
+    language: str
+    prompts: str
+
+@dataclass
+class CLIArgumentsGeneration(CLIArgumentsBase):
+    pass
+
+

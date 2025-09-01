@@ -1,0 +1,11 @@
+Task 1: Check Docker Compose version
+Description Task 1: Use the command module to check the current version of Docker Compose installed on the target system.
+
+Task 2: Set Docker Compose current version
+Description Task 2: Use the set_fact module to store the current version of Docker Compose, if it's defined and not empty.
+
+Task 3: Delete existing Docker Compose version
+Description Task 3: Use the file module to remove the existing Docker Compose version if it's different from the desired version.
+
+Task 4: Install Docker Compose
+Description Task 4: Use the get_url module to install Docker Compose on the target system if it's not installed or if the installed version is older than the desired version.

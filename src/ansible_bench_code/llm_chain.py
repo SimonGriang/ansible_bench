@@ -1,14 +1,23 @@
-from create_benchmark_config import TORCH_MODELS_PATH
+from ansible_generator_config import TORCH_MODELS_PATH
 from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain, SequentialChain
+#from langchain.chains import LLMChain, SequentialChain
+#from langchain.schema import RunnableSequence
+from langchain.schema.runnable import RunnableLambda
 from langchain_core.language_models.llms import LLM
 from pathlib import Path
 from transformers import AutoTokenizer
 
 from llm_abstraction import LLAMAFILE_CTX_SIZE, OLLAMA_CTX_SIZE
 from prompt_templates import (
-    german_template,
-    english_template,
+    prompt_exact_german_template,
+    prompt_exact_english_template,
+    prompt_precise_english_template,
+    prompt_precise_german_template,
+    prompt_approximate_english_template,
+    prompt_approximate_german_template,
+    benchmark_exact_english_first_yamllint_template,
+    benchmark_precise_english_first_yamllint_template,
+    benchmark_approximate_english_first_yamllint_template,
 )
 
 # Template switch
@@ -58,7 +67,7 @@ def apply_chat_template_to_text(text: str, model_name: str) -> str:
     if "dolphin" in model_name:
         # has no chat template in tokenizer
         tokenizer.chat_template = "{% if not add_generation_prompt is defined %}{% set add_generation_prompt = false %}{% endif %}{% for message in messages %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant\n' }}{% endif %}"
-        system_prompt = "You are a skilled software developer proficient in multiple programming languages."
+        system_prompt = "You are a skilled developer proficient in ansible specific playbook creation."
         chat = [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": text.removeprefix(system_prompt + " ")},
@@ -112,7 +121,7 @@ def apply_chat_template_to_prompt_template(
 
 #useful
 def create_prompt_template_for_model(
-    template_type: str, model_name: str
+     model_name: str, operation_mode: str, language:str, template_type: str, stage: str
 ) -> list[PromptTemplate]:
     """
     Create a prompt template for a given template type and model name.
@@ -124,34 +133,146 @@ def create_prompt_template_for_model(
     Returns:
         list[PromptTemplate]: A list of modified prompt templates that have been embedded with the given chat template.
     """
-    prompts = create_prompt_template(template_type)
+    prompts = create_prompt_template(operation_mode, language, template_type, stage)
     modified_prompts = [
         apply_chat_template_to_prompt_template(p, model_name) for p in prompts
     ]
     return modified_prompts
 
 #useful
-def create_prompt_template(template_type: str) -> list[PromptTemplate]:
-    """Creates a list of PromptTemplate objects based on the given template type.
+def create_prompt_template(operation_mode: str, language:str, template_type: str, stage: str) -> list[PromptTemplate]:
+    """Creates a list of PromptTemplate objects based on the given template type and language.
 
     Args:
         template_type (str): The template type to use for creating prompts.
+        language (str): The desired language of the Prompt
 
     Returns:
         list[PromptTemplate]: A list of PromptTemplate objects with the corresponding input variables.
     """
     prompts = []
 
-    match template_type:
-        case "german":
-            template = german_template
-            input_var = ["playbook"]
-        case "english":
-            template = english_template
-            input_var = ["playbook"]
-        # weitere Cases können eingefügt werden
-        case _:
-            raise ValueError(f"The given template type does not exist: {template_type}")
+    templates = {
+        "prompt": {
+            "english": {
+                "exact": {
+                    "first": prompt_exact_english_template,
+                    #"recursive": prompt_exact_english_llmaaj_template,
+                },
+                "precise": {
+                    "first": prompt_precise_english_template,
+                    #"recursive": prompt_precise_english_llmaaj_template,
+                },
+                "approximate": {
+                    "first": prompt_approximate_english_template,
+                    #"recursive": prompt_approximate_english_llmaaj_template,
+                },
+            },
+            "german": {
+                "exact": {
+                    "first": prompt_exact_german_template,
+                    #"recursive": prompt_exact_german_llmaaj_template,
+                },
+                "precise": {
+                    "first": prompt_precise_german_template,
+                    #"recursive": prompt_precise_german_llmaaj_template,
+                },
+                "approximate": {
+                    "first": prompt_approximate_german_template,
+                    #"recursive": prompt_approximate_german_llmaaj_template,
+                },
+            },
+        },
+        "benchmark": {
+            "english": {
+                "exact": {
+                    "first_yamllint": benchmark_exact_english_first_yamllint_template,
+                    #"recursive_yamllint": ,
+                    #"first_syntaxcheck": ,
+                    #"recursive_syntaxcheck": ,
+                    #"first_ansiblelint": ,
+                    #"recursive_ansiblelint": ,
+                },
+                "precise": {
+                    "first_yamllint": benchmark_precise_english_first_yamllint_template,
+                    #"recursive_yamllint": ,
+                    #"first_syntaxcheck": ,
+                    #"recursive_syntaxcheck": ,
+                    #"first_ansiblelint": ,
+                    #"recursive_ansiblelint": ,
+                },
+                "approximate": {
+                    "first_yamllint": benchmark_approximate_english_first_yamllint_template,
+                    #"recursive_yamllint": ,
+                    #"first_syntaxcheck": ,
+                    #"recursive_syntaxcheck": ,
+                    #"first_ansiblelint": ,
+                    #"recursive_ansiblelint": ,
+                },
+            },
+            "german": {
+                "exact": {
+                    #"first_yamllint": ,
+                    #"recursive_yamllint": ,
+                    #"first_syntaxcheck": ,
+                    #"recursive_syntaxcheck": ,
+                    #"first_ansiblelint": ,
+                    #"recursive_ansiblelint": ,
+                },
+                "precise": {
+                    #"first_yamllint": ,
+                    #"recursive_yamllint": ,
+                    #"first_syntaxcheck": ,
+                    #"recursive_syntaxcheck": ,
+                    #"first_ansiblelint": ,
+                    #"recursive_ansiblelint": ,
+                },
+                "approximate": {
+                    #"first_yamllint": ,
+                    #"recursive_yamllint": ,
+                    #"first_syntaxcheck": ,
+                    #"recursive_syntaxcheck": ,
+                    #"first_ansiblelint": ,
+                    #"recursive_ansiblelint": ,
+                },
+            },
+        },
+        "generation": {
+            # TODO: später generation-Templates hier definieren
+        },
+    }
+
+    input_vars_map = {
+        "prompt": {
+            "first": ["input_str"], #playbook
+            "recursive": ["input_str", "recursive_str", "error_str"], #playbook, generated Prompt, LLM-as-a-Judge Feedback
+        },
+        "benchmark": {
+            "first": ["input_str"], #prompt 
+            "recursive": ["input_str", "recursive_str", "error_str"], #prompt, generated YAML, Error Message
+        },
+        "generation": {
+            "first": ["input_str"], #prompt 
+            "recursive": ["input_str", "recursive_str", "error_str"], #prompt, generated YAML, Error Message
+        },
+    }
+
+    if operation_mode not in templates:
+        raise ValueError(f"Unbekannter operation_mode: {operation_mode}")
+    if language not in templates[operation_mode]:
+        raise ValueError(f"Unbekannte Sprache '{language}' für {operation_mode}")
+    if template_type not in templates[operation_mode][language]:
+        raise ValueError(f"Unbekannter template_type '{template_type}' für {operation_mode}")
+    if stage not in templates[operation_mode][language][template_type]:
+        raise ValueError(f"Stage '{stage}' nicht definiert für {operation_mode}")
+
+    try:
+        template = templates[operation_mode][language][template_type][stage]
+        input_var_selection = stage.split('_')[0]
+        input_var = input_vars_map[operation_mode][input_var_selection]
+    except KeyError:
+        raise ValueError(f"No template für operation_mode='{operation_mode}', language='{language}', template_type='{template_type}' and stage='{stage}' found.")
+
 
     prompts.insert(0, PromptTemplate(template=template, input_variables=input_var))
     return prompts
@@ -159,34 +280,36 @@ def create_prompt_template(template_type: str) -> list[PromptTemplate]:
 
 def fillin_prompt_template(
     prompt: PromptTemplate,
-    reference_playbook: str,
+    input_str: str,
+    recursive_str: str = "",
+    error_str: str = "",
 ) -> dict[str, str]:
     """
     Fills the prompt template with the given input values.
 
     Args:
         prompt (PromptTemplate): A prompt template that will be used to generate the LLM chain.
-        llm (LLM): An LLM model that will be used in the LLM chain.
         reference_playbook (str): The reference Playbook from the dataset.
-        llm_response (str): The current translation of the source code in the target language. #stop
-        stderr (str): The error information of standard error of the latest execution.
-        test_data (dict): The data from the latest test execution (input, expected output, and generated output).
+        playbook_prompt (str): The prompt generated to a specific ansible yaml file.
+
+        #llm_response (str): The current translation of the source code in the target language. #stop
+        #stderr (str): The error information of standard error of the latest execution.
+        #test_data (dict): The data from the latest test execution (input, expected output, and generated output).
 
     Returns:
         The filled in prompt template of the chain as a string.
     """
     return prompt.format(
-        playbook=reference_playbook,
+        input_str=input_str,
+        recursive_str = recursive_str,
+        error_str = error_str,
     )
 
 
-def create_and_invoke_llm_chain(
+def create_and_invoke_prompt_chain(
     prompt: PromptTemplate,
     llm: LLM,
-    playbook: str,
-    translated_code: str = "",
-    stderr: str = "",
-    test_data: dict[str, str] = {},
+    input_str: str,
 ) -> dict[str, str]:
     """
     Creates an LLMChain using a given prompt template and LLM object.
@@ -199,14 +322,42 @@ def create_and_invoke_llm_chain(
     Returns:
         A dictionary containing the translated source code and its corresponding source code in the specified languages.
     """
-    # create prompt template > LLM chain
-    chain = LLMChain(
-        prompt=prompt, llm=llm, output_key="target_prompt"
-    )  # the same as:  prompt | llm
-    # Invoke the chain
+
+    # create prompt template > LLM sequence
+    chain = prompt | llm 
+
+    # Invoke the chain (identisch wie vorher)
     return chain.invoke(
         {
-            "playbook": playbook,
+            "input_str": input_str,
+        }
+    )
+
+def create_and_invoke_recursive_chain(
+    prompt: PromptTemplate,
+    llm: LLM,
+    input_str: str,
+    recursive
+) -> dict[str, str]:
+    """
+    Creates an LLMChain using a given prompt template and LLM object.
+
+    Args:
+        prompt (PromptTemplate): A prompt template that will be used to generate the LLM chain.
+        llm (LLM): An LLM model that will be used in the LLM chain.
+        playbook (str): The playbook for which a prompt is needed.
+
+    Returns:
+        A dictionary containing the translated source code and its corresponding source code in the specified languages.
+    """
+
+    # create prompt template > LLM sequence
+    chain = prompt | llm 
+
+    # Invoke the chain (identisch wie vorher)
+    return chain.invoke(
+        {
+            "input_str": input_str,
         }
     )
 

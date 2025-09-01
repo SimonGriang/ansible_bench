@@ -1,0 +1,8 @@
+llm_engine: llamafile
+llm_name: codestral
+repeat_penalty: 1
+temperature: 0.7
+template_types:
+- exact
+top_k: 50
+top_p: 0.95
