@@ -71,30 +71,11 @@ class BaseOperationManager:
     
     def run(self):
         raise NotImplementedError
-    #------------------necessary independently from run() and setup_files()
 
     def clean_text(self, raw_output: str) -> str:
         raise NotImplementedError
-        """
-        Bereinigt den Text:
-        - Entfernt alles vor dem ersten Anführungszeichen (inklusive führende Leerzeichen),
-        - Entfernt alles nach dem letzten Anführungszeichen,
-        - Entfernt Stempel wie </s>.
-        """
-        # Alles vor dem ersten Anführungszeichen entfernen
-        if '"' in raw_output:
-            raw_output = raw_output.split('"', 1)[1]  # alles vor dem ersten " weg
-        # führende Leerzeichen entfernen
-        raw_output = raw_output.lstrip()
+    #------------------necessary independently from run() and setup_files()
 
-        # Alles nach dem letzten Anführungszeichen entfernen
-        if '"' in raw_output:
-            raw_output = raw_output.rsplit('"', 1)[0]
-
-        # Stempel wie </s> entfernen
-        raw_output = re.sub(r'</s>', '', raw_output, flags=re.IGNORECASE)
-
-        return raw_output.strip()
 
     def create_prompt_validate_context(self, input_str, stage):
         templates = llm_chain.create_prompt_template_for_model(self.model_name, self.args.operation_mode, self.args.language, self.args.template_type, stage)
@@ -106,10 +87,13 @@ class BaseOperationManager:
 
         print("Prompt: " + prompt)
 
-        max_output_tokens = llm_chain.check_context_size(prompt, self.model_name)
-        if max_output_tokens <= 0:
-            logger.info(f"The tokens exceeded the maximum size of the context window by {max_output_tokens} tokens.")
-            return f"# Token size exceeded by {-max_output_tokens} tokens"
+        if (self.model_engine == "ollama"):
+            print("Ollama applies the template automatically, so we do not need to check the context size.")
+        else:
+            max_output_tokens = llm_chain.check_context_size(prompt, self.model_name)
+            if max_output_tokens <= 0:
+                logger.info(f"The tokens exceeded the maximum size of the context window by {max_output_tokens} tokens.")
+                return f"# Token size exceeded by {-max_output_tokens} tokens"
 
         return templates[0], input_str, None
 

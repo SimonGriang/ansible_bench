@@ -20,12 +20,8 @@ from prompt_templates import (
     benchmark_approximate_english_first_yamllint_template,
 )
 
-# Template switch
 
-template_type = "direct"
-
-
-def hf_modelfiles_path_for(model_name: str) -> Path:
+def  hf_modelfiles_path_for(model_name: str) -> Path:
     model_name = model_name.lower()
     hf_model_paths = {
         "mistral": Path.joinpath(TORCH_MODELS_PATH, "Mistral-7B-Instruct-v0.1"),
@@ -45,11 +41,12 @@ def hf_modelfiles_path_for(model_name: str) -> Path:
         "phi3": Path.joinpath(TORCH_MODELS_PATH, "Phi-3-mini-4k-instruct"),
         "codestral": Path.joinpath(TORCH_MODELS_PATH, "Codestral-22B-v0.1"),
         "gemma-3": Path.joinpath(TORCH_MODELS_PATH, "gemma-3-27b-it"),
+        "gemma-3": Path.joinpath(TORCH_MODELS_PATH, "gemma-3-27b-it"),
     }
 
     if model_name not in hf_model_paths.keys():
         raise NotImplementedError(
-            f"The model you are trying to use is not available in this library. Model: {model_name}. Add it to the hf_model_paths dict in codetrans/llm_abstraction.py"
+            f"The model you are trying to use is not available in this library. Model: {model_name}. Add it to the hf_model_paths dict in codetrans/llm_chain.py"
         )
 
     return hf_model_paths[model_name]
@@ -59,7 +56,7 @@ def apply_chat_template_to_text(text: str, model_name: str) -> str:
     if "codestral" in model_name:
         # The codestral tokenizer does not define a chat template. Codestral uses the same chat template as Mistral. Use that instead.
         tokenizer = AutoTokenizer.from_pretrained(hf_modelfiles_path_for("mistral"))
-    elif "gemma-3" in model_name:
+    elif "deepseek-r1:14b" in model_name:
         # ollama applies the template automatically
         return text
     else:
