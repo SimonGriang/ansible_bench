@@ -4,14 +4,14 @@
 curl -fsSL https://ollama.com/install.sh | sh
 
 
-Check the installation:
+Prüfen:
 ```bash
 ollama --version
  ```
 
 
 
-Optional: Start Ollama automatically at system boot
+Optional: Ollama automatisch beim Systemstart starten:
 
 ```bash
 sudo systemctl enable ollama
@@ -19,38 +19,38 @@ sudo systemctl start ollama
 ```
 
 
-## 2. Downloading and Running Models
+## 2. Modelle herunterladen und starten
 
-Download and run model:
+Modell herunterladen und starten:
 
 ```bash
 ollama run deepseek-r1:14b
 ```
 
-This opens an interactive console (Prompt >).
+Das öffnet eine interaktive Konsole (Prompt >).
 
-Other models in the same family (e.g. DeepSeek-R1-Distill-Qwen-14B) are available as alternatives for different hardware/VRAM setups.
+Andere Modelle in der gleichen Familie (z. B. DeepSeek-R1-Distill-Qwen-14B) sind Alternativen für unterschiedliche Hardware/VRAM.
 
-## 3. Interaction
+## 3. Interaktion
 Interaktive Session
 
-Type directly at the prompt:
+Eingabe direkt im Prompt:
 
 > Erkläre Quantencomputing in einfachen Worten.
 
 
-End the Sesssion:
+Session beenden:
 
-CTRL+D → ends the active Chat-Session.
+CTRL+D → beendet die laufende Chat-Session.
 
-Alternativ: exit oder quit works as well.
+Alternativ: exit oder quit funktioniert ebenfalls.
 
-One-time query without interactive session
+Einmalige Anfrage ohne interaktive Session
 ```bash
 ollama query deepseek-r1:14b "Erkläre die Relativitätstheorie in einfachen Worten."
 ```
 
-Query from a file
+Anfrage aus Datei
 ```bash
 ollama query deepseek-r1:14b "$(cat prompt.txt)"
 ```

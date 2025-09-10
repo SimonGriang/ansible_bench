@@ -1,14 +1,17 @@
+from datetime import datetime
 from io import TextIOWrapper
 import os
 import re
 import logging
 import traceback
 import shutil
+from typing import Tuple
 from dotenv import load_dotenv
 import time
 import argparse
 from tqdm import tqdm
 from pathlib import Path
+from quality_assurance import check_yamllint, check_playbook_syntax, check_ansible_lint, check_molecule
 from llm_abstraction import LLMSettings, llm_wrapper
 import llm_chain
 from utils.cli_abstraction import CLIArgumentsBase, CLIArgumentsPrompt, CLIArgumentsBenchmark, CLIArgumentsGeneration
@@ -71,11 +74,30 @@ class BaseOperationManager:
     
     def run(self):
         raise NotImplementedError
+    #------------------necessary independently from run() and setup_files()
 
     def clean_text(self, raw_output: str) -> str:
         raise NotImplementedError
-    #------------------necessary independently from run() and setup_files()
+        """
+        Bereinigt den Text:
+        - Entfernt alles vor dem ersten Anführungszeichen (inklusive führende Leerzeichen),
+        - Entfernt alles nach dem letzten Anführungszeichen,
+        - Entfernt Stempel wie </s>.
+        """
+        # Alles vor dem ersten Anführungszeichen entfernen
+        if '"' in raw_output:
+            raw_output = raw_output.split('"', 1)[1]  # alles vor dem ersten " weg
+        # führende Leerzeichen entfernen
+        raw_output = raw_output.lstrip()
 
+        # Alles nach dem letzten Anführungszeichen entfernen
+        if '"' in raw_output:
+            raw_output = raw_output.rsplit('"', 1)[0]
+
+        # Stempel wie </s> entfernen
+        raw_output = re.sub(r'</s>', '', raw_output, flags=re.IGNORECASE)
+
+        return raw_output.strip()
 
     def create_prompt_validate_context(self, input_str, stage):
         templates = llm_chain.create_prompt_template_for_model(self.model_name, self.args.operation_mode, self.args.language, self.args.template_type, stage)
@@ -85,17 +107,33 @@ class BaseOperationManager:
             input_str,
         )
 
-        print("Prompt: " + prompt)
+        print("\n\nPrompt: " + prompt)
 
-        if (self.model_engine == "ollama"):
-            print("Ollama applies the template automatically, so we do not need to check the context size.")
-        else:
-            max_output_tokens = llm_chain.check_context_size(prompt, self.model_name)
-            if max_output_tokens <= 0:
-                logger.info(f"The tokens exceeded the maximum size of the context window by {max_output_tokens} tokens.")
-                return f"# Token size exceeded by {-max_output_tokens} tokens"
+        max_output_tokens = llm_chain.check_context_size(prompt, self.model_name)
+        if max_output_tokens <= 0:
+            logger.info(f"The tokens exceeded the maximum size of the context window by {max_output_tokens} tokens.")
+            return f"# Token size exceeded by {-max_output_tokens} tokens"
 
         return templates[0], input_str, None
+    
+    def create_recursive_prompt_validate_context(self, input_str, recursive_str, error_str, stage):
+        templates = llm_chain.create_prompt_template_for_model(self.model_name, self.args.operation_mode, self.args.language, self.args.template_type, stage)
+
+        prompt = llm_chain.fillin_prompt_template(
+            templates[0],
+            input_str,
+            recursive_str,
+            error_str,
+        )
+
+        print("Prompt: " + prompt)
+
+        max_output_tokens = llm_chain.check_context_size(prompt, self.model_name)
+        if max_output_tokens <= 0:
+            logger.info(f"The tokens exceeded the maximum size of the context window by {max_output_tokens} tokens.")
+            return f"# Token size exceeded by {-max_output_tokens} tokens"
+
+        return templates[0], input_str, recursive_str, error_str, None
 
     #def create_prompt_validate_context_recursive selbe methode nur um weitere Felder im prompt erweitert
     
@@ -104,6 +142,15 @@ class BaseOperationManager:
             template,
             self.llm,
             input_str,
+        )
+    
+    def invoke_recursive_chain(self, template, input_str, recursive_str, error_str):
+        return llm_chain.create_and_invoke_recursive_chain(
+            template,
+            self.llm,
+            input_str,
+            recursive_str,
+            error_str,
         ) 
     
 #--------------- End of Class
@@ -272,20 +319,32 @@ class BenchmarkOperationManager(BaseOperationManager):
         if '```' in raw_output:
             raw_output = raw_output.split('```', 1)[0]
 
-        return raw_output.strip()
+        if '...' in raw_output:
+            raw_output = raw_output.split('...', 1)[0]
+        
+        raw_output = raw_output.replace("</s>", "")
+
+        return raw_output.strip() + "\n"
 
 
     def run(self):
+        start_time = datetime.now()
         # loop over input files
         context_window_report = f"context_window_report_{self.args.model}.txt"
         context_window_file = open(context_window_report, "a")
+        failed_at_stage_yamllint = []
+        failed_at_stage_syntax = []
+        failed_at_stage_ansiblelint = []
+        failed_at_stage_molecule_test = []
+        passed_all_stages = []
+        
         for f in tqdm(self.prompt_files):
             prompt_file = self.prompt_dir / f
             if not prompt_file.name.endswith("_prompt.txt"):
                 raise ValueError(f"Pfad {prompt_file} endet nicht mit '_prompt.txt'")
 
-            yaml_file = f.replace("_prompt.txt", ".yml")
-            yaml_path = self.config.dataset_dir / self.args.dataset / yaml_file
+            yaml_file = f.replace("_prompt.txt", ".yaml")
+            yaml_path = self.main_output_path / "molecule_test" / yaml_file
             #yaml_path = prompt_file.with_name(prompt_file.stem.replace("_prompt.txt", "") + ".yaml")
             if not yaml_path.exists():
                 yaml_path = yaml_path.with_suffix(".yml")
@@ -305,36 +364,199 @@ class BenchmarkOperationManager(BaseOperationManager):
                 if error_msg:
                     return error_msg
                 raw_outputs = self.invoke_prompt_chain(template, p_str)
-                print(p_str)
-                print(raw_outputs)
-                cleaned_outputs = self.clean_text(raw_outputs)
-                print(cleaned_outputs)
-
-                t1 = time.perf_counter()
-
                 if "# Token size exceeded" in raw_outputs:
                     context_window_file.write(f"{raw_outputs} for file {f}\n")
+                print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
+                cleaned_outputs = self.clean_text(raw_outputs)
+                print(f"___________________________________________Cleaned LLM Output:___________________________________________ \n{cleaned_outputs}")
+                t1 = time.perf_counter()
+                print(f"\n{time.ctime()}: {yaml_path} Total generation time:", t1 - t0)
 
-    #            f_path = Path(f)
-    #            relative_dir = f_path.parent
-    #            target_dir = self.out_folder / relative_dir
-    #            target_dir.mkdir(parents=True, exist_ok=True)
-    #            base_name = f_path.stem
-    #            out_file = target_dir / f"{base_name}_prompt.txt"
+                # copy generated file into molecule test directory
+                with yaml_path.open("w", encoding="utf-8") as f:
+                    f.write(cleaned_outputs)
                 
-                #Alter Stand:
-                #base_name = Path(f).stem  # Dateiname ohne Endung, z. B. "rechner" aus "rechner.py"
-                #out_file = self.out_folder / f"{base_name}_prompt.txt"
+                max_iterations_yamllint = 5
+                max_iterations_syntax = 5
+                max_iterations_ansiblelint = 5
+                errors_syntax = 0
+                errors_ansiblelint = 0
 
+                while True:
+                    # check yamllint, syntax, ansiblelint from here
+                    status_flag_yamllint = False
+                    for i in range(1,max_iterations_yamllint+1): 
+                        print(f"________________________Yamllint Run: {i}________________________\n")
+                        yamllint_check_results: Tuple[bool, str] = check_yamllint(yaml_path)
+                        if yamllint_check_results[0]:
+                            status_flag_yamllint=True
+                            break
+                        else: 
+                            print(f"{i}. Iteration in a row: Generated Ansible-YAML did not pass quality gate 'yamllint'")
+                            template, p_str, recursive_str, error_str, error_msg = self.create_recursive_prompt_validate_context(prompt_str, cleaned_outputs, yamllint_check_results[1], "recursive_yamllint")
+                            if error_msg:
+                                return error_msg
+                            raw_outputs = self.invoke_recursive_chain(template, p_str, cleaned_outputs, yamllint_check_results[1])
+                            if "# Token size exceeded" in raw_outputs:
+                                context_window_file.write(f"{raw_outputs} for file {f}\n")
+                            print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
+                            cleaned_outputs = self.clean_text(raw_outputs)
+                            print(f"___________________________________________Cleaned LLM Output:___________________________________________ \n{cleaned_outputs}")
+                            t1 = time.perf_counter()
+                            print(f"\n{time.ctime()}: {yaml_path} Total generation time:", t1 - t0)
 
-    #            print(f"\n{time.ctime()}: {out_file} Total generation time:", t1 - t0)
-    #            with open(out_file, "w") as fot:
-    #                print(cleaned_outputs, file=fot)
+                            # copy generated file into molecule test directory
+                            with yaml_path.open("w", encoding="utf-8") as f:
+                                f.write(cleaned_outputs)
+                    else:
+                        print(f"Error: Generated Ansible-YAML did not pass quality gate 'yamllint' after defined maximum of {max_iterations_yamllint} iterations in a row!")
+                    
+                    if not status_flag_yamllint:
+                        print(f"\nGeneration of playbook '{yaml_path}' failed at stage 'yamllint'")
+                        failed_at_stage_yamllint.append(yaml_path)
+                        break
+                    
+                    print("##################### Quality Gate 'yamllint' passed! #####################")
 
+                    syntax_check: Tuple[bool, str] = check_playbook_syntax(yaml_path, 3)
+                    if not syntax_check[0]:
+                        errors_syntax += 1
+                        if errors_syntax >= max_iterations_syntax:
+                            print(f"Error: Generated Ansible-YAML did not pass quality gate 'ansible-playbook --syntax-check' after defined maximum of {max_iterations_syntax} iterations!")
+                            print(f"\nGeneration of playbook '{yaml_path}' failed at stage 'ansible-plybook --syntax-check'")
+                            failed_at_stage_syntax.append(yaml_path)
+                            break
+                        print(f"{errors_syntax+1}. Iteration: Generated Ansible-YAML did not pass quality gate 'ansible-playbook --syntax-check'")
+                        template, p_str, recursive_str, error_str, error_msg = self.create_recursive_prompt_validate_context(prompt_str, cleaned_outputs, syntax_check[1], "recursive_syntaxcheck")
+                        if error_msg:
+                            return error_msg
+                        raw_outputs = self.invoke_recursive_chain(template, p_str, cleaned_outputs, syntax_check[1])
+                        if "# Token size exceeded" in raw_outputs:
+                            context_window_file.write(f"{raw_outputs} for file {f}\n")
+                        print(f"Prompt String: \n{p_str}")
+                        print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
+                        cleaned_outputs = self.clean_text(raw_outputs)
+                        print(f"___________________________________________Cleaned LLM Output:___________________________________________ \n{cleaned_outputs}")
+                        t1 = time.perf_counter()
+                        print(f"\n{time.ctime()}: {yaml_path} Total generation time:", t1 - t0)
+
+                        # copy generated file into molecule test directory
+                        with yaml_path.open("w", encoding="utf-8") as f:
+                            f.write(cleaned_outputs)
+                        continue
+                    print("##################### Quality Gate 'ansible-playbook --syntax-check' passed! #####################")
+                    errors_syntax = 0
+
+                    ansiblelint_check: Tuple[bool, str] = check_ansible_lint(yaml_path)
+                    if not ansiblelint_check[0]:
+                        errors_ansiblelint += 1
+                        if errors_ansiblelint >= max_iterations_ansiblelint:
+                            print(f"Error: Generated Ansible-YAML did not pass quality gate 'ansiblelint' after defined maximum of {max_iterations_ansiblelint} iterations!")
+                            print(f"\nGeneration of playbook '{yaml_path}' failed at stage 'ansiblelint'")
+                            failed_at_stage_ansiblelint.append(yaml_path)
+                            break
+                        print(f"{errors_syntax+1}. Iteration: Generated Ansible-YAML did not pass quality gate 'ansiblelint'")
+                        template, p_str, recursive_str, error_str, error_msg = self.create_recursive_prompt_validate_context(prompt_str, cleaned_outputs, ansiblelint_check[1], "recursive_ansiblelint")
+                        if error_msg:
+                            return error_msg
+                        raw_outputs = self.invoke_recursive_chain(template, p_str, cleaned_outputs, ansiblelint_check[1])
+                        if "# Token size exceeded" in raw_outputs:
+                            context_window_file.write(f"{raw_outputs} for file {f}\n")
+                        print(f"Prompt String: \n{p_str}")
+                        print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
+                        cleaned_outputs = self.clean_text(raw_outputs)
+                        print(f"___________________________________________Cleaned LLM Output:___________________________________________ \n{cleaned_outputs}")
+                        t1 = time.perf_counter()
+                        print(f"\n{time.ctime()}: {yaml_path} Total generation time:", t1 - t0)
+
+                        # copy generated file into molecule test directory
+                        with yaml_path.open("w", encoding="utf-8") as f:
+                            f.write(cleaned_outputs)
+                        continue
+                    print("##################### Quality Gate 'ansiblelint' passed! #####################")
+                    errors_ansiblelint = 0
+                    
+                    if check_molecule(yaml_file):
+                        print(f"\n Generation and test of '{yaml_path}' sucessfull!")
+                        passed_all_stages.append(yaml_path)
+                        break
+                    else: 
+                        print(f"Error: Generated Ansible-YAML did not pass quality gate 'molecule-test'!")
+                        print(f"\nGeneration of playbook '{yaml_path}' failed at stage 'molecule-test'")
+                        failed_at_stage_molecule_test.append(yaml_path)
+                        break
             except (ValueError, FileNotFoundError) as e:
                 print(e)
                 continue
+            if tmp_copy.exists():  
+                shutil.copy2(tmp_copy, yaml_path) 
+                tmp_copy.unlink()
+                print(f"YAML file 'f{yaml_path}' was copied into molecule_test directory.")
+        self.reports(start_time, failed_at_stage_yamllint, failed_at_stage_syntax, failed_at_stage_ansiblelint, failed_at_stage_molecule_test, passed_all_stages, self.main_output_path)
 
+
+    def reports(
+        self,
+        start_time,
+        failed_at_stage_yamllint,
+        failed_at_stage_syntax,
+        failed_at_stage_ansiblelint,
+        failed_at_stage_molecule_test,
+        passed_all_stages,
+        report_path,
+    ) -> None:
+        """
+        Creates a report file with start/end time, duration, stage counts,
+        total entries and detailed list of results.
+        """
+        report_file = report_path / "report.txt"
+
+        end_time = datetime.now()
+        duration = end_time - start_time
+
+        with report_file.open("w", encoding="utf-8") as f:
+            # Header
+            f.write("=== Run Summary ===\n")
+            f.write(f"Start time : {start_time}\n")
+            f.write(f"End time   : {end_time}\n")
+            f.write(f"Duration   : {duration}\n\n")
+
+            # Stats
+            f.write("=== Stage Counts ===\n")
+            f.write(f"yamllint failures   : {len(failed_at_stage_yamllint)}\n")
+            f.write(f"syntax failures     : {len(failed_at_stage_syntax)}\n")
+            f.write(f"ansiblelint failures: {len(failed_at_stage_ansiblelint)}\n")
+            f.write(f"molecule failures   : {len(failed_at_stage_molecule_test)}\n")
+            f.write(f"all passed          : {len(passed_all_stages)}\n")
+
+            total = (
+                len(failed_at_stage_yamllint)
+                + len(failed_at_stage_syntax)
+                + len(failed_at_stage_ansiblelint)
+                + len(failed_at_stage_molecule_test)
+                + len(passed_all_stages)
+            )
+            f.write(f"TOTAL entries       : {total}\n\n")
+
+            # Details
+            f.write("=== Detailed Entries ===\n")
+            f.write("\nFailed at stage 'yamllint':\n")
+            for entry in failed_at_stage_yamllint:
+                f.write(f"yamllint failed: {entry}\n")
+            f.write("\nFailed at stage 'ansible-playbook --syntax-check':\n")
+            for entry in failed_at_stage_syntax:
+                f.write(f"syntax failed: {entry}\n")
+            f.write("\nFailed at stage 'ansiblelint':\n")
+            for entry in failed_at_stage_ansiblelint:
+                f.write(f"ansiblelint failed: {entry}\n")
+            f.write("\nFailed at stage 'molecule-test':\n")
+            for entry in failed_at_stage_molecule_test:
+                f.write(f"molecule failed: {entry}\n")
+            f.write("\nSuccessfully passed all stages:\n")
+            for entry in passed_all_stages:
+                f.write(f"passed: {entry}\n")
+
+        print(f"Report written to {report_file}")
 
 ########################___MAIN___########################
 def main(args: CLIArgumentsBase, config: Config):

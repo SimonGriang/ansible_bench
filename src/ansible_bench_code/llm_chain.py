@@ -18,10 +18,23 @@ from prompt_templates import (
     benchmark_exact_english_first_yamllint_template,
     benchmark_precise_english_first_yamllint_template,
     benchmark_approximate_english_first_yamllint_template,
+    benchmark_exact_english_recursive_yamllint_template,
+    benchmark_precise_english_recursive_yamllint_template,
+    benchmark_approximate_english_recursive_yamllint_template,
+    benchmark_exact_english_recursive_syntax_template,
+    benchmark_precise_english_recursive_syntax_template,
+    benchmark_approximate_english_recursive_syntax_template,
+    benchmark_exact_english_recursive_ansiblelint_template,
+    benchmark_precise_english_recursive_ansiblelint_template,
+    benchmark_approximate_english_recursive_ansiblelint_template,
 )
 
+# Template switch
 
-def  hf_modelfiles_path_for(model_name: str) -> Path:
+template_type = "direct"
+
+
+def hf_modelfiles_path_for(model_name: str) -> Path:
     model_name = model_name.lower()
     hf_model_paths = {
         "mistral": Path.joinpath(TORCH_MODELS_PATH, "Mistral-7B-Instruct-v0.1"),
@@ -41,12 +54,11 @@ def  hf_modelfiles_path_for(model_name: str) -> Path:
         "phi3": Path.joinpath(TORCH_MODELS_PATH, "Phi-3-mini-4k-instruct"),
         "codestral": Path.joinpath(TORCH_MODELS_PATH, "Codestral-22B-v0.1"),
         "gemma-3": Path.joinpath(TORCH_MODELS_PATH, "gemma-3-27b-it"),
-        "gemma-3": Path.joinpath(TORCH_MODELS_PATH, "gemma-3-27b-it"),
     }
 
     if model_name not in hf_model_paths.keys():
         raise NotImplementedError(
-            f"The model you are trying to use is not available in this library. Model: {model_name}. Add it to the hf_model_paths dict in codetrans/llm_chain.py"
+            f"The model you are trying to use is not available in this library. Model: {model_name}. Add it to the hf_model_paths dict in codetrans/llm_abstraction.py"
         )
 
     return hf_model_paths[model_name]
@@ -56,7 +68,7 @@ def apply_chat_template_to_text(text: str, model_name: str) -> str:
     if "codestral" in model_name:
         # The codestral tokenizer does not define a chat template. Codestral uses the same chat template as Mistral. Use that instead.
         tokenizer = AutoTokenizer.from_pretrained(hf_modelfiles_path_for("mistral"))
-    elif "deepseek-r1:14b" in model_name:
+    elif "gemma-3" in model_name:
         # ollama applies the template automatically
         return text
     else:
@@ -184,27 +196,21 @@ def create_prompt_template(operation_mode: str, language:str, template_type: str
             "english": {
                 "exact": {
                     "first_yamllint": benchmark_exact_english_first_yamllint_template,
-                    #"recursive_yamllint": ,
-                    #"first_syntaxcheck": ,
-                    #"recursive_syntaxcheck": ,
-                    #"first_ansiblelint": ,
-                    #"recursive_ansiblelint": ,
+                    "recursive_yamllint": benchmark_exact_english_recursive_yamllint_template,
+                    "recursive_syntaxcheck": benchmark_exact_english_recursive_syntax_template,
+                    "recursive_ansiblelint": benchmark_exact_english_recursive_ansiblelint_template,
                 },
                 "precise": {
                     "first_yamllint": benchmark_precise_english_first_yamllint_template,
-                    #"recursive_yamllint": ,
-                    #"first_syntaxcheck": ,
-                    #"recursive_syntaxcheck": ,
-                    #"first_ansiblelint": ,
-                    #"recursive_ansiblelint": ,
+                    "recursive_yamllint": benchmark_precise_english_recursive_yamllint_template,
+                    "recursive_syntaxcheck": benchmark_precise_english_recursive_syntax_template,
+                    "recursive_ansiblelint": benchmark_precise_english_recursive_ansiblelint_template,
                 },
                 "approximate": {
                     "first_yamllint": benchmark_approximate_english_first_yamllint_template,
-                    #"recursive_yamllint": ,
-                    #"first_syntaxcheck": ,
-                    #"recursive_syntaxcheck": ,
-                    #"first_ansiblelint": ,
-                    #"recursive_ansiblelint": ,
+                    "recursive_yamllint": benchmark_approximate_english_recursive_yamllint_template,
+                    "recursive_syntaxcheck": benchmark_approximate_english_recursive_syntax_template,
+                    "recursive_ansiblelint": benchmark_approximate_english_recursive_ansiblelint_template,
                 },
             },
             "german": {
@@ -287,12 +293,9 @@ def fillin_prompt_template(
     Args:
         prompt (PromptTemplate): A prompt template that will be used to generate the LLM chain.
         reference_playbook (str): The reference Playbook from the dataset.
-        playbook_prompt (str): The prompt generated to a specific ansible yaml file.
-
-        #llm_response (str): The current translation of the source code in the target language. #stop
-        #stderr (str): The error information of standard error of the latest execution.
-        #test_data (dict): The data from the latest test execution (input, expected output, and generated output).
-
+        input_str (str): The playbook for which a prompt is needed or a prompt according to the generation of a playbook.
+        recursive_str: Last generated faulty playbook
+        error_str: stdout + stderr of last run of yamllint, ansible-playbook --syntax-check or ansiblelint
     Returns:
         The filled in prompt template of the chain as a string.
     """
@@ -314,10 +317,10 @@ def create_and_invoke_prompt_chain(
     Args:
         prompt (PromptTemplate): A prompt template that will be used to generate the LLM chain.
         llm (LLM): An LLM model that will be used in the LLM chain.
-        playbook (str): The playbook for which a prompt is needed.
+        input_str (str): The playbook for which a prompt is needed or a prompt according to the generation of a playbook.
 
     Returns:
-        A dictionary containing the translated source code and its corresponding source code in the specified languages.
+        A dictionary either a generated prompt according to a playbook or a playbook according to a prompt.
     """
 
     # create prompt template > LLM sequence
@@ -334,7 +337,8 @@ def create_and_invoke_recursive_chain(
     prompt: PromptTemplate,
     llm: LLM,
     input_str: str,
-    recursive
+    recursive_str: str,
+    error_str: str,
 ) -> dict[str, str]:
     """
     Creates an LLMChain using a given prompt template and LLM object.
@@ -342,7 +346,9 @@ def create_and_invoke_recursive_chain(
     Args:
         prompt (PromptTemplate): A prompt template that will be used to generate the LLM chain.
         llm (LLM): An LLM model that will be used in the LLM chain.
-        playbook (str): The playbook for which a prompt is needed.
+        input_str (str): The original prompt.
+        recursive_str: Last generated faulty playbook
+        error_str: stdout + stderr of last run of yamllint, ansible-playbook --syntax-check or ansiblelint
 
     Returns:
         A dictionary containing the translated source code and its corresponding source code in the specified languages.
@@ -355,6 +361,8 @@ def create_and_invoke_recursive_chain(
     return chain.invoke(
         {
             "input_str": input_str,
+            "recursive_str": recursive_str,
+            "error_str": error_str,
         }
     )
 
