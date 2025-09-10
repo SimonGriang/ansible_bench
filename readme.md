@@ -1,5 +1,5 @@
 # KI gestützte IT-Automatisierung: Optimierung des Konfigurationsmanagements durch LLM basierte Skriptgenerierung
-This Repository provides the code and some additional information on the master thesis **"KI gestützte IT-Automatisierung: Optimierung des Konfigurationsmanagements durch LLM basierte Skriptgenerierung"** by **Simon Göttsberger** at the **Technical University of Applied Sciences Rosenheim**. 
+This Repository provides the code and some additional information on the master thesis **"KI gestützte IT-Automatisierung: Optimierung des Konfigurationsmanagements durch LLMbasierte Skriptgenerierung"** by **Simon Göttsberger** at the **Technical University of Applied Sciences Rosenheim**. 
 
 
 # Prompts for using this tool
@@ -83,5 +83,8 @@ options:
 
 Example for using BENCHMARK mode:
 ```bash
-python ansible_generator.py -m codestral -e llamafile benchmark -d example -tt exact -p prompts/llamafile_codestral_english_exact/example
+python ansible_generator.py -m codestral -e llamafile benchmark -d example -tt exact -p /dataset/llamafile_codestral_english_exact
 ```
+
+
+
