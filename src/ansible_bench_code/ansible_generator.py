@@ -306,8 +306,8 @@ class BenchmarkOperationManager(BaseOperationManager):
                     return error_msg
                 raw_outputs = self.invoke_prompt_chain(template, p_str)
                 print(p_str)
-                print(raw_outputs)
-                cleaned_outputs = self.clean_text(raw_outputs)
+                print(raw_outputs.content)
+                cleaned_outputs = self.clean_text(raw_outputs.content)
                 print(cleaned_outputs)
 
                 t1 = time.perf_counter()
