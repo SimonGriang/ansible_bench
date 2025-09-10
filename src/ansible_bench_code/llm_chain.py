@@ -1,4 +1,4 @@
-from ansible_generator_config import TORCH_MODELS_PATH
+from ansible_generator_config import TOKENIZER_MODELS_PATH
 from langchain.prompts import PromptTemplate
 #from langchain.chains import LLMChain, SequentialChain
 #from langchain.schema import RunnableSequence
@@ -24,24 +24,24 @@ from prompt_templates import (
 def  hf_modelfiles_path_for(model_name: str) -> Path:
     model_name = model_name.lower()
     hf_model_paths = {
-        "mistral": Path.joinpath(TORCH_MODELS_PATH, "Mistral-7B-Instruct-v0.1"),
-        "mixtral": Path.joinpath(TORCH_MODELS_PATH, "Mixtral-8x7B-Instruct-v0.1"),
-        "codellama": Path.joinpath(TORCH_MODELS_PATH, "CodeLlama-70b-hf"),
+        "mistral": Path.joinpath(TOKENIZER_MODELS_PATH, "Mistral-7B-Instruct-v0.1"),
+        "mixtral": Path.joinpath(TOKENIZER_MODELS_PATH, "Mixtral-8x7B-Instruct-v0.1"),
+        "codellama": Path.joinpath(TOKENIZER_MODELS_PATH, "CodeLlama-70b-hf"),
         "dolphin-2.6-mistral": Path.joinpath(
-            TORCH_MODELS_PATH, "dolphin-2.6-mistral-7b"
+            TOKENIZER_MODELS_PATH, "dolphin-2.6-mistral-7b"
         ),
         "dolphin-2.7-mixtral": Path.joinpath(
-            TORCH_MODELS_PATH, "dolphin-2.7-mixtral-8x7b"
+            TOKENIZER_MODELS_PATH, "dolphin-2.7-mixtral-8x7b"
         ),
         "dolphincoder-starcoder2-15b": Path.joinpath(
-            TORCH_MODELS_PATH, "dolphincoder-starcoder2-15b"
+            TOKENIZER_MODELS_PATH, "dolphincoder-starcoder2-15b"
         ),
-        "dolphin-2.6-phi-2": Path.joinpath(TORCH_MODELS_PATH, "dolphin-2_6-phi-2"),
-        "llama3": Path.joinpath(TORCH_MODELS_PATH, "Meta-Llama-3-8B-Instruct"),
-        "phi3": Path.joinpath(TORCH_MODELS_PATH, "Phi-3-mini-4k-instruct"),
-        "codestral": Path.joinpath(TORCH_MODELS_PATH, "Codestral-22B-v0.1"),
-        "gemma-3": Path.joinpath(TORCH_MODELS_PATH, "gemma-3-27b-it"),
-        "gemma-3": Path.joinpath(TORCH_MODELS_PATH, "gemma-3-27b-it"),
+        "dolphin-2.6-phi-2": Path.joinpath(TOKENIZER_MODELS_PATH, "dolphin-2_6-phi-2"),
+        "llama3.2": Path.joinpath(TOKENIZER_MODELS_PATH, "Llama-3.2-1B-Instruct"),
+        "phi3": Path.joinpath(TOKENIZER_MODELS_PATH, "Phi-3-mini-4k-instruct"),
+        "codestral": Path.joinpath(TOKENIZER_MODELS_PATH, "Codestral-22B-v0.1"),
+        "gemma-3": Path.joinpath(TOKENIZER_MODELS_PATH, "gemma-3-27b-it"),
+        "gemma-3": Path.joinpath(TOKENIZER_MODELS_PATH, "gemma-3-27b-it"),
     }
 
     if model_name not in hf_model_paths.keys():
@@ -55,7 +55,7 @@ def  hf_modelfiles_path_for(model_name: str) -> Path:
 def apply_chat_template_to_text(text: str, model_name: str) -> str:
     if "codestral" in model_name:
         # The codestral tokenizer does not define a chat template. Codestral uses the same chat template as Mistral. Use that instead.
-        tokenizer = AutoTokenizer.from_pretrained(hf_modelfiles_path_for("mistral"))
+        tokenizer = AutoTokenizer.from_pretrained(hf_modelfiles_path_for("codestral"))
     elif "deepseek-r1:14b" in model_name:
         # ollama applies the template automatically
         return text
