@@ -83,5 +83,5 @@ options:
 
 Example for using BENCHMARK mode:
 ```bash
-python ansible_generator.py -m llama3 -e llamafile benchmark -d example -tt exact -p prompts/llamafile_codestral_english_exact/example
+python ansible_generator.py -m codestral -e llamafile benchmark -d example -tt exact -p prompts/llamafile_codestral_english_exact/example
 ```
