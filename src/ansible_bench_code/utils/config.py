@@ -16,8 +16,9 @@ class Config:
     cleaned_dir_name: str = "cleaned"
 
 
-def load_config(file_str: str = ".\\config\\config.yaml") -> Config:
-    with open(file_str, "r") as f:
+def load_config(file_str: str | Path = Path("config/config.yaml")) -> Config:
+    file_path = Path(file_str)
+    with open(file_path, "r") as f:
         config_dict = yaml.safe_load(f)
 
     print(f"Loaded config from file {file_str}: config: {config_dict}")
