@@ -5,10 +5,9 @@ from pathlib import Path
 
 LLAMAFILE_VERSION = "0.6.2"
 
-TORCH_MODELS_PATH = Path("E:/") / "models" / "pytorch"
+TOKENIZER_MODELS_PATH = Path("/home/studgoetsi5301/documents/tokenizer")
 """Path to the base directory of the transformers and pytorch model files."""
-# LLAMAFILE_PATH = Path("C:/") / "home" / "bins" / "llamafile-0.6.2.exe"
-LLAMAFILE_PATH = Path("C:/") / "home" / "bins" / "llamafile-0.8.6.exe"
+LLAMAFILE_PATH = Path("/home/studgoetsi5301/documents/llamafile/llamafile-0.8.17")
 """Path to the llamafile executable."""
 GGUF_PATH = Path("E:/") / "models" / "gguf"
 """Path to the directory with the GGUF files of the models."""

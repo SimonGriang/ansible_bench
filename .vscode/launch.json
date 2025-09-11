@@ -12,7 +12,7 @@
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}/src/ansible_bench_code",
             "args": [                
-                "-m", "codestral",
+                "-m", "llama3.2",
                 "-e", "llamafile", "benchmark",
                 "-d", "example",
                 "-tt", "exact",

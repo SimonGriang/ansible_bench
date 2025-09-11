@@ -10,7 +10,7 @@ from ansible_generator_config import (
     LLAMAFILE_OUTPUT_LOG,
     LLAMAFILE_PATH,
     LLAMAFILE_VERSION,
-    TORCH_MODELS_PATH,
+    TOKENIZER_MODELS_PATH,
 )
 from langchain_core.language_models.llms import LLM
 from langchain_ollama import ChatOllama
@@ -24,7 +24,7 @@ from pathlib import Path
 import requests
 
 
-MAX_CTX_SIZE = 100000
+MAX_CTX_SIZE = 200000
 """Max size of the prompt context."""
 LLAMAFILE_PORTS = {
     "mistral": 8090,
@@ -34,7 +34,7 @@ LLAMAFILE_PORTS = {
     "dolphin-2.7-mixtral": 8094,
     "dolphincoder-starcoder2-15b": 8095,
     "dolphin-2.6-phi-2": 8096,
-    "llama3": 8097,
+    "llama3.2": 8097,
     "phi3": 8098,
     "codestral": 8099,
 }
@@ -47,7 +47,7 @@ LLAMAFILE_CTX_SIZE = {
     "dolphin-2.7-mixtral": 16000,
     "dolphincoder-starcoder2-15b": 4000,
     "dolphin-2.6-phi-2": 2048,
-    "llama3": 8000,
+    "llama3.2": 8000,
     "phi3": 4000,
     "codestral": 32000,
 }
@@ -265,8 +265,8 @@ def start_llamafile(model_name: str, ctx_size: int = 512) -> tuple[subprocess.Po
         "dolphin-2.6-phi-2": f"{str(LLAMAFILE_PATH)} --server --nobrowser -m "
         + str(Path.joinpath(GGUF_PATH, "dolphin-2_6-phi-2.Q6_K.gguf"))
         + " -ngl 9999",
-        "llama3": f"{str(LLAMAFILE_PATH)} --server --nobrowser -m "
-        + str(Path.joinpath(GGUF_PATH, "Meta-Llama-3-8B-Instruct.Q5_K_M.gguf"))
+        "llama3.2": f"{str(LLAMAFILE_PATH)} --server --nobrowser -m "
+        + str(Path.joinpath(GGUF_PATH, "Llama-3.2-1B-Instruct.IQ1_M.gguf"))
         + " -ngl 9999",
         "phi3": f"{str(LLAMAFILE_PATH)} --server --nobrowser -m "
         + str(Path.joinpath(GGUF_PATH, "Phi-3-mini-4k-instruct-Q5_K_M.gguf"))
