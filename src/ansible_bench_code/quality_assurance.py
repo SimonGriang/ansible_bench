@@ -141,7 +141,7 @@ def check_yamllint(yaml_file: Path) -> Tuple[bool, str]:
 # -------------------------------
 # ansible-playbook --syntax-check Checking
 # -------------------------------
-def check_playbook_syntax(yaml_file: Path, count:int) -> Tuple[bool, str]: #count:int only for test
+def check_playbook_syntax(yaml_file: Path) -> Tuple[bool, str]:
     return True, ""
     """
     TODO: Validate Ansible Playbook syntax via `ansible-playbook --syntax-check`.
