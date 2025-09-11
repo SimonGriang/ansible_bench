@@ -364,6 +364,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                 if error_msg:
                     return error_msg
                 raw_outputs = self.invoke_prompt_chain(template, p_str)
+
                 if "# Token size exceeded" in raw_outputs:
                     context_window_file.write(f"{raw_outputs} for file {f}\n")
                 print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
