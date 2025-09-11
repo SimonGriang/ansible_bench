@@ -29,11 +29,6 @@ from prompt_templates import (
     benchmark_approximate_english_recursive_ansiblelint_template,
 )
 
-# Template switch
-
-template_type = "direct"
-
-
 def hf_modelfiles_path_for(model_name: str) -> Path:
     model_name = model_name.lower()
     hf_model_paths = {
@@ -59,7 +54,7 @@ def hf_modelfiles_path_for(model_name: str) -> Path:
 
     if model_name not in hf_model_paths.keys():
         raise NotImplementedError(
-            f"The model you are trying to use is not available in this library. Model: {model_name}. Add it to the hf_model_paths dict in codetrans/llm_abstraction.py"
+            f"The model you are trying to use is not available in this library. Model: {model_name}. Add it to the hf_model_paths dict in codetrans/llm_chain.py"
         )
 
     return hf_model_paths[model_name]
