@@ -37,7 +37,6 @@ LLAMAFILE_PORTS = {
     "llama3.2": 8097,
     "phi3": 8098,
     "codestral": 8099,
-    "llama-3.2-1b": 8100,
 }
 """Mapping of the LLM names and the port numbers the respective llamafile servers run on."""
 LLAMAFILE_CTX_SIZE = {
@@ -51,11 +50,9 @@ LLAMAFILE_CTX_SIZE = {
     "llama3.2": 8000,
     "phi3": 4000,
     "codestral": 32000,
-    "llama-3.2-1b": 131072,
 }
 
 OLLAMA_CTX_SIZE = {
-    "deepseek-r1:14b": 128000,
     "mistral": 8192,
     "mixtral:8x7b": 8192,
     "codellama:70b": 100000,
@@ -78,7 +75,19 @@ class LLMSettings:
     temperature: float
     repeat_penalty: float
 
+
+def on_windows_workstation():
+    return platform.system() == "Windows"
+
+
+def on_macbook():
+    return platform.system() == "Darwin"
+
+
 def hardware_for_os(hardware_mode: str):
+    if on_macbook():
+        # always use the GPU on the MacBook
+        return "mps", "mps:0"
     if hardware_mode.lower() == "gpu":
         return "cuda", 0
     elif hardware_mode.lower() == "cpu":
@@ -166,23 +175,55 @@ def llm_wrapper(
         print("Serving model via Llamafile:", model_name)
     elif abstraction_framework == "torch":
         torch.set_default_device(hardware_for_os(hardware_mode)[0])
-        # Load the model and tokenizer
-        model = AutoModelForCausalLM.from_pretrained(
-            model_name,
-            torch_dtype="auto",
-            trust_remote_code=True,
-            # device=0,
-        )
+        if on_windows_workstation():
+            if model_name == "microsoft/phi-2":
+                model_path = Path.joinpath(TORCH_MODELS_PATH, "dolphin-2.6-phi-2")
+            elif model_name == "mlabonne/phixtral-4x2_8":
+                model_path = Path.joinpath(TORCH_MODELS_PATH, "phixtral-4x2_8")
+                model_path = Path.joinpath(TORCH_MODELS_PATH, "phixtral-4x2_8-gptq-4bit-32g-actorder_True")
+            elif model_name == "mistralai/Mixtral-8x7B-v0.1":
+                model_path = Path.joinpath(TORCH_MODELS_PATH, "Mixtral-8x7B-v0.1")
+            else:
+                raise NotImplementedError(
+                    "The selected model was not implemented or downloaded yet. Please choose another one."
+                )
 
-        tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
-        pipe = pipeline(
-            "text-generation",
-            model=model,
-            tokenizer=tokenizer,
-            device=hardware_for_os(hardware_mode)[1],
-            max_new_tokens=max_output_tokens,
-            pad_token_id=tokenizer.eos_token_id,
-        )
+            # Load the model and tokenizer from the local path where the downloaded model is saved
+            model = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype="auto", trust_remote_code=True)
+            tokenizer = AutoTokenizer.from_pretrained(
+                model_path,
+                # trust_remote_code: Whether or not to allow for custom models defined on the Hub in their own modeling files. This option
+                # should only be set to `True` for repositories you trust and in which you have read the code, as it will
+                # execute code present on the Hub on your local machine.
+                trust_remote_code=True,
+            )
+            pipe = pipeline(
+                "text-generation",
+                model=model,
+                tokenizer=tokenizer,
+                device=hardware_for_os(hardware_mode)[1],
+                max_new_tokens=max_output_tokens,
+                pad_token_id=tokenizer.eos_token_id,
+            )
+        else:
+            # Load the model and tokenizer
+            model = AutoModelForCausalLM.from_pretrained(
+                model_name,
+                torch_dtype="auto",
+                trust_remote_code=True,
+                # device=0,
+            )
+
+            tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+            pipe = pipeline(
+                "text-generation",
+                model=model,
+                tokenizer=tokenizer,
+                device=hardware_for_os(hardware_mode)[1],
+                max_new_tokens=max_output_tokens,
+                pad_token_id=tokenizer.eos_token_id,
+            )
+
         llm = HuggingFacePipeline(pipeline=pipe)
     else:
         raise ValueError("Invalid abstraction mode for the OS.")

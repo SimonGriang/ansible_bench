@@ -1,8 +1,8 @@
 # 📝 ToDo-Liste
 
 ## Aktueller Arbeitsschritt
-
---> Auf THRO Infra operation_mode "prompt" mit Deepseek-R1 laufen lassen, davor pull durchführen!
+--> Refactoring bulky functions!
+--> add LLM-as-a-Judge to Prompt Generation
 
 ## Aufgaben
 
