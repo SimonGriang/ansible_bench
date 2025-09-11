@@ -491,7 +491,7 @@ class BenchmarkOperationManager(BaseOperationManager):
             if tmp_copy.exists():  
                 shutil.copy2(tmp_copy, yaml_path) 
                 tmp_copy.unlink()
-                print(f"YAML file 'f{yaml_path}' was copied into molecule_test directory.")
+                print(f"YAML file '{yaml_path}' was copied into molecule_test directory.")
         self.reports(start_time, failed_at_stage_yamllint, failed_at_stage_syntax, failed_at_stage_ansiblelint, failed_at_stage_molecule_test, passed_all_stages, self.main_output_path)
 
 
