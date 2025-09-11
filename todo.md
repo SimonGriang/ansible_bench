@@ -1,8 +1,9 @@
 # 📝 ToDo-Liste
 
 ## Aktueller Arbeitsschritt
---> Refactoring bulky functions!
---> add LLM-as-a-Judge to Prompt Generation
+- [ ] Refactoring bulky functions!
+- [ ] add LLM-as-a-Judge to Prompt Generation
+ &rarr Check if RAM memory can be reduced
 
 ## Aufgaben
 
