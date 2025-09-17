@@ -1,3 +1,4 @@
+import re
 import subprocess
 from pathlib import Path
 from typing import Tuple
@@ -141,129 +142,126 @@ def check_yamllint(yaml_file: Path) -> Tuple[bool, str]:
 # -------------------------------
 # ansible-playbook --syntax-check Checking
 # -------------------------------
-def check_playbook_syntax(yaml_file: Path) -> Tuple[bool, str]:
-    return True, ""
-    """
-    TODO: Validate Ansible Playbook syntax via `ansible-playbook --syntax-check`.
-    """
-    raise NotImplementedError("Playbook syntax check not implemented yet.")
-
-
-
-#def check_playbook_syntax(playbook_path: Path) -> Tuple[bool, str]:
+def check_playbook_syntax(playbook_path: Path) -> Tuple[bool, str]:
+#    return True, ""
 #    """
-#    Führt ansible-playbook --syntax-check auf dem angegebenen Playbook aus.
-#    Gibt (True, "passed") zurück, wenn keine Fehler/Warnings vorliegen,
-#    ansonsten (False, Ausgabe mit Fehler/Warning).
-#
-#    :param playbook_path: Pfad zur YAML Playbook-Datei
-#    :return: Tuple[bool, str]
+#    TODO: Validate Ansible Playbook syntax via `ansible-playbook --syntax-check`.
 #    """
-#    try:
-#        result = subprocess.run(
-#            ["ansible-playbook", str(playbook_path), "--syntax-check"],
-#            capture_output=True,
-#            text=True,
-#            check=False
-#        )
-#
-#        stdout = result.stdout.strip()
-#        stderr = result.stderr.strip()
-#        output = (stdout + "\n" + stderr).strip()
-#
-#        if result.returncode == 0 and not stderr:
-#            return True, "passed"
-#        else:
-#            return False, output
-#
-#    except FileNotFoundError:
-#        return False, "ansible-playbook command not found. Bitte sicherstellen, dass Ansible installiert ist."
+#    raise NotImplementedError("Playbook syntax check not implemented yet.")
+
+    """
+    Führt ansible-playbook --syntax-check auf dem angegebenen Playbook aus.
+    Gibt (True, "passed") zurück, wenn keine Fehler/Warnings vorliegen,
+    ansonsten (False, Ausgabe mit Fehler/Warning).
+
+    :param playbook_path: Pfad zur YAML Playbook-Datei
+    :return: Tuple[bool, str]
+    """
+    try:
+        result = subprocess.run(
+            ["ansible-playbook", str(playbook_path), "--syntax-check"],
+            capture_output=True,
+            text=True,
+            check=False
+        )
+
+        stdout = result.stdout.strip()
+        stderr = result.stderr.strip()
+        output = (stdout + "\n" + stderr).strip()
+
+        if result.returncode == 0 and not stderr:
+            return True, "passed"
+        else:
+            return False, output
+
+    except FileNotFoundError:
+        return False, "ansible-playbook command not found. Bitte sicherstellen, dass Ansible installiert ist."
 
 # -------------------------------
 # Ansible-Lint Checking
 # -------------------------------
-def check_ansible_lint(yaml_file: Path) -> Tuple[bool, str]:
-    return True, ""
-    
-    """
-    TODO: Validate YAML/Playbook with ansible-lint.
-    """
-    raise NotImplementedError("ansible-lint check not implemented yet.")
-
-
-
 #def check_ansible_lint(yaml_file: Path) -> Tuple[bool, str]:
+#    return True, ""
+#    
 #    """
-#    Führt ansible-lint auf der angegebenen YAML-Datei aus.
-#    Gibt (True, "passed") zurück, wenn keine Fehler/Warnings vorliegen,
-#    ansonsten (False, Ausgabe mit Fehler/Warning).
-#
-#
-#    :param yaml_file: Pfad zur YAML Datei
-#    :return: Tuple[bool, str]
+#    TODO: Validate YAML/Playbook with ansible-lint.
 #    """
-#    try:
-#        result = subprocess.run(
-#            ["ansible-lint", str(yaml_file)],
-#            capture_output=True,
-#            text=True,
-#            check=False
-#        )
-#
-#
-#        stdout = result.stdout.strip()
-#        stderr = result.stderr.strip()
-#        output = (stdout + "\n" + stderr).strip()
-#
-#
-#        if result.returncode == 0 and not output:
-#            return True, "passed"
-#        else:
-#            return False, output
-#
-#
-#    except FileNotFoundError:
-#        return False, "ansible-lint command not found. Bitte sicherstellen, dass Ansible Lint installiert ist."
+#    raise NotImplementedError("ansible-lint check not implemented yet.")
+
+
+
+def check_ansible_lint(yaml_file: Path) -> Tuple[bool, str]:
+    """
+    Führt ansible-lint auf der angegebenen YAML-Datei aus.
+    Gibt (True, "passed") zurück, wenn keine Fehler/Warnings vorliegen,
+    ansonsten (False, Ausgabe mit Fehler/Warning).
+
+
+    :param yaml_file: Pfad zur YAML Datei
+    :return: Tuple[bool, str]
+    """
+    try:
+        result = subprocess.run(
+            ["ansible-lint", str(yaml_file)],
+            capture_output=True,
+            text=True,
+            check=False
+        )
+
+
+        stdout = result.stdout.strip()
+        stderr = result.stderr.strip()
+        output = (stdout + "\n" + stderr).strip()
+
+
+        if result.returncode == 0 and not output:
+            return True, "passed"
+        else:
+            return False, output
+
+
+    except FileNotFoundError:
+        return False, "ansible-lint command not found. Bitte sicherstellen, dass Ansible Lint installiert ist."
 
 
 # -------------------------------
 # Molecule-Testing
 # -------------------------------
-def check_molecule(role_dir: Path) -> bool:
-    return True
-    
-    """
-    TODO: Führt Molecule Tests auf der Rolle durch.
-    """
-    raise NotImplementedError("Molecule Test noch nicht implementiert.")
+#def check_molecule(role_dir: Path) -> bool:
+#    return True
+#    
+#    """
+#    TODO: Führt Molecule Tests auf der Rolle durch.
+#    """
+#    raise NotImplementedError("Molecule Test noch nicht implementiert.")
 
-#def run_molecule_tests(task_file: Path) -> bool:
-#    """
-#    Runs Molecule tests for the Ansible role that contains the given task YAML file.
-#
-#    The method navigates to the role directory (parent of `tasks/`) and executes `molecule test`.
-#    Returns True only if ALL recap lines report failed=0, otherwise False.
-#
-#    :param task_file: Path to a YAML file inside the role's `tasks/` folder.
-#    :return: bool
-#    """
-#    role_dir = task_file.parent.parent  # go from tasks/ to role root
-#    try:
-#        result = subprocess.run(
-#            ["molecule", "test"],
-#            cwd=str(role_dir),
-#            capture_output=True,
-#            text=True,
-#            check=False
-#        )
-#        output = result.stdout + "\n" + result.stderr
-#
-#        # Finde alle failed=X Vorkommen
-#        failed_matches = re.findall(r"failed=(\\d+)", output)
-#
-#        if result.returncode == 0 and all(int(x) == 0 for x in failed_matches):
-#            return True
-#        else:
-#            return False
-#    except FileNotFoundError:
-#        return False
+def check_molecule(task_file: Path) -> bool:
+    """
+    Runs Molecule tests for the Ansible role that contains the given task YAML file.
+
+    The method navigates to the role directory (parent of `tasks/`) and executes `molecule test`.
+    Returns True only if ALL recap lines report failed=0, otherwise False.
+
+    :param task_file: Path to a YAML file inside the role's `tasks/` folder.
+    :return: bool
+    """
+    role_dir = task_file.parent.parent  # go from tasks/ to role root
+    try:
+        result = subprocess.run(
+            ["molecule", "test"],
+            cwd=str(role_dir),
+            capture_output=True,
+            text=True,
+            check=False
+        )
+        output = result.stdout + "\n" + result.stderr
+
+        # Finde alle failed=X Vorkommen
+        failed_matches = re.findall(r"failed=(\\d+)", output)
+
+        if result.returncode == 0 and all(int(x) == 0 for x in failed_matches):
+            return True
+        else:
+            return False
+    except FileNotFoundError:
+        return False

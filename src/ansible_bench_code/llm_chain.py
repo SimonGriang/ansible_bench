@@ -32,24 +32,10 @@ from prompt_templates import (
 def hf_modelfiles_path_for(model_name: str) -> Path:
     model_name = model_name.lower()
     hf_model_paths = {
-        "mistral": Path.joinpath(TOKENIZER_MODELS_PATH, "Mistral-7B-Instruct-v0.1"),
-        "mixtral": Path.joinpath(TOKENIZER_MODELS_PATH, "Mixtral-8x7B-Instruct-v0.1"),
-        "codellama": Path.joinpath(TOKENIZER_MODELS_PATH, "CodeLlama-70b-hf"),
-        "dolphin-2.6-mistral": Path.joinpath(
-            TOKENIZER_MODELS_PATH, "dolphin-2.6-mistral-7b"
-        ),
-        "dolphin-2.7-mixtral": Path.joinpath(
-            TOKENIZER_MODELS_PATH, "dolphin-2.7-mixtral-8x7b"
-        ),
-        "dolphincoder-starcoder2-15b": Path.joinpath(
-            TOKENIZER_MODELS_PATH, "dolphincoder-starcoder2-15b"
-        ),
-        "dolphin-2.6-phi-2": Path.joinpath(TOKENIZER_MODELS_PATH, "dolphin-2_6-phi-2"),
+        "deepseek-r1:14b": Path.joinpath(TOKENIZER_MODELS_PATH, "deepseek-r1_14b"),
         "llama3.2": Path.joinpath(TOKENIZER_MODELS_PATH, "Llama-3.2-1B-Instruct"),
-        "phi3": Path.joinpath(TOKENIZER_MODELS_PATH, "Phi-3-mini-4k-instruct"),
         "codestral": Path.joinpath(TOKENIZER_MODELS_PATH, "Codestral-22B-v0.1"),
-        "gemma-3": Path.joinpath(TOKENIZER_MODELS_PATH, "gemma-3-27b-it"),
-        "gemma-3": Path.joinpath(TOKENIZER_MODELS_PATH, "gemma-3-27b-it"),
+        "gpt-oss:20b": Path.joinpath(TOKENIZER_MODELS_PATH, "gpt-oss:20b"),
     }
 
     if model_name not in hf_model_paths.keys():
@@ -64,21 +50,12 @@ def apply_chat_template_to_text(text: str, model_name: str) -> str:
     if "codestral" in model_name:
         # The codestral tokenizer does not define a chat template. Codestral uses the same chat template as Mistral. Use that instead.
         tokenizer = AutoTokenizer.from_pretrained(hf_modelfiles_path_for("codestral"))
-    elif "deepseek-r1:14b" in model_name:
+    elif "deepseek-r1:14b" in model_name or "gpt-oss:20b" in model_name:
         # ollama applies the template automatically
         return text
     else:
         tokenizer = AutoTokenizer.from_pretrained(hf_modelfiles_path_for(model_name))
-    if "dolphin" in model_name:
-        # has no chat template in tokenizer
-        tokenizer.chat_template = "{% if not add_generation_prompt is defined %}{% set add_generation_prompt = false %}{% endif %}{% for message in messages %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant\n' }}{% endif %}"
-        system_prompt = "You are a skilled developer proficient in ansible specific playbook creation."
-        chat = [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": text.removeprefix(system_prompt + " ")},
-        ]
-
-    elif "llama3" in model_name:
+    if "llama3" in model_name:
         return text
     else:
         chat = [
@@ -102,7 +79,6 @@ def check_context_size(text: str, model_name: str) -> int:
         raise NotImplementedError(
             f"The model {model_name} has no defined context length. Please add it to the LLAMAFILE_CTX_SIZE or OLLAMA_CTX_SIZE dictionary."
         )
-    model_max_length = LLAMAFILE_CTX_SIZE[model_name]
     if total_input_tokens >= model_max_length:
         return model_max_length - total_input_tokens
     max_new_tokens = model_max_length - total_input_tokens
@@ -257,13 +233,13 @@ def create_prompt_template(operation_mode: str, language:str, template_type: str
     }
 
     if operation_mode not in templates:
-        raise ValueError(f"Unbekannter operation_mode: {operation_mode}")
+        raise ValueError(f"Unknown operation_mode: {operation_mode}")
     if language not in templates[operation_mode]:
-        raise ValueError(f"Unbekannte Sprache '{language}' für {operation_mode}")
+        raise ValueError(f"Unknown language '{language}' for {operation_mode}")
     if template_type not in templates[operation_mode][language]:
-        raise ValueError(f"Unbekannter template_type '{template_type}' für {operation_mode}")
+        raise ValueError(f"Unknown template_type '{template_type}' for {operation_mode}")
     if stage not in templates[operation_mode][language][template_type]:
-        raise ValueError(f"Stage '{stage}' nicht definiert für {operation_mode}")
+        raise ValueError(f"Stage '{stage}' not defined for {operation_mode}")
 
     try:
         template = templates[operation_mode][language][template_type][stage]
@@ -322,7 +298,7 @@ def create_and_invoke_prompt_chain(
     # create prompt template > LLM sequence
     chain = prompt | llm 
 
-    # Invoke the chain (identisch wie vorher)
+    # Invoke the chain
     return chain.invoke(
         {
             "input_str": input_str,

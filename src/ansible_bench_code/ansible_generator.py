@@ -1,5 +1,6 @@
 from datetime import datetime
 from io import TextIOWrapper
+from langchain.schema import AIMessage
 import os
 import re
 import logging
@@ -78,26 +79,6 @@ class BaseOperationManager:
 
     def clean_text(self, raw_output: str) -> str:
         raise NotImplementedError
-        """
-        Bereinigt den Text:
-        - Entfernt alles vor dem ersten Anführungszeichen (inklusive führende Leerzeichen),
-        - Entfernt alles nach dem letzten Anführungszeichen,
-        - Entfernt Stempel wie </s>.
-        """
-        # Alles vor dem ersten Anführungszeichen entfernen
-        if '"' in raw_output:
-            raw_output = raw_output.split('"', 1)[1]  # alles vor dem ersten " weg
-        # führende Leerzeichen entfernen
-        raw_output = raw_output.lstrip()
-
-        # Alles nach dem letzten Anführungszeichen entfernen
-        if '"' in raw_output:
-            raw_output = raw_output.rsplit('"', 1)[0]
-
-        # Stempel wie </s> entfernen
-        raw_output = re.sub(r'</s>', '', raw_output, flags=re.IGNORECASE)
-
-        return raw_output.strip()
 
     def create_prompt_validate_context(self, input_str, stage):
         templates = llm_chain.create_prompt_template_for_model(self.model_name, self.args.operation_mode, self.args.language, self.args.template_type, stage)
@@ -168,9 +149,16 @@ class PromptOperationManager(BaseOperationManager):
         )
         self.out_folder = self.main_output_path
         os.makedirs(self.out_folder, exist_ok=True)
-        print("\n Output_Directory: "+str(self.out_folder))
+        print("\nOutput_Directory: "+str(self.out_folder))
 
         self.in_files = self.scan_tasks(('.yml', '.yaml'), self.input_dir)
+
+        self.in_files = [
+            f for f in self.in_files
+            if os.path.basename(f) not in ("assert.yml", "assert.yaml")
+        ]
+
+        print("\nInput-Files:")
         for file_name in self.in_files:
             print(file_name)
         print(f"found {len(self.in_files)} inputs")
@@ -195,7 +183,11 @@ class PromptOperationManager(BaseOperationManager):
                 
                 # Ansonsten invoke_prompt_chain mit den zurückgegebenen Parametern aufrufen
                 raw_outputs = self.invoke_prompt_chain(template, pb_str)
+                
+                print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
                 cleaned_outputs = self.clean_text(raw_outputs)
+                print(f"___________________________________________Cleaned LLM Output:___________________________________________ \n{cleaned_outputs}")
+
                 print(cleaned_outputs)
 
                 t1 = time.perf_counter()
@@ -225,6 +217,9 @@ class PromptOperationManager(BaseOperationManager):
         - removes everthing following the last quotation mark
         - removes stamp </s>.
         """
+        if isinstance(raw_output, AIMessage):
+            raw_output = raw_output.content
+
         if '"' in raw_output:
             raw_output = raw_output.split('"', 1)[1]  
         raw_output = raw_output.lstrip()
@@ -302,29 +297,75 @@ class BenchmarkOperationManager(BaseOperationManager):
 
 
         self.prompt_files = self.scan_tasks('.txt', self.prompt_dir)
+        print("\nInput-Files:")
         for file_name in self.prompt_files:
             print(file_name)
         print(f"found {len(self.prompt_files)} inputs")
     
     def clean_text(self, raw_output: str) -> str:
-        """
-        Cleans text:
-        - removes everything in front of '---'
-        - removes everthing following '```'
-        - removes stamp </s>.
-        """
-        if '---' in raw_output:
-            raw_output = '---' + raw_output.split('---', 1)[1]
+            """
+            Cleans text while preserving line content and line breaks:
+            - removes everything in front of '---'
+            - removes everything following '```'
+            - removes stamp </s>
+            - removes everything after two consecutive empty lines
+            - removes everything after a single empty line if the next line
+            does not contain ':' and is not indented
+            """
+            if isinstance(raw_output, AIMessage):
+                raw_output = raw_output.content
+            
+            if self.model_name == "deepseek-r1:14b":
+                raw_output = re.sub(r"<think>.*?</think>", "", raw_output, flags=re.DOTALL)
 
-        if '```' in raw_output:
-            raw_output = raw_output.split('```', 1)[0]
+            # Entferne alles vor '---'
+            if '---' in raw_output:
+                raw_output = '---' + raw_output.split('---', 1)[1]
 
-        if '...' in raw_output:
-            raw_output = raw_output.split('...', 1)[0]
-        
-        raw_output = raw_output.replace("</s>", "")
+            # Entferne alles nach '```'
+            if '```' in raw_output:
+                raw_output = raw_output.split('```', 1)[0]
 
-        return raw_output.strip() + "\n"
+            # Entferne alles nach '...'
+            if '...' in raw_output:
+                raw_output = raw_output.split('...', 1)[0]
+
+            # Entferne </s>
+            raw_output = raw_output.replace("</s>", "")
+
+            # Zeilenweise prüfen, Zeilen inklusive \n behalten
+            lines = raw_output.splitlines(keepends=True)
+            cleaned_lines = []
+            empty_count = 0
+
+            for i, line in enumerate(lines):
+                is_empty = line.strip() == ''
+
+                if is_empty:
+                    empty_count += 1
+
+                    # Prüfe einzelne Leerzeile
+                    if empty_count == 1 and i + 1 < len(lines):
+                        next_line = lines[i + 1]
+                        stripped_next = next_line.lstrip()
+                        # Rest löschen, wenn kein ':' enthalten AND nicht eingerückt
+                        if ':' not in next_line and len(next_line) == len(stripped_next):
+                            break
+
+                    # Zwei aufeinanderfolgende leere Zeilen → abbrechen
+                    if empty_count >= 2:
+                        if cleaned_lines and cleaned_lines[-1].strip() == '':
+                            cleaned_lines.pop()
+                        break
+                else:
+                    empty_count = 0
+                    cleaned_lines.append(line)
+
+                # Leere Zeilen behalten
+                if is_empty:
+                    cleaned_lines.append(line)
+
+            return ''.join(cleaned_lines) + "\n"
 
 
     def run(self):
@@ -333,7 +374,7 @@ class BenchmarkOperationManager(BaseOperationManager):
         context_window_report = f"context_window_report_{self.args.model}.txt"
         context_window_file = open(context_window_report, "a")
         failed_at_stage_yamllint = []
-        failed_at_stage_syntax = []
+#        failed_at_stage_syntax = []
         failed_at_stage_ansiblelint = []
         failed_at_stage_molecule_test = []
         passed_all_stages = []
@@ -341,7 +382,7 @@ class BenchmarkOperationManager(BaseOperationManager):
         for f in tqdm(self.prompt_files):
             prompt_file = self.prompt_dir / f
             if not prompt_file.name.endswith("_prompt.txt"):
-                raise ValueError(f"Pfad {prompt_file} endet nicht mit '_prompt.txt'")
+                raise ValueError(f"File {prompt_file} does not end with '_prompt.txt'")
 
             yaml_file = f.replace("_prompt.txt", ".yaml")
             yaml_path = self.main_output_path / "molecule_test" / yaml_file
@@ -349,7 +390,7 @@ class BenchmarkOperationManager(BaseOperationManager):
             if not yaml_path.exists():
                 yaml_path = yaml_path.with_suffix(".yml")
             if not yaml_path.exists():
-                raise FileNotFoundError(f"Keine YAML/YML gefunden zu {prompt_file}")
+                raise FileNotFoundError(f"No YAML/YML found for {prompt_file}")
 
             tmp_copy = self.tmp_dir / yaml_path.name
             shutil.copy2(yaml_path, tmp_copy)
@@ -378,7 +419,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                     f.write(cleaned_outputs)
                 
                 max_iterations_yamllint = 5
-                max_iterations_syntax = 5
+#                max_iterations_syntax = 5
                 max_iterations_ansiblelint = 5
                 errors_syntax = 0
                 errors_ansiblelint = 0
@@ -414,39 +455,46 @@ class BenchmarkOperationManager(BaseOperationManager):
                     
                     if not status_flag_yamllint:
                         print(f"\nGeneration of playbook '{yaml_path}' failed at stage 'yamllint'")
-                        failed_at_stage_yamllint.append(yaml_path)
+                        if(errors_ansiblelint>0):
+                            print(f"Note: {errors_syntax} syntax-check iterations were done before!")
+                            failed_at_stage_ansiblelint.append(yaml_path)
+#                        elif(errors_syntax>0):
+#                            print(f"Note: {errors_syntax} syntax-check iterations were done before!")
+#                            failed_at_stage_syntax.append(yaml_path)
+                        else:
+                            failed_at_stage_yamllint.append(yaml_path)
                         break
                     
                     print("##################### Quality Gate 'yamllint' passed! #####################")
 
-                    syntax_check: Tuple[bool, str] = check_playbook_syntax(yaml_path, 3)
-                    if not syntax_check[0]:
-                        errors_syntax += 1
-                        if errors_syntax >= max_iterations_syntax:
-                            print(f"Error: Generated Ansible-YAML did not pass quality gate 'ansible-playbook --syntax-check' after defined maximum of {max_iterations_syntax} iterations!")
-                            print(f"\nGeneration of playbook '{yaml_path}' failed at stage 'ansible-plybook --syntax-check'")
-                            failed_at_stage_syntax.append(yaml_path)
-                            break
-                        print(f"{errors_syntax+1}. Iteration: Generated Ansible-YAML did not pass quality gate 'ansible-playbook --syntax-check'")
-                        template, p_str, recursive_str, error_str, error_msg = self.create_recursive_prompt_validate_context(prompt_str, cleaned_outputs, syntax_check[1], "recursive_syntaxcheck")
-                        if error_msg:
-                            return error_msg
-                        raw_outputs = self.invoke_recursive_chain(template, p_str, cleaned_outputs, syntax_check[1])
-                        if "# Token size exceeded" in raw_outputs:
-                            context_window_file.write(f"{raw_outputs} for file {f}\n")
-                        print(f"Prompt String: \n{p_str}")
-                        print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
-                        cleaned_outputs = self.clean_text(raw_outputs)
-                        print(f"___________________________________________Cleaned LLM Output:___________________________________________ \n{cleaned_outputs}")
-                        t1 = time.perf_counter()
-                        print(f"\n{time.ctime()}: {yaml_path} Total generation time:", t1 - t0)
-
-                        # copy generated file into molecule test directory
-                        with yaml_path.open("w", encoding="utf-8") as f:
-                            f.write(cleaned_outputs)
-                        continue
-                    print("##################### Quality Gate 'ansible-playbook --syntax-check' passed! #####################")
-                    errors_syntax = 0
+#                    syntax_check: Tuple[bool, str] = check_playbook_syntax(yaml_path)
+#                    if not syntax_check[0]:
+#                        errors_syntax += 1
+#                        if errors_syntax >= max_iterations_syntax:
+#                            print(f"Error: Generated Ansible-YAML did not pass quality gate 'ansible-playbook --syntax-check' after defined maximum of {max_iterations_syntax} iterations!")
+#                            print(f"\nGeneration of playbook '{yaml_path}' failed at stage 'ansible-plybook --syntax-check'")
+#                            failed_at_stage_syntax.append(yaml_path)
+#                            break
+#                        print(f"{errors_syntax+1}. Iteration: Generated Ansible-YAML did not pass quality gate 'ansible-playbook --syntax-check'")
+#                        template, p_str, recursive_str, error_str, error_msg = self.create_recursive_prompt_validate_context(prompt_str, cleaned_outputs, syntax_check[1], "recursive_syntaxcheck")
+#                        if error_msg:
+#                            return error_msg
+#                        raw_outputs = self.invoke_recursive_chain(template, p_str, cleaned_outputs, syntax_check[1])
+#                        if "# Token size exceeded" in raw_outputs:
+#                            context_window_file.write(f"{raw_outputs} for file {f}\n")
+#                        print(f"Prompt String: \n{p_str}")
+#                        print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
+#                        cleaned_outputs = self.clean_text(raw_outputs)
+#                        print(f"___________________________________________Cleaned LLM Output:___________________________________________ \n{cleaned_outputs}")
+#                        t1 = time.perf_counter()
+#                        print(f"\n{time.ctime()}: {yaml_path} Total generation time:", t1 - t0)
+#
+#                        # copy generated file into molecule test directory
+#                        with yaml_path.open("w", encoding="utf-8") as f:
+#                            f.write(cleaned_outputs)
+#                        continue
+#                    print("##################### Quality Gate 'ansible-playbook --syntax-check' passed! #####################")
+#                    errors_syntax = 0
 
                     ansiblelint_check: Tuple[bool, str] = check_ansible_lint(yaml_path)
                     if not ansiblelint_check[0]:
@@ -493,14 +541,19 @@ class BenchmarkOperationManager(BaseOperationManager):
                 shutil.copy2(tmp_copy, yaml_path) 
                 tmp_copy.unlink()
                 print(f"YAML file '{yaml_path}' was copied into molecule_test directory.")
-        self.reports(start_time, failed_at_stage_yamllint, failed_at_stage_syntax, failed_at_stage_ansiblelint, failed_at_stage_molecule_test, passed_all_stages, self.main_output_path)
+        self.reports(start_time, failed_at_stage_yamllint, 
+                     #failed_at_stage_syntax, 
+                     failed_at_stage_ansiblelint, 
+                     failed_at_stage_molecule_test, 
+                     passed_all_stages, 
+                     self.main_output_path)
 
 
     def reports(
         self,
         start_time,
         failed_at_stage_yamllint,
-        failed_at_stage_syntax,
+        #failed_at_stage_syntax,
         failed_at_stage_ansiblelint,
         failed_at_stage_molecule_test,
         passed_all_stages,
@@ -525,14 +578,14 @@ class BenchmarkOperationManager(BaseOperationManager):
             # Stats
             f.write("=== Stage Counts ===\n")
             f.write(f"yamllint failures   : {len(failed_at_stage_yamllint)}\n")
-            f.write(f"syntax failures     : {len(failed_at_stage_syntax)}\n")
+#            f.write(f"syntax failures     : {len(failed_at_stage_syntax)}\n")
             f.write(f"ansiblelint failures: {len(failed_at_stage_ansiblelint)}\n")
             f.write(f"molecule failures   : {len(failed_at_stage_molecule_test)}\n")
             f.write(f"all passed          : {len(passed_all_stages)}\n")
 
             total = (
                 len(failed_at_stage_yamllint)
-                + len(failed_at_stage_syntax)
+#                + len(failed_at_stage_syntax)
                 + len(failed_at_stage_ansiblelint)
                 + len(failed_at_stage_molecule_test)
                 + len(passed_all_stages)
@@ -545,8 +598,8 @@ class BenchmarkOperationManager(BaseOperationManager):
             for entry in failed_at_stage_yamllint:
                 f.write(f"yamllint failed: {entry}\n")
             f.write("\nFailed at stage 'ansible-playbook --syntax-check':\n")
-            for entry in failed_at_stage_syntax:
-                f.write(f"syntax failed: {entry}\n")
+#            for entry in failed_at_stage_syntax:
+#                f.write(f"syntax failed: {entry}\n")
             f.write("\nFailed at stage 'ansiblelint':\n")
             for entry in failed_at_stage_ansiblelint:
                 f.write(f"ansiblelint failed: {entry}\n")
