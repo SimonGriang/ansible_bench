@@ -221,7 +221,7 @@ def check_ansible_lint(yaml_file: Path) -> Tuple[bool, str]:
 
 
     except FileNotFoundError:
-        return False, "ansible-lint command not found. Bitte sicherstellen, dass Ansible Lint installiert ist."
+        return False, "ansible-lint command not found. Please ensure that Ansible Lint is installed."
 
 
 # -------------------------------
