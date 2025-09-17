@@ -3,7 +3,11 @@ prompt_exact_german_template = """Du bist ein professioneller Entwickler. Nachfo
 
 Der rekonstruierte Prompt muss exakt folgendem Format folgen:
 
-"Nachfolgend erhältst du Aufgabenschritte, aus denen du ein Ansible Playbook generieren sollst. Nenne dabei die Tasks genau so, wie ich sie dir in diesem Prompt vorgebe:
+"Nachfolgend erhältst du Aufgabenschritte, aus denen du ein Ansible Playbook generieren sollst.  
+Das generierte Playbook muss gültig innerhalb einer Ansible Role im Verzeichnis tasks/ sein (z. B. tasks/main.yml).  
+Füge keine hosts:, vars: oder andere Playbook-Level-Header hinzu. Gib nur gültige Task-Einträge oder Blocks aus, wie sie in einer Role erwartet werden.  
+
+Nenne dabei die Tasks genau so, wie ich sie dir in diesem Prompt vorgebe:
 
 Aufgabe 1: ...
 Aufgabenbeschreibung Aufgabe 1: ...
@@ -29,7 +33,9 @@ Important: The only output follows the format below. Do not include any explanat
 
 The reconstructed prompt must exactly follow the structure below:
 
-"Below you will receive task descriptions from which you should generate an Ansible Playbook. Name the tasks exactly as I provide them here:
+"Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
 
 Task 1: ...
 Description Task 1: ...
@@ -55,6 +61,8 @@ prompt_precise_english_template = """You are a professional developer. Below is 
 
 Provide the result in a semi-structured way:
 
+- The generated playbook from the reconstructed prompt must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+- Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
 - List the tasks in the same general order as they appear.
 - Each task should include a short title and a 1-2 sentence description of what it does.
 - The wording can be slightly paraphrased, but the meaning should stay the same.
@@ -75,6 +83,8 @@ prompt_precise_german_template = """Du bist ein professioneller Entwickler. Unte
 
 Gib das Ergebnis in halb-strukturierter Form aus:
 
+- Das generierte Playbook aus dem rekonstruierten Prompt muss gültig innerhalb einer Ansible Role im Verzeichnis tasks/ sein (z. B. tasks/main.yml).
+- Füge keine hosts:, vars: oder andere Playbook-Level-Header hinzu. Gib nur gültige Task-Einträge oder Blocks aus, wie sie in einer Role erwartet werden.
 - Liste die Aufgaben in der gleichen allgemeinen Reihenfolge, wie sie erscheinen.
 - Jede Aufgabe sollte einen kurzen Titel und eine 1-2 Sätze umfassende Beschreibung enthalten, was sie macht.
 - Die Formulierungen dürfen leicht umschrieben sein, die Bedeutung soll aber gleich bleiben.
@@ -93,6 +103,8 @@ Hier ist das Ansible-Playbook:
 
 prompt_approximate_english_template = """You are a professional developer. I want to generate an Ansible Playbook similar to the one below.  
 Please describe in your own words what the playbook should do, as if you were giving me the instructions.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
 Summarize the tasks in natural language without strict formatting or technical precision.  
 
 Here is the Ansible Playbook:
@@ -101,11 +113,14 @@ Here is the Ansible Playbook:
 
 prompt_approximate_german_template  = """Du bist ein professioneller Entwickler. Ich möchte ein Ansible-Playbook erstellen, das dem folgenden ähnelt.  
 Bitte beschreibe mit deinen eigenen Worten, was das Playbook tun soll, so als würdest du mir die Anweisungen geben.  
+Das zu generierende Playbook muss gültig innerhalb einer Ansible Role im Verzeichnis tasks/ sein (z. B. tasks/main.yml).  
+Füge keine hosts:, vars: oder andere Playbook-Level-Header hinzu. Gib nur gültige Task-Einträge oder Blocks aus, wie sie in einer Role erwartet werden.  
 Fasse die Aufgaben in natürlicher Sprache zusammen, ohne strenge Formatierung oder technische Präzision.  
 
 Hier ist das Ansible-Playbook:  
 {input_str}
 """
+
 
 benchmark_exact_english_first_yamllint_template = """You are a professional developer. Your task is to generate an Ansible Playbook that strictly adheres to the given instructions.  
 The playbook must: 
