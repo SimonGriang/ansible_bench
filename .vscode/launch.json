@@ -12,8 +12,8 @@
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}/src/ansible_bench_code",
             "args": [                
-                "-m", "llama3.2",
-                "-e", "llamafile", "benchmark",
+                "-m", "gpt-oss:20b",
+                "-e", "ollama", "benchmark",
                 "-d", "example",
                 "-tt", "exact",
                 "-p", "prompts/llamafile_codestral_english_exact/example"
