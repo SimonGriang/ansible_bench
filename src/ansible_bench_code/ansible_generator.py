@@ -161,7 +161,7 @@ class PromptOperationManager(BaseOperationManager):
         print("\nInput-Files:")
         for file_name in self.in_files:
             print(file_name)
-        print(f"found {len(self.in_files)} inputs")
+        print(f"Found {len(self.in_files)} inputs\n")
 
     def run(self):
         # loop over input files
@@ -187,8 +187,6 @@ class PromptOperationManager(BaseOperationManager):
                 print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
                 cleaned_outputs = self.clean_text(raw_outputs)
                 print(f"___________________________________________Cleaned LLM Output:___________________________________________ \n{cleaned_outputs}")
-
-                print(cleaned_outputs)
 
                 t1 = time.perf_counter()
 
@@ -318,22 +316,22 @@ class BenchmarkOperationManager(BaseOperationManager):
             if self.model_name == "deepseek-r1:14b":
                 raw_output = re.sub(r"<think>.*?</think>", "", raw_output, flags=re.DOTALL)
 
-            # Entferne alles vor '---'
+            # remove everything before '---'
             if '---' in raw_output:
                 raw_output = '---' + raw_output.split('---', 1)[1]
 
-            # Entferne alles nach '```'
+            # remove everything after '```'
             if '```' in raw_output:
                 raw_output = raw_output.split('```', 1)[0]
 
-            # Entferne alles nach '...'
+            # remove everything after '...'
             if '...' in raw_output:
                 raw_output = raw_output.split('...', 1)[0]
 
-            # Entferne </s>
+            # remove </s>
             raw_output = raw_output.replace("</s>", "")
 
-            # Zeilenweise prüfen, Zeilen inklusive \n behalten
+            # remove everything after the last non-empty line
             lines = raw_output.splitlines(keepends=True)
             cleaned_lines = []
             empty_count = 0
@@ -344,15 +342,15 @@ class BenchmarkOperationManager(BaseOperationManager):
                 if is_empty:
                     empty_count += 1
 
-                    # Prüfe einzelne Leerzeile
+                    # check for single empty line
                     if empty_count == 1 and i + 1 < len(lines):
                         next_line = lines[i + 1]
                         stripped_next = next_line.lstrip()
-                        # Rest löschen, wenn kein ':' enthalten AND nicht eingerückt
+                        # delete rest if ':' not in AND not indented
                         if ':' not in next_line and len(next_line) == len(stripped_next):
                             break
 
-                    # Zwei aufeinanderfolgende leere Zeilen → abbrechen
+                    # two consecutive empty lines → break
                     if empty_count >= 2:
                         if cleaned_lines and cleaned_lines[-1].strip() == '':
                             cleaned_lines.pop()
@@ -361,7 +359,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                     empty_count = 0
                     cleaned_lines.append(line)
 
-                # Leere Zeilen behalten
+                # keep empty lines
                 if is_empty:
                     cleaned_lines.append(line)
 
@@ -525,7 +523,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                     print("##################### Quality Gate 'ansiblelint' passed! #####################")
                     errors_ansiblelint = 0
                     
-                    if check_molecule(yaml_file):
+                    if check_molecule(yaml_path):
                         print(f"\n Generation and test of '{yaml_path}' sucessfull!")
                         passed_all_stages.append(yaml_path)
                         break
@@ -540,7 +538,7 @@ class BenchmarkOperationManager(BaseOperationManager):
             if tmp_copy.exists():  
                 shutil.copy2(tmp_copy, yaml_path) 
                 tmp_copy.unlink()
-                print(f"YAML file '{yaml_path}' was copied into molecule_test directory.")
+                print(f"Original YAML file '{yaml_path}' was copied from temp into molecule_test directory.")
         self.reports(start_time, failed_at_stage_yamllint, 
                      #failed_at_stage_syntax, 
                      failed_at_stage_ansiblelint, 

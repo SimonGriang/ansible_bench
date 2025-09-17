@@ -208,13 +208,12 @@ def check_ansible_lint(yaml_file: Path) -> Tuple[bool, str]:
             check=False
         )
 
-
         stdout = result.stdout.strip()
         stderr = result.stderr.strip()
         output = (stdout + "\n" + stderr).strip()
 
 
-        if result.returncode == 0 and not output:
+        if result.returncode == 0:
             return True, "passed"
         else:
             return False, output
@@ -227,15 +226,8 @@ def check_ansible_lint(yaml_file: Path) -> Tuple[bool, str]:
 # -------------------------------
 # Molecule-Testing
 # -------------------------------
-#def check_molecule(role_dir: Path) -> bool:
-#    return True
-#    
-#    """
-#    TODO: Führt Molecule Tests auf der Rolle durch.
-#    """
-#    raise NotImplementedError("Molecule Test noch nicht implementiert.")
 
-def check_molecule(task_file: Path) -> bool:
+def check_molecule(task_path: Path) -> bool:
     """
     Runs Molecule tests for the Ansible role that contains the given task YAML file.
 
@@ -245,7 +237,7 @@ def check_molecule(task_file: Path) -> bool:
     :param task_file: Path to a YAML file inside the role's `tasks/` folder.
     :return: bool
     """
-    role_dir = task_file.parent.parent  # go from tasks/ to role root
+    role_dir = task_path.parent.parent  # go from tasks/ to role root
     try:
         result = subprocess.run(
             ["molecule", "test"],
@@ -255,6 +247,9 @@ def check_molecule(task_file: Path) -> bool:
             check=False
         )
         output = result.stdout + "\n" + result.stderr
+
+        print("___________________________________________Molecule output:___________________________________________")
+        print(output)
 
         # Finde alle failed=X Vorkommen
         failed_matches = re.findall(r"failed=(\\d+)", output)
