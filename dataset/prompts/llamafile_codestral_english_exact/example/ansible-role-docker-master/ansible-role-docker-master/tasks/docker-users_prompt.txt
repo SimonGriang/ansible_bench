@@ -1,7 +1,0 @@
-You are a professional developer. Below you will receive task descriptions from which you should generate an Ansible Playbook. Name the tasks exactly as I provide them here:
-
-Task 1: Add Docker Users to Group
-Description Task 1: This task is to ensure that the users specified in the variable 'docker_users' are added to the 'docker' group. This will allow these users to interact with Docker without requiring root privileges.
-
-Task 2: Reset SSH Connection
-Description Task 2: After modifying user groups, the SSH connection needs to be reset to ensure that the new group memberships are applied. This task performs that reset.

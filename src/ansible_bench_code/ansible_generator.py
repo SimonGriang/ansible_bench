@@ -164,9 +164,6 @@ class PromptOperationManager(BaseOperationManager):
         print(f"Found {len(self.in_files)} inputs\n")
 
     def run(self):
-        # loop over input files
-        context_window_report = f"context_window_report_{self.args.model}.txt"
-        context_window_file = open(context_window_report, "a")
         for f in tqdm(self.in_files):
             playbook_file = self.input_dir / f
 
@@ -189,9 +186,6 @@ class PromptOperationManager(BaseOperationManager):
                 print(f"___________________________________________Cleaned LLM Output:___________________________________________ \n{cleaned_outputs}")
 
                 t1 = time.perf_counter()
-
-                if "# Token size exceeded" in raw_outputs:
-                    context_window_file.write(f"{raw_outputs} for file {f}\n")
 
                 f_path = Path(f)
                 relative_dir = f_path.parent
@@ -369,8 +363,6 @@ class BenchmarkOperationManager(BaseOperationManager):
     def run(self):
         start_time = datetime.now()
         # loop over input files
-        context_window_report = f"context_window_report_{self.args.model}.txt"
-        context_window_file = open(context_window_report, "a")
         failed_at_stage_yamllint = []
 #        failed_at_stage_syntax = []
         failed_at_stage_ansiblelint = []
@@ -403,9 +395,6 @@ class BenchmarkOperationManager(BaseOperationManager):
                 if error_msg:
                     return error_msg
                 raw_outputs = self.invoke_prompt_chain(template, p_str)
-
-                if "# Token size exceeded" in raw_outputs:
-                    context_window_file.write(f"{raw_outputs} for file {f}\n")
                 print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
                 cleaned_outputs = self.clean_text(raw_outputs)
                 print(f"___________________________________________Cleaned LLM Output:___________________________________________ \n{cleaned_outputs}")
@@ -437,8 +426,6 @@ class BenchmarkOperationManager(BaseOperationManager):
                             if error_msg:
                                 return error_msg
                             raw_outputs = self.invoke_recursive_chain(template, p_str, cleaned_outputs, yamllint_check_results[1])
-                            if "# Token size exceeded" in raw_outputs:
-                                context_window_file.write(f"{raw_outputs} for file {f}\n")
                             print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
                             cleaned_outputs = self.clean_text(raw_outputs)
                             print(f"___________________________________________Cleaned LLM Output:___________________________________________ \n{cleaned_outputs}")
@@ -478,8 +465,6 @@ class BenchmarkOperationManager(BaseOperationManager):
 #                        if error_msg:
 #                            return error_msg
 #                        raw_outputs = self.invoke_recursive_chain(template, p_str, cleaned_outputs, syntax_check[1])
-#                        if "# Token size exceeded" in raw_outputs:
-#                            context_window_file.write(f"{raw_outputs} for file {f}\n")
 #                        print(f"Prompt String: \n{p_str}")
 #                        print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
 #                        cleaned_outputs = self.clean_text(raw_outputs)
@@ -507,8 +492,6 @@ class BenchmarkOperationManager(BaseOperationManager):
                         if error_msg:
                             return error_msg
                         raw_outputs = self.invoke_recursive_chain(template, p_str, cleaned_outputs, ansiblelint_check[1])
-                        if "# Token size exceeded" in raw_outputs:
-                            context_window_file.write(f"{raw_outputs} for file {f}\n")
                         print(f"Prompt String: \n{p_str}")
                         print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
                         cleaned_outputs = self.clean_text(raw_outputs)
@@ -595,7 +578,7 @@ class BenchmarkOperationManager(BaseOperationManager):
             f.write("\nFailed at stage 'yamllint':\n")
             for entry in failed_at_stage_yamllint:
                 f.write(f"yamllint failed: {entry}\n")
-            f.write("\nFailed at stage 'ansible-playbook --syntax-check':\n")
+#            f.write("\nFailed at stage 'ansible-playbook --syntax-check':\n")
 #            for entry in failed_at_stage_syntax:
 #                f.write(f"syntax failed: {entry}\n")
             f.write("\nFailed at stage 'ansiblelint':\n")
