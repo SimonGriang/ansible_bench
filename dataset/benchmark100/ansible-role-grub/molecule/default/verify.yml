@@ -1,0 +1,14 @@
+---
+- name: Verify
+  hosts: all
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Check that bogus options are in
+      ansible.builtin.command:
+        cmd: grep 'a=1' /etc/default/grub
+
+    - name: Check that selected option is in
+      ansible.builtin.command:
+        cmd: grep 'cgroup_enable=memory' /etc/default/grub

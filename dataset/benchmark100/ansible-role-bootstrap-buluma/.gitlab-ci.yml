@@ -1,0 +1,40 @@
+---
+image: "buluma/github-action-molecule:v24.2.0"
+services:
+  - docker
+
+variables:
+  PY_COLORS: 1
+  DOCKER_HOST: tcp://docker:2375
+
+molecule:
+  script:
+    - molecule test
+  rules:
+    - if: $CI_COMMIT_REF_NAME == "main"
+  parallel:
+    matrix:
+      - image: "alpine"
+        tag: "latest"
+      - image: "enterpriselinux"
+        tag: "8"
+      - image: "enterpriselinux"
+        tag: "latest"
+      - image: "debian"
+        tag: "latest"
+      - image: "debian"
+        tag: "bullseye"
+      - image: "fedora"
+        tag: "38"
+      - image: "fedora"
+        tag: "latest"
+      - image: "fedora"
+        tag: "rawhide"
+      - image: "opensuse"
+        tag: "latest"
+      - image: "ubuntu"
+        tag: "latest"
+      - image: "ubuntu"
+        tag: "focal"
+      - image: "ubuntu"
+        tag: "bionic"

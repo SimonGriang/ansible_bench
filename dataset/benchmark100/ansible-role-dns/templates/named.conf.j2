@@ -1,0 +1,93 @@
+{{ ansible_managed | comment }}
+options {
+  directory "{{ dns_datadir }}";
+{% if dns_pid_file is defined %}
+  pid-file "{{ dns_pid_file }}";
+{% endif %}
+  dnssec-validation auto;
+  auth-nxdomain no;
+  listen-on port {{ dns_port }} {
+{% for ipv4 in dns_listen_on %}
+    {{ ipv4 }};
+{% endfor %}
+  };
+  listen-on-v6 port {{ dns_port }} {
+{% for ipv6 in dns_listen_on_v6 %}
+    {{ ipv6 }};
+{% endfor %}
+  };
+{% if dns_allow_query is defined %}
+  allow-query {
+{% for ip in dns_allow_query %}
+    {{ ip }};
+{% endfor %}
+  };
+{% endif %}
+{% if dns_allow_recursion is defined %}
+  allow-recursion {
+{% for acl in dns_allow_recursion %}
+   {{ acl }};
+{% endfor %}
+  };
+{% endif %}
+  allow-transfer {
+{% if dns_allow_transfer is defined %}
+{% for ip in dns_allow_transfer %}
+    {{ ip }};
+{% endfor %}
+{% else %}
+    none;
+{% endif %}
+  };
+{% if forwarders is defined %}
+  forwarders {
+{% for forwarder in forwarders %}
+    {{ forwarder }};
+{% endfor %}
+  };
+{% endif %}
+};
+
+{% if dns_caching_dns is defined and dns_caching_dns | bool %}
+zone "." {
+  type hint;
+  file "{{ dns_datadir }}/named.root";
+};
+{% endif %}
+
+{% for zone in dns_zones %}
+zone "{{ zone.name }}" {
+{% if zone.type == "primary" %}
+  type {{ dns_primary_indicator }};
+{% elif zone.type == "secondary" %}
+  type {{ dns_secondary_indicator }};
+{% else %}
+  type {{ zone.type }};
+{% endif %}
+{% if zone.type != "forward" %}
+  file "{{ dns_datadir }}/{{ zone.name }}.db";
+{% endif %}
+{% if zone.type == "forward" %}
+  forwarders {
+{% for forwarder in zone.forwarders %}
+    {{ forwarder }};
+{% endfor %}
+  };
+{% endif %}
+{% if zone.type == "secondary" %}
+  {{ dns_primaries_indicator }} {
+{% for primary in zone.primaries %}
+    {{ primary }};
+{% endfor %}
+  };
+{% endif %}
+};
+
+{% endfor %}
+
+include "{{ dns_confdir }}/rndc.key";
+
+controls {
+  inet 127.0.0.1 port 953
+  allow { 127.0.0.1; } keys { "rndc-key"; };
+};
