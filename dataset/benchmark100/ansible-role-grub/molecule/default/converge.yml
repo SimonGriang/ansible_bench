@@ -1,0 +1,13 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  gather_facts: true
+
+  roles:
+    - role: robertdebock.grub
+      grub_options:
+        - option: cgroup_enable
+          value: memory
+        - option: systemd.unified_cgroup_hierarchy
+          value: 0
