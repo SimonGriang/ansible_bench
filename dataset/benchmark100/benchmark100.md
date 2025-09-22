@@ -28,7 +28,7 @@ This document summarizes the status of various Ansible roles tested as part of a
 | [robertdebock/ansible-role-vsftpd](https://github.com/robertdebock/ansible-role-vsftpd.git) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` | 1 |
 | [robertdebock/ansible-role-buildtools](https://github.com/robertdebock/ansible-role-buildtools) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` | 1 |
 
-**Total number of working files:** 22
+**Total number of working files:** 32
 
 ---
 
