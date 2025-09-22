@@ -27,16 +27,16 @@ This document summarizes the status of various Ansible roles tested as part of a
 | [robertdebock/ansible-role-redis](https://github.com/robertdebock/ansible-role-redis.git) | **Working** – remove `robertdebock.apt_autostart`, `robertdebock.bootstrap`, `robertdebock.epel`, `robertdebock.sysctl` and `robertdebock.grub` line from `requirements.yml` | 1 |
 | [robertdebock/ansible-role-vsftpd](https://github.com/robertdebock/ansible-role-vsftpd.git) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` | 1 |
 | [robertdebock/ansible-role-buildtools](https://github.com/robertdebock/ansible-role-buildtools) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` | 1 |
+| [buluma/ansible-role-ca_certificates](https://github.com/buluma/ansible-role-ca_certificates) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` and rename role in converge.yml to buluma.ca_certificates | 1 |
+| [lablabs/ansible-role-rke2](https://github.com/lablabs/ansible-role-rke2) | **Working** – pip install netaddr on system and rename role in converge.yml of every scenario to lablabs.rke2 - delete ha_cluster and ha_cluster_kubevip scenarios those are resource-intensive and not practical for local testing| 14 |
 
-**Total number of working files:** 32
+**Total number of working files:** 48
 
 ---
 
 ## Ansible Roles to be included
 
-2  https://github.com/dj-wasabi/ansible-telegraf
-3  https://github.com/buluma/ansible-role-ca_certificates
-4  https://github.com/lablabs/ansible-role-rke2
+2  https://github.com/dj-wasabi/ansible-telegraf (incompatible OS and Python constellation)
 5  https://github.com/diodonfrost/ansible-role-amazon-ssm
 6  https://github.com/robertdebock/ansible-role-python_pip
 7  https://github.com/giovtorres/ansible-role-epel
