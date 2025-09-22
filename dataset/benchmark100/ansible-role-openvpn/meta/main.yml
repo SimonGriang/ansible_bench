@@ -1,0 +1,25 @@
+---
+galaxy_info:
+  author: robertdebock
+  role_name: openvpn
+  description: Install and configure openvpn server or client on your system.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: "2.12"
+
+  platforms:
+    - name: EL
+      versions:
+        - "9"
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - focal
+
+  galaxy_tags:
+    - openvpn
+    - networking
+
+dependencies: []
