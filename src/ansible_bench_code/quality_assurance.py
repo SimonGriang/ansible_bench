@@ -229,34 +229,51 @@ def check_ansible_lint(yaml_file: Path) -> Tuple[bool, str]:
 
 def check_molecule(task_path: Path) -> bool:
     """
-    Runs Molecule tests for the Ansible role that contains the given task YAML file.
+    Runs Molecule tests for all scenarios of the Ansible role that contains the given task YAML file.
 
-    The method navigates to the role directory (parent of `tasks/`) and executes `molecule test`.
-    Returns True only if ALL recap lines report failed=0, otherwise False.
+    The method executes `molecule test` for each scenario individually.
+    Returns True only if ALL scenarios pass (all recap lines report failed=0), otherwise False.
 
-    :param task_file: Path to a YAML file inside the role's `tasks/` folder.
+    :param task_path: Path to a YAML file inside the role's `tasks/` folder.
     :return: bool
     """
-    role_dir = task_path.parent.parent  # go from tasks/ to role root
+    role_dir = task_path.parent.parent
+    molecule_dir = role_dir / "molecule"  # tasks/../molecule/
+    overall_success = True
+
+    print(role_dir)
+    print(molecule_dir)
+
     try:
-        result = subprocess.run(
-            ["molecule", "test"],
-            cwd=str(role_dir),
-            capture_output=True,
-            text=True,
-            check=False
-        )
-        output = result.stdout + "\n" + result.stderr
+        scenarios = [d.name for d in molecule_dir.iterdir() if d.is_dir()]
 
-        print("___________________________________________Molecule output:___________________________________________")
-        print(output)
-
-        # Finde alle failed=X Vorkommen
-        failed_matches = re.findall(r"failed=(\\d+)", output)
-
-        if result.returncode == 0 and all(int(x) == 0 for x in failed_matches):
-            return True
-        else:
+        if not scenarios:
+            print(f"No Molecule scenarios found in '{molecule_dir}'.")
             return False
+
+        for scenario in scenarios:
+            print(f"Molecule test role '{role_dir.parent.name}' for Scenario '{scenario}':____________________________\n")
+            result = subprocess.run(
+                ["molecule", "test", "-s", scenario],
+                cwd=str(role_dir),
+                capture_output=True,
+                text=True,
+                check=False
+            )
+            output = result.stdout + "\n" + result.stderr
+            #print(output)
+            
+            failed_matches = re.findall(r"failed=(\d+)", output)
+            scenario_success = result.returncode == 0 and all(int(x) == 0 for x in failed_matches)
+            print(f"Molecule test role '{role_dir.parent.name}' for Scenario '{scenario}' was {scenario_success}")
+            if not scenario_success:
+                overall_success = False
+                print("Scenario failed, stopping further tests. Overall result will be False.")
+                break  # If one scenario fails, no need to continue
+
+        print(f"Overall Molecule test result for role '{role_dir.parent.name}': {overall_success}")        
+        return overall_success
+
     except FileNotFoundError:
+        print("Molecule executable not found.")
         return False
