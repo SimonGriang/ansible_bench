@@ -17,7 +17,7 @@ This document summarizes the status of various Ansible roles tested as part of a
 | [robertdebock/ansible-role-sysctl](https://github.com/robertdebock/ansible-role-sysctl.git) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml`. | 1 |
 | [robertdebock/ansible-role-grub](https://github.com/robertdebock/ansible-role-grub.git) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml`. | 2 |
 | [geerlingguy/ansible-role-docker](https://github.com/geerlingguy/ansible-role-docker) | **Working** | 5 |
-| [buluma/ansible-role-bootstrap](https://github.com/buluma/ansible-role-bootstrap.git) | **Working** – rename role in `converge.yml` to `buluma.bootstrap` and add:<br>`- name: Ensure libdnf5 is present on Fedora/RedHat`<br>`  ansible.builtin.raw: dnf install -y python3-libdnf5`<br>`  args:`<br>`    executable: /bin/sh`<br>`  when: bootstrap_os_family == "RedHat"`<br>after *Install bootstrap packages (raw)* | 2 |
+| [buluma/ansible-role-bootstrap](https://github.com/buluma/ansible-role-bootstrap.git) | **Working** – rename role in `converge.yml` to `buluma.bootstrap` and add  the following task directly **after** `Install bootstrap packages (raw)` :<br>`- name: Ensure libdnf5 is present on Fedora/RedHat`<br>`  ansible.builtin.raw: dnf install -y python3-libdnf5`<br>`  args:`<br>`    executable: /bin/sh`<br>`  when: bootstrap_os_family == "RedHat"`| 2 |
 | [buluma/ansible-role-epel](https://github.com/buluma/ansible-role-epel.git) | **Working** - remove `buluma.bootstrap` from requirements.yml   | 1 |
 | [robertdebock/ansible-role-fail2ban](https://github.com/robertdebock/ansible-role-fail2ban.git) | **Working** - remove `robertdebock.bootstrap` & epel from requirements.yml| 1 |
 | [robertdebock/ansible-role-cron](https://github.com/robertdebock/ansible-role-cron.git) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml`.  | 1 |
@@ -32,8 +32,12 @@ This document summarizes the status of various Ansible roles tested as part of a
 | [robertdebock/ansible-role-python_pip](https://github.com/robertdebock/ansible-role-python_pip) | **Working** – remove `robertdebock.bootstrap`, `robertdebock.buildtools` and `robertdebock.epel` line from `requirements.yml`| 14 |
 | [robertdebock/ansible-role-python_pip](https://github.com/patrickjahns/ansible-role-promtail) | **Working** – change line 13 in test_default to `with open("../../defaults/main.yml", 'r') as stream:`, delete scenario upgrade because of unidentifiable role and rename role in `converge.yml` to `patrickjahns.promtail`| 3 |
 | [buluma/ansible-role-cron](https://github.com/buluma/ansible-role-cron) | **Working** – remove `buluma.bootstrap` line from `requirements.yml` and rename role in `converge.yml` to `buluma.cron`| 1 |
+| [buluma/ansible-role-buildtools](https://github.com/buluma/ansible-role-buildtools.git) | **Working** – remove `buluma.bootstrap` line from `requirements.yml` and rename role in `converge.yml` to `buluma.buildtools`| 1 |
+| [buluma/ansible-role-pip](https://github.com/buluma/ansible-role-pip.git) | **Working** – remove `buluma.bootstrap`, `buluma.setuptools`, `buluma.openssl` and `buluma.ca_certificates` lines from `requirements.yml`, rename the role in `converge.yml` to `buluma.pip` and in `tasks/main.yml` add the following task directly **after** `Ensure Pip is installed.`:<br>`- name: Ensure packaging is available via dnf`<br>`  ansible.builtin.package:`<br>`    name: python3-packaging`<br>`    state: present` | 2 |
+| [buluma/ansible-role-openssl](https://github.com/buluma/ansible-role-openssl) | **Working** – remove `buluma.bootstrap`, `buluma.buildtools`, `buluma.epel` and `buluma.python_pip` line from `requirements.yml`, rename role in `converge.yml` to `buluma.openssl`, rename `buluma.python_pip` to `buluma.pip` and in `molecule/prepare.yml` and in `tasks/main.yml` add the following task directly **after** `Install requirements`:<br>`- name: Ensure packaging is available via dnf`<br>`  ansible.builtin.package:`<br>`    name: python3-packaging`<br>`    state: present` | 3 |
+| [geerlingguy/ansible-role-helm](https://github.com/geerlingguy/ansible-role-helm) | **Working** – change image in molecule.yaml to `geerlingguy/docker-${MOLECULE_DISTRO:-rockylinux9}-ansible:latest` to avoid python version problems| 1 |
 
-**Total number of working files:** 53
+**Total number of working files:** 60
 
 ---
 
@@ -44,8 +48,6 @@ This document summarizes the status of various Ansible roles tested as part of a
 7  https://github.com/giovtorres/ansible-role-epel (Molecule doesn't work)
 8  https://github.com/cloudalchemy/ansible-blackbox-exporter (blackbox-exporter does not follow current galaxy requirements, deprecated 2023)
 9  https://github.com/mrlesmithjr/ansible-manage-lvm (uses vagrant)
-12 https://github.com/buluma/ansible-role-openssl
-13 https://github.com/geerlingguy/ansible-role-helm
 14 https://github.com/artis3n/ansible-role-tailscale
 15 https://github.com/RedHatInsights/insights-client-role
 16 https://github.com/Oefenweb/ansible-swapfile
