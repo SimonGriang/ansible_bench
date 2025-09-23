@@ -41,7 +41,6 @@ This document summarizes the status of various Ansible roles tested as part of a
 - Updated `swapon` to activate the swap whenever the file exists, not just after creation.  <br>
 - Added a task to set correct permissions (`600`) for the swap file to avoid errors. <br>| 1 |
 
-
 **Total number of working files:** 60
 
 ---
@@ -55,10 +54,8 @@ This document summarizes the status of various Ansible roles tested as part of a
 9  https://github.com/mrlesmithjr/ansible-manage-lvm (uses vagrant)
 14 https://github.com/artis3n/ansible-role-tailscale (not the right format in tasks directory)
 15 https://github.com/RedHatInsights/insights-client-role (uses vagrant)
-16 https://github.com/Oefenweb/ansible-swapfile
-17 https://github.com/buluma/ansible-role-java
-18 https://github.com/mrlesmithjr/ansible-manage-lvm
-19 https://github.com/cloudalchemy/ansible-snmp-exporter
+17 https://github.com/buluma/ansible-role-java (too much effort bringing vars file uptodate) 
+19 https://github.com/cloudalchemy/ansible-snmp-exporter (too much effort getting it to run)
 20 https://github.com/bertvv/ansible-role-bind
 21 https://github.com/buluma/ansible-role-selinux
 22 https://github.com/robertdebock/ansible-role-docker_compose
