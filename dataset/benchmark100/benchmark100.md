@@ -36,6 +36,11 @@ This document summarizes the status of various Ansible roles tested as part of a
 | [buluma/ansible-role-pip](https://github.com/buluma/ansible-role-pip.git) | **Working** – remove `buluma.bootstrap`, `buluma.setuptools`, `buluma.openssl` and `buluma.ca_certificates` lines from `requirements.yml`, rename the role in `converge.yml` to `buluma.pip` and in `tasks/main.yml` add the following task directly **after** `Ensure Pip is installed.`:<br>`- name: Ensure packaging is available via dnf`<br>`  ansible.builtin.package:`<br>`    name: python3-packaging`<br>`    state: present` | 2 |
 | [buluma/ansible-role-openssl](https://github.com/buluma/ansible-role-openssl) | **Working** – remove `buluma.bootstrap`, `buluma.buildtools`, `buluma.epel` and `buluma.python_pip` line from `requirements.yml`, rename role in `converge.yml` to `buluma.openssl`, rename `buluma.python_pip` to `buluma.pip` and in `molecule/prepare.yml` and in `tasks/main.yml` add the following task directly **after** `Install requirements`:<br>`- name: Ensure packaging is available via dnf`<br>`  ansible.builtin.package:`<br>`    name: python3-packaging`<br>`    state: present` | 3 |
 | [geerlingguy/ansible-role-helm](https://github.com/geerlingguy/ansible-role-helm) | **Working** – change image in molecule.yaml to `geerlingguy/docker-${MOLECULE_DISTRO:-rockylinux9}-ansible:latest` to avoid python version problems| 1 |
+| [Oefenweb/ansible-swapfile](https://github.com/Oefenweb/ansible-swapfile) | **Working** – changes on main.yml to fix weaknesses: <br> - Fixed the `when` condition so the swapfile block runs only if `swapfile_size` is set. <br>
+- Ensured `mkswap` always runs when the file exists, preventing an unformatted swap file. <br> 
+- Updated `swapon` to activate the swap whenever the file exists, not just after creation.  <br>
+- Added a task to set correct permissions (`600`) for the swap file to avoid errors. <br>| 1 |
+
 
 **Total number of working files:** 60
 
@@ -48,8 +53,8 @@ This document summarizes the status of various Ansible roles tested as part of a
 7  https://github.com/giovtorres/ansible-role-epel (Molecule doesn't work)
 8  https://github.com/cloudalchemy/ansible-blackbox-exporter (blackbox-exporter does not follow current galaxy requirements, deprecated 2023)
 9  https://github.com/mrlesmithjr/ansible-manage-lvm (uses vagrant)
-14 https://github.com/artis3n/ansible-role-tailscale
-15 https://github.com/RedHatInsights/insights-client-role
+14 https://github.com/artis3n/ansible-role-tailscale (not the right format in tasks directory)
+15 https://github.com/RedHatInsights/insights-client-role (uses vagrant)
 16 https://github.com/Oefenweb/ansible-swapfile
 17 https://github.com/buluma/ansible-role-java
 18 https://github.com/mrlesmithjr/ansible-manage-lvm
