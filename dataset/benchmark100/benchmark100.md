@@ -29,21 +29,21 @@ This document summarizes the status of various Ansible roles tested as part of a
 | [robertdebock/ansible-role-buildtools](https://github.com/robertdebock/ansible-role-buildtools) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` | 1 |
 | [buluma/ansible-role-ca_certificates](https://github.com/buluma/ansible-role-ca_certificates) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` and rename role in converge.yml to buluma.ca_certificates | 1 |
 | [lablabs/ansible-role-rke2](https://github.com/lablabs/ansible-role-rke2) | **Working** – pip install netaddr on system and rename role in converge.yml of every scenario to lablabs.rke2 - delete ha_cluster and ha_cluster_kubevip scenarios those are resource-intensive and not practical for local testing| 14 |
+| [robertdebock/ansible-role-python_pip](https://github.com/robertdebock/ansible-role-python_pip) | **Working** – remove `robertdebock.bootstrap`, `robertdebock.buildtools` and `robertdebock.epel` line from `requirements.yml`| 14 |
+| [robertdebock/ansible-role-python_pip](https://github.com/patrickjahns/ansible-role-promtail) | **Working** – change line 13 in test_default to `with open("../../defaults/main.yml", 'r') as stream:`, delete scenario upgrade because of unidentifiable role and rename role in `converge.yml` to `patrickjahns.promtail`| 3 |
+| [buluma/ansible-role-cron](https://github.com/buluma/ansible-role-cron) | **Working** – remove `buluma.bootstrap` line from `requirements.yml` and rename role in `converge.yml` to `buluma.cron`| 1 |
 
-**Total number of working files:** 48
+**Total number of working files:** 53
 
 ---
 
 ## Ansible Roles to be included
 
 2  https://github.com/dj-wasabi/ansible-telegraf (incompatible OS and Python constellation)
-5  https://github.com/diodonfrost/ansible-role-amazon-ssm
-6  https://github.com/robertdebock/ansible-role-python_pip
-7  https://github.com/giovtorres/ansible-role-epel
-8  https://github.com/cloudalchemy/ansible-blackbox-exporter (deprecated 2023)
-9  https://github.com/mrlesmithjr/ansible-manage-lvm
-10 https://github.com/patrickjahns/ansible-role-promtail
-11 https://github.com/buluma/ansible-role-cron
+5  https://github.com/diodonfrost/ansible-role-amazon-ssm (incompatible OS and Python constellation)
+7  https://github.com/giovtorres/ansible-role-epel (Molecule doesn't work)
+8  https://github.com/cloudalchemy/ansible-blackbox-exporter (blackbox-exporter does not follow current galaxy requirements, deprecated 2023)
+9  https://github.com/mrlesmithjr/ansible-manage-lvm (uses vagrant)
 12 https://github.com/buluma/ansible-role-openssl
 13 https://github.com/geerlingguy/ansible-role-helm
 14 https://github.com/artis3n/ansible-role-tailscale
