@@ -1,0 +1,33 @@
+---
+galaxy_info:
+  author: robertdebock
+  role_name: httpd
+  description: Install and configure httpd on your system.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: "2.12"
+
+  platforms:
+    - name: EL
+      versions:
+        - "9"
+    - name: Debian
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags:
+    - webserver
+    - apache
+    - httpd
+    - installer
+    - package
+    - system
+    - networking
+
+dependencies: []

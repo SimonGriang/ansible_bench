@@ -29,7 +29,7 @@ This document summarizes the status of various Ansible roles tested as part of a
 | [robertdebock/ansible-role-buildtools](https://github.com/robertdebock/ansible-role-buildtools) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` | 1 |
 | [buluma/ansible-role-ca_certificates](https://github.com/buluma/ansible-role-ca_certificates) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` and rename role in converge.yml to buluma.ca_certificates | 1 |
 | [lablabs/ansible-role-rke2](https://github.com/lablabs/ansible-role-rke2) | **Working** – pip install netaddr on system and rename role in converge.yml of every scenario to lablabs.rke2 - delete ha_cluster and ha_cluster_kubevip scenarios those are resource-intensive and not practical for local testing| 14 |
-| [robertdebock/ansible-role-python_pip](https://github.com/robertdebock/ansible-role-python_pip) | **Working** – remove `robertdebock.bootstrap`, `robertdebock.buildtools` and `robertdebock.epel` line from `requirements.yml`| 14 |
+| [robertdebock/ansible-role-python_pip](https://github.com/robertdebock/ansible-role-python_pip) | **Working** – remove `robertdebock.bootstrap`, `robertdebock.buildtools` and `robertdebock.epel` line from `requirements.yml`| 2 |
 | [robertdebock/ansible-role-python_pip](https://github.com/patrickjahns/ansible-role-promtail) | **Working** – change line 13 in test_default to `with open("../../defaults/main.yml", 'r') as stream:`, delete scenario upgrade because of unidentifiable role and rename role in `converge.yml` to `patrickjahns.promtail`| 3 |
 | [buluma/ansible-role-cron](https://github.com/buluma/ansible-role-cron) | **Working** – remove `buluma.bootstrap` line from `requirements.yml` and rename role in `converge.yml` to `buluma.cron`| 1 |
 | [buluma/ansible-role-buildtools](https://github.com/buluma/ansible-role-buildtools.git) | **Working** – remove `buluma.bootstrap` line from `requirements.yml` and rename role in `converge.yml` to `buluma.buildtools`| 1 |
@@ -40,8 +40,13 @@ This document summarizes the status of various Ansible roles tested as part of a
 - Ensured `mkswap` always runs when the file exists, preventing an unformatted swap file. <br> 
 - Updated `swapon` to activate the swap whenever the file exists, not just after creation.  <br>
 - Added a task to set correct permissions (`600`) for the swap file to avoid errors. <br>| 1 |
+| [buluma/ansible-role-selinux](https://github.com/buluma/ansible-role-selinux) | **Working** – remove `buluma.bootstrap` line from `requirements.yml` and rename `ansible-role-selinux` to `buluma.selinux` and in `molecule/converge.yml`| 1 |
+| [robertdebock/ansible-role-docker_compose](https://github.com/robertdebock/ansible-role-docker_compose) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` | 1 |
+| [buluma/ansible-role-service](https://github.com/buluma/ansible-role-service) | **Working** – remove `buluma.bootstrap` line from `requirements.yml` and rename `ansible-role-service` to `buluma.service` and in `molecule/converge.yml`| 1 |
+| [robertdebock/ansible-role-openssl](https://github.com/robertdebock/ansible-role-openssl) | **Working** – remove `robertdebock.bootstrap`, `robertdebock.buildtools`, `robertdebock.epel` and `robertdebock.python_pip` line from `requirements.yml` | 1 |
+| [robertdebock/ansible-role-httpd](https://github.com/robertdebock/ansible-role-httpd) | **Working** – remove `robertdebock.bootstrap`, `robertdebock.buildtools`, `robertdebock.epel`, `robertdebock.openssl`, `robertdebock.selinux` and `robertdebock.python_pip` line from `requirements.yml` | 5 |
 
-**Total number of working files:** 60
+**Total number of working files:** 67
 
 ---
 
@@ -56,11 +61,7 @@ This document summarizes the status of various Ansible roles tested as part of a
 15 https://github.com/RedHatInsights/insights-client-role (uses vagrant)
 17 https://github.com/buluma/ansible-role-java (too much effort bringing vars file uptodate) 
 19 https://github.com/cloudalchemy/ansible-snmp-exporter (too much effort getting it to run)
-20 https://github.com/bertvv/ansible-role-bind
-21 https://github.com/buluma/ansible-role-selinux
-22 https://github.com/robertdebock/ansible-role-docker_compose
-23 https://github.com/buluma/ansible-role-service
-24 https://github.com/robertdebock/ansible-role-httpd
+20 https://github.com/bertvv/ansible-role-bind (Rocky/AlmaLinux with Python ≥3.9 is used, dnssec-enable removed, named fails due to config/zone error.)
 25 https://github.com/robertdebock/ansible-role-selinux
 26 https://github.com/robertdebock/ansible-role-rsyslog
 27 https://github.com/MonolithProjects/ansible-github_actions_runner
@@ -77,7 +78,6 @@ This document summarizes the status of various Ansible roles tested as part of a
 38 https://github.com/bertvv/ansible-role-samba (deprecated 2022)
 39 https://github.com/UnderGreen/ansible-role-mongodb
 40 https://github.com/robertdebock/ansible-role-mysql
-41 https://github.com/robertdebock/ansible-role-openssl
 42 https://github.com/buluma/ansible-role-php
 43 https://github.com/robertdebock/ansible-role-users
 44 https://github.com/githubixx/ansible-role-wireguard
