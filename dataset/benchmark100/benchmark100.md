@@ -45,7 +45,10 @@ This document summarizes the status of various Ansible roles tested as part of a
 | [buluma/ansible-role-service](https://github.com/buluma/ansible-role-service) | **Working** – remove `buluma.bootstrap` line from `requirements.yml` and rename `ansible-role-service` to `buluma.service` and in `molecule/converge.yml`| 1 |
 | [robertdebock/ansible-role-openssl](https://github.com/robertdebock/ansible-role-openssl) | **Working** – remove `robertdebock.bootstrap`, `robertdebock.buildtools`, `robertdebock.epel` and `robertdebock.python_pip` line from `requirements.yml` | 1 |
 | [robertdebock/ansible-role-httpd](https://github.com/robertdebock/ansible-role-httpd) | **Working** – remove `robertdebock.bootstrap`, `robertdebock.buildtools`, `robertdebock.epel`, `robertdebock.openssl`, `robertdebock.selinux` and `robertdebock.python_pip` line from `requirements.yml` | 5 |
+| [robertdebock/ansible-role-selinux](https://github.com/robertdebock/ansible-role-selinux) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` | 5 |
 
+
+https://github.com/robertdebock/ansible-role-rsyslog
 **Total number of working files:** 67
 
 ---
@@ -62,7 +65,6 @@ This document summarizes the status of various Ansible roles tested as part of a
 17 https://github.com/buluma/ansible-role-java (too much effort bringing vars file uptodate) 
 19 https://github.com/cloudalchemy/ansible-snmp-exporter (too much effort getting it to run)
 20 https://github.com/bertvv/ansible-role-bind (Rocky/AlmaLinux with Python ≥3.9 is used, dnssec-enable removed, named fails due to config/zone error.)
-25 https://github.com/robertdebock/ansible-role-selinux
 26 https://github.com/robertdebock/ansible-role-rsyslog
 27 https://github.com/MonolithProjects/ansible-github_actions_runner
 28 https://github.com/NVIDIA/ansible-role-nvidia-driver
