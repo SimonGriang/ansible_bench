@@ -1,0 +1,20 @@
+---
+# Java 8 (Amazon Corretto) für Rocky Linux 9
+
+__java_open_jdk_version_major: 1.8.0
+# Supported versions: 8 (1.8.0 in RHEL/Rocky), 11
+
+__java_required_repositories_openjdk:
+  - { name: "AmazonCorretto", baseurl: "https://yum.corretto.aws/$basearch" }
+__java_required_key_repositories_openjdk:
+  - https://yum.corretto.aws/corretto.key
+
+__java_required_libs_openjdk: []
+
+# Paketname für Amazon Corretto 8 unter RHEL9/Rocky9
+__java_open_jdk_package: java-1.8.0-amazon-corretto-devel
+
+__java_open_jdk_home_dir: java-1.8.0-amazon-corretto
+__java_open_jdk_home: /usr/lib/jvm/{{ __java_open_jdk_home_dir }}
+
+__java_deprecated_repositories_adoptopenjdk: []
