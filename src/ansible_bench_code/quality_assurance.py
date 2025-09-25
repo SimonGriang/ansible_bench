@@ -248,7 +248,7 @@ def check_molecule(task_path: Path) -> bool:
             return False
 
         for scenario in scenarios:
-            print(f"Molecule test role '{role_dir.parent.name}' for Scenario '{scenario}':____________________________\n")
+            print(f"Molecule test role '{role_dir.name}' for Scenario '{scenario}':____________________________\n")
             result = subprocess.run(
                 ["molecule", "test", "-s", scenario],
                 cwd=str(role_dir),
@@ -257,7 +257,7 @@ def check_molecule(task_path: Path) -> bool:
                 check=False
             )
             output = result.stdout + "\n" + result.stderr
-            print(output)
+            #print(output)
             
             failed_matches = re.findall(r"failed=(\d+)", output)
             scenario_success = result.returncode == 0 and all(int(x) == 0 for x in failed_matches)
