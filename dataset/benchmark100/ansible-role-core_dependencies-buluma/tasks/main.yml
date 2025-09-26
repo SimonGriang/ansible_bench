@@ -1,0 +1,17 @@
+---
+# tasks file for core_dependencies
+
+- name: Remove conflicting packages
+  ansible.builtin.package:
+    name: "{{ core_dependencies_conflicting_packages }}"
+    state: absent
+
+- name: Install packages
+  ansible.builtin.package:
+    name: "{{ core_dependencies_packages }}"
+    update_cache: true
+  notify:
+    - Gather facts
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers

@@ -257,7 +257,7 @@ def check_molecule(task_path: Path) -> bool:
                 check=False
             )
             output = result.stdout + "\n" + result.stderr
-            #print(output)
+            print(output)
             
             failed_matches = re.findall(r"failed=(\d+)", output)
             scenario_success = result.returncode == 0 and all(int(x) == 0 for x in failed_matches)

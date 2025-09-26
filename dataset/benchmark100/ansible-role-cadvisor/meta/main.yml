@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  role_name: cadvisor
+  author: ome-devel@lists.openmicroscopy.org.uk
+  description: cAdvisor container monitoring
+  company: Open Microscopy Environment
+  license: BSD
+  min_ansible_version: 2.10
+  platforms:
+    - name: EL
+      versions:
+        - 9
+  namespace: ome
+  galaxy_tags: []
