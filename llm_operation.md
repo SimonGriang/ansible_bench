@@ -109,18 +109,6 @@ As the TH VM provides the following VRAM Specs: 10 GB VRAM A100 NVIDIA GPU
 
 ---
 
-## Recommended Models (Quantized in GGUF Format)
-
-| Model Name                                 | Quantization | Size (Approx.)  | Notes                             |
-|-------------------------------------------|--------------|------------------|-----------------------------------|
-| **Mistral-7B-Instruct v0.2 (TheBloke)**   | Q4_K_M       | ~4.37 GB         | Strong general instruction tuning :contentReference[oaicite:0]{index=0} |
-| **OpenHermes-2.5 (Mistral-7B)**            | Q4_K_M / Q5_K_M | ~4.37 GB / ~5.13 GB | Quality-focused variants :contentReference[oaicite:1]{index=1} |
-| **NuminaMath-7B-TIR**                      | Q4_K_M / Q5_K_M | ~4.22 GB / ~4.93 GB | Math-optimized; efficient quant variant :contentReference[oaicite:2]{index=2} |
-| **LLaMA 2-7B** (TheBloke GGUF)             | Supports Q2–Q8 | Q4 ≈ ? (typically ~4–5 GB) | Flexible quant support :contentReference[oaicite:3]{index=3} |
-| **CodeLlama 7B** (Meta, GGUF)              | Supports quant variants | Q4 ≈ 4–5 GB | Code-centric tasks, large context :contentReference[oaicite:4]{index=4} |
-
----
-
 ## Key Takeaways
 
 - **7B models** in **Q4_K_M** or **Q5_K_M** quantization are the most suitable—small enough for 10 GB VRAM and high in quality.
