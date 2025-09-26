@@ -62,15 +62,14 @@ This document summarizes the status of various Ansible roles tested as part of a
 | 52 | [robertdebock/ansible-role-reboot](https://github.com/robertdebock/ansible-role-reboot.git) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` | 1 | 
 | 53 | [robertdebock/ansible-role-php](https://github.com/robertdebock/ansible-role-php.git) | **Working** – remove `robertdebock.bootstrap`, `robertdebock.buildtools`, `robertdebock.epel`, `robertdebock.httpd`, `robertdebock.openssl`, `robertdebock.python_pip` and `robertdebock.scl` line from `requirements.yml` | 1 | 
 | 54 | [robertdebock/ansible-role-postfix](https://github.com/robertdebock/ansible-role-postfix.git) | **Working** – remove `robertdebock.bootstrap` and `robertdebock.core_dependencies` line from `requirements.yml` | 1 | 
-| 55 | [robertdebock/ansible-role-postfix](https://github.com/robertdebock/ansible-role-postfix.git) | **Working** – remove `robertdebock.bootstrap` and `robertdebock.core_dependencies` line from `requirements.yml` | 1 | 
+| 55 | [robertdebock/ansible-role-vault](https://github.com/robertdebock/ansible-role-vault.git) | **Working** – remove `robertdebock.bootstrap`, `robertdebock.core_dependencies` and `robertdebock.hashicorp` line from `requirements.yml` | 4 | 
 
-
-**Total number of working files:** 97
+**Total number of working files:** 101
 
 ---
 
 ## Ansible Roles to be included
-Stopped at page 35 continue at page 36 (https://galaxy.ansible.com/ui/standalone/roles/?page=25&page_size=10&sort=-download_count)
+Stopped at page 35 continue at page 36 (https://galaxy.ansible.com/ui/standalone/roles/?page=36&page_size=10&sort=-download_count)
 
 This means 
 
