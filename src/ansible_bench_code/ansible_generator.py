@@ -368,7 +368,11 @@ class BenchmarkOperationManager(BaseOperationManager):
         failed_at_stage_ansiblelint = []
         failed_at_stage_molecule_test = []
         passed_all_stages = []
-        
+        yamllint_runs = 0
+        yamllint_passed_at_first_attempt = 0
+        ansiblelint_runs = 0
+        ansiblelint_passed_at_first_attempt = 0
+
         for f in tqdm(self.prompt_files):
             prompt_file = self.prompt_dir / f
             if not prompt_file.name.endswith("_prompt.txt"):
@@ -397,7 +401,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                 raw_outputs = self.invoke_prompt_chain(template, p_str)
                 print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
                 cleaned_outputs = self.clean_text(raw_outputs)
-                print(f"___________________________________________Cleaned LLM Output:___________________________________________ \n{cleaned_outputs}")
+                print(f"_______________________________________Cleaned LLM Output:_______________________________________ \n{cleaned_outputs}")
                 t1 = time.perf_counter()
                 print(f"\n{time.ctime()}: {yaml_path} Total generation time:", t1 - t0)
 
@@ -408,15 +412,16 @@ class BenchmarkOperationManager(BaseOperationManager):
                 max_iterations_yamllint = 5
 #                max_iterations_syntax = 5
                 max_iterations_ansiblelint = 5
-                errors_syntax = 0
+#                errors_syntax = 0
                 errors_ansiblelint = 0
 
                 while True:
                     # check yamllint, syntax, ansiblelint from here
                     status_flag_yamllint = False
                     for i in range(1,max_iterations_yamllint+1): 
-                        print(f"________________________Yamllint Run: {i}________________________\n")
+                        print(f"________________________________________Yamllint Run: {i}________________________________________\n")
                         yamllint_check_results: Tuple[bool, str] = check_yamllint(yaml_path)
+                        yamllint_runs += 1
                         if yamllint_check_results[0]:
                             status_flag_yamllint=True
                             break
@@ -428,7 +433,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                             raw_outputs = self.invoke_recursive_chain(template, p_str, cleaned_outputs, yamllint_check_results[1])
                             print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
                             cleaned_outputs = self.clean_text(raw_outputs)
-                            print(f"___________________________________________Cleaned LLM Output:___________________________________________ \n{cleaned_outputs}")
+                            print(f"_______________________________________Cleaned LLM Output:_______________________________________ \n{cleaned_outputs}")
                             t1 = time.perf_counter()
                             print(f"\n{time.ctime()}: {yaml_path} Total generation time:", t1 - t0)
 
@@ -438,10 +443,13 @@ class BenchmarkOperationManager(BaseOperationManager):
                     else:
                         print(f"Error: Generated Ansible-YAML did not pass quality gate 'yamllint' after defined maximum of {max_iterations_yamllint} iterations in a row!")
                     
+                    if i > 1:
+                        yamllint_passed_at_first_attempt += 1
+                        
                     if not status_flag_yamllint:
                         print(f"\nGeneration of playbook '{yaml_path}' failed at stage 'yamllint'")
                         if(errors_ansiblelint>0):
-                            print(f"Note: {errors_syntax} syntax-check iterations were done before!")
+                            print(f"Note: {errors_ansiblelint} ansible-lint iterations were done before!")
                             failed_at_stage_ansiblelint.append(yaml_path)
 #                        elif(errors_syntax>0):
 #                            print(f"Note: {errors_syntax} syntax-check iterations were done before!")
@@ -450,7 +458,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                             failed_at_stage_yamllint.append(yaml_path)
                         break
                     
-                    print("##################### Quality Gate 'yamllint' passed! #####################")
+                    print("################################# Quality Gate 'yamllint' passed! ################################")
 
 #                    syntax_check: Tuple[bool, str] = check_playbook_syntax(yaml_path)
 #                    if not syntax_check[0]:
@@ -480,6 +488,7 @@ class BenchmarkOperationManager(BaseOperationManager):
 #                    errors_syntax = 0
 
                     ansiblelint_check: Tuple[bool, str] = check_ansible_lint(yaml_path)
+                    ansiblelint_runs += 1
                     if not ansiblelint_check[0]:
                         errors_ansiblelint += 1
                         if errors_ansiblelint >= max_iterations_ansiblelint:
@@ -487,7 +496,9 @@ class BenchmarkOperationManager(BaseOperationManager):
                             print(f"\nGeneration of playbook '{yaml_path}' failed at stage 'ansiblelint'")
                             failed_at_stage_ansiblelint.append(yaml_path)
                             break
-                        print(f"{errors_syntax+1}. Iteration: Generated Ansible-YAML did not pass quality gate 'ansiblelint'")
+                        print(f"{errors_ansiblelint+1}. Iteration: Generated Ansible-YAML did not pass quality gate 'ansiblelint'")
+                        if errors_ansiblelint == 1:
+                            ansiblelint_passed_at_first_attempt += 1
                         template, p_str, recursive_str, error_str, error_msg = self.create_recursive_prompt_validate_context(prompt_str, cleaned_outputs, ansiblelint_check[1], "recursive_ansiblelint")
                         if error_msg:
                             return error_msg
@@ -495,7 +506,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                         print(f"Prompt String: \n{p_str}")
                         print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
                         cleaned_outputs = self.clean_text(raw_outputs)
-                        print(f"___________________________________________Cleaned LLM Output:___________________________________________ \n{cleaned_outputs}")
+                        print(f"_______________________________________Cleaned LLM Output:_______________________________________ \n{cleaned_outputs}")
                         t1 = time.perf_counter()
                         print(f"\n{time.ctime()}: {yaml_path} Total generation time:", t1 - t0)
 
@@ -503,7 +514,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                         with yaml_path.open("w", encoding="utf-8") as f:
                             f.write(cleaned_outputs)
                         continue
-                    print("##################### Quality Gate 'ansiblelint' passed! #####################")
+                    print("################################# Quality Gate 'ansiblelint' passed! ################################")
                     errors_ansiblelint = 0
                     
                     if check_molecule(yaml_path):
@@ -522,12 +533,17 @@ class BenchmarkOperationManager(BaseOperationManager):
                 shutil.copy2(tmp_copy, yaml_path) 
                 tmp_copy.unlink()
                 print(f"Original YAML file '{yaml_path}' was copied from temp into molecule_test directory.")
-        self.reports(start_time, failed_at_stage_yamllint, 
+        self.reports(start_time, 
+                     failed_at_stage_yamllint, 
                      #failed_at_stage_syntax, 
                      failed_at_stage_ansiblelint, 
                      failed_at_stage_molecule_test, 
                      passed_all_stages, 
-                     self.main_output_path)
+                     self.main_output_path,
+                     yamllint_runs,
+                     yamllint_passed_at_first_attempt,
+                     ansiblelint_runs,
+                     ansiblelint_passed_at_first_attempt)
 
 
     def reports(
@@ -539,6 +555,10 @@ class BenchmarkOperationManager(BaseOperationManager):
         failed_at_stage_molecule_test,
         passed_all_stages,
         report_path,
+        yamllint_runs,
+        yamllint_passed_at_first_attempt,
+        ansiblelint_runs,
+        ansiblelint_passed_at_first_attempt,
     ) -> None:
         """
         Creates a report file with start/end time, duration, stage counts,
@@ -551,13 +571,13 @@ class BenchmarkOperationManager(BaseOperationManager):
 
         with report_file.open("w", encoding="utf-8") as f:
             # Header
-            f.write("=== Run Summary ===\n")
+            f.write("====== Run Summary ======\n")
             f.write(f"Start time : {start_time}\n")
             f.write(f"End time   : {end_time}\n")
             f.write(f"Duration   : {duration}\n\n")
 
             # Stats
-            f.write("=== Stage Counts ===\n")
+            f.write("====== Stage Counts ======\n")
             f.write(f"yamllint failures   : {len(failed_at_stage_yamllint)}\n")
 #            f.write(f"syntax failures     : {len(failed_at_stage_syntax)}\n")
             f.write(f"ansiblelint failures: {len(failed_at_stage_ansiblelint)}\n")
@@ -574,13 +594,19 @@ class BenchmarkOperationManager(BaseOperationManager):
             f.write(f"TOTAL entries       : {total}\n\n")
 
             # Details
-            f.write("=== Detailed Entries ===\n")
-            f.write("\nFailed at stage 'yamllint':\n")
+            f.write("====== Detailed Entries ======\n")
+            f.write("YAMLLINT Statistics: \n")
+            f.write(f"Total yamllint runs: {yamllint_runs}\n")
+            f.write(f"Yamllint passed at first attempt: {yamllint_passed_at_first_attempt}\n")
+            f.write("\nFailed at stage 'yamllint': \n")
             for entry in failed_at_stage_yamllint:
                 f.write(f"yamllint failed: {entry}\n")
 #            f.write("\nFailed at stage 'ansible-playbook --syntax-check':\n")
 #            for entry in failed_at_stage_syntax:
 #                f.write(f"syntax failed: {entry}\n")
+            f.write("ANSIBLELINT Statistics: \n")
+            f.write(f"Total ansiblelint runs: {yamllint_runs}\n")
+            f.write(f"Ansiblelint passed at first attempt: {yamllint_passed_at_first_attempt}\n")
             f.write("\nFailed at stage 'ansiblelint':\n")
             for entry in failed_at_stage_ansiblelint:
                 f.write(f"ansiblelint failed: {entry}\n")

@@ -52,6 +52,7 @@ Guidelines:
 - The tasks must match the actual tasks in the playbook **both in content and order**.
 - Use the exact terminology and labels as used in the playbook (e.g., “install nginx” instead of “install web server”).
 - Provide a more detailed description of the task next to each task
+- Include the exact names of variables, handlers, etc. used in the playbook.
 
 Here is the Ansible Playbook:
 {input_str}
@@ -66,6 +67,7 @@ Provide the result in a semi-structured way:
 - List the tasks in the same general order as they appear.
 - Each task should include a short title and a 1-2 sentence description of what it does.
 - The wording can be slightly paraphrased, but the meaning should stay the same.
+- Names of variables, handlers, etc. should be preserved as in the original playbook.
 
 Format:
 
@@ -102,7 +104,7 @@ Hier ist das Ansible-Playbook:
 """
 
 prompt_approximate_english_template = """You are a professional developer. I want to generate an Ansible Playbook similar to the one below.  
-Please describe in your own words what the playbook should do, as if you were giving me the instructions.  
+Please describe in your own words what the playbook should do, as if you were giving me the instructions. Provide exact variables, handlers, and custom names as used in the playbook.  
 The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
 Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
 Summarize the tasks in natural language without strict formatting or technical precision.  
