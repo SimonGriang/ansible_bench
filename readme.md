@@ -61,7 +61,7 @@ options:
 
 Prompt for using PROMPT mode:
 ```bash
-python ansible_generator.py -m codestral -e llamafile prompt -d example -tt exact   
+python ansible_generator.py -m gpt-oss:20b -e ollama prompt -d benchmark100 -tt exact   
 ```
 
 **Ansible Generator Benchmark Mode**
