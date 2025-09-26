@@ -59,6 +59,7 @@ This document summarizes the status of various Ansible roles tested as part of a
 | 49 | [JonasPammer/ansible-role-bootstrap](https://github.com/JonasPammer/ansible-role-bootstrap.git) | **Working** – in `verify.yml`: replace `../resources/debug.yml` with `debug.yml` and move `prepare.yml` file into `default` dir, rename `ansible-role-bootstrap` to `jonaspammer.bootstrap` in `converge.yml`  | 2 | 
 | 50 | [ome/ansible-role-cadvisor](https://github.com/ome/ansible-role-cadvisor.git) | **Working** – no changes to be made | 1 |
 | 51 | [robertdebock/ansible-role-php](https://github.com/robertdebock/ansible-role-php.git) | **Working** – remove `robertdebock.bootstrap`, `robertdebock.buildtools`, `robertdebock.epel`, `robertdebock.httpd`, `robertdebock.openssl`, `robertdebock.python_pip` and `robertdebock.scl` line from `requirements.yml` | 1 | 
+| 52 | [robertdebock/ansible-role-postfix](https://github.com/robertdebock/ansible-role-postfix.git) | **Working** – remove `robertdebock.bootstrap` and `robertdebock.core_dependencies` line from `requirements.yml` | 1 | 
 
 
 **Total number of working files:** 100
