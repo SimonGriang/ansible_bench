@@ -16,6 +16,19 @@ This work focuses on locally executable open-source models available through Oll
 | **Mistral**   |[codestral:22b](https://ollama.com/library/codestral:22b) | 13GB | 22b | 32k | Q4_0 |
 | **OpenAI**    |[gpt-oss:20b](https://ollama.com/library/gpt-oss:20b) | 14GB | 20b | 128k | MXFP4 |
 
+Aus der Auswahl der Modell ergeben sich 56 mögliche Modellkonstellationen bzgl. Prompt-Generierung und Ansible-YAML Generierung:
+
+| Prompt \ YAML | **qwen2.5:32b** (Alibaba) | **deepseek-r1:32b** (Deepseek) | **gemma2:27b** (Google) | **granite-code:34b** (IBM) | **llama3.1:8b** (Meta) | **phi4:14b** (Microsoft) |  **codestral:22b** (Mistral) | **gpt-oss:20b** (OpenAI) |
+|---------------|---------|-----------|----------|--------|------|-----------|---------|--------|
+| **qwen2.5:32b** (Alibaba)   |    –    |     ✓     |    ✓     |   ✓    |  ✓   |     ✓     |    ✓    |   ✓    |
+| **deepseek-r1:32b** (Deepseek) |    ✓    |     –     |    ✓     |   ✓    |  ✓   |     ✓     |    ✓    |   ✓    |
+| **gemma2:27b** (Google) |    ✓    |     ✓     |    –     |   ✓    |  ✓   |     ✓     |    ✓    |   ✓    |
+| **granite-code:34b** (IBM)|    ✓    |     ✓     |    ✓     |   –    |  ✓   |     ✓     |    ✓    |   ✓    |
+| **llama3.1:8b** (Meta)|    ✓    |     ✓     |    ✓     |   ✓    |  –   |     ✓     |    ✓    |   ✓    |
+| **phi4:14b** (Microsoft)|    ✓    |     ✓     |    ✓     |   ✓    |  ✓   |     –     |    ✓    |   ✓    |
+| **codestral:22b** (Mistral)|    ✓    |     ✓     |    ✓     |   ✓    |  ✓   |     ✓     |    –    |   ✓    |
+| **gpt-oss:20b** (OpenAI)|    ✓    |     ✓     |    ✓     |   ✓    |  ✓   |     ✓     |    ✓    |   –    |
+
 
 ## Configuration Files
 
