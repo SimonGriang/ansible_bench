@@ -33,62 +33,46 @@ This document summarizes the status of various Ansible roles tested as part of a
 | 23 | [robertdebock/ansible-role-python_pip](https://github.com/patrickjahns/ansible-role-promtail.git) | **Working** – change line 13 in test_default to `with open("../../defaults/main.yml", 'r') as stream:`, delete scenario upgrade because of unidentifiable role and rename role in `converge.yml` to `patrickjahns.promtail`| 3 |
 | 24 | [buluma/ansible-role-cron](https://github.com/buluma/ansible-role-cron.git) | **Working** – remove `buluma.bootstrap` line from `requirements.yml` and rename role in `converge.yml` to `buluma.cron`| 1 |
 | 25 | [buluma/ansible-role-buildtools](https://github.com/buluma/ansible-role-buildtools.git) | **Working** – remove `buluma.bootstrap` line from `requirements.yml` and rename role in `converge.yml` to `buluma.buildtools`| 1 |
-| 26 | [buluma/ansible-role-pip](https://github.com/buluma/ansible-role-pip.git) | **Working** – remove `buluma.bootstrap`, `buluma.setuptools`, `buluma.openssl` and `buluma.ca_certificates` lines from `requirements.yml`, rename the role in `converge.yml` to `buluma.pip` and in `tasks/main.yml` add the following task directly **after** `Ensure Pip is installed.`:<br>`- name: Ensure packaging is available via dnf`<br>`  ansible.builtin.package:`<br>`    name: python3-packaging`<br>`    state: present` | 2 |
-| 27 | [buluma/ansible-role-openssl](https://github.com/buluma/ansible-role-openssl.git) | **Working** – remove `buluma.bootstrap`, `buluma.buildtools`, `buluma.epel` and `buluma.python_pip` line from `requirements.yml`, rename role in `converge.yml` to `buluma.openssl`, rename `buluma.python_pip` to `buluma.pip` and in `molecule/prepare.yml` and in `tasks/main.yml` add the following task directly **after** `Install requirements`:<br>`- name: Ensure packaging is available via dnf`<br>`  ansible.builtin.package:`<br>`    name: python3-packaging`<br>`    state: present` | 3 |
+| 26 | [buluma/ansible-role-openssl](https://github.com/buluma/ansible-role-openssl.git) | **Working** – remove `buluma.bootstrap`, `buluma.buildtools`, `buluma.epel` and `buluma.python_pip` line from `requirements.yml`, rename role in `converge.yml` to `buluma.openssl`, rename `buluma.python_pip` to `buluma.pip` and in `molecule/prepare.yml` and in `tasks/main.yml` add the following task directly **after** `Install requirements`:<br>`- name: Ensure packaging is available via dnf`<br>`  ansible.builtin.package:`<br>`    name: python3-packaging`<br>`    state: present` | 3 |
+| 27 | [buluma/ansible-role-pip](https://github.com/buluma/ansible-role-pip.git) | **Working** – remove `buluma.bootstrap`, `buluma.setuptools`, `buluma.openssl` and `buluma.ca_certificates` lines from `requirements.yml`, rename the role in `converge.yml` to `buluma.pip` and in `tasks/main.yml` add the following task directly **after** `Ensure Pip is installed.`:<br>`- name: Ensure packaging is available via dnf`<br>`  ansible.builtin.package:`<br>`    name: python3-packaging`<br>`    state: present` | 2 |
 | 28 | [geerlingguy/ansible-role-helm](https://github.com/geerlingguy/ansible-role-helm.git) | **Working** – change image in molecule.yaml to `geerlingguy/docker-${MOLECULE_DISTRO:-rockylinux9}-ansible:latest` to avoid python version problems| 1 |
-| 29 | [Oefenweb/ansible-swapfile](https://github.com/Oefenweb/ansible-swapfile.git) | **Working** – changes on main.yml to fix weaknesses: <br>- Fixed the `when` condition so the swapfile block runs only if `swapfile_size` is set. <br>- Ensured `mkswap` always runs when the file exists, preventing an unformatted swap file. <br>- Updated `swapon` to activate the swap whenever the file exists, not just after creation. <br>- Added a task to set correct permissions (`600`) for the swap file to avoid errors. | 1 |
-| 30 | [buluma/ansible-role-selinux](https://github.com/buluma/ansible-role-selinux.git) | **Working** – remove `buluma.bootstrap` line from `requirements.yml` and rename `ansible-role-selinux` to `buluma.selinux` and in `molecule/converge.yml`| 1 |
-| 31 | [robertdebock/ansible-role-docker_compose](https://github.com/robertdebock/ansible-role-docker_compose.git) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` | 1 |
-| 32 | [buluma/ansible-role-service](https://github.com/buluma/ansible-role-service.git) | **Working** – remove `buluma.bootstrap` line from `requirements.yml` and rename `ansible-role-service` to `buluma.service` and in `molecule/converge.yml`| 1 |
-| 33 | [robertdebock/ansible-role-openssl](https://github.com/robertdebock/ansible-role-openssl.git) | **Working** – remove `robertdebock.bootstrap`, `robertdebock.buildtools`, `robertdebock.epel` and `robertdebock.python_pip` line from `requirements.yml` | 1 |
-| 34 | [robertdebock/ansible-role-httpd](https://github.com/robertdebock/ansible-role-httpd.git) | **Working** – remove `robertdebock.bootstrap`, `robertdebock.buildtools`, `robertdebock.epel`, `robertdebock.openssl`, `robertdebock.selinux` and `robertdebock.python_pip` line from `requirements.yml` | 5 |
-| 35 | [robertdebock/ansible-role-selinux](https://github.com/robertdebock/ansible-role-selinux.git) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` | 1 |
-| 36 | [robertdebock/ansible-role-rsyslog](https://github.com/robertdebock/ansible-role-rsyslog.git) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` | 1 | 
-| 37 | [robertdebock/ansible-role-service](https://github.com/robertdebock/ansible-role-service.git) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` | 1 | 
-| 38 | [idealista/java_role](https://github.com/idealista/java_role.git) | **Working** – rename `java_role` to `idealista.java_role` in all `converge.yml` files of all four scenarios, change images for scenarios `openjdk`, `default` and `temurin` to `${DOCKER_IMAGE_BASE:-debian:bullseye-slim}` in `molecule.yml`. Change image for scenario `corretto` to `${DOCKER_IMAGE_BASE:-rockylinux:9}` in `molecule.yml` and add the following file as `vars/corretto/Rocky-9.yml`:<br><br>```yaml<br>---<br># Java 8 (Amazon Corretto) for Rocky Linux 9<br><br>__java_open_jdk_version_major: 1.8.0<br># Supported versions: 8 (1.8.0 in RHEL/Rocky), 11<br><br>__java_required_repositories_openjdk:<br>  - { name: "AmazonCorretto", baseurl: "https://yum.corretto.aws/$basearch" }<br>__java_required_key_repositories_openjdk:<br>  - https://yum.corretto.aws/corretto.key<br><br>__java_required_libs_openjdk: []<br><br># Package name for Amazon Corretto 8 on RHEL9/Rocky9<br>__java_open_jdk_package: java-1.8.0-amazon-corretto-devel<br><br>__java_open_jdk_home_dir: java-1.8.0-amazon-corretto<br>__java_open_jdk_home: /usr/lib/jvm/{{ __java_open_jdk_home_dir }}<br><br>__java_deprecated_repositories_adoptopenjdk: []<br>``` | 3 |
-| 39 | [Oefenweb/ansible-postfix](https://github.com/Oefenweb/ansible-postfix.git) | **Working** – no changes to be made| 1 | 
-| 40 | [buluma/ansible-role-mysql](https://github.com/buluma/ansible-role-mysql.git) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` and rename `ansible-role-mysql` into `buluma.mysql` in `converge.yml` and `verify.yml`| 1 | 
+| 29 | [buluma/ansible-role-selinux](https://github.com/buluma/ansible-role-selinux.git) | **Working** – remove `buluma.bootstrap` line from `requirements.yml` and rename `ansible-role-selinux` to `buluma.selinux` and in `molecule/converge.yml`| 1 |
+| 30 | [robertdebock/ansible-role-docker_compose](https://github.com/robertdebock/ansible-role-docker_compose.git) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` | 1 |
+| 31 | [buluma/ansible-role-service](https://github.com/buluma/ansible-role-service.git) | **Working** – remove `buluma.bootstrap` line from `requirements.yml` and rename `ansible-role-service` to `buluma.service` and in `molecule/converge.yml`| 1 |
+| 32 | [robertdebock/ansible-role-openssl](https://github.com/robertdebock/ansible-role-openssl.git) | **Working** – remove `robertdebock.bootstrap`, `robertdebock.buildtools`, `robertdebock.epel` and `robertdebock.python_pip` line from `requirements.yml` | 1 |
+| 33 | [robertdebock/ansible-role-httpd](https://github.com/robertdebock/ansible-role-httpd.git) | **Working** – remove `robertdebock.bootstrap`, `robertdebock.buildtools`, `robertdebock.epel`, `robertdebock.openssl`, `robertdebock.selinux` and `robertdebock.python_pip` line from `requirements.yml` | 5 |
+| 34 | [robertdebock/ansible-role-selinux](https://github.com/robertdebock/ansible-role-selinux.git) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` | 1 |
+| 35 | [robertdebock/ansible-role-rsyslog](https://github.com/robertdebock/ansible-role-rsyslog.git) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` | 1 | 
+| 36 | [robertdebock/ansible-role-service](https://github.com/robertdebock/ansible-role-service.git) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` | 1 | 
+| 37 | [idealista/java_role](https://github.com/idealista/java_role.git) | **Working** – rename `java_role` to `idealista.java_role` in all `converge.yml` files of all four scenarios, change images for scenarios `openjdk`, `default` and `temurin` to `${DOCKER_IMAGE_BASE:-debian:bullseye-slim}` in `molecule.yml`. Change image for scenario `corretto` to `${DOCKER_IMAGE_BASE:-rockylinux:9}` in `molecule.yml` and add the following file as `vars/corretto/Rocky-9.yml`:<br><br>```yaml<br>---<br># Java 8 (Amazon Corretto) for Rocky Linux 9<br><br>__java_open_jdk_version_major: 1.8.0<br># Supported versions: 8 (1.8.0 in RHEL/Rocky), 11<br><br>__java_required_repositories_openjdk:<br>  - { name: "AmazonCorretto", baseurl: "https://yum.corretto.aws/$basearch" }<br>__java_required_key_repositories_openjdk:<br>  - https://yum.corretto.aws/corretto.key<br><br>__java_required_libs_openjdk: []<br><br># Package name for Amazon Corretto 8 on RHEL9/Rocky9<br>__java_open_jdk_package: java-1.8.0-amazon-corretto-devel<br><br>__java_open_jdk_home_dir: java-1.8.0-amazon-corretto<br>__java_open_jdk_home: /usr/lib/jvm/{{ __java_open_jdk_home_dir }}<br><br>__java_deprecated_repositories_adoptopenjdk: []<br>``` | 3 |
+| 38 | [buluma/ansible-role-mysql](https://github.com/buluma/ansible-role-mysql.git) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` and rename `ansible-role-mysql` into `buluma.mysql` in `converge.yml` and `verify.yml`| 1 | 
+| 39 | [robertdebock/ansible-role-mysql](https://github.com/robertdebock/ansible-role-mysql.git) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` | 1 | 
+| 40 | [robertdebock/ansible-role-mysql](https://github.com/robertdebock/ansible-role-mysql.git) | **Working** – remove `buluma.bootstrap`, `buluma.buildtools`and `buluma.epel` line from `requirements.yml` and rename `ansible-role-python_pip` to `buluma.python_pip` in `converge.yml` | 1 | 
+| 41 | [buluma/ansible-role-httpd](https://github.com/buluma/ansible-role-httpd.git) | **Working** – remove `buluma.bootstrap`, `buluma.buildtools`, `buluma.epel`, `buluma.openssl`, `buluma.python_pip` and `buluma.selinux` line from `requirements.yml` and rename `ansible-role-python_pip` to `buluma.python_pip` in `converge.yml` | 5 | 
+| 42 | [buluma/ansible-role-scl](https://github.com/buluma/ansible-role-scl.git) | **Working** – remove `buluma.bootstrap` line from `requirements.yml` and rename `ansible-role-scl` to `buluma.python_pip` in `converge.yml` | 1 | 
+| 43 | [buluma/ansible-role-scl](https://github.com/buluma/ansible-role-scl.git) | **Working** – remove `buluma.bootstrap`, `buluma.buildtools`, `buluma.epel`, `buluma.httpd`, `buluma.openssl`, `buluma.scl` and `buluma.python_pip` line from `requirements.yml` and rename `ansible-role-php` to `buluma.php` in `converge.yml` | 1 | 
+| 44 | [robertdebock/ansible-role-users](https://github.com/robertdebock/ansible-role-users.git) | **Working** – remove `buluma.bootstrap` and `robertdebock.core_dependencies` line from `requirements.yml` and rename `ansible-role-users` to `buluma.users` in `converge.yml` | 1 | 
+| 45 | [robertdebock/ansible-role-java](https://github.com/robertdebock/ansible-role-java.git) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` | 1 | 
+| 46 | [buluma/ansible-role-git](https://github.com/buluma/ansible-role-git.git) | **Working** – remove `buluma.bootstrap` line from `requirements.yml` and rename `ansible-role-git` to `buluma.git` in `converge.yml` | 1 | 
+| 47 | [buluma/ansible-role-core_dependencies](https://github.com/buluma/ansible-role-core_dependencies.git) | **Working** – remove `buluma.bootstrap` line from `requirements.yml` and rename `ansible-role-core_dependencies` to `buluma.core_dependencies` in `converge.yml` | 1 | 
+| 48 | [robertdebock/ansible-role-hashicorp](https://github.com/robertdebock/ansible-role-hashicorp.git) | **Working** – remove `buluma.bootstrap` and `buluma.core_dependencies` line from `requirements.yml` | 1 | 
+| 49 | [robertdebock/ansible-role-update](https://github.com/robertdebock/ansible-role-update.git) | **Working** – remove `buluma.bootstrap` and `buluma.core_dependencies` line from `requirements.yml` | 1 | 
+| 50 | [JonasPammer/ansible-role-bootstrap](https://github.com/JonasPammer/ansible-role-bootstrap.git) | **Working** – in `verify.yml`: replace `../resources/debug.yml` with `debug.yml` and move `prepare.yml` file into `default` dir, rename `ansible-role-bootstrap` to `jonaspammer.bootstrap` in `converge.yml`  | 1 | 
+| 51 | [JonasPammer/ansible-role-bootstrap](https://github.com/ome/ansible-role-cadvisor.git) | **Working** – no changes to be made | 1 |
+| 52 | [robertdebock/ansible-role-reboot](https://github.com/robertdebock/ansible-role-reboot.git) | **Working** – remove `robertdebock.bootstrap` line from `requirements.yml` | 1 | 
+| 53 | [robertdebock/ansible-role-php](https://github.com/robertdebock/ansible-role-php.git) | **Working** – remove `robertdebock.bootstrap`, `robertdebock.buildtools`, `robertdebock.epel`, `robertdebock.httpd`, `robertdebock.openssl`, `robertdebock.python_pip` and `robertdebock.scl` line from `requirements.yml` | 1 | 
+| 54 | [robertdebock/ansible-role-postfix](https://github.com/robertdebock/ansible-role-postfix.git) | **Working** – remove `robertdebock.bootstrap` and `robertdebock.core_dependencies` line from `requirements.yml` | 1 | 
+| 55 | [robertdebock/ansible-role-postfix](https://github.com/robertdebock/ansible-role-postfix.git) | **Working** – remove `robertdebock.bootstrap` and `robertdebock.core_dependencies` line from `requirements.yml` | 1 | 
 
-**Total number of working files:** 79
+
+**Total number of working files:** 97
 
 ---
 
 ## Ansible Roles to be included
+Stopped at page 35 continue at page 36 (https://galaxy.ansible.com/ui/standalone/roles/?page=25&page_size=10&sort=-download_count)
 
-2  https://github.com/dj-wasabi/ansible-telegraf (incompatible OS and Python constellation)
-5  https://github.com/diodonfrost/ansible-role-amazon-ssm (incompatible OS and Python constellation)
-7  https://github.com/giovtorres/ansible-role-epel (Molecule doesn't work)
-8  https://github.com/cloudalchemy/ansible-blackbox-exporter (blackbox-exporter does not follow current galaxy requirements, deprecated 2023)
-9  https://github.com/mrlesmithjr/ansible-manage-lvm (uses vagrant)
-14 https://github.com/artis3n/ansible-role-tailscale (not the right format in tasks directory)
-15 https://github.com/RedHatInsights/insights-client-role (uses vagrant)
-17 https://github.com/buluma/ansible-role-java (too much effort bringing vars file uptodate) 
-19 https://github.com/cloudalchemy/ansible-snmp-exporter (too much effort getting it to run)
-20 https://github.com/bertvv/ansible-role-bind (Rocky/AlmaLinux with Python ≥3.9 is used, dnssec-enable removed, named fails due to config/zone error.)
-27 https://github.com/MonolithProjects/ansible-github_actions_runner (personal Github Information needed)
-28 https://github.com/NVIDIA/ansible-role-nvidia-driver (permission errors)
-30 https://github.com/idealista/prometheus_jmx_exporter_role (one problem after another, mainly systemmd)
-32 https://github.com/Oefenweb/ansible-dnsmasq (wrong version of community docker loaded, could not be solved)
-33 https://github.com/buluma/ansible-role-mysql
-34 https://github.com/stefangweichinger/ansible-rclone
-35 https://github.com/mrlesmithjr/ansible-chrony (aber kein default scenario)
-36 https://github.com/Oefenweb/ansible-fail2ban
-37 https://github.com/gantsign/ansible-role-oh-my-zsh
-38 https://github.com/bertvv/ansible-role-samba (deprecated 2022)
-39 https://github.com/UnderGreen/ansible-role-mongodb
-40 https://github.com/robertdebock/ansible-role-mysql
-42 https://github.com/buluma/ansible-role-php
-43 https://github.com/robertdebock/ansible-role-users
-44 https://github.com/githubixx/ansible-role-wireguard
-45 https://github.com/giovtorres/ansible-role-tuned
-46 https://github.com/stackhpc/ansible-timezone
-47 https://github.com/robertdebock/ansible-role-java
-48 https://github.com/buluma/ansible-role-git
-49 https://github.com/samdoran/ansible-role-fish
-50 https://github.com/ipr-cnrs/glpi-agent
-51 https://github.com/stackhpc/ansible-role-luks
-
-Stopped at page 27 continue at page https://galaxy.ansible.com/ui/standalone/roles/?page=28&page_size=10&sort=-download_count
+This means 
 
 ## Notes on Molecule Testing
 

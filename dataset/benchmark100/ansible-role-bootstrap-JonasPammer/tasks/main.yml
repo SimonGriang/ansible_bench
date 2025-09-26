@@ -1,0 +1,66 @@
+---
+# tasks file of ansible-role jonaspammer.bootstrap
+
+- name: check if all variables have been set correctly
+  ansible.builtin.import_tasks: assert.yml
+  run_once: true
+  delegate_to: localhost
+
+- name: wait for host (when configured)
+  ansible.builtin.wait_for:
+    port: "{{ ansible_port | default('22') }}"
+    host: "{{ (ansible_ssh_host | default(ansible_host) | default(inventory_hostname)) }}"
+    timeout: "{{ bootstrap_timeout }}"
+  connection: local
+  become: "{{ bootstrap_become | default(omit) }}"
+  become_user: "{{ bootstrap_become_user }}"
+  when:
+    - ansible_connection is defined
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
+    - bootstrap_wait_for_host | bool
+
+- name: prepare system
+  block:
+    - name: test connection
+      ansible.builtin.wait_for_connection:
+        timeout: "{{ bootstrap_timeout }}"
+      register: bootstrap_connect
+      changed_when: false
+  rescue:
+    - name: "NOTE - wait_for_connection failed for hosts listed in this Task"
+      ansible.builtin.debug:
+        var: bootstrap_timeout
+      changed_when: true
+  always:
+    - name: include tasks to gather bootstrap facts (raw)
+      ansible.builtin.include_tasks:
+        file: gather_facts.yml
+
+    - name: Install bootstrap packages (raw).
+      ansible.builtin.raw: "{{ bootstrap_install.raw }}"
+      args:
+        executable: /bin/sh
+      register: bootstrap_install_packages
+      changed_when:
+        - (bootstrap_install.stdout_regex in bootstrap_install_packages.stdout and
+          bootstrap_os_family in [ "Alpine", "Archlinux", "Gentoo" ]) or
+          (bootstrap_install.stdout_regex not in bootstrap_install_packages.stdout and
+          bootstrap_os_family in [ "Debian", "RedHat", "Rocky", "Suse" ])
+      vars:
+        ansible_user: "{{ bootstrap_user }}"
+      become: "{{ bootstrap_become | default(omit) }}"
+      become_user: "{{ bootstrap_become_user }}"
+
+- name: ensure system is prepared by issuing ansible modules.
+  become: "{{ bootstrap_become | default(omit) }}"
+  become_user: "{{ bootstrap_become_user }}"
+  block:
+    - name: Gather ansible facts.
+      ansible.builtin.setup:
+
+    - name: Install bootstrap packages (package).
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+        update_cache: true
+      loop: "{{ bootstrap__facts_packages.split() }}"

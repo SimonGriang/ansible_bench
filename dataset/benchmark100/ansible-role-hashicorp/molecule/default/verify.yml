@@ -1,0 +1,17 @@
+---
+- name: Verify
+  hosts: all
+  become: true
+  gather_facts: true
+
+  tasks:
+    - name: Check if product is installed
+      ansible.builtin.command:
+        cmd: "{{ item.name }} --version"
+      args:
+        creates: nothing
+      loop:
+        # - name: consul
+        - name: vault
+      environment:
+        PATH: "/bin:/usr/bin:/usr/local/bin"

@@ -1,0 +1,33 @@
+---
+galaxy_info:
+  role_name: bootstrap
+  description: An ansible role for preparing a linux system to be managed by ansible. Based on robertdebock's role.
+
+  author: jonaspammer
+  license: "MIT"
+
+  min_ansible_version: "2.9"
+  platforms:
+    # note: text after "actively tested: " represent the docker image name
+    - name: EL # (Enterprise Linux)
+      versions:
+        - "9" # actively tested: rockylinux9
+    - name: Fedora
+      versions:
+        - "38" # actively tested: fedora38
+        - "39" # actively tested: fedora39
+    - name: Debian
+      versions:
+        - bullseye # actively tested: debian11
+        - bookworm # actively tested: debian12
+    - name: Ubuntu
+      versions:
+        - focal # actively tested: ubuntu2004
+        - jammy # actively tested: ubuntu2204
+
+  galaxy_tags:
+    - bootstrap
+    - python
+    - sudo
+
+dependencies: []
