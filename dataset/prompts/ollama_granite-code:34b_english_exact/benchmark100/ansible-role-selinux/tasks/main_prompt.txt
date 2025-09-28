@@ -1,0 +1,624 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: This task imports the assert.yml file which will be used for the assertions in this role.
+
+Task 2: Install required packages
+Description Task 2: This task installs the required packages for this role.
+
+Task 3: Flush handlers
+Description Task 3: This task flushes handlers so that the changes made to the system are applied.
+
+Task 4: Configure selinux
+Description Task 4: This task configures the selinux based on the specified state and policy.
+
+Task 5: Manage selinux booleans
+Description Task 5: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 6: Reboot
+Description Task 6: This task reboots the system if required.
+
+Task 7: Gather facts
+Description Task 7: This task gathers the facts after the system has rebooted.
+
+Task 8: Manage selinux
+Description Task 8: This task manages the selinux based on the specified state and policy.
+
+Task 9: Manage selinux booleans
+Description Task 9: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 10: Ensure SELinux is Enforcing
+Description Task 10: This task ensures that SELinux is set to Enforcing mode.
+
+Task 11: Ensure SELinux is Permissive
+Description Task 11: This task ensures that SELinux is set to Permissive mode.
+
+Task 12: Set selinux state to disabled
+Description Task 12: This task sets the selinux state to disabled.
+
+Task 13: Manage selinux booleans
+Description Task 13: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 14: Set selinux state to disabled
+Description Task 14: This task sets the selinux state to disabled.
+
+Task 15: Check if selinux is disabled
+Description Task 15: This task checks if the selinux state is disabled.
+
+Task 16: Set selinux state to permissive
+Description Task 16: This task sets the selinux state to permissive.
+
+Task 17: Check if selinux is permissive
+Description Task 17: This task checks if the selinux state is permissive.
+
+Task 18: Set selinux state to enforcing
+Description Task 18: This task sets the selinux state to enforcing.
+
+Task 19: Check if selinux is enforcing
+Description Task 19: This task checks if the selinux state is enforcing.
+
+Task 20: Manage selinux booleans
+Description Task 20: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 21: Ensure SELinux is Enforcing
+Description Task 21: This task ensures that SELinux is set to Enforcing mode.
+
+Task 22: Ensure SELinux is Permissive
+Description Task 22: This task ensures that SELinux is set to Permissive mode.
+
+Task 23: Set selinux state to disabled
+Description Task 23: This task sets the selinux state to disabled.
+
+Task 24: Manage selinux booleans
+Description Task 24: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 25: Set selinux state to disabled
+Description Task 25: This task sets the selinux state to disabled.
+
+Task 26: Check if selinux is disabled
+Description Task 26: This task checks if the selinux state is disabled.
+
+Task 27: Set selinux state to permissive
+Description Task 27: This task sets the selinux state to permissive.
+
+Task 28: Check if selinux is permissive
+Description Task 28: This task checks if the selinux state is permissive.
+
+Task 29: Set selinux state to enforcing
+Description Task 29: This task sets the selinux state to enforcing.
+
+Task 30: Check if selinux is enforcing
+Description Task 30: This task checks if the selinux state is enforcing.
+
+Task 31: Manage selinux booleans
+Description Task 31: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 32: Ensure SELinux is Enforcing
+Description Task 32: This task ensures that SELinux is set to Enforcing mode.
+
+Task 33: Ensure SELinux is Permissive
+Description Task 33: This task ensures that SELinux is set to Permissive mode.
+
+Task 34: Set selinux state to disabled
+Description Task 34: This task sets the selinux state to disabled.
+
+Task 35: Manage selinux booleans
+Description Task 35: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 36: Set selinux state to disabled
+Description Task 36: This task sets the selinux state to disabled.
+
+Task 37: Check if selinux is disabled
+Description Task 37: This task checks if the selinux state is disabled.
+
+Task 38: Set selinux state to permissive
+Description Task 38: This task sets the selinux state to permissive.
+
+Task 39: Check if selinux is permissive
+Description Task 39: This task checks if the selinux state is permissive.
+
+Task 40: Set selinux state to enforcing
+Description Task 40: This task sets the selinux state to enforcing.
+
+Task 41: Check if selinux is enforcing
+Description Task 41: This task checks if the selinux state is enforcing.
+
+Task 42: Manage selinux booleans
+Description Task 42: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 43: Ensure SELinux is Enforcing
+Description Task 43: This task ensures that SELinux is set to Enforcing mode.
+
+Task 44: Ensure SELinux is Permissive
+Description Task 44: This task ensures that SELinux is set to Permissive mode.
+
+Task 45: Set selinux state to disabled
+Description Task 45: This task sets the selinux state to disabled.
+
+Task 46: Manage selinux booleans
+Description Task 46: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 47: Set selinux state to disabled
+Description Task 47: This task sets the selinux state to disabled.
+
+Task 48: Check if selinux is disabled
+Description Task 48: This task checks if the selinux state is disabled.
+
+Task 49: Set selinux state to permissive
+Description Task 49: This task sets the selinux state to permissive.
+
+Task 50: Check if selinux is permissive
+Description Task 50: This task checks if the selinux state is permissive.
+
+Task 51: Set selinux state to enforcing
+Description Task 51: This task sets the selinux state to enforcing.
+
+Task 52: Check if selinux is enforcing
+Description Task 52: This task checks if the selinux state is enforcing.
+
+Task 53: Manage selinux booleans
+Description Task 53: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 54: Ensure SELinux is Enforcing
+Description Task 54: This task ensures that SELinux is set to Enforcing mode.
+
+Task 55: Ensure SELinux is Permissive
+Description Task 55: This task ensures that SELinux is set to Permissive mode.
+
+Task 56: Set selinux state to disabled
+Description Task 56: This task sets the selinux state to disabled.
+
+Task 57: Manage selinux booleans
+Description Task 57: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 58: Set selinux state to disabled
+Description Task 58: This task sets the selinux state to disabled.
+
+Task 59: Check if selinux is disabled
+Description Task 59: This task checks if the selinux state is disabled.
+
+Task 60: Set selinux state to permissive
+Description Task 60: This task sets the selinux state to permissive.
+
+Task 61: Check if selinux is permissive
+Description Task 61: This task checks if the selinux state is permissive.
+
+Task 62: Set selinux state to enforcing
+Description Task 62: This task sets the selinux state to enforcing.
+
+Task 63: Check if selinux is enforcing
+Description Task 63: This task checks if the selinux state is enforcing.
+
+Task 64: Manage selinux booleans
+Description Task 64: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 65: Ensure SELinux is Enforcing
+Description Task 65: This task ensures that SELinux is set to Enforcing mode.
+
+Task 66: Ensure SELinux is Permissive
+Description Task 66: This task ensures that SELinux is set to Permissive mode.
+
+Task 67: Set selinux state to disabled
+Description Task 67: This task sets the selinux state to disabled.
+
+Task 68: Manage selinux booleans
+Description Task 68: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 69: Set selinux state to disabled
+Description Task 69: This task sets the selinux state to disabled.
+
+Task 70: Check if selinux is disabled
+Description Task 70: This task checks if the selinux state is disabled.
+
+Task 71: Set selinux state to permissive
+Description Task 71: This task sets the selinux state to permissive.
+
+Task 72: Check if selinux is permissive
+Description Task 72: This task checks if the selinux state is permissive.
+
+Task 73: Set selinux state to enforcing
+Description Task 73: This task sets the selinux state to enforcing.
+
+Task 74: Check if selinux is enforcing
+Description Task 74: This task checks if the selinux state is enforcing.
+
+Task 75: Manage selinux booleans
+Description Task 75: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 76: Ensure SELinux is Enforcing
+Description Task 76: This task ensures that SELinux is set to Enforcing mode.
+
+Task 77: Ensure SELinux is Permissive
+Description Task 77: This task ensures that SELinux is set to Permissive mode.
+
+Task 78: Set selinux state to disabled
+Description Task 78: This task sets the selinux state to disabled.
+
+Task 79: Manage selinux booleans
+Description Task 79: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 80: Set selinux state to disabled
+Description Task 80: This task sets the selinux state to disabled.
+
+Task 81: Check if selinux is disabled
+Description Task 81: This task checks if the selinux state is disabled.
+
+Task 82: Set selinux state to permissive
+Description Task 82: This task sets the selinux state to permissive.
+
+Task 83: Check if selinux is permissive
+Description Task 83: This task checks if the selinux state is permissive.
+
+Task 84: Set selinux state to enforcing
+Description Task 84: This task sets the selinux state to enforcing.
+
+Task 85: Check if selinux is enforcing
+Description Task 85: This task checks if the selinux state is enforcing.
+
+Task 86: Manage selinux booleans
+Description Task 86: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 87: Ensure SELinux is Enforcing
+Description Task 87: This task ensures that SELinux is set to Enforcing mode.
+
+Task 88: Ensure SELinux is Permissive
+Description Task 88: This task ensures that SELinux is set to Permissive mode.
+
+Task 89: Set selinux state to disabled
+Description Task 89: This task sets the selinux state to disabled.
+
+Task 90: Manage selinux booleans
+Description Task 90: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 91: Set selinux state to disabled
+Description Task 91: This task sets the selinux state to disabled.
+
+Task 92: Check if selinux is disabled
+Description Task 92: This task checks if the selinux state is disabled.
+
+Task 93: Set selinux state to permissive
+Description Task 93: This task sets the selinux state to permissive.
+
+Task 94: Check if selinux is permissive
+Description Task 94: This task checks if the selinux state is permissive.
+
+Task 95: Set selinux state to enforcing
+Description Task 95: This task sets the selinux state to enforcing.
+
+Task 96: Check if selinux is enforcing
+Description Task 96: This task checks if the selinux state is enforcing.
+
+Task 97: Manage selinux booleans
+Description Task 97: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 98: Ensure SELinux is Enforcing
+Description Task 98: This task ensures that SELinux is set to Enforcing mode.
+
+Task 99: Ensure SELinux is Permissive
+Description Task 99: This task ensures that SELinux is set to Permissive mode.
+
+Task 100: Set selinux state to disabled
+Description Task 100: This task sets the selinux state to disabled.
+
+Task 101: Manage selinux booleans
+Description Task 101: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 102: Set selinux state to disabled
+Description Task 102: This task sets the selinux state to disabled.
+
+Task 103: Check if selinux is disabled
+Description Task 103: This task checks if the selinux state is disabled.
+
+Task 104: Set selinux state to permissive
+Description Task 104: This task sets the selinux state to permissive.
+
+Task 105: Check if selinux is permissive
+Description Task 105: This task checks if the selinux state is permissive.
+
+Task 106: Set selinux state to enforcing
+Description Task 106: This task sets the selinux state to enforcing.
+
+Task 107: Check if selinux is enforcing
+Description Task 107: This task checks if the selinux state is enforcing.
+
+Task 108: Manage selinux booleans
+Description Task 108: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 109: Ensure SELinux is Enforcing
+Description Task 109: This task ensures that SELinux is set to Enforcing mode.
+
+Task 110: Ensure SELinux is Permissive
+Description Task 110: This task ensures that SELinux is set to Permissive mode.
+
+Task 111: Set selinux state to disabled
+Description Task 111: This task sets the selinux state to disabled.
+
+Task 112: Manage selinux booleans
+Description Task 112: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 113: Set selinux state to disabled
+Description Task 113: This task sets the selinux state to disabled.
+
+Task 114: Check if selinux is disabled
+Description Task 114: This task checks if the selinux state is disabled.
+
+Task 115: Set selinux state to permissive
+Description Task 115: This task sets the selinux state to permissive.
+
+Task 116: Check if selinux is permissive
+Description Task 116: This task checks if the selinux state is permissive.
+
+Task 117: Set selinux state to enforcing
+Description Task 117: This task sets the selinux state to enforcing.
+
+Task 118: Check if selinux is enforcing
+Description Task 118: This task checks if the selinux state is enforcing.
+
+Task 119: Manage selinux booleans
+Description Task 119: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 120: Ensure SELinux is Enforcing
+Description Task 120: This task ensures that SELinux is set to Enforcing mode.
+
+Task 121: Ensure SELinux is Permissive
+Description Task 121: This task ensures that SELinux is set to Permissive mode.
+
+Task 122: Set selinux state to disabled
+Description Task 122: This task sets the selinux state to disabled.
+
+Task 123: Manage selinux booleans
+Description Task 123: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 124: Set selinux state to disabled
+Description Task 124: This task sets the selinux state to disabled.
+
+Task 125: Check if selinux is disabled
+Description Task 125: This task checks if the selinux state is disabled.
+
+Task 126: Set selinux state to permissive
+Description Task 126: This task sets the selinux state to permissive.
+
+Task 127: Check if selinux is permissive
+Description Task 127: This task checks if the selinux state is permissive.
+
+Task 128: Set selinux state to enforcing
+Description Task 128: This task sets the selinux state to enforcing.
+
+Task 129: Check if selinux is enforcing
+Description Task 129: This task checks if the selinux state is enforcing.
+
+Task 130: Manage selinux booleans
+Description Task 130: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 131: Ensure SELinux is Enforcing
+Description Task 131: This task ensures that SELinux is set to Enforcing mode.
+
+Task 132: Ensure SELinux is Permissive
+Description Task 132: This task ensures that SELinux is set to Permissive mode.
+
+Task 133: Set selinux state to disabled
+Description Task 133: This task sets the selinux state to disabled.
+
+Task 134: Manage selinux booleans
+Description Task 134: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 135: Set selinux state to disabled
+Description Task 135: This task sets the selinux state to disabled.
+
+Task 136: Check if selinux is disabled
+Description Task 136: This task checks if the selinux state is disabled.
+
+Task 137: Set selinux state to permissive
+Description Task 137: This task sets the selinux state to permissive.
+
+Task 138: Check if selinux is permissive
+Description Task 138: This task checks if the selinux state is permissive.
+
+Task 139: Set selinux state to enforcing
+Description Task 139: This task sets the selinux state to enforcing.
+
+Task 140: Check if selinux is enforcing
+Description Task 140: This task checks if the selinux state is enforcing.
+
+Task 141: Manage selinux booleans
+Description Task 141: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 142: Ensure SELinux is Enforcing
+Description Task 142: This task ensures that SELinux is set to Enforcing mode.
+
+Task 143: Ensure SELinux is Permissive
+Description Task 143: This task ensures that SELinux is set to Permissive mode.
+
+Task 144: Set selinux state to disabled
+Description Task 144: This task sets the selinux state to disabled.
+
+Task 145: Manage selinux booleans
+Description Task 145: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 146: Set selinux state to disabled
+Description Task 146: This task sets the selinux state to disabled.
+
+Task 147: Check if selinux is disabled
+Description Task 147: This task checks if the selinux state is disabled.
+
+Task 148: Set selinux state to permissive
+Description Task 148: This task sets the selinux state to permissive.
+
+Task 149: Check if selinux is permissive
+Description Task 149: This task checks if the selinux state is permissive.
+
+Task 150: Set selinux state to enforcing
+Description Task 150: This task sets the selinux state to enforcing.
+
+Task 151: Check if selinux is enforcing
+Description Task 151: This task checks if the selinux state is enforcing.
+
+Task 152: Manage selinux booleans
+Description Task 152: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 153: Ensure SELinux is Enforcing
+Description Task 153: This task ensures that SELinux is set to Enforcing mode.
+
+Task 154: Ensure SELinux is Permissive
+Description Task 154: This task ensures that SELinux is set to Permissive mode.
+
+Task 155: Set selinux state to disabled
+Description Task 155: This task sets the selinux state to disabled.
+
+Task 156: Manage selinux booleans
+Description Task 156: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 157: Set selinux state to disabled
+Description Task 157: This task sets the selinux state to disabled.
+
+Task 158: Check if selinux is disabled
+Description Task 158: This task checks if the selinux state is disabled.
+
+Task 159: Set selinux state to permissive
+Description Task 159: This task sets the selinux state to permissive.
+
+Task 160: Check if selinux is permissive
+Description Task 160: This task checks if the selinux state is permissive.
+
+Task 161: Set selinux state to enforcing
+Description Task 161: This task sets the selinux state to enforcing.
+
+Task 162: Check if selinux is enforcing
+Description Task 162: This task checks if the selinux state is enforcing.
+
+Task 163: Manage selinux booleans
+Description Task 163: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 164: Ensure SELinux is Enforcing
+Description Task 164: This task ensures that SELinux is set to Enforcing mode.
+
+Task 165: Ensure SELinux is Permissive
+Description Task 165: This task ensures that SELinux is set to Permissive mode.
+
+Task 166: Set selinux state to disabled
+Description Task 166: This task sets the selinux state to disabled.
+
+Task 167: Manage selinux booleans
+Description Task 167: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 168: Set selinux state to disabled
+Description Task 168: This task sets the selinux state to disabled.
+
+Task 169: Check if selinux is disabled
+Description Task 169: This task checks if the selinux state is disabled.
+
+Task 170: Set selinux state to permissive
+Description Task 170: This task sets the selinux state to permissive.
+
+Task 171: Check if selinux is permissive
+Description Task 171: This task checks if the selinux state is permissive.
+
+Task 172: Set selinux state to enforcing
+Description Task 172: This task sets the selinux state to enforcing.
+
+Task 173: Check if selinux is enforcing
+Description Task 173: This task checks if the selinux state is enforcing.
+
+Task 174: Manage selinux booleans
+Description Task 174: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 175: Ensure SELinux is Enforcing
+Description Task 175: This task ensures that SELinux is set to Enforcing mode.
+
+Task 176: Ensure SELinux is Permissive
+Description Task 176: This task ensures that SELinux is set to Permissive mode.
+
+Task 177: Set selinux state to disabled
+Description Task 177: This task sets the selinux state to disabled.
+
+Task 178: Manage selinux booleans
+Description Task 178: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 179: Set selinux state to disabled
+Description Task 179: This task sets the selinux state to disabled.
+
+Task 180: Check if selinux is disabled
+Description Task 180: This task checks if the selinux state is disabled.
+
+Task 181: Set selinux state to permissive
+Description Task 181: This task sets the selinux state to permissive.
+
+Task 182: Check if selinux is permissive
+Description Task 182: This task checks if the selinux state is permissive.
+
+Task 183: Set selinux state to enforcing
+Description Task 183: This task sets the selinux state to enforcing.
+
+Task 184: Check if selinux is enforcing
+Description Task 184: This task checks if the selinux state is enforcing.
+
+Task 185: Manage selinux booleans
+Description Task 185: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 186: Ensure SELinux is Enforcing
+Description Task 186: This task ensures that SELinux is set to Enforcing mode.
+
+Task 187: Ensure SELinux is Permissive
+Description Task 187: This task ensures that SELinux is set to Permissive mode.
+
+Task 188: Set selinux state to disabled
+Description Task 188: This task sets the selinux state to disabled.
+
+Task 189: Manage selinux booleans
+Description Task 189: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 190: Set selinux state to disabled
+Description Task 190: This task sets the selinux state to disabled.
+
+Task 191: Check if selinux is disabled
+Description Task 191: This task checks if the selinux state is disabled.
+
+Task 192: Set selinux state to permissive
+Description Task 192: This task sets the selinux state to permissive.
+
+Task 193: Check if selinux is permissive
+Description Task 193: This task checks if the selinux state is permissive.
+
+Task 194: Set selinux state to enforcing
+Description Task 194: This task sets the selinux state to enforcing.
+
+Task 195: Check if selinux is enforcing
+Description Task 195: This task checks if the selinux state is enforcing.
+
+Task 196: Manage selinux booleans
+Description Task 196: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 197: Ensure SELinux is Enforcing
+Description Task 197: This task ensures that SELinux is set to Enforcing mode.
+
+Task 198: Ensure SELinux is Permissive
+Description Task 198: This task ensures that SELinux is set to Permissive mode.
+
+Task 199: Set selinux state to disabled
+Description Task 199: This task sets the selinux state to disabled.
+
+Task 200: Manage selinux booleans
+Description Task 200: This task manages the selinux booleans based on the specified name, state, and persistent values.
+
+Task 201: Set selinux state to disabled
+Description Task 201: This task sets the selinux state to disabled.
+
+Task 202: Check if selinux is disabled
+Description Task 202: This task checks if the selinux state is disabled.
+
+Task 203: Set selinux state to permissive
+Description Task 203: This task sets the selinux state to permissive.
+
+Task 204: Check if selinux is permissive
+Description Task 204: This task checks if the selinux state is permissive.
+
+Task 205: Set selinux state to enforcing
+Description Task 205: This task sets the selinux state to enforcing.
+
+Task 206: Check if selinux is enforcing
+Description Task 206: This task checks if the selinux state is enforcing.
+
+Task 207: Manage selinux booleans
+Description Task 207: This task manages the selinux1881101075817461811860736510117576011707191148191181763181817181178581111716119849819118111011111888711411811191711111171191181111819

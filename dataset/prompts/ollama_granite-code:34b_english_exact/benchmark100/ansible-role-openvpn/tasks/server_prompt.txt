@@ -1,0 +1,32 @@
+Task 1: Ensure /etc/openvpn/easy-rsa exists
+Description Task 1: Ensure the directory /etc/openvpn/easy-rsa exists with the correct permissions.
+
+Task 2: Easyrsa init-pki
+Description Task 2: Initialize the EasyRSA pki directory.
+
+Task 3: Easyrsa build-ca
+Description Task 3: Build a certificate authority using EasyRSA.
+
+Task 4: Easyrsa gen-dh
+Description Task 4: Generate Diffie-Hellman parameters using EasyRSA.
+
+Task 5: Easyrsa build-server-full server nopass
+Description Task 5: Build a server certificate using EasyRSA.
+
+Task 6: Easyrsa build-client-full client nopass
+Description Task 6: Build a client certificate using EasyRSA.
+
+Task 7: Easyrsa gen-crl
+Description Task 7: Generate a certificate revocation list using EasyRSA.
+
+Task 8: Openvpn --genkey --secret /etc/openvpn/easy-rsa/pki/ta.key
+Description Task 8: Generate a key using OpenVPN.
+
+Task 9: Copy files to /etc/openvpn/server
+Description Task 9: Copy the generated files to the /etc/openvpn/server directory.
+
+Task 10: Copy files to /etc/openvpn
+Description Task 10: Copy the generated files to the /etc/openvpn directory.
+
+Task 11: Place server.conf
+Description Task 11: Place the server.conf file in the /etc/openvpn directory and notify the openvpn service to restart.

@@ -1,0 +1,39 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Download RKE2 installation script
+Description Task 1: Downloads the RKE2 installation script to the specified directory.
+
+Task 2: Copy local RKE2 installation script
+Description Task 2: Copies the local RKE2 installation script to the specified directory.
+
+Task 3: Create RKE2 artifacts folder
+Description Task 3: Creates the RKE2 artifacts folder at the specified path.
+
+Task 4: Download RKE2 checksum and artifacts (try to download remotely first - fallback to local download and push)
+Description Task 4: Downloads the RKE2 checksum and artifacts, first trying to download remotely and falling back to local download and push.
+
+Task 5: Copy local RKE2 artifacts
+Description Task 5: Copies the local RKE2 artifacts to the specified directory.
+
+Task 6: Airgap mode - additional images tarballs
+Description Task 6: Copies additional tarball images RKE2 components to the specified directory.
+
+Task 7: Airgap mode - ensure artifacts exist and have acceptable permissions
+Description Task 7: Registers the artifacts and the install script, ensuring they exist and have acceptable permissions.
+
+Task 8: Prevent accidental RKE2 downgrade
+Description Task 8: Prevent accidental RKE2 downgrades by comparing the installed and running versions.
+
+Task 9: Run RKE2 install script
+Description Task 9: Runs the RKE2 install script with or without airgap variables based on the specified mode.
+
+Task 10: Copy Custom Manifests
+Description Task 10: Copies custom manifests to the specified directory.
+
+Task 11: Copy Static Pods
+Description Task 11: Copies static pods to the specified directory.
+
+Task 12: Copy RKE2 environment file
+Description Task 12: Copies the RKE2 environment file to the specified directory.

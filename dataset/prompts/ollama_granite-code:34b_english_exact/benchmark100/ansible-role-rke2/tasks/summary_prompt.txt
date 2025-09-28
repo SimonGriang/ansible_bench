@@ -1,0 +1,11 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Prepare summary
+Description Task 1: Query for all K8s nodes and their state
+
+Task 2: K8s nodes state
+Description Task 2: Print summary of all K8s nodes in the cluster
+
+Task 3: None

@@ -40,6 +40,7 @@ LLAMAFILE_CTX_SIZE = {
 }
 
 OLLAMA_CTX_SIZE = {
+    "granite-code:34b": 8000,
     "gemma3:27b": 8000,
     "qwen2.5:32b": 8000,
     "deepseek-r1:32b": 8000,

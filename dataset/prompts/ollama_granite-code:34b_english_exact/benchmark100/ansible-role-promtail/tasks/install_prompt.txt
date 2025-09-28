@@ -1,0 +1,39 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Ensure unzip package is available
+Description Task 1: Install unzip package if not already present
+
+Task 2: Create promtail group
+Description Task 2: Create a group for the promtail system user
+
+Task 3: Create the promtail user
+Description Task 3: Create the promtail system user
+
+Task 4: Ensure /usr/local/bin exists
+Description Task 4: Create /usr/local/bin directory if not already present
+
+Task 5: Create config directories
+Description Task 5: Create directories for promtail configuration files
+
+Task 6: Create application dirs
+Description Task 6: Create directories for promtail application
+
+Task 7: Check promtail binary
+Description Task 7: Check if promtail binary exists
+
+Task 8: Download promtail binaries
+Description Task 8: Download promtail binaries if not already present
+
+Task 9: Unpack promtail binaries
+Description Task 9: Unpack promtail binaries
+
+Task 10: Create symlink to latest version
+Description Task 10: Create a symlink to the latest version of promtail
+
+Task 11: Write config
+Description Task 11: Write promtail configuration file
+
+Task 12: Create systemd service unit
+Description Task 12: Create a systemd service unit for promtail

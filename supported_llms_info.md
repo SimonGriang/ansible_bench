@@ -20,17 +20,18 @@ From the selected models, 56 possible model constellations arise with respect to
 
 | Prompt \ YAML | **qwen2.5:32b** (Alibaba) | **deepseek-r1:32b** (Deepseek) | **gemma2:27b** (Google) | **granite-code:34b** (IBM) | **llama3.1:8b** (Meta) | **phi4:14b** (Microsoft) |  **codestral:22b** (Mistral) | **gpt-oss:20b** (OpenAI) |
 |---------------|---------|-----------|----------|--------|------|-----------|---------|--------|
-| **qwen2.5:32b** (Alibaba)   |    –    |     ✓     |    ✓     |   ✓    |  ✓   |     ✓     |    ✓    |   ✓    |
-| **deepseek-r1:32b** (Deepseek) |    ✓    |     –     |    ✓     |   ✓    |  ✓   |     ✓     |    ✓    |   ✓    |
-| **gemma2:27b** (Google) |    ✓    |     ✓     |    –     |   ✓    |  ✓   |     ✓     |    ✓    |   ✓    |
-| **granite-code:34b** (IBM)|    ✓    |     ✓     |    ✓     |   –    |  ✓   |     ✓     |    ✓    |   ✓    |
-| **llama3.1:8b** (Meta)|    ✓    |     ✓     |    ✓     |   ✓    |  –   |     ✓     |    ✓    |   ✓    |
-| **phi4:14b** (Microsoft)|    ✓    |     ✓     |    ✓     |   ✓    |  ✓   |     –     |    ✓    |   ✓    |
-| **codestral:22b** (Mistral)|    ✓    |     ✓     |    ✓     |   ✓    |  ✓   |     ✓     |    –    |   ✓    |
-| **gpt-oss:20b** (OpenAI)|    ✓    |     ✓     |    ✓     |   ✓    |  ✓   |     ✓     |    ✓    |   –    |
+| **qwen2.5:32b** (Alibaba)   |    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
+| **deepseek-r1:32b** (Deepseek) |    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
+| **gemma2:27b** (Google) |    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
+| **granite-code:34b** (IBM)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
+| **llama3.1:8b** (Meta)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
+| **phi4:14b** (Microsoft)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
+| **codestral:22b** (Mistral)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
+| **gpt-oss:20b** (OpenAI)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
 
- ✓ = combination run
- – = combination did not run yet
+ **✓** = combination run
+
+ **–** = combination did not run yet
 
 ## Configuration Files
 

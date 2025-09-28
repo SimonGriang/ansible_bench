@@ -1,0 +1,2 @@
+Task 1: Install centos-release-scl
+Description Task 1: Installs the centos-release-scl package when the ansible_distribution is CentOS

@@ -1,0 +1,20 @@
+Task 1: Import assert.yml
+Description Task 1: This task imports the assert.yml file.
+
+Task 2: Install cron
+Description Task 2: This task installs the cron package.
+
+Task 3: Configure shell
+Description Task 3: This task configures the shell by adding the specified SHELL value to the specified cron configuration file.
+
+Task 4: Configure path
+Description Task 4: This task configures the path by adding the specified PATH value to the specified cron configuration file.
+
+Task 5: Configure mailto
+Description Task 5: This task configures the mailto by adding the specified MAILTO value to the specified cron configuration file.
+
+Task 6: Start and enable cron
+Description Task 6: This task starts and enables the cron service.
+
+Task 7: Schedule requested cron jobs
+Description Task 7: This task schedules the requested cron jobs using the specified parameters.

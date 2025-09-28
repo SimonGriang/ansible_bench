@@ -1,0 +1,38 @@
+Task 1: Import assert.yml
+Description Task 1: This task imports the assert.yml file for the playbook.
+
+Task 2: Install mysql
+Description Task 2: This task installs the mysql package using the specified mysql_packages variable.
+
+Task 3: Configure mysql server
+Description Task 3: This task configures the mysql server by setting the options specified in the mysql_configuration_options variable in the specified configuration file.
+
+Task 4: Configure mysql client
+Description Task 4: This task configures the mysql client by setting the socket option in the specified configuration file.
+
+Task 5: Initialize mysql
+Description Task 5: This task initializes the mysql server if the ansible_distribution is Alpine or Archlinux.
+
+Task 6: Start and enable mysql
+Description Task 6: This task starts and enables the mysql service.
+
+Task 7: Flush handlers
+Description Task 7: This task flushes the handlers for the playbook.
+
+Task 8: Place my.cnf
+Description Task 8: This task places the my.cnf file using the specified template and destination.
+
+Task 9: Create databases
+Description Task 9: This task creates the databases specified in the mysql_databases variable using the mysql_db module.
+
+Task 10: List databases
+Description Task 10: This task lists the databases using the mysql_info module.
+
+Task 11: Import database
+Description Task 11: This task imports the database specified in the mysql_databases variable using the mysql_db module.
+
+Task 12: Create users
+Description Task 12: This task creates the users specified in the mysql_users variable using the mysql_user module.
+
+Task 13: Flush handlers again
+Description Task 13: This task flushes the handlers for the playbook again.

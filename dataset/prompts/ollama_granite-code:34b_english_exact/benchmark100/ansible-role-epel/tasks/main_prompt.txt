@@ -1,0 +1,27 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Install epel
+Description Task 1: Installs epel on the host when the host is running Amazon Linux 2, or any Red Hat Enterprise Linux variant version 7, 8, 9, or 10.
+
+Task 2: Install epel gpg key
+Description Task 2: Installs the EPEL GPG key on the host.
+
+Task 3: Install epel-release
+Description Task 3: Installs the epel-release package on the host. This package provides the EPEL repository.
+
+Task 4: Install epel-next-release
+Description Task 4: Installs the epel-next-release package on the host when the host is running Amazon Linux 2, or any Red Hat Enterprise Linux variant version 7, 8, 9, or 10. This package provides the EPEL Next repository.
+
+Task 5: Update package cache
+Description Task 5: Updates the package cache on the host after installing the EPEL or EPEL Next repository.
+
+Task 6: Add EPEL to /etc/yum.repos.d/
+Description Task 6: Adds the EPEL repository to /etc/yum.repos.d/ on the host.
+
+Task 7: Add EPEL Next to /etc/yum.repos.d/
+Description Task 7: Adds the EPEL Next repository to /etc/yum.repos.d/ on the host when the host is running Amazon Linux 2, or any Red Hat Enterprise Linux variant version 7, 8, 9, or 10.
+
+Task 8: Install EPEL Yum plugins
+Description Task 8: Installs EPEL Yum plugins on the host when the host is running Amazon Linux 2, or any Red Hat Enterprise Linux variant version 7, 8, 9, or 10.

@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: This task imports the assert.yml file
+
+Task 2: Install using package
+Description Task 2: This task installs the hashicorp products using package
+
+Task 3: Install manually
+Description Task 3: This task installs the hashicorp products manually
