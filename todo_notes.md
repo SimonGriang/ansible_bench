@@ -9,6 +9,9 @@
 ## Weiteres
 - [ ] Da ich einen Teil von Veras Code verwende sollte ich eine Referenz dazu angeben.
 
+## Notes
+ ```python ansible_generator.py -m gemma3:27b -e ollama prompt -d benchmark100 -tt exact  > ../../dataset/prompts/gemma_prompt.log 2>&1```
+
 
  
 
