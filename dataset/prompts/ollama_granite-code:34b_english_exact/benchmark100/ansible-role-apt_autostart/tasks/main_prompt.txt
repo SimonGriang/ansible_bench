@@ -1,0 +1,17 @@
+Task 1: Import assert.yml
+Description Task 1: This task imports the assert.yml file which contains the necessary variables and assertions for this role.
+
+Task 2: Manage automatic service management
+Description Task 2: This task manages the automatic service management by either enabling or disabling it based on the value of the apt_autostart_state variable.
+
+Task 3: Disable automatic service management on installation
+Description Task 3: This task disables automatic service management on installation by creating a script at /usr/sbin/policy-rc.d that exits with a status of 101.
+
+Task 4: Enable automatic service management on installation
+Description Task 4: This task enables automatic service management on installation by removing the script at /usr/sbin/policy-rc.d.
+
+Variable 1: ansible_pkg_mgr
+Description Variable 1: This variable is used to determine the package manager used on the system.
+
+Variable 2: apt_autostart_state
+Description Variable 2: This variable is used to determine whether automatic service management should be enabled or disabled.

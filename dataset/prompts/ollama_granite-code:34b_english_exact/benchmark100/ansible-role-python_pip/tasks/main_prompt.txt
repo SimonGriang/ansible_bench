@@ -1,0 +1,303 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: This task imports the assert.yml file to perform assertions.
+
+Task 2: Install python pip
+Description Task 2: This task installs the python pip package.
+
+Task 3: Configure pip proxy
+Description Task 3: This task configures the pip proxy.
+
+Task 4: Trust hosts
+Description Task 4: This task trusts hosts.
+
+Task 5: Update pip.
+Description Task 5: This task updates pip.
+
+Task 6: Install requested modules
+Description Task 6: This task installs the requested modules.
+
+Task 7: Install requested modules
+Description Task 7: This task installs the requested modules.
+
+Task 8: Install requested modules
+Description Task 8: This task installs the requested modules.
+
+Task 9: Install requested modules
+Description Task 9: This task installs the requested modules.
+
+Task 10: Install requested modules
+Description Task 10: This task installs the requested modules.
+
+Task 11: Install requested modules
+Description Task 11: This task installs the requested modules.
+
+Task 12: Install requested modules
+Description Task 12: This task installs the requested modules.
+
+Task 13: Install requested modules
+Description Task 13: This task installs the requested modules.
+
+Task 14: Install requested modules
+Description Task 14: This task installs the requested modules.
+
+Task 15: Install requested modules
+Description Task 15: This task installs the requested modules.
+
+Task 16: Install requested modules
+Description Task 16: This task installs the requested modules.
+
+Task 17: Install requested modules
+Description Task 17: This task installs the requested modules.
+
+Task 18: Install requested modules
+Description Task 18: This task installs the requested modules.
+
+Task 19: Install requested modules
+Description Task 19: This task installs the requested modules.
+
+Task 20: Install requested modules
+Description Task 20: This task installs the requested modules.
+
+Task 21: Install requested modules
+Description Task 21: This task installs the requested modules.
+
+Task 22: Install requested modules
+Description Task 22: This task installs the requested modules.
+
+Task 23: Install requested modules
+Description Task 23: This task installs the requested modules.
+
+Task 24: Install requested modules
+Description Task 24: This task installs the requested modules.
+
+Task 25: Install requested modules
+Description Task 25: This task installs the requested modules.
+
+Task 26: Install requested modules
+Description Task 26: This task installs the requested modules.
+
+Task 27: Install requested modules
+Description Task 27: This task installs the requested modules.
+
+Task 28: Install requested modules
+Description Task 28: This task installs the requested modules.
+
+Task 29: Install requested modules
+Description Task 29: This task installs the requested modules.
+
+Task 30: Install requested modules
+Description Task 30: This task installs the requested modules.
+
+Task 31: Install requested modules
+Description Task 31: This task installs the requested modules.
+
+Task 32: Install requested modules
+Description Task 32: This task installs the requested modules.
+
+Task 33: Install requested modules
+Description Task 33: This task installs the requested modules.
+
+Task 34: Install requested modules
+Description Task 34: This task installs the requested modules.
+
+Task 35: Install requested modules
+Description Task 35: This task installs the requested modules.
+
+Task 36: Install requested modules
+Description Task 36: This task installs the requested modules.
+
+Task 37: Install requested modules
+Description Task 37: This task installs the requested modules.
+
+Task 38: Install requested modules
+Description Task 38: This task installs the requested modules.
+
+Task 39: Install requested modules
+Description Task 39: This task installs the requested modules.
+
+Task 40: Install requested modules
+Description Task 40: This task installs the requested modules.
+
+Task 41: Install requested modules
+Description Task 41: This task installs the requested modules.
+
+Task 42: Install requested modules
+Description Task 42: This task installs the requested modules.
+
+Task 43: Install requested modules
+Description Task 43: This task installs the requested modules.
+
+Task 44: Install requested modules
+Description Task 44: This task installs the requested modules.
+
+Task 45: Install requested modules
+Description Task 45: This task installs the requested modules.
+
+Task 46: Install requested modules
+Description Task 46: This task installs the requested modules.
+
+Task 47: Install requested modules
+Description Task 47: This task installs the requested modules.
+
+Task 48: Install requested modules
+Description Task 48: This task installs the requested modules.
+
+Task 49: Install requested modules
+Description Task 49: This task installs the requested modules.
+
+Task 50: Install requested modules
+Description Task 50: This task installs the requested modules.
+
+Task 51: Install requested modules
+Description Task 51: This task installs the requested modules.
+
+Task 52: Install requested modules
+Description Task 52: This task installs the requested modules.
+
+Task 53: Install requested modules
+Description Task 53: This task installs the requested modules.
+
+Task 54: Install requested modules
+Description Task 54: This task installs the requested modules.
+
+Task 55: Install requested modules
+Description Task 55: This task installs the requested modules.
+
+Task 56: Install requested modules
+Description Task 56: This task installs the requested modules.
+
+Task 57: Install requested modules
+Description Task 57: This task installs the requested modules.
+
+Task 58: Install requested modules
+Description Task 58: This task installs the requested modules.
+
+Task 59: Install requested modules
+Description Task 59: This task installs the requested modules.
+
+Task 60: Install requested modules
+Description Task 60: This task installs the requested modules.
+
+Task 61: Install requested modules
+Description Task 61: This task installs the requested modules.
+
+Task 62: Install requested modules
+Description Task 62: This task installs the requested modules.
+
+Task 63: Install requested modules
+Description Task 63: This task installs the requested modules.
+
+Task 64: Install requested modules
+Description Task 64: This task installs the requested modules.
+
+Task 65: Install requested modules
+Description Task 65: This task installs the requested modules.
+
+Task 66: Install requested modules
+Description Task 66: This task installs the requested modules.
+
+Task 67: Install requested modules
+Description Task 67: This task installs the requested modules.
+
+Task 68: Install requested modules
+Description Task 68: This task installs the requested modules.
+
+Task 69: Install requested modules
+Description Task 69: This task installs the requested modules.
+
+Task 70: Install requested modules
+Description Task 70: This task installs the requested modules.
+
+Task 71: Install requested modules
+Description Task 71: This task installs the requested modules.
+
+Task 72: Install requested modules
+Description Task 72: This task installs the requested modules.
+
+Task 73: Install requested modules
+Description Task 73: This task installs the requested modules.
+
+Task 74: Install requested modules
+Description Task 74: This task installs the requested modules.
+
+Task 75: Install requested modules
+Description Task 75: This task installs the requested modules.
+
+Task 76: Install requested modules
+Description Task 76: This task installs the requested modules.
+
+Task 77: Install requested modules
+Description Task 77: This task installs the requested modules.
+
+Task 78: Install requested modules
+Description Task 78: This task installs the requested modules.
+
+Task 79: Install requested modules
+Description Task 79: This task installs the requested modules.
+
+Task 80: Install requested modules
+Description Task 80: This task installs the requested modules.
+
+Task 81: Install requested modules
+Description Task 81: This task installs the requested modules.
+
+Task 82: Install requested modules
+Description Task 82: This task installs the requested modules.
+
+Task 83: Install requested modules
+Description Task 83: This task installs the requested modules.
+
+Task 84: Install requested modules
+Description Task 84: This task installs the requested modules.
+
+Task 85: Install requested modules
+Description Task 85: This task installs the requested modules.
+
+Task 86: Install requested modules
+Description Task 86: This task installs the requested modules.
+
+Task 87: Install requested modules
+Description Task 87: This task installs the requested modules.
+
+Task 88: Install requested modules
+Description Task 88: This task installs the requested modules.
+
+Task 89: Install requested modules
+Description Task 89: This task installs the requested modules.
+
+Task 90: Install requested modules
+Description Task 90: This task installs the requested modules.
+
+Task 91: Install requested modules
+Description Task 91: This task installs the requested modules.
+
+Task 92: Install requested modules
+Description Task 92: This task installs the requested modules.
+
+Task 93: Install requested modules
+Description Task 93: This task installs the requested modules.
+
+Task 94: Install requested modules
+Description Task 94: This task installs the requested modules.
+
+Task 95: Install requested modules
+Description Task 95: This task installs the requested modules.
+
+Task 96: Install requested modules
+Description Task 96: This task installs the requested modules.
+
+Task 97: Install requested modules
+Description Task 97: This task installs the requested modules.
+
+Task 98: Install requested modules
+Description Task 98: This task installs the requested modules.
+
+Task 99: Install requested modules
+Description Task 99: This task installs the requested modules.
+
+Task 100: Install requested modules
+Description Task 100: This task installs the requested modules.

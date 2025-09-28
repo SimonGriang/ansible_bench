@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Install ssl packages
+Description Task 1: Installs the necessary SSL packages for the specified web server.
+
+Task 2: Place configuration
+Description Task 2: Places the SSL configuration file in the appropriate location and ensures it is readable only by root.
+
+Task 3: Configure redirect from http to https
+Description Task 3: Configures the default virtual host to redirect all HTTP traffic to HTTPS, ensuring secure communication with the web server.

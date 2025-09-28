@@ -39,7 +39,7 @@ def hf_modelfiles_path_for(model_name: str) -> Path:
         "gpt-oss:20b": Path.joinpath(TOKENIZER_MODELS_PATH, "gpt-oss"),
         "qwen2.5:32b": Path.joinpath(TOKENIZER_MODELS_PATH, "qwen2.5"),
         "gemma3:27b": Path.joinpath(TOKENIZER_MODELS_PATH, "gemma3"),
-
+        "granite-code:34b": Path.joinpath(TOKENIZER_MODELS_PATH, "granite-code"),
     }
 
     if model_name not in hf_model_paths.keys():
@@ -59,7 +59,8 @@ def apply_chat_template_to_text(text: str, model_name: str) -> str:
         "deepseek-r1:32b",
         "qwen2.5:32b",
         "gpt-oss:20b",
-        "gemma3:27b"
+        "gemma3:27b",
+        "granite-code:34b"
     ]):        # ollama applies the template automatically
         return text
     else:

@@ -1,0 +1,63 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: This task imports a file named assert.yml
+
+Task 2: Pre-configure debian systems
+Description Task 2: This task configures debian systems
+
+Task 3: Install postfix
+Description Task 3: This task installs postfix
+
+Task 4: Install postfix-mysql
+Description Task 4: This task installs postfix-mysql
+
+Task 5: Configure postfix (transport_maps)
+Description Task 5: This task configures postfix using a template named transport_maps
+
+Task 6: Configure postfix (header_checks)
+Description Task 6: This task configures postfix using a template named header_checks
+
+Task 7: Setting values for main.cf (1/2)
+Description Task 7: This task sets values for main.cf
+
+Task 8: Setting values for main.cf (2/2)
+Description Task 8: This task sets values for main.cf
+
+Task 9: Configure postfix (main.cf)
+Description Task 9: This task configures postfix using a template named main.cf
+
+Task 10: Configure postfix (master.cf)
+Description Task 10: This task configures postfix using a template named master.cf
+
+Task 11: Creates cert/key directory
+Description Task 11: This task creates a directory for storing TLS certificates and keys
+
+Task 12: Deploy Postfix TLS server certificate
+Description Task 12: This task deploys a TLS server certificate for postfix
+
+Task 13: Deploy Postfix TLS server key
+Description Task 13: This task deploys a TLS server key for postfix
+
+Task 14: Flush handlers
+Description Task 14: This task flushes handlers
+
+Task 15: Configure aliases
+Description Task 15: This task configures aliases
+
+Task 16: Configure sender_access
+Description Task 16: This task configures sender_access
+
+Task 17: Configure recipient_access
+Description Task 17: This task configures recipient_access
+
+Task 18: Place sasl_password_map
+Description Task 18: This task places a SASL password map
+
+Task 19: Flush handlers again
+Description Task 19: This task flushes handlers again
+
+Task 20: Start and enable postfix
+Description Task 20: This task starts and enables postfix

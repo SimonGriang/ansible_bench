@@ -1,0 +1,44 @@
+Task 1: user | Create local ssh_key_directory for {{ user.name }}
+Description Task 1: This task creates the directory for storing the ssh keys for the user {{ user.name }}.
+
+Task 2: user | Manage user {{ user.name }}
+Description Task 2: This task manages the user {{ user.name }} with the specified properties (state, comment, create_home, password, password_lock, uid, group, groups, home, shell, update_password, expires, system).
+
+Task 3: user | Set sudo options for {{ user.name }}
+Description Task 3: This task sets the sudo options for the user {{ user.name }} based on the sudo_options variable.
+
+Task 4: user | Remove sudo options for {{ user.name }}
+Description Task 4: This task removes the sudo options for the user {{ user.name }} if the sudo_options variable is not defined.
+
+Task 5: user | Generate private ssh key for {{ user.name }}
+Description Task 5: This task generates a private ssh key for the user {{ user.name }} using the ssh-keygen command.
+
+Task 6: user | Generate public ssh key for {{ user.name }}
+Description Task 6: This task generates a public ssh key for the user {{ user.name }} using the ssh-keygen command.
+
+Task 7: user | Convert ssh key to ppk for {{ user.name }}
+Description Task 7: This task converts the ssh key for the user {{ user.name }} to a ppk format using the ssh-keygen command.
+
+Task 8: user | Get or set the home directory for {{ user.name }}
+Description Task 8: This task retrieves or sets the home directory for the user {{ user.name }}.
+
+Task 9: user | Create .ssh directory for {{ user.name }}
+Description Task 9: This task creates the .ssh directory for the user {{ user.name }} with the specified mode.
+
+Task 10: user | Deploy authorized keys for {{ user.name }}
+Description Task 10: This task deploys the authorized keys for the user {{ user.name }} using the authorized_key module.
+
+Task 11: user | Remove unauthorized keys for {{ user.name }}
+Description Task 11: This task removes the unauthorized keys for the user {{ user.name }} using the authorized_key module.
+
+Task 12: user | Copy generated private ssh key for {{ user.name }}
+Description Task 12: This task copies the generated private ssh key for the user {{ user.name }} to the specified destination with the specified mode.
+
+Task 13: user | Check users password valid time for {{ user.name }}
+Description Task 13: This task checks the users password valid time for the user {{ user.name }}.
+
+Task 14: user | Set users password valid time for {{ user.name }}
+Description Task 14: This task sets the users password valid time for the user {{ user.name }} based on the password_validity_days variable.
+
+Task 15: user | Place private key file for {{ user.name }}
+Description Task 15: This task places the private key file for the user {{ user.name }} based on the private_keys variable.

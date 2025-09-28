@@ -1,0 +1,27 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: This task imports the assert.yml file which is located in the same directory as the current playbook. This file contains variables and assertions that are used to validate the state of the system before and after the playbook execution.
+
+Task 2: Install fail2ban
+Description Task 2: This task installs the fail2ban package using the package module. The name of the package is specified in the fail2ban_packages variable, which is defined in the vars/main.yml file. The state parameter is set to present to ensure that the package is installed.
+
+Task 3: Copy filters in filter.d
+Description Task 3: This task copies the filters in the filter.d directory using the copy module. The source directory is specified in the fail2ban_filterd_path variable, which is defined in the defaults/main.yml file. The destination directory is set to /etc/fail2ban/filter.d/, and the owner, group, and mode are set to root, root, and 0640, respectively. The task is conditionally executed only if the fail2ban_filterd_path variable is defined.
+
+Task 4: Configure fail2ban.local
+Description Task 4: This task configures the fail2ban.local file using the ini_file module from the community.general collection. The path parameter is set to /etc/fail2ban/fail2ban.local, and the section, option, and value parameters are set based on the values defined in the fail2ban_base_configuration and fail2ban_configuration variables, which are defined in the vars/main.yml file.
+
+Task 5: Configure jail.local
+Description Task 5: This task configures the jail.local file using the ini_file module from the community.general collection. The path parameter is set to /etc/fail2ban/jail.local, and the section, option, and value parameters are set based on the values defined in the fail2ban_base_jail_configuration and fail2ban_jail_configuration variables, which are defined in the vars/main.yml file.
+
+Task 6: Stat auth log file
+Description Task 6: This task stats the auth log file using the stat module. The path parameter is set to /var/log/auth.log, and the result is stored in the fail2ban_auth variable.
+
+Task 7: Touch auth log file
+Description Task 7: This task touches the auth log file using the file module. The path parameter is set to /var/log/auth.log, the state parameter is set to touch, and the mode parameter is set to 0640. The task is conditionally executed only if the fail2ban_auth variable indicates that the auth log file does not exist.
+
+Task 8: Start and enable fail2ban
+Description Task 8: This task starts and enables the fail2ban service using the service module. The name parameter is set to the value of the fail2ban_service variable, which is defined in the vars/main.yml file. The state parameter is set to started to ensure that the service is running, and the enabled parameter is set to true to ensure that the service is enabled at boot time.
