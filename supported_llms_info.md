@@ -9,7 +9,7 @@ This work focuses on locally executable open-source models available through Oll
 | ------------- | -------------- |  ---- | ----------- | -------------- | ------------ |
 | **Alibaba**   |[qwen2.5:32b](https://ollama.com/library/qwen2.5:32b) | 20GB | 32b | 32k | Q4_K_M |
 | **Deepseek**  |[deepseek-r1:32b](https://ollama.com/library/deepseek-r1:32b) | 20GB | 32b | 128k | Q4_K_M |
-| **Google**    |[gemma2:27b](https://ollama.com/library/gemma2:27b) | 16GB | 27b | 8k | Q4_K_M |
+| **Google**    |[gemma3:27b](https://ollama.com/library/gemma3:27b) | 17GB | 27b | 128k | Q4_K_M |
 | **IBM**    |[granite-code:34b](https://ollama.com/library/granite-code:34b) | 19GB | 34b | 8k | Q4_0 |
 | **Meta**      |[llama3.1:8b](https://ollama.com/library/llama3.1:8b) | 4,9GB | 8b | 128k | Q4_K_M |
 | **Microsoft** |[phi4:14b](https://ollama.com/library/phi4:14b) | 9,1GB | 14b | 16k | Q4_K_M |
