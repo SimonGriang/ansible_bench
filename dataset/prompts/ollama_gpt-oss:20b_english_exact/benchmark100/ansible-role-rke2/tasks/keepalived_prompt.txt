@@ -1,0 +1,36 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Update apt cache  
+Description Task 1: Update the apt package cache on Debian‑based systems using the ansible.builtin.apt module with update_cache: true, conditioned on ansible_pkg_mgr == 'apt'.  
+
+Task 2: Update dnf cache  
+Description Task 2: Update the dnf package cache on RedHat‑based systems using the ansible.builtin.dnf module with update_cache: true, conditioned on ansible_pkg_mgr == 'dnf'.  
+
+Task 3: Install packages  
+Description Task 3: Install the keepalived package using the ansible.builtin.package module, ensuring the package is present on the target system.  
+
+Task 4: Create directory for keepalived  
+Description Task 4: Create the directory /etc/keepalived with state directory, owner root, group root, and mode 0755 using the ansible.builtin.file module.  
+
+Task 5: Create Kubernetes API health check script for Debian OS family  
+Description Task 5: Deploy the Kubernetes API health check script for Debian family by templating check_apiserver.sh.j2 to /etc/keepalived/check_apiserver.sh with owner root, group root, mode 0755, using ansible.builtin.template. This task runs only when ansible_facts['os_family'] == "Debian" and notifies the handler Restart keepalived.  
+
+Task 6: Create Kubernetes API health check script for RedHat OS famliy  
+Description Task 6: Deploy the Kubernetes API health check script for RedHat family by templating check_apiserver.sh.j2 to /usr/libexec/keepalived/check_apiserver.sh with owner root, group root, mode 0755, using ansible.builtin.template. This task runs only when ansible_facts['os_family'] == "RedHat" and notifies the handler Restart keepalived. (Note: "famliy" is the typo in the task name.)  
+
+Task 7: Create RKE2 Server health check script for Debian OS family  
+Description Task 7: Deploy the RKE2 Server health check script for Debian family by templating check_rke2server.sh.j2 to /etc/keepalived/check_rke2server.sh with owner root, group root, mode 0755, using ansible.builtin.template. Runs only when ansible_facts['os_family'] == "Debian" and notifies Restart keepalived.  
+
+Task 8: Create RKE2 Server health check script for RedHat OS family  
+Description Task 8: Deploy the RKE2 Server health check script for RedHat family by templating check_rke2server.sh.j2 to /usr/libexec/keepalived/check_rke2server.sh with owner root, group root, mode 0755, using ansible.builtin.template. Runs only when ansible_facts['os_family'] == "RedHat" and notifies Restart keepalived.  
+
+Task 9: Create keepalived config file  
+Description Task 9: Deploy the keepalived configuration file by templating keepalived.conf.j2 to /etc/keepalived/keepalived.conf with owner root, group root, mode 0644, using ansible.builtin.template. Notifies handler Restart keepalived.  
+
+Task 10: Enable keepalived and make sure it is not masked  
+Description Task 10: Enable the keepalived service and ensure it is not masked using the ansible.builtin.systemd module with name: keepalived, enabled: yes, masked: no. This task notifies Restart keepalived.  
+
+Task 11: Flush handlers  
+Description Task 11: Force Ansible to run any pending handlers immediately using ansible.builtin.meta: flush_handlers.

@@ -1,0 +1,9 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Restore etcd - get all nodes  
+Description Task 1: Use the shell module to run `{{ rke2_data_path }}/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml get nodes --no-headers -o custom-columns=":metadata.name"` with `executable: /bin/bash`. Register the output as `node_names` and set `changed_when: false`.
+
+Task 2: Restore etcd - remove old nodes  
+Description Task 2: Use the shell module to delete each node listed in `node_names.stdout_lines` that is not part of the current cluster group (`groups[rke2_cluster_group_name]`). The command should be `{{ rke2_data_path }}/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml delete node {{ item }} 2>&1 || true`, run with `executable: /bin/bash`, and use `with_items: "{{ node_names.stdout_lines | difference(groups[rke2_cluster_group_name]) }}"`. Set `changed_when: false`.

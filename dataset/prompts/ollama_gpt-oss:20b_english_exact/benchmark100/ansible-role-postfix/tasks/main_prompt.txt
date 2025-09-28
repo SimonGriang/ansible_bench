@@ -1,0 +1,63 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the task file `assert.yml` once on the local machine to perform initial validation checks.
+
+Task 2: Pre-configure debian systems  
+Description Task 2: Use `ansible.builtin.debconf` to set the `postfix/main_mailer_type` question to `"No configuration"` on Debian family hosts.
+
+Task 3: Install postfix  
+Description Task 3: Ensure the `postfix` package is present on the target system.
+
+Task 4: Install postfix-mysql  
+Description Task 4: Install the `postfix-mysql` package when any of the variables `postfix_virtual_mailbox_maps`, `postfix_virtual_mailbox_domains`, or `postix_virtual_alias_maps` contain the string `'mysql'`.
+
+Task 5: Configure postfix (transport_maps)  
+Description Task 5: Render the template defined by `postfix_transport_maps_template` to `/etc/postfix/transport` with mode `0644`, and notify the handlers `Validate configuration` and `Rebuild transport_maps database` when `postfix_transport_maps_template` is defined.
+
+Task 6: Configure postfix (header_checks)  
+Description Task 6: Render the template defined by `postfix_header_checks_template` to `/etc/postfix/header_checks` with mode `0644`, and notify the handlers `Validate configuration` and `Reload postfix` when `postfix_header_checks_template` is defined.
+
+Task 7: Setting values for main.cf (1/2)  
+Description Task 7: Set the fact variables `_postfix_smtpd_recipient_restrictions_check_recipient_access` and `_postfix_smtpd_sender_restrictions_check_sender_access` based on the presence of `postfix_recipient_access` and `postfix_sender_access`.
+
+Task 8: Setting values for main.cf (2/2)  
+Description Task 8: Compute multiple fact variables (`_postfix_mynetworks`, `_postfix_mydestination`, `_postfix_relay_domains`, `_postfix_smtpd_recipient_restrictions`, `_postfix_smtpd_sender_restrictions`, `_postfix_virtual_mailbox_domains`, `_postfix_virtual_alias_domains`) by processing the corresponding input variables, handling strings, iterables, and defaults.
+
+Task 9: Configure postfix (main.cf)  
+Description Task 9: Render the `main.cf.j2` template to `/etc/postfix/main.cf` with mode `0644`, validate it using `postconf -d -c %s`, and notify the handlers `Validate configuration` and `Restart postfix`.
+
+Task 10: Configure postfix (master.cf)  
+Description Task 10: Render the `master.cf.j2` template to `/etc/postfix/master.cf` with mode `0644`, validate it using `postconf -d -c %s`, and notify the handlers `Validate configuration` and `Restart postfix`.
+
+Task 11: Creates cert/key directory  
+Description Task 11: Create directories for the TLS certificate and key files (`postfix_smtpd_tls_cert_file | dirname` and `postfix_smtpd_tls_key_file | dirname`) with mode `0700` when both certificate and key paths and their source variables are defined.
+
+Task 12: Deploy Postfix TLS server certificate  
+Description Task 12: Copy the file from `postfix_smtpd_tls_cert_file_source` to `postfix_smtpd_tls_cert_file` with mode `0600` and notify `Reload postfix` when the source variable is defined.
+
+Task 13: Deploy Postfix TLS server key  
+Description Task 13: Copy the file from `postfix_smtpd_tls_key_file_source` to `postfix_smtpd_tls_key_file` with mode `0600` and notify `Reload postfix` when the source variable is defined.
+
+Task 14: Flush handlers  
+Description Task 14: Flush all pending handlers to ensure that any queued notifications are processed immediately.
+
+Task 15: Configure aliases  
+Description Task 15: For each alias in `postfix_aliases`, ensure the line `{{ item.name }}: {{ item.destination }}` exists in the file `postfix_alias_path` using `lineinfile`, create the file if necessary, set mode `0644`, and notify the handlers `Rebuild alias database` and `Reload postfix`.
+
+Task 16: Configure sender_access  
+Description Task 16: For each entry in `postfix_sender_access`, ensure the line `{{ item.domain }} {{ item.action }}` exists in the file `postfix_sender_access_path` using `lineinfile`, create the file if necessary, set mode `0644`, and notify the handlers `Rebuild sender_access database` and `Reload postfix`.
+
+Task 17: Configure recipient_access  
+Description Task 17: For each entry in `postfix_recipient_access`, ensure the line `{{ item.domain }} {{ item.action }}` exists in the file `postfix_recipient_access_path` using `lineinfile`, create the file if necessary, set mode `0644`, and notify the handlers `Validate configuration`, `Rebuild recipient_access database`, and `Reload postfix`.
+
+Task 18: Place sasl_password_map  
+Description Task 18: If `postfix_smtp_sasl_password_map` is defined and not empty, copy the content from `postfix_smtp_sasl_password_map_content` to that file with mode `0600` and notify the handler `Rebuild sasl_password_map database`.
+
+Task 19: Flush handlers again  
+Description Task 19: Flush all pending handlers again to apply any remaining notifications.
+
+Task 20: Start and enable postfix  
+Description Task 20: Ensure the service named by `postfix_service` is started and enabled.

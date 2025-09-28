@@ -40,6 +40,9 @@ LLAMAFILE_CTX_SIZE = {
 }
 
 OLLAMA_CTX_SIZE = {
+    "gemma3:27b": 8000,
+    "qwen2.5:32b": 8000,
+    "deepseek-r1:32b": 8000,
     "deepseek-r1:14b": 8000,
     "gpt-oss:20b": 8000,
     "llama3": 8000,

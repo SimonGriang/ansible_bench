@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the `assert.yml` task file once for the entire playbook run, delegating the task to the local machine to perform prerequisite checks before any other actions are taken.  
+
+Task 2: Install required software  
+Description Task 2: Use the `package` module to install all packages listed in the `users_requirements` variable. This task should run only when the `users_requirements` list contains at least one item.  
+
+Task 3: Loop over users_groups  
+Description Task 3: Include the `group.yml` task file for each group defined in the `users_groups` variable. Use `loop_control` to label each iteration with the group's name and set the loop variable to `group`. This task should run only when `users_groups` is defined.  
+
+Task 4: Ensure the /etc/sudoers.d directory is included  
+Description Task 4: Add a line to `/etc/sudoers` that includes the `/etc/sudoers.d` directory. Use the `lineinfile` module with a regular expression that matches existing `includedir` lines (including commented ones). Validate the file with `visudo` after modification.  
+
+Task 5: Loop over users  
+Description Task 5: Include the `user.yml` task file for each user defined in the `users` variable. Use `loop_control` to label each iteration with the user's name and set the loop variable to `user`. This task should run only when `users` is defined.  
+
+Task 6: Manage cron permission  
+Description Task 6: Render the `cron.allow.j2` template to `/etc/cron.allow` with file mode `0644` using the `template` module. This should only happen when the boolean variable `users_cron_allow` is true.  
+
+Task 7: Check existence of /etc/cron.allow  
+Description Task 7: Remove the `/etc/cron.allow` file if the variable `users_cron_allow` is false, using the `file` module with state `absent`.

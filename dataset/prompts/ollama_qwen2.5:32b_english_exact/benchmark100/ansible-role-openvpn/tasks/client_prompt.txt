@@ -1,0 +1,9 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Ensure /etc/openvpn/client directory exists with proper permissions and ownership.
+Description Task 1: Create a directory at /etc/openvpn/client with the specified owner as root, group as defined by the variable openvpn_group, and mode set to 0750.
+
+Task 2: Place a client configuration file using a template.
+Description Task 2: Use a template file named client.conf.j2 to create a configuration file at the path defined by the variable openvpn_configuration_directory plus '/client.conf', with ownership set to root and group set to the value of the variable openvpn_group, and file mode set to 0640, and notify a handler to restart openvpn if the file changes.

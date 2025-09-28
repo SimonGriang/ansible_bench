@@ -1,0 +1,18 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the `assert.yml` file using `ansible.builtin.import_tasks`, run only once and delegate the task to the localhost.  
+
+Task 2: Wait for port to be available  
+Description Task 2: Use `ansible.builtin.wait_for` to block until the SSH port (default `22` or `{{ ansible_port }}`) is listening, with a timeout defined by `{{ bootstrap_timeout }}`. This task runs only when a connection is defined, is not a container or Docker, and the variable `{{ bootstrap_wait_for_host }}` is true.  
+
+Task 3: Prepare system  
+Description Task 3: Test the connection by waiting for a connection timeout of `{{ bootstrap_timeout }}` and check that `sudo` is available by running `sudo --version`. If either test fails, gather bootstrap facts with `include_tasks: gather_facts.yml` and install bootstrap packages using the raw command `{{ bootstrap_install.raw }}` (executed via `/bin/sh`). The raw installation’s output is stored in `{{ bootstrap_install_packages }}` and considered successful when the output matches the regex `{{ bootstrap_install.stdout_regex }}` for Alpine/Archlinux/Gentoo or does not match the regex for Debian/RedHat/Rocky/Suse.  
+
+Task 4: Gather ansible facts  
+Description Task 4: Run `ansible.builtin.setup` to collect all Ansible facts; this task is executed with privilege escalation disabled (`become: false`).  
+
+Task 5: Install bootstrap packages (package)  
+Description Task 5: Install each package listed in the space‑separated string `{{ bootstrap_facts_packages }}` using the `ansible.builtin.package` module. The module should update the package cache, ensure the package state is present, and run with `become` set to the value of `{{ bootstrap_become }}`.

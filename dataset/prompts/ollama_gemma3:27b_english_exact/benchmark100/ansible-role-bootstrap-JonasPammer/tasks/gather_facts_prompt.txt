@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: lookup bootstrap facts (raw).
+Description Task 1: Execute a raw command to retrieve the contents of `/etc/os-release` and register the output as `bootstrap_facts`. This task does not require privilege escalation and should not report changes. The `ansible_user` variable is set to `bootstrap_user`.
+
+Task 2: set bootstrap facts (I) # noqa jinja
+Description Task 2: Set the `bootstrap_distribution` and `bootstrap_distribution_major_version` facts based on the output of the raw command. Loop through the values in `bootstrap__os_family_map`. Only execute if the raw command was successful (`bootstrap_facts.rc == 0`), `bootstrap_distribution` is not defined, and the `PRETTY_NAME` in the raw output contains the current item. Use a regex to extract the major version number. Privilege escalation is optional via `bootstrap_become` and `bootstrap_become_user`.
+
+Task 3: set bootstrap facts (II)
+Description Task 3: Set the `bootstrap_os_family` fact based on the key of each item in `bootstrap__os_family_map`. Loop through `bootstrap__os_family_map` and label each loop iteration with the `bootstrap_os_family` key. Only execute if the `bootstrap_distribution` is found within the value of the current item. Privilege escalation is optional via `bootstrap_become` and `bootstrap_become_user`.

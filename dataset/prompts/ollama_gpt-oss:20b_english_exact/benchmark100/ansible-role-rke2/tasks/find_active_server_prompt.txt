@@ -1,0 +1,9 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Populate services facts  
+Description Task 1: Use the ansible.builtin.service_facts module to gather facts about all services on the host.  
+
+Task 2: Set the Active Server variable  
+Description Task 2: Use ansible.builtin.set_fact to set a fact named active_server to the current inventory_hostname. This task should delegate facts gathering to each host in the group specified by the variable rke2_cluster_group_name, using delegate_facts: true and delegate_to. It should loop over the hosts in that group with with_items: "{{ groups[rke2_cluster_group_name] }}". The task should only run when the current host is in the group rke2_servers_group_name and the service rke2-server.service is running, i.e., when inventory_hostname in groups[rke2_servers_group_name] and ansible_facts.services["rke2-server.service"].state == "running".

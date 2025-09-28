@@ -1,0 +1,42 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the file assert.yml using ansible.builtin.import_tasks, set run_once to true, and delegate the task to localhost.  
+
+Task 2: Install mysql  
+Description Task 2: Install the MySQL packages listed in the variable `mysql_packages` with the package module, ensuring they are present. Notify the handlers `Set root password` and `Systemctl daemon-reexec`.  
+
+Task 3: Configure mysql server  
+Description Task 3: Configure the MySQL server by writing each option from `mysql_configuration_options` into the file `{{ mysql_configuration_destination }}/{{ mysql_name }}-server.cnf` using community.general.ini_file. Loop over each item, set the section, option, and value, and notify the handler `Restart mysql server`.  
+
+Task 4: Configure mysql client  
+Description Task 4: Configure the MySQL client by writing the socket option into `{{ mysql_configuration_destination }}/{{ mysql_name }}-client.cnf` using community.general.ini_file, setting the option to `{{ mysql_socket }}`.  
+
+Task 5: Initialize mysql  
+Description Task 5: Run the command stored in `mysql_initialize_command` only when the host distribution is Alpine or Archlinux, creating `/var/lib/mysql/mysql` if it does not already exist.  
+
+Task 6: Start and enable mysql  
+Description Task 6: Start and enable the MySQL service named in the variable `mysql_service` using the service module.  
+
+Task 7: Flush handlers  
+Description Task 7: Flush all pending handlers immediately using ansible.builtin.meta: flush_handlers.  
+
+Task 8: Place my.cnf  
+Description Task 8: Deploy the my.cnf template `my.cnf.j2` to `/root/.my.cnf` with file mode `0640`.  
+
+Task 9: Create databases  
+Description Task 9: Create or ensure the presence of databases defined in `mysql_databases` using community.mysql.mysql_db. Loop over each item, set the database name, state, target, encoding, and collation as specified, and use the root login via socket `{{ mysql_socket }}` and password `{{ mysql_root_password }}`. Skip items with `initial_import` defined and only run when `mysql_databases` is defined. Set `no_log: true` for security.  
+
+Task 10: List databases  
+Description Task 10: Retrieve information about MySQL databases using community.mysql.mysql_info, filtering for `databases`, and register the result in the variable `mysql_info`. Use the root login via socket `{{ mysql_socket }}` and password `{{ mysql_root_password }}`. Set `no_log: true`.  
+
+Task 11: Import database  
+Description Task 11: Import database data for items in `mysql_databases` that have an `initial_import` file defined and whose database name is not already present in `mysql_info.databases`. Use community.mysql.mysql_db with state `import` and the target file `{{ item.initial_import }}`. Loop over each item and use the root login via socket `{{ mysql_socket }}` and password `{{ mysql_root_password }}`.  
+
+Task 12: Create users  
+Description Task 12: Create MySQL users defined in `mysql_users` using community.mysql.mysql_user. Loop over each item, set the user name, password, privileges, host, host_all, and update_password as specified, and use the root login via socket `{{ mysql_socket }}` and password `{{ mysql_root_password }}`. Only run when `mysql_users` is defined and set `no_log: true`.  
+
+Task 13: Flush handlers again  
+Description Task 13: Flush all pending handlers again using ansible.builtin.meta: flush_handlers.

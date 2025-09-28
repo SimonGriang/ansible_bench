@@ -1,0 +1,48 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create the RKE2 config directory  
+Description Task 1: Create the directory /etc/rancher/rke2 with root ownership and mode 0755.
+
+Task 2: Set server taints  
+Description Task 2: Combine node taints for server nodes when rke2_type is 'server'.
+
+Task 3: Copy RKE2 config  
+Description Task 3: Copy the RKE2 configuration file from a template to /etc/rancher/rke2/config.yaml with root ownership and mode 0600.
+
+Task 4: Copy kubelet config  
+Description Task 4: Copy the kubelet configuration file from a template to /etc/rancher/rke2/kubelet-config.yaml when rke2_kubelet_config is not empty.
+
+Task 5: Copy Containerd Registry Configuration file  
+Description Task 5: Copy the Containerd registry configuration file from a template to /etc/rancher/rke2/registries.yaml when custom registry mirrors or configs are present.
+
+Task 6: Register if we need to do a etcd restore from file  
+Description Task 6: Set a fact to trigger an etcd restore from file when rke2_etcd_snapshot_file is provided and the rke2-server.service is not running or disabled.
+
+Task 7: Register if we need to do a etcd restore from s3  
+Description Task 7: Set a fact to trigger an etcd restore from S3 when all required S3 options (access_key, secret_key, bucket, snapshot_name) are provided.
+
+Task 8: Restore etcd from file  
+Description Task 8: Restore etcd from a snapshot file by creating the snapshot directory, copying the snapshot file, and running the restore command with the RKE2 token.
+
+Task 9: Restore etcd from s3  
+Description Task 9: Restore etcd from an S3 snapshot by running the restore command with all required S3 options.
+
+Task 10: Start RKE2 service on the first server  
+Description Task 10: Start and enable the rke2-server.service with the RKE2 token environment variable.
+
+Task 11: Mask RKE2 agent service on the first server  
+Description Task 11: Mask the rke2-agent.service to prevent it from running on the first server.
+
+Task 12: Wait for the first server be ready - no CNI  
+Description Task 12: Wait for the first server to be ready by checking node status conditions (sufficient memory, no disk pressure, sufficient PID) and CNI status when rke2_cni is 'none'.
+
+Task 13: Wait for the first server be ready - with CNI  
+Description Task 13: Wait for the first server to be ready by checking if the node is marked as 'Ready' when rke2_cni is not 'none'.
+
+Task 14: Restore etcd  
+Description Task 14: Restore etcd by removing old node secrets and nodes that are no longer present in the inventory.
+
+Task 15: Set an Active Server variable  
+Description Task 15: Set the active_server fact on each node in the cluster group to the inventory_hostname of the current host.

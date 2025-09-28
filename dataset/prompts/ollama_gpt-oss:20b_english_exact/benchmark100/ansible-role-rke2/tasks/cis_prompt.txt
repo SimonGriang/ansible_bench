@@ -1,0 +1,15 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create etcd group  
+Description Task 1: Create a system group named **etcd** that is present.
+
+Task 2: Create etcd user  
+Description Task 2: Create a system user named **etcd** with shell **/bin/nologin**, belonging to the **etcd** group, comment **etcd user**, and ensure the user is present.
+
+Task 3: Copy systemctl config file for kernel hardening  
+Description Task 3: Copy the systemctl configuration file for kernel hardening from either **/usr/local/share/rke2/rke2-cis-sysctl.conf** or **/opt/rke2/share/rke2/rke2-cis-sysctl.conf** depending on the condition `(not usr_local.stat.writeable) or (partition_result.rc == 1)`. Place it at **/etc/sysctl.d/60-rke2-cis.conf** with mode **0600**, use `remote_src: true`, and notify the handler **Restart systemd-sysctl**.
+
+Task 4: Flush handlers  
+Description Task 4: Flush all pending handlers to ensure they run immediately.

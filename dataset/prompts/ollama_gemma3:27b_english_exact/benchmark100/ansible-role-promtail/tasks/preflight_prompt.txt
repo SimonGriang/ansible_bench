@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Assert systemd as init system
+Description Task 1: Assert that the target system is using systemd as its init system. If not, the playbook execution should halt with a descriptive message.
+
+Task 2: Get latest release
+Description Task 2: Fetch the latest release information from the Grafana Loki GitHub repository API. Store the JSON response in the `_latest_release` variable. The request should use authentication if `GH_USER` and `GH_TOKEN` environment variables are set.  Retry the request up to 5 times if it fails.
+
+Task 3: Set promtail version to {{ _latest_release.json.tag_name[1:] }}
+Description Task 3: If `promtail_version` is set to "latest", extract the tag name from the `_latest_release` variable and assign it to the `promtail_version` fact.
+
+Task 4: Test if zip local archive exists
+Description Task 4: Check if the promtail binary archive exists locally in the `promtail_binary_local_dir` directory. Register the result in the `promtail_binary_local_archive` variable.
+
+Task 5: Assert local binary exists
+Description Task 5: Assert that the local promtail binary archive exists. If it doesn't, the playbook execution should halt with a descriptive message. This task is only executed if `promtail_binary_local_dir` is defined.
+
+Task 6: Get checksum list
+Description Task 6: Fetch the SHA256SUMS file from the Grafana Loki GitHub repository for the specified `promtail_version`. Store the content as a list in the `__promtail_checksums` fact.
+
+Task 7: Get checksum for {{ go_arch }} architecture
+Description Task 7: Iterate through the `__promtail_checksums` list and extract the checksum value for the binary corresponding to the current architecture (`go_arch`). Store the checksum in the `__promtail_checksum` fact. This task is only executed if `promtail_binary_local_dir` is not defined.

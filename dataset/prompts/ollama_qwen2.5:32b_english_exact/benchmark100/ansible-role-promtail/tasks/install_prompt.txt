@@ -1,0 +1,48 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Ensure unzip package is available  
+Description Task 1: Ensure that the unzip package is installed on the system using the package module and update the package cache based on the value of the promtail_apt_update_cache variable.  
+
+Task 2: Create promtail group  
+Description Task 2: Create a group named after the value of the promtail_system_group variable, only if promtail_system_group is not set to "root", and mark it as a system group.  
+
+Task 3: Create the promtail user  
+Description Task 3: Create a user named after the value of the promtail_system_user variable, assign it to the promtail_system_group, add it to additional groups defined in promtail_user_additional_groups, set the shell to /usr/sbin/nologin, and make it a system user without creating a home directory, unless promtail_system_user is set to "root".  
+
+Task 4: Ensure /usr/local/bin exists  
+Description Task 4: Ensure that the directory /usr/local/bin exists and has the mode 0755.  
+
+Task 5: Create config directories  
+Description Task 5: Create directories for promtail configuration, file service discovery, and positions with the owner as root, group as promtail_system_group, and mode 0770, for paths defined in promtail_config_dir, promtail_config_file_sd_dir, and promtail_positions_directory.  
+
+Task 6: Create application dirs  
+Description Task 6: Create directories for promtail installation and its versioned subdirectory with the owner as promtail_system_user, group as promtail_system_group, and mode 0755, using the paths defined in promtail_install_dir and promtail_version.  
+
+Task 7: Check promtail binary  
+Description Task 7: Check if the promtail binary exists in the path defined by promtail_install_dir and promtail_version, and record the result in the promtail_binary variable.  
+
+Task 8: Download promtail binaries  
+Description Task 8: Download the promtail binary from promtail_dist_url to a temporary directory, only if the binary does not exist, promtail_binary_local_dir is empty, and promtail_binary_propagate is false. Use the checksum provided or the default promtail_custom_checksum if available.  
+
+Task 9: Propagate locally distributed promtail archive  
+Description Task 9: Copy a locally distributed promtail archive from promtail_binary_local_dir to the temporary directory, only if the binary does not exist and the promtail_binary_local_dir is not empty, and promtail_binary_propagate is false. Set the mode to 0755 and change the ownership to root.  
+
+Task 10: Download promtail binaries to controller node  
+Description Task 10: Download promtail binaries to the controller node if promtail_binary_propagate is true, using the promtail_dist_url and setting the destination to the temporary directory. Ensure it runs only once and is delegated to localhost.  
+
+Task 11: Propagate promtail binaries  
+Description Task 11: Copy the downloaded promtail binaries from the temporary directory to the same temporary directory if promtail_binary_propagate is true, set the mode to 0755.  
+
+Task 12: Unpack promtail binaries  
+Description Task 12: Unpack the promtail binaries from the temporary directory to the installation directory, creating a symlink to the latest version if it does not exist already. Set the mode to 0755 and ignore errors if running in check mode.  
+
+Task 13: Create symlink to latest version  
+Description Task 13: Create a symbolic link from the latest version of the promtail binary to /usr/local/bin/promtail. Notify the Restart promtail handler. Ignore errors if in check mode.  
+
+Task 14: Write config  
+Description Task 14: Write the promtail configuration using a template, set the owner to root, group to promtail_system_group, mode to 0644, and validate the configuration. Notify the Restart promtail handler.  
+
+Task 15: Create systemd service unit  
+Description Task 15: Create a systemd service unit file for promtail using a template, set the mode to 0644, and notify the Restart promtail handler.

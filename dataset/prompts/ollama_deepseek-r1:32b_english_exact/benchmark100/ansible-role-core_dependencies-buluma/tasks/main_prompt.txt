@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Remove conflicting packages  
+Description Task 1: Remove any packages that may conflict with the core dependencies using the package module with state set to absent.  
+
+Task 2: Install packages  
+Description Task 2: Install the required core dependencies using the package module, updating the package cache first, and notify the Gather facts handler after installation.  
+
+Task 3: Flush handlers  
+Description Task 3: Flush any pending handlers to ensure all notifications are processed immediately using the meta module.

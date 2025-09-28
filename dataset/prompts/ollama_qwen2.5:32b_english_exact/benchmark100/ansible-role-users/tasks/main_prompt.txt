@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: This task should import the assert.yml file. It should run once and delegate the task to localhost.
+
+Task 2: Install required software
+Description Task 2: This task should install software packages listed in the variable `users_requirements` if the list is not empty.
+
+Task 3: Loop over users_groups
+Description Task 3: This task should include the group.yml file for each item in the `users_groups` list, providing a custom label based on the `name` attribute of the group and setting the loop variable to `group`. The loop should only run if `users_groups` is defined.
+
+Task 4: Ensure the /etc/sudoers.d directory is included
+Description Task 4: This task should ensure that the line defined in `users_sudo_includedir` is present in the `/etc/sudoers` file, matching a regular expression that starts with `@` or `#` followed by `includedir`. The change should be validated with `visudo`.
+
+Task 5: Loop over users
+Description Task 5: This task should include the user.yml file for each item in the `users` list, providing a custom label based on the `name` attribute of the user and setting the loop variable to `user`. The loop should only run if `users` is defined.
+
+Task 6: Manage cron permission
+Description Task 6: This task should create the `/etc/cron.allow` file from a template named `cron.allow.j2` with mode `0644` if the variable `users_cron_allow` is true.
+
+Task 7: Check existence of /etc/cron.allow
+Description Task 7: This task should remove the `/etc/cron.allow` file if the variable `users_cron_allow` is false.

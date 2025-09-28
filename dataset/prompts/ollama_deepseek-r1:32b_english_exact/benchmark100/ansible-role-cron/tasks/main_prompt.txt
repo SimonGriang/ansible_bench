@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the assert.yml tasks file to perform prerequisite checks or assertions before proceeding with the main tasks. This task runs once and is delegated to localhost.
+
+Task 2: Install cron  
+Description Task 2: Install the cron package using the package module with the specified cron_packages variable.
+
+Task 3: Configure shell  
+Description Task 3: Modify the SHELL variable in the cron configuration file specified by cron_configuration to set it to the value of cron_shell. This task creates the file if it doesn't exist and sets the file mode to 0600. It also notifies the Restart cron handler.
+
+Task 4: Configure path  
+Description Task 4: Modify the PATH variable in the cron configuration file specified by cron_configuration to set it to the value of cron_path. This task creates the file if it doesn't exist and sets the file mode to 0600. It also notifies the Restart cron handler.
+
+Task 5: Configure mailto  
+Description Task 5: Modify the MAILTO variable in the cron configuration file specified by cron_configuration to set it to the value of cron_mailto. This task creates the file if it doesn't exist and sets the file mode to 0600. It also notifies the Restart cron handler.
+
+Task 6: Start and enable cron  
+Description Task 6: Start and enable the cron service using the service module. This task is conditional and only runs if the cron_service variable is defined and not empty.
+
+Task 7: Schedule requested cron jobs  
+Description Task 7: Schedule cron jobs based on the list defined in cron_jobs. Each job is configured with its name, schedule (minute, hour, day, month, weekday, special_time), job command, state, and user. The task loops over each job in cron_jobs and uses loop_control to label each iteration with the job's name. This task is conditional and only runs if the cron_jobs variable is defined.

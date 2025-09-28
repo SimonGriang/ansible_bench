@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Imports the assert.yml task file once on localhost to perform prerequisite checks.
+
+Task 2: Install requirements  
+Description Task 2: Installs system packages listed in the openssl_requirements variable using the package module.
+
+Task 3: Install pip packages  
+Description Task 3: Installs Python packages listed in the openssl_pip_packages variable using the pip module, but only if the list is not empty.
+
+Task 4: Create key directory  
+Description Task 4: Creates a key directory with mode 700, owned by the specified user and group defined in openssl_file_owner and openssl_file_group.
+
+Task 5: Create csr directory  
+Description Task 5: Creates a csr directory with mode 755, owned by the specified user and group defined in openssl_file_owner and openssl_file_group.
+
+Task 6: Create crt directory  
+Description Task 6: Creates a crt directory with mode 755, owned by the specified user and group defined in openssl_file_owner and openssl_file_group.
+
+Task 7: Include create.yml  
+Description Task 7: Includes the create.yml task file and loops over each item in openssl_items, using the item name as the loop label, but only if openssl_items is defined and not empty.

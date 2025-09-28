@@ -1,0 +1,4 @@
+root".
+
+Task 3: Create the promtail user.
+Description Task 3: Creates a system user for promtail with the name defined in `promtail_system_user`, assigning it to the `promtail_system_group`, appending additional groups defined in `promtail_user_additional_groups`, setting the shell to `/usr/sbin/nologin`, and disabling home directory creation. This task only runs if `promtail_system_user` is not "root

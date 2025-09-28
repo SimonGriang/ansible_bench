@@ -1,0 +1,21 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the `assert.yml` task file only once on the localhost, ensuring any prerequisite checks are performed before proceeding with the role.
+
+Task 2: Install required packages  
+Description Task 2: Use the `ansible.builtin.package` module to install all packages listed in the variable `service_required_packages`. Notify the handler `Gather facts` after installation.
+
+Task 3: Configure systemd service  
+Description Task 3: For each service in `service_list`, create a systemd unit file from the template `systemd.j2` at `/etc/systemd/system/{{ item.name }}.service` with mode `0644`. This task runs only when `ansible_service_mgr` equals `"systemd"`. Notify the handler `Systemctl daemon-reload` after creating each unit file. Use `loop_control.label` to display `{{ item.name }}`.
+
+Task 4: Configure sysvinit service  
+Description Task 4: For each service in `service_list`, create an init script from the template `sysvinit.j2` at `/etc/init.d/{{ item.name }}` with mode `0755`. This task runs only when `ansible_service_mgr` is one of `"sysvinit"`, `"upstart"`, or `"openrc"`. Use `loop_control.label` to display `{{ item.name }}`.
+
+Task 5: Manage service  
+Description Task 5: Use the `ansible.builtin.service` module to manage each service in `service_list`. Set the service `state` and `enabled` attributes based on the corresponding keys in the item, omitting them if not defined. This task runs only when either `item.state` or `item.enabled` is defined. Use `loop_control.label` to display `{{ item.name }}`.
+
+Task 6: Flush handlers  
+Description Task 6: Flush all pending handlers immediately using `ansible.builtin.meta: flush_handlers`.

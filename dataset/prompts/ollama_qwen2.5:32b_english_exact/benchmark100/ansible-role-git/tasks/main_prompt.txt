@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import the assert tasks file only once and delegate the task to localhost.
+
+Task 2: Install git
+Description Task 2: Ensure the git package is installed using the package names specified in the variable `git_packages`.
+
+Task 3: See if the specified user exists
+Description Task 3: Check if the user specified in `git_username` exists in the system. This task should only run if `git_username` is defined.
+
+Task 4: Create directory for git configuration
+Description Task 4: Create a directory for the git configuration in the home directory of the user specified by `git_username`. The directory should have the specified owner, group, and permissions. This task should only run if `getent_passwd[git_username]` is defined and not equal to none.
+
+Task 5: Place git configuration
+Description Task 5: Place the git configuration file using a Jinja2 template. The configuration file should be placed in the home directory of the user specified by `git_username`. This task should only run if `git_user_email`, `git_user_name`, and `git_username` are defined and `getent_passwd[git_username]` is not none.
+
+Task 6: Create repository_destination
+Description Task 6: Create a directory for repositories with the specified owner, group, and permissions. This directory should be located at the path specified by `git_repository_destination`. This task should only run if `git_username`, `git_repository_destination` are defined and `getent_passwd[git_username]` is not none.
+
+Task 7: Clone all roles
+Description Task 7: Clone repositories specified in `git_repositories` to the `git_repository_destination`. The repositories should be cloned as the user specified by `git_username`. This task should only run if `git_repositories`, `git_repository_destination`, and `git_username` are defined and `getent_passwd[git_username]` is not none.

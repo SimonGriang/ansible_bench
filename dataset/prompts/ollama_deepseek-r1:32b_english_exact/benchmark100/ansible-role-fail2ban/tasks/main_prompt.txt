@@ -1,0 +1,27 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the assert.yml file to validate the environment before proceeding with the installation and configuration of fail2ban.  
+
+Task 2: Install fail2ban  
+Description Task 2: Install the fail2ban package using the package module with the package name specified by the fail2ban_packages variable.  
+
+Task 3: Copy filters in filter.d  
+Description Task 3: Copy filter files from the source directory specified by fail2ban_filterd_path to /etc/fail2ban/filter.d/, setting the owner, group, and mode. The task is conditional on fail2ban_filterd_path being defined and notifies the Restart fail2ban handler.  
+
+Task 4: Configure fail2ban.local  
+Description Task 4: Configure the fail2ban.local file by merging base and custom configurations, using the ini_file module to set each configuration option. The task loops over the combined list of configurations and notifies the Restart fail2ban handler.  
+
+Task 5: Configure jail.local  
+Description Task 5: Configure the jail.local file by merging base and custom jail configurations, using the ini_file module to set each jail option. The task loops over the combined list of jail configurations and notifies the Restart fail2ban handler.  
+
+Task 6: Stat auth log file  
+Description Task 6: Stat the /var/log/auth.log file to check its existence and store the result in the fail2ban_auth variable.  
+
+Task 7: Touch auth log file  
+Description Task 7: Touch the /var/log/auth.log file to create it if it does not exist, setting the mode to 0640. The task is conditional on the file not existing.  
+
+Task 8: Start and enable fail2ban  
+Description Task 8: Start the fail2ban service and enable it to start on boot, using the service module with the service name specified by the fail2ban_service variable.

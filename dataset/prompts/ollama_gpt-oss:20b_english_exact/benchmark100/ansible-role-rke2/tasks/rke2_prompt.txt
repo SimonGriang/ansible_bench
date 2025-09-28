@@ -1,0 +1,83 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Download RKE2 installation script  
+Description Task 1: Download the RKE2 installation script from the URL stored in the variable `{{ rke2_install_bash_url }}` to the destination `{{ rke2_install_script_dir }}/rke2.sh`. The file should be executable (`mode: 0700`) and the download should use a timeout defined by `{{ rke2_artifact_fetch_timeout }}`. This task must only run when the variable `rke2_airgap_mode` is **false**.  
+
+Task 2: Copy local RKE2 installation script  
+Description Task 2: Copy the local copy of the RKE2 installation script located at `{{ rke2_airgap_copy_sourcepath }}/rke2.sh` to `{{ rke2_install_script_dir }}/rke2.sh`. The file must be executable (`mode: 0700`) and the copy operation should force overwrite. This task should execute only when `rke2_airgap_mode` is **true** and `rke2_airgap_implementation` equals `'copy'`.  
+
+Task 3: Create RKE2 artifacts folder  
+Description Task 3: Create a directory at the path defined by `{{ rke2_artifact_path }}` with permissions `0700`. The directory should be created only when `rke2_airgap_mode` is **true** and `rke2_airgap_implementation` is **not** `'exists'`.  
+
+Task 4: Download RKE2 checksum and artifacts (try remote first – fallback to local download and push)  
+Description Task 4: When `rke2_airgap_mode` is **true** and `rke2_airgap_implementation` equals `'download'`, perform the following block of actions:  
+- Download the SHA256 checksum file from `{{ rke2_artifact_url }}/{{ rke2_version }}/sha256sum-{{ rke2_architecture }}.txt` to `{{ rke2_artifact_path }}/sha256sum-{{ rke2_architecture }}.txt`, forcing overwrite and setting mode `0640`.  
+- Download each RKE2 artifact listed in `{{ rke2_artifact }}` (excluding any items containing `'sha256sum'`) from `{{ rke2_artifact_url }}/{{ rke2_version }}/{{ item }}` to `{{ rke2_artifact_path }}/{{ item }}`. Each download must verify the checksum against the previously downloaded checksum file and use mode `0640`.  
+- Download the RKE2 installation script from `{{ rke2_install_bash_url }}` to `{{ rke2_install_script_dir }}/rke2.sh` with mode `0700`.  
+If any of the above remote downloads fail, the rescue block should:  
+  - Pause for 7 seconds to allow cancellation.  
+  - Create a local directory at `{{ rke2_airgap_copy_sourcepath }}` with mode `0750` and owner set to the current local user.  
+  - Download the checksum file locally to the same directory.  
+  - Download all artifacts locally by constructing URLs from `{{ rke2_artifact_url }}` and `{{ rke2_version }}` and saving them to the local directory.  
+  - Download the installation script locally to the same directory.  
+  - Copy the entire local directory of artifacts to the remote host's `{{ rke2_artifact_path }}`.  
+  - Copy the local installation script to the remote host's `{{ rke2_install_script_dir }}/rke2.sh`.  
+
+Task 5: Copy local RKE2 artifacts  
+Description Task 5: For each item in `{{ rke2_artifact }}`, copy the file from `{{ rke2_airgap_copy_sourcepath }}/{{ item }}` to `{{ rke2_artifact_path }}/{{ item }}` with mode `0640` and force overwrite. This task should only run when `rke2_airgap_mode` is **true** and `rke2_airgap_implementation` equals `'copy'`.  
+
+Task 6: Airgap mode – additional images tarballs  
+Description Task 6: When `rke2_airgap_mode` is **true**, there are additional tarball images defined in `{{ rke2_airgap_copy_additional_tarballs }}` (length > 0), and `rke2_airgap_implementation` is **not** `'exists'`, perform the following block:  
+- Create a directory at `{{ rke2_tarball_images_path }}` with mode `0700`.  
+- For each tarball in `{{ rke2_airgap_copy_additional_tarballs }}`, copy the file from `{{ rke2_airgap_copy_sourcepath }}/{{ item }}` to `{{ rke2_tarball_images_path }}/{{ item }}` with mode `0644` and force overwrite.  
+
+Task 7: Airgap mode – ensure artifacts exist and have acceptable permissions  
+Description Task 7: When `rke2_airgap_mode` is **true** and `rke2_airgap_implementation` equals `'exists'`, perform the following block:  
+- Stat each artifact in `{{ rke2_artifact_path }}/{{ item }}` and register the results as `artifacts`.  
+- Stat the installation script at `{{ rke2_install_script_dir }}/rke2.sh` and register as `install_script`.  
+- Set a fact `artifacts_writeable` that is true if any artifact is writable.  
+- If any artifact is writable, change its mode to `0640`.  
+- Ensure the installation script is executable; if it is writable but not executable, set mode `0700`.  
+- If the installation script is still not executable, fail with a message stating that the script at `{{ rke2_install_script_dir }}/rke2.sh` must be executable.  
+
+Task 8: Populate service facts  
+Description Task 8: Gather all service facts on the host using `ansible.builtin.service_facts`.  
+
+Task 9: Get stats of the FS object  
+Description Task 9: Stat the directory `/usr/local` and register the result as `usr_local`.  
+
+Task 10: Check if separate partition  
+Description Task 10: Execute the command `grep '/usr/local ' /proc/mounts` to determine if `/usr/local` is a separate partition. The command should not be considered changed, should register the output as `partition_result`, and should fail if the return code is 2 or higher.  
+
+Task 11: Set RKE2 bin path  
+Description Task 11: Set the fact `rke2_bin_path` to `/usr/local/bin/rke2` if `/usr/local` is not writable or if the partition check returned 1; otherwise set it to `/opt/rke2/bin/rke2`.  
+
+Task 12: Check RKE2 version  
+Description Task 12: Run a shell script that:  
+- Determines if the RKE2 binary exists at `{{ rke2_bin_path }}` and extracts the installed version.  
+- If the service named `{{ rke2_service_name }}` is active, resolves the running binary path from the service's `MainPID`.  
+- Extracts the running version of RKE2 from the binary or defaults to the desired version if the binary is missing.  
+- Outputs a JSON object with keys `installed_version` and `running_version`.  
+Register the output as `versions_check`.  
+
+Task 13: Set RKE2 versions  
+Description Task 13: When not in check mode, set the facts `installed_version` and `running_version` from the JSON output of `versions_check`.  
+
+Task 14: Prevent accidental RKE2 downgrade  
+Description Task 14: When not in check mode, the desired version `{{ rke2_version }}` is not `"not installed"`, and `rke2_allow_downgrade` is **false**, assert that the desired version is greater than or equal to the running version (or allow downgrade if explicitly permitted). The assertion should provide a detailed failure message indicating the current running and desired versions, and a success message if the check passes. The assertion uses the cleaned version strings `{{ rke2_version_clean }}` and `{{ running_version_clean }}` derived from the respective version strings.  
+
+Task 15: Run RKE2 install script  
+Description Task 15: When not in check mode and the desired version differs from the installed version, perform the following block:  
+- If `rke2_airgap_mode` is **true**, run the installation script located at `{{ rke2_install_script_dir }}/rke2.sh` with environment variables `INSTALL_RKE2_ARTIFACT_PATH`, `INSTALL_RKE2_AGENT_IMAGES_DIR`, and `INSTALL_RKE2_METHOD` set appropriately.  
+- If `rke2_airgap_mode` is **false**, run the same script with environment variables `INSTALL_RKE2_VERSION`, `INSTALL_RKE2_CHANNEL_URL`, `INSTALL_RKE2_CHANNEL`, and `INSTALL_RKE2_METHOD`.  
+
+Task 16: Copy Custom Manifests  
+Description Task 16: For each file listed in `{{ rke2_custom_manifests }}`, template it to the directory `{{ rke2_data_path }}/server/manifests/` with owner `root`, group `root`, and mode `0644`. This task should run only when there is at least one custom manifest (`rke2_custom_manifests | length > 0`).  
+
+Task 17: Copy Static Pods  
+Description Task 17: For each file listed in `{{ rke2_static_pods }}`, copy it to `{{ rke2_data_path }}/agent/pod-manifests/` with owner `root`, group `root`, and mode `0644`. This task should execute only when `rke2_static_pods` is defined and non‑empty.  
+
+Task 18: Copy RKE2 environment file  
+Description Task 18: Template the file `rke2_environment.j2` to `/etc/default/rke2-{{ rke2_type }}` with owner `root`, group `root`, and mode `0644`. This task should run only when the variable `rke2_environment_options` is defined and has a length greater than zero.

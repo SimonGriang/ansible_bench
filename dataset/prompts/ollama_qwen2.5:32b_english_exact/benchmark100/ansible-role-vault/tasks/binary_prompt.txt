@@ -1,0 +1,54 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create Vault group
+Description Task 1: This task creates a system group named with the value of the variable `vault_group`.
+
+Task 2: Create Vault user
+Description Task 2: This task creates a system user named `vault_user` with no home directory, with the shell specified by `vault_user_shell`, and assigns the user to the group `vault_group`.
+
+Task 3: Create Vault download directory
+Description Task 3: This task creates a directory at the path specified by `vault_download_path`, sets the owner to `vault_user`, the group to `vault_group`, and sets the directory mode to `0755`.
+
+Task 4: Download Vault binary
+Description Task 4: This task downloads the Vault binary from Hashicorp releases into the `vault_download_path` if it does not already exist, with the remote source URL based on `vault_version` and `vault_architecture`, and sets the owner and group to `root`.
+
+Task 5: Check if vault_path exists
+Description Task 5: This task checks if the path specified by `vault_path` exists and registers the result to `vault_check_path`.
+
+Task 6: Create vault_path if it does not exist
+Description Task 6: This task creates the directory specified by `vault_path` if it does not already exist and the path is not empty, with the owner `vault_user`, the group `vault_group`, and the mode `0755`.
+
+Task 7: Create directory in vault_path
+Description Task 7: This task loops over the `vault_directories` list and creates directories specified by `item.name`, with the owner `item.owner`, the group `item.group`, and the mode `item.mode`.
+
+Task 8: Create data directory
+Description Task 8: This task loops over the `vault_data_directories` list and creates directories specified by `item.name`, with the owner `item.owner`, the group `item.group`, and the mode `item.mode`.
+
+Task 9: Generate TLS key and certificate
+Description Task 9: This task generates a TLS key and certificate in the `vault_data_directory`/tls directory if it does not already exist and notifies a handler to restart vault.
+
+Task 10: Set ownership of tls material
+Description Task 10: This task loops over the `vault_tls_files` list and sets the ownership of the files specified by `item.name` to `item.owner` and `item.group` with the mode `item.mode`.
+
+Task 11: Copy Vault binary
+Description Task 11: This task copies the Vault binary from the download directory to the `vault_path`/usr/bin/vault and sets the owner and group to `root` with the mode `0755`, and notifies a handler to restart vault.
+
+Task 12: Set cap_ipc_lock=ep on /usr/bin/vault
+Description Task 12: This task sets the capability `cap_ipc_lock+ep` on the `/usr/bin/vault` file located in `vault_path` with no change detection.
+
+Task 13: Touch vault.env
+Description Task 13: This task touches the file `vault_path`/etc/vault.d/vault.env, sets the owner to `vault_user`, the group to `vault_group`, and sets the mode to `0644`, and notifies a handler to restart vault.
+
+Task 14: Create /usr/lib/systemd/system
+Description Task 14: This task creates the directory `/usr/lib/systemd/system` with the owner and group set to `root` and the mode `0755`.
+
+Task 15: Copy Vault service file
+Description Task 15: This task copies the Vault service file from a template to `/usr/lib/systemd/system/vault.service` if the system manager is `systemd`, and sets the owner and group to `root` with the mode `0644`, and notifies a handler to reload the daemon.
+
+Task 16: Copy vault configuration
+Description Task 16: This task copies the Vault configuration file `vault.hcl` to `vault_path`/etc/vault.d/vault.hcl, sets the owner and group to `root` with the mode `0644`, and notifies a handler to restart vault.
+
+Task 17: Flush handlers
+Description Task 17: This task ensures all pending handlers are executed immediately.

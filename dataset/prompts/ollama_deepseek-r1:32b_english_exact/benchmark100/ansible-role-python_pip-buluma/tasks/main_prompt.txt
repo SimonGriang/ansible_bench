@@ -1,0 +1,33 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Check if python3.11 EXTERNALLY-MANAGED file exists  
+Description Task 1: Use the stat module to check for the existence of the /usr/lib/python3.11/EXTERNALLY-MANAGED file and register the result.  
+
+Task 2: Rename python3.11 EXTERNALLY-MANAGED file if it exists  
+Description Task 2: If the python3.11 EXTERNALLY-MANAGED file exists, rename it to /usr/lib/python3.11/EXTERNALLY-MANAGED.old.  
+
+Task 3: Check if python3.12 EXTERNALLY-MANAGED file exists  
+Description Task 3: Use the stat module to check for the existence of the /usr/lib/python3.12/EXTERNALLY-MANAGED file and register the result.  
+
+Task 4: Rename python3.12 EXTERNALLY-MANAGED file if it exists  
+Description Task 4: If the python3.12 EXTERNALLY-MANAGED file exists, rename it to /usr/lib/python3.12/EXTERNALLY-MANAGED.old.  
+
+Task 5: Import assert.yml  
+Description Task 5: Import the assert.yml tasks file and run it once on localhost.  
+
+Task 6: Install python pip  
+Description Task 6: Install the python pip package using the package name specified in the python_pip_packages variable.  
+
+Task 7: Configure pip proxy  
+Description Task 7: Configure the pip proxy settings in the /etc/pip.conf file under the global section if the python_pip_proxy variable is defined.  
+
+Task 8: Trust hosts  
+Description Task 8: Configure trusted hosts for pip in the /etc/pip.conf file under the global section if the python_pip_trusted_host variable is defined.  
+
+Task 9: Update pip.  
+Description Task 9: Update pip using the specified package name and state, with optional executable override, but only if certain OS conditions are met.  
+
+Task 10: Install requested modules  
+Description Task 10: Install pip modules specified in the python_pip_modules list, with optional state and version, using the specified executable if provided, and only if certain OS conditions are met.

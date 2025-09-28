@@ -1,0 +1,39 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the assert.yml file for variable checks, run once on localhost.  
+
+Task 2: Install using package  
+Description Task 2: Install HashiCorp products using the package manager, with repository setup for RedHat/Rocky and Debian, handling latest or versioned packages.  
+
+Task 3: Install repository for RedHat  
+Description Task 3: Download and place the HashiCorp repository file for RedHat/Rocky systems, only when ansible_os_family is RedHat or Rocky.  
+
+Task 4: Configure debian  
+Description Task 4: Configure Debian‑specific repository settings, only when ansible_os_family is Debian.  
+
+Task 5: Install required package gpg  
+Description Task 5: Install the 'gpg' package required for apt key verification on Debian.  
+
+Task 6: Install apt key for Debian  
+Description Task 6: Add the HashiCorp GPG key to the APT keyring on Debian, disabling certificate validation.  
+
+Task 7: Install repository for Debian  
+Description Task 7: Add the HashiCorp APT repository to the system on Debian, using the specified architecture mapping and distribution release.  
+
+Task 8: Install hashicorp product using package  
+Description Task 8: Install HashiCorp products via the package manager, handling both latest and versioned packages based on hashicorp_products definition.  
+
+Task 9: Install latest hashicorp product using package  
+Description Task 9: Install the latest version of each HashiCorp product using the package manager when no specific version is defined.  
+
+Task 10: Install versioned hashicorp product using package  
+Description Task 10: Install a specific version of each HashiCorp product using the package manager when a version is defined.  
+
+Task 11: Install manually  
+Description Task 11: Install HashiCorp products manually by extracting tarballs to the destination directory with specified ownership and permissions.  
+
+Task 12: Install hashicorp product manually  
+Description Task 12: Extract each HashiCorp product tarball from hashicorp_src to hashicorp_destination, setting group, mode, owner, and using remote_src true.

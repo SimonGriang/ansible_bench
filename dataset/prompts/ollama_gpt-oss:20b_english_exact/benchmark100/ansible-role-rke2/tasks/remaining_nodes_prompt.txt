@@ -1,0 +1,33 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create the RKE2 config dir  
+Description Task 1: Create the directory `/etc/rancher/rke2` with state `directory`, owner `root`, group `root`, and mode `0755` to ensure the RKE2 configuration directory exists.
+
+Task 2: Set server taints  
+Description Task 2: When the variable `rke2_type` equals `'server'`, set the fact `combined_node_taints` to the value of `rke2_server_node_taints` to prepare server‑specific node taints.
+
+Task 3: Set agent taints  
+Description Task 3: When the variable `rke2_type` equals `'agent'`, set the fact `combined_node_taints` to the value of `rke2_agent_node_taints` to prepare agent‑specific node taints.
+
+Task 4: Copy RKE2 config  
+Description Task 4: Template the file specified by the variable `rke2_config` to `/etc/rancher/rke2/config.yaml` with owner `root`, group `root`, mode `0600`, and notify the handler `"Config file changed"`.
+
+Task 5: Copy kubelet config  
+Description Task 5: If `rke2_kubelet_config` has a length greater than 0, template `templates/kubelet-config.yaml.j2` to `/etc/rancher/rke2/kubelet-config.yaml` with owner `root`, group `root`, mode `0600`, and notify `"Config file changed"`.
+
+Task 6: Copy Containerd Registry Configuration file  
+Description Task 6: If either `rke2_custom_registry_mirrors` or `rke2_custom_registry_configs` has a length greater than 0, template the file pointed to by `rke2_custom_registry_path` to `/etc/rancher/rke2/registries.yaml` with owner `root`, group `root`, mode `0600`, and notify `"Config file changed"`.
+
+Task 7: Start RKE2 service on the rest of the nodes  
+Description Task 7: Start and enable the systemd service named by `rke2_service_name`, using retries and delay, register the result, and set the environment variable `RKE2_TOKEN` to `rke2_token`. Notify the handler `"Service (re)started"` when the service starts.
+
+Task 8: Mask other RKE2 service on the rest of the nodes  
+Description Task 8: For each service type not matching `rke2_type` (i.e., the opposite of the current node type), disable and mask `rke2-{{ item }}.service` using a loop over the list `['agent', 'server']` filtered by `reject('match', rke2_type)`.
+
+Task 9: Wait for remaining nodes to be ready - no CNI  
+Description Task 9: For each node in `groups[rke2_cluster_group_name]`, run a shell command that queries the node’s status via `kubectl` and checks for specific readiness messages, retrying until all required conditions are met. This loop runs only when `rke2_cni == 'none'` and the current host is `active_server` or the first host in `groups[rke2_servers_group_name]`.
+
+Task 10: Wait for remaining nodes to be ready - with CNI  
+Description Task 10: Run a shell command that counts the number of ready nodes using `kubectl get nodes | grep " Ready" | wc -l` and retry until the count matches the total number of nodes in `groups[rke2_cluster_group_name]`. This task runs only when not in check mode, `rke2_cni != 'none'`, and the current host is `active_server` or the first host in `groups[rke2_servers_group_name]`.

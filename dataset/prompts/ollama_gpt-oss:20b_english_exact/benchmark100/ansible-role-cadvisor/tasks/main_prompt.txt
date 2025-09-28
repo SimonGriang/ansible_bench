@@ -1,0 +1,30 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: cadvisor | create directories  
+Description Task 1: Create the directory /opt/cadvisor with permissions 0755, ensuring it exists before subsequent operations.
+
+Task 2: cadvisor | download  
+Description Task 2: Download the cadvisor binary from the URL specified by the variable `cadvisor_download`, verify its SHA256 checksum using `cadvisor_checksum`, and store it at `/opt/cadvisor/cadvisor-{{ cadvisor_version }}` without overwriting an existing file.
+
+Task 3: cadvisor | propagate locally distributed cadvisor binary  
+Description Task 3: Copy a locally provided cadvisor binary from `{{ cadvisor_binary_local_dir }}/cadvisor-{{ cadvisor_version }}` to `/opt/cadvisor/cadvisor-{{ cadvisor_version }}`, set ownership to root:root, permissions to 0755, and notify the handler `restart cadvisor` when the file changes.
+
+Task 4: cadvisor | symlink  
+Description Task 4: Create a symbolic link `/opt/cadvisor/cadvisor` pointing to `/opt/cadvisor/cadvisor-{{ cadvisor_version }}`, forcing the link if it already exists.
+
+Task 5: cadvisor | server systemd service  
+Description Task 5: Deploy the systemd service unit file for cadvisor by templating `systemd-system-cadvisor-service.j2` to `/etc/systemd/system/cadvisor.service`, setting permissions to 0644, and notifying the handler `restart cadvisor`.
+
+Task 6: test_task  
+Description Task 6: Run a shell command that checks if `cadvisor.service` is inactive; if so, echo 'inactive', register the output to `service_active`, and set `failed_when: False` and `changed_when: False`.
+
+Task 7: debug  
+Description Task 7: Output the registered variable `service_active` to the console for debugging purposes.
+
+Task 8: cadvisor | enable server systemd  
+Description Task 8: Enable the `cadvisor.service` unit so it starts on boot, ensuring the systemd daemon is reloaded if necessary.
+
+Task 9: cadvisor | start server systemd  
+Description Task 9: Start the `cadvisor.service` unit immediately, ensuring the systemd daemon is reloaded before the start operation.

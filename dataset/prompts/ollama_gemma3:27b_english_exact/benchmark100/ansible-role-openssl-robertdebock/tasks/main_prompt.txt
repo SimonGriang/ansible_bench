@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import the `assert.yml` tasks file. Run this task only once and delegate it to localhost.
+
+Task 2: Install requirements
+Description Task 2: Install system packages defined in the `openssl_requirements` variable. Ensure the packages are present.
+
+Task 3: Install pip packages
+Description Task 3: Install Python packages defined in the `openssl_pip_packages` variable using `pip`. Only perform this task if the `openssl_pip_packages` list has at least one item.
+
+Task 4: Create key directory
+Description Task 4: Create a directory for storing keys at the path specified by the `openssl_key_directory` variable. Set the permissions to 700, owner to `openssl_file_owner` and group to `openssl_file_group`.
+
+Task 5: Create csr directory
+Description Task 5: Create a directory for storing CSR files at the path specified by the `openssl_csr_directory` variable. Set the permissions to 755, owner to `openssl_file_owner` and group to `openssl_file_group`.
+
+Task 6: Create crt directory
+Description Task 6: Create a directory for storing CRT files at the path specified by the `openssl_crt_directory` variable. Set the permissions to 755, owner to `openssl_file_owner` and group to `openssl_file_group`.
+
+Task 7: Include create.yml
+Description Task 7: Include the `create.yml` tasks file in a loop. Iterate over the items in the `openssl_items` variable, using the `name` attribute of each item as a label. Only perform this task if the `openssl_items` variable is defined and has at least one item.

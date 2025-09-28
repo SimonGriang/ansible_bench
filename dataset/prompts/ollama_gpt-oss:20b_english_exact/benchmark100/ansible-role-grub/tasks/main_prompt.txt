@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the assert.yml task file to perform preflight checks, running the tasks only once and delegating to localhost.  
+
+Task 2: Install required packages  
+Description Task 2: Install all packages listed in the variable `grub_packages` using the package module, ensuring they are present.  
+
+Task 3: Set GRUB_TIMEOUT  
+Description Task 3: Ensure the `GRUB_TIMEOUT` setting in `/etc/default/grub` is set to the value of `grub_timeout`, creating the file if necessary, with mode `0664`, and notify the `Update grub` handler.  
+
+Task 4: Set GRUB_RECORDFAIL_TIMEOUT  
+Description Task 4: Ensure the `GRUB_RECORDFAIL_TIMEOUT` setting in `/etc/default/grub` is set to the value of `grub_recordfail_timeout`, creating the file if necessary, with mode `0664`, and notify the `Update grub` handler.  
+
+Task 5: Add options to GRUB_CMDLINE_LINUX  
+Description Task 5: Loop over the `grub_options` list to add each `option=value` pair to the `GRUB_CMDLINE_LINUX` line in `/etc/default/grub` using a replace module with a regex that avoids duplicate entries, validating with `/bin/sh`, setting mode `0664`, notifying the `Update grub` handler, and only running when `grub_options` is defined and non‑empty.  
+
+Task 6: Import password.yml  
+Description Task 6: Import the `password.yml` task file to set the GRUB password if the variable `grub_set_password` is true.  
+
+Task 7: Flush handlers  
+Description Task 7: Flush all pending handlers so that any notified handlers (e.g., `Update grub`) run immediately.

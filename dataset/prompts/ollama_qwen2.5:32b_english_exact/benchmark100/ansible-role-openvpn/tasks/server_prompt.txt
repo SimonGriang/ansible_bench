@@ -1,0 +1,36 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Ensure /etc/openvpn/easy-rsa exists
+Description Task 1: This task creates the directory /etc/openvpn/easy-rsa if it does not already exist, setting its mode to 0755.
+
+Task 2: Initialize PKI with Easyrsa
+Description Task 2: This task uses the easyrsa tool to initialize the PKI directory within /etc/openvpn/easy-rsa, creating necessary subdirectories and files.
+
+Task 3: Build Certificate Authority with Easyrsa
+Description Task 3: This task generates a self-signed Certificate Authority (CA) without a passphrase using the easyrsa tool within the /etc/openvpn/easy-rsa directory.
+
+Task 4: Generate Diffie-Hellman parameters
+Description Task 4: This task generates the Diffie-Hellman parameters needed for OpenVPN and places them in the /etc/openvpn/easy-rsa/pki directory.
+
+Task 5: Build server certificate with Easyrsa
+Description Task 5: This task creates a server certificate (server.crt) and its corresponding private key without a passphrase in the /etc/openvpn/easy-rsa/pki directory.
+
+Task 6: Build client certificate with Easyrsa
+Description Task 6: This task creates a client certificate (client.crt) and its corresponding private key without a passphrase in the /etc/openvpn/easy-rsa/pki directory.
+
+Task 7: Generate CRL with Easyrsa
+Description Task 7: This task generates a Certificate Revocation List (CRL) and places it in the /etc/openvpn/easy-rsa/pki directory.
+
+Task 8: Generate TLS Authentication Key
+Description Task 8: This task generates a TLS Authentication key (ta.key) and places it in the /etc/openvpn/easy-rsa/pki directory.
+
+Task 9: Copy certificates and keys to /etc/openvpn/server
+Description Task 9: This task copies specific files from /etc/openvpn/easy-rsa/pki to /etc/openvpn/server, setting the mode to 0640 for each file.
+
+Task 10: Copy CA and TLS Auth Key to /etc/openvpn
+Description Task 10: This task copies the CA certificate and TLS Authentication key from /etc/openvpn/easy-rsa/pki to /etc/openvpn, setting the mode to 0640 for each file.
+
+Task 11: Place server configuration file
+Description Task 11: This task places a templated server configuration file (server.conf) in the specified directory, setting appropriate owner, group, and mode, and notifies a handler to restart openvpn.

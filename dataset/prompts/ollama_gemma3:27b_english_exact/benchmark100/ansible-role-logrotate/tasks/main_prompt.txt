@@ -1,0 +1,4 @@
+absent". The loop label should be the item's name.
+
+Task 5: Remove logrotate.d files
+Description Task 5: Remove configuration files from the `logrotate.d` directory for items in the `logrotate_entries` list where the `item.state` is defined and set to "absent

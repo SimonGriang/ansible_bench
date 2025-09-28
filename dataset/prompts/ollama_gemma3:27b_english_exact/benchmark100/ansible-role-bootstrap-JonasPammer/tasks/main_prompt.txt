@@ -1,0 +1,18 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Check if all variables have been set correctly.
+Description Task 1: Import the 'assert.yml' task file to verify variable configurations. Run this task only once and delegate it to localhost.
+
+Task 2: Wait for host to be reachable.
+Description Task 2: Wait for a specific port (default 22) on the target host to become available, using the configured ansible_ssh_host or ansible_host or inventory_hostname. The timeout is defined by 'bootstrap_timeout'. This task is a local connection and uses become privileges if configured. It should only run if ansible_connection is not container/docker and bootstrap_wait_for_host is true.
+
+Task 3: Prepare the system.
+Description Task 3: This block contains tasks to prepare the system. First, test the connection using 'wait_for_connection' and register the result in 'bootstrap_connect'. If the connection fails, debug the 'bootstrap_timeout' variable. Always include the 'gather_facts.yml' task to gather bootstrap facts.
+
+Task 4: Install bootstrap packages.
+Description Task 4: Install bootstrap packages using 'raw' module and execute the command using a shell. Register the output in 'bootstrap_install_packages'. The task will be considered changed if the expected stdout regex is present in Alpine, Archlinux, or Gentoo or if it is not present in Debian, RedHat, Rocky, or Suse. Use the 'bootstrap_user' variable as the ansible user, and use become privileges if configured.
+
+Task 5: Ensure system is prepared by issuing ansible modules.
+Description Task 5: This block uses ansible modules to ensure the system is prepared. First, gather ansible facts using 'setup'. Then, install packages listed in 'bootstrap__facts_packages' using the 'package' module, ensuring they are present and updating the cache.
