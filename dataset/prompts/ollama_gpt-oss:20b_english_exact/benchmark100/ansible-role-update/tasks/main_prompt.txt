@@ -1,0 +1,31 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the `assert.yml` task file to perform preflight checks. This task runs only once (`run_once: true`) and delegates to `localhost`.  
+
+Task 2: Configure apk  
+Description Task 2: If the host’s package manager is `apk`, run two sub‑tasks:  
+- Update the apk cache (`community.general.apk` with `update_cache: true`) without marking the task as changed.  
+- Upgrade all packages (`community.general.apk` with `upgrade: true`) and notify the `Reboot` handler if any changes occur.  
+
+Task 3: Configure apt  
+Description Task 3: If the host’s package manager is `apt`, perform three sub‑tasks:  
+- Hold selected packages to prevent upgrade using `ansible.builtin.dpkg_selections`, looping over `{{ update_excluded_packages }}`.  
+- Update all packages (`ansible.builtin.apt` with `update_cache: true`, `upgrade: "{{ update_upgrade_command }}"`, `cache_valid_time: "{{ update_cache_valid_time }}"`) and notify `Reboot`. The apt tasks run with `DEBIAN_FRONTEND: nointeractive`.  
+- Optionally autoremove packages (`ansible.builtin.apt` with `autoremove: "{{ update_autoremove }}"`) when `update_autoremove` is true.  
+
+Task 4: Update all software (dnf)  
+Description Task 4: Use `ansible.builtin.dnf` to upgrade all packages on systems where `ansible_pkg_mgr` is `dnf` or `dnf5`, excluding any packages listed in `{{ update_excluded_packages }}`. Notify `Reboot` on changes.  
+
+Task 5: Update all software (pacman)  
+Description Task 5: Use `community.general.pacman` to update the cache (`update_cache: true`) and upgrade all packages (`upgrade: true`), notifying the `Reboot` handler on changes, when `ansible_pkg_mgr` is `pacman`.  
+
+Task 6: Configure yum  
+Description Task 6: If the host’s package manager is `yum`, run two nested blocks:  
+- For RHEL/CentOS 6 (`ansible_distribution_major_version == "6"`), use `ansible.builtin.dnf` to upgrade all packages (`name: "*"`, `state: latest`) excluding `{{ update_excluded_packages }}` and notify `Reboot`.  
+- For other major versions, first upgrade all packages with the same dnf command and notify `Reboot`, then install the `yum-utils` package using `ansible.builtin.package`.  
+
+Task 7: Update all software (zypper)  
+Description Task 7: Use `community.general.zypper` to upgrade all packages (`name: "*"`, `state: latest`) on systems where `ansible_pkg_mgr` is `zypper`, notifying the `Reboot` handler on changes.

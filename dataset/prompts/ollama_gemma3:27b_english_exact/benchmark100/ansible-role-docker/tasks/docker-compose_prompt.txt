@@ -1,0 +1,15 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Check current docker-compose version.
+Description Task 1: Execute the docker-compose version command and register the output to the `docker_compose_vsn` variable. The `check_mode`, `changed_when`, and `failed_when` parameters are set to `false` to prevent unintended changes or failures.
+
+Task 2: Set docker-compose current version fact.
+Description Task 2: Extract the version number from the `docker_compose_vsn.stdout` using a regular expression and store it in the `docker_compose_current_version` fact. This task only executes if the `docker_compose_vsn.stdout` is defined and not empty.
+
+Task 3: Delete existing docker-compose version if it's different.
+Description Task 3: Remove the existing `docker_compose_path` file if the current version (`docker_compose_current_version`) is different from the desired version (`docker_compose_version`). The `v` is removed from `docker_compose_version` for comparison.
+
+Task 4: Install Docker Compose (if configured).
+Description Task 4: Download the Docker Compose binary from `docker_compose_url` and place it at `docker_compose_path` with executable permissions (0755). This task executes if the current version is not defined, empty, or older than the desired version (`docker_compose_version`). The `v` is removed from `docker_compose_version` for comparison.

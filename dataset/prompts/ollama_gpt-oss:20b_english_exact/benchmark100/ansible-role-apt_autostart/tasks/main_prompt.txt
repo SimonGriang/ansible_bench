@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the `assert.yml` task file to validate preconditions. This task runs only once and is delegated to the localhost, ensuring that the assertions are evaluated on the control machine before any other operations are performed.
+
+Task 2: Disable automatic service management on installation  
+Description Task 2: When the package manager is `apt` and the variable `apt_autostart_state` is set to `"disabled"`, copy a policy script to `/usr/sbin/policy-rc.d` with the content `exit 101` and mode `755`. This script prevents services from automatically starting during package installation, effectively disabling automatic service management.
+
+Task 3: Enable automatic service management on installation  
+Description Task 3: When the package manager is `apt` and the variable `apt_autostart_state` is set to `"enabled"`, ensure that `/usr/sbin/policy-rc.d` is absent. This removes the custom policy script and restores the default behavior, allowing services to start automatically during package installation.

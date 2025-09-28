@@ -1,0 +1,4 @@
+systemd".
+
+Task 4: Configure sysvinit service
+Description Task 4: Configure a sysvinit service script for each service in the `service_list` variable using a template (`sysvinit.j2`). The script will be created at `/etc/init.d/{{ item.name }}` with permissions 0755. This task only executes if `ansible_service_mgr` is "sysvinit", "upstart", or "openrc

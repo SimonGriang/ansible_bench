@@ -1,0 +1,42 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import the assert.yml file to perform preconditions checks. This task should only run once and is delegated to localhost.
+
+Task 2: Install mysql
+Description Task 2: Install MySQL using the package module. This task will notify handlers to set the root password and re-exec the daemon.
+
+Task 3: Configure mysql server
+Description Task 3: Configure the MySQL server by modifying the server configuration file using the ini_file module. The task iterates over the options defined in the variable mysql_configuration_options and notifies a handler to restart the MySQL server if changes are made.
+
+Task 4: Configure mysql client
+Description Task 4: Configure the MySQL client by setting the socket option in the client configuration file using the ini_file module.
+
+Task 5: Initialize mysql
+Description Task 5: Initialize MySQL on specific distributions (Alpine and Archlinux) using a command that creates the MySQL data directory.
+
+Task 6: Start and enable mysql
+Description Task 6: Start and enable the MySQL service using the service module. This task ensures the MySQL service is running and set to start on boot.
+
+Task 7: Flush handlers
+Description Task 7: Flush any pending handlers to ensure they are executed immediately.
+
+Task 8: Place my.cnf
+Description Task 8: Place the my.cnf file in the root user's home directory using a template. The mode is set to 0640.
+
+Task 9: Create databases
+Description Task 9: Create MySQL databases based on the list provided in the variable mysql_databases. The task uses a loop, and conditions are set to ensure that databases are only created if initial_import is not defined.
+
+Task 10: List databases
+Description Task 10: List existing databases using the mysql_info module. The result is registered in the mysql_info variable.
+
+Task 11: Import database
+Description Task 11: Import databases that are flagged for initial import in the mysql_databases variable. The task ensures the database does not already exist before importing.
+
+Task 12: Create users
+Description Task 12: Create MySQL users based on the list provided in the variable mysql_users. The task uses a loop and ensures user creation only if the mysql_users variable is defined.
+
+Task 13: Flush handlers again
+Description Task 13: Flush any pending handlers again to ensure all are executed.

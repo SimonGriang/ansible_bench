@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Install dirmngr.
+Description Task 1: Ensure the `dirmngr` package is installed, as it's a dependency for gnupg.
+
+Task 2: Add Ansible PPA repository.
+Description Task 2: Add the Ansible PPA repository to the system and update the apt cache. The repository URL is 'ppa:ansible/ansible'.
+
+Task 3: Install Ansible package.
+Description Task 3: Install the Ansible package using the `apt` module. The package state is determined by the `ansible_package_state` variable.

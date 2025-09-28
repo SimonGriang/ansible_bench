@@ -1,0 +1,42 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the assert.yml file to run validation tasks. This step is executed only once and runs on localhost.
+
+Task 2: Install apache httpd  
+Description Task 2: Install the Apache HTTP server as defined by the variable httpd_packages.
+
+Task 3: Configure selinux  
+Description Task 3: Modify SELinux settings if SELinux is enabled. This includes setting sebooleans to true and allowing connections to custom ports.
+
+Task 4: Configure httpd  
+Description Task 4: Use a Jinja2 template to configure the Apache HTTP server. Notify handlers to test the configuration validity and restart the service.
+
+Task 5: Activate httpd module | Debian  
+Description Task 5: Use a2enmod command to activate specified HTTPD modules on Debian-based systems. Notify handlers to test the configuration validity.
+
+Task 6: Import ssl.yml  
+Description Task 6: Import ssl.yml tasks if https_ssl_enable is true.
+
+Task 7: Import locations.yml  
+Description Task 7: Import locations.yml tasks if httpd_locations is defined.
+
+Task 8: Import vhosts.yml  
+Description Task 8: Import vhosts.yml tasks if httpd_vhosts is defined.
+
+Task 9: Configure ports  
+Description Task 9: Use a template to configure ports for Apache HTTP server. Notify handlers to test the configuration validity and restart the service on Debian and Suse systems.
+
+Task 10: Import directories.yml  
+Description Task 10: Import directories.yml tasks if httpd_directories is defined.
+
+Task 11: Flush handlers  
+Description Task 11: Flush all pending handlers.
+
+Task 12: Removing default html  
+Description Task 12: Remove the default HTML file from the Apache HTTP server data directory if httpd_remove_example is true.
+
+Task 13: Start and enable httpd  
+Description Task 13: Start and enable the Apache HTTP server service as defined by the variable httpd_service.

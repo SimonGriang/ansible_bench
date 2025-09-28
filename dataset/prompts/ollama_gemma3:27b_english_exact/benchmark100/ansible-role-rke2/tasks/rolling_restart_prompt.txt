@@ -1,0 +1,4 @@
+Service (re)started" handler.
+
+Task 3: Wait for all nodes to be ready.
+Description Task 3: Wait for all nodes in the RKE2 cluster to be in a "Ready

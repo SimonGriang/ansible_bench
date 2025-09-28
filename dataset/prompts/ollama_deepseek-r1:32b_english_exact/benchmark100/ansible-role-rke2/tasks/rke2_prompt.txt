@@ -1,0 +1,57 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Download RKE2 installation script  
+Description Task 1: Download the RKE2 installation script from a remote URL and set appropriate permissions, but only when not in airgap mode.  
+
+Task 2: Copy local RKE2 installation script  
+Description Task 2: Copy the local RKE2 installation script to the target directory when in airgap mode and using the 'copy' implementation.  
+
+Task 3: Create RKE2 artifacts folder  
+Description Task 3: Create the RKE2 artifacts directory with specific permissions when in airgap mode and the implementation is not 'exists'.  
+
+Task 4: Download RKE2 checksum and artifacts  
+Description Task 4: Download RKE2 checksum, artifacts, and install script in airgap mode. If remote download fails, download locally and push to remote hosts.  
+
+Task 5: Copy local RKE2 artifacts  
+Description Task 5: Copy local RKE2 artifacts to the target directory when in airgap mode and using the 'copy' implementation.  
+
+Task 6: Airgap mode - additional images tarballs  
+Description Task 6: Create a directory for additional images tarballs and copy them when in airgap mode and additional tarballs are specified.  
+
+Task 7: Airgap mode - ensure artifacts exist and have acceptable permissions  
+Description Task 7: Check and set permissions for RKE2 artifacts and install script when in airgap mode and using the 'exists' implementation.  
+
+Task 8: Populate service facts  
+Description Task 8: Gather service facts to be used later in the playbook.  
+
+Task 9: Get stats of the FS object  
+Description Task 9: Get file system statistics for the /usr/local directory.  
+
+Task 10: Check if separate partition  
+Description Task 10: Verify if /usr/local is on a separate partition by checking /proc/mounts.  
+
+Task 11: Set RKE2 bin path  
+Description Task 11: Determine the correct RKE2 binary path based on file system writeable status and partition check.  
+
+Task 12: Check RKE2 version  
+Description Task 12: Check the installed and running versions of RKE2 and compare them.  
+
+Task 13: Set RKE2 versions  
+Description Task 13: Set facts for installed and running RKE2 versions from the version check output.  
+
+Task 14: Prevent accidental RKE2 downgrade  
+Description Task 14: Assert that RKE2 version downgrade is allowed only if explicitly permitted.  
+
+Task 15: Run RKE2 install script  
+Description Task 15: Run the RKE2 install script with appropriate environment variables based on airgap mode.  
+
+Task 16: Copy Custom Manifests  
+Description Task 16: Copy custom manifests to the RKE2 server manifests directory if any are specified.  
+
+Task 17: Copy Static Pods  
+Description Task 17: Copy static pods to the RKE2 agent pod-manifests directory if any are specified.  
+
+Task 18: Copy RKE2 environment file  
+Description Task 18: Copy the RKE2 environment file to the appropriate location if environment options are defined.

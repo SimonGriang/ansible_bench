@@ -1,0 +1,4 @@
+vault" in the shell history. Set the file permissions to 0644, owner to root, and group to root.
+
+Task 4: Configure SELinux / AppArmor.
+Description Task 4: First, if `vault_hardening_configure_selinux_apparmor` is true and SELinux is enabled (`ansible_selinux.status == "enabled"`), install the `selinux-policy` package and set the SELinux policy to `targeted` and state to `enforcing`. Second, if AppArmor is enabled (`ansible_apparmor.status == "enabled

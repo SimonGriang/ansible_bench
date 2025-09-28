@@ -1,0 +1,18 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert tasks
+Description Task 1: Import the `assert.yml` task file to perform initial checks and validations. This task should run only once and delegate execution to the localhost.
+
+Task 2: Install docker-compose using a package manager
+Description Task 2: Install the `docker-compose` package using the system's package manager. This task should only execute if the variable `docker_compose_installation_type` is set to `package`.
+
+Task 3: Install docker-compose as a binary
+Description Task 3: Install `docker-compose` as a binary if the `docker_compose_installation_type` variable is set to `binary`. This task includes a block with two sub-tasks: installing required packages and downloading the binary itself.
+
+Task 4: Install required packages for binary installation
+Description Task 4: Install the packages specified in the `docker_compose_binary_required_packages` variable, which are necessary for the binary installation. This is a subtask within the binary installation block.
+
+Task 5: Download and install docker-compose binary
+Description Task 5: Download the `docker-compose` binary from the URL specified in the `docker_compose_url` variable and place it in `/usr/local/bin/`. The file should have execute permissions (mode 0755). This is a subtask within the binary installation block.

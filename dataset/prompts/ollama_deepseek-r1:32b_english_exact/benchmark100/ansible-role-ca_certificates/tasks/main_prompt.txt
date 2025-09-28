@@ -1,0 +1,13 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Install ca_certificates  
+Description Task 1: Install the ca_certificates package using the package manager. This task ensures that the ca_certificates package is installed on the system. The package name is specified by the variable ca_certificates_packages.  
+
+Task 2:  
+Description Task 2:  
+
+Task 3:  
+Description Task 3:  
+...

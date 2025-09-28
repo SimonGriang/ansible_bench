@@ -1,0 +1,33 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Check for python3.11 EXTERNALLY-MANAGED file existence.
+Description Task 1: Use the `stat` module to check if the `/usr/lib/python3.11/EXTERNALLY-MANAGED` file exists and register the result in the `externally_managed_file_py311` variable.
+
+Task 2: Rename python3.11 EXTERNALLY-MANAGED file if it exists.
+Description Task 2: Use the `command` module to rename the `/usr/lib/python3.11/EXTERNALLY-MANAGED` file to `/usr/lib/python3.11/EXTERNALLY-MANAGED.old` if it exists, using the `creates` argument to prevent re-running if the destination file already exists. The task should be conditional based on the `externally_managed_file_py311` variable.
+
+Task 3: Check for python3.12 EXTERNALLY-MANAGED file existence.
+Description Task 3: Use the `stat` module to check if the `/usr/lib/python3.12/EXTERNALLY-MANAGED` file exists and register the result in the `externally_managed_file_py312` variable.
+
+Task 4: Rename python3.12 EXTERNALLY-MANAGED file if it exists.
+Description Task 4: Use the `command` module to rename the `/usr/lib/python3.12/EXTERNALLY-MANAGED` file to `/usr/lib/python3.12/EXTERNALLY-MANAGED.old` if it exists, using the `creates` argument to prevent re-running if the destination file already exists. The task should be conditional based on the `externally_managed_file_py312` variable.
+
+Task 5: Import assert tasks.
+Description Task 5: Import tasks from the `assert.yml` file, executing them only once and delegating the execution to `localhost`.
+
+Task 6: Install python pip.
+Description Task 6: Install the python pip packages defined in the `python_pip_packages` variable, ensuring they are present.
+
+Task 7: Configure pip proxy.
+Description Task 7: Configure the pip proxy by adding the `index-url` option to the `global` section of the `/etc/pip.conf` file, using the `python_pip_proxy` variable. This task is conditional and only runs if `python_pip_proxy` is defined.
+
+Task 8: Trust hosts.
+Description Task 8: Configure trusted hosts for pip by adding the `trusted-host` option to the `global` section of the `/etc/pip.conf` file, using the `python_pip_trusted_host` variable. This task is conditional and only runs if `python_pip_trusted_host` is defined.
+
+Task 9: Update pip.
+Description Task 9: Update pip itself using the `pip` module, with the package name taken from `python_pip_pip_package` and the desired state from `python_pip_pip_state`. The task is conditional and should not run on Debian bookworm/noble or Alpine systems.
+
+Task 10: Install requested modules.
+Description Task 10: Install a list of python modules defined in the `python_pip_modules` variable using the `pip` module. The task is conditional and should not run on Debian bookworm/noble or Alpine systems. It loops through the modules and uses the `name`, `state`, and `version` attributes of each module. It also uses a label for each iteration.

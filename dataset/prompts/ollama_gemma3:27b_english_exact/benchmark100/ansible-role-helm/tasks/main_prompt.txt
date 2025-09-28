@@ -1,0 +1,15 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Check if the Helm binary exists.
+Description Task 1: Check if the Helm binary exists at the path defined by the `helm_bin_path` variable using the `stat` module and register the result in the `helm_check` variable.
+
+Task 2: Check Helm version.
+Description Task 2: Execute the `helm version` command using the `command` module and register the output in the `helm_existing_version` variable.  `failed_when` and `changed_when` are set to `false` to prevent errors if Helm is not yet installed.
+
+Task 3: Download helm.
+Description Task 3: Download the Helm binary from the specified URL using the `unarchive` module. The archive is downloaded to `/tmp`, and the `remote_src` option is used. The download only happens if the Helm binary does not exist (based on `helm_check.stat.exists`) or if the currently installed version does not match the desired `helm_version`. The downloaded archive's name uses the variables `helm_repo_path`, `helm_version`, `helm_platform`, and `helm_arch`. The result of the download is registered in the `helm_download` variable.
+
+Task 4: Copy helm binary into place.
+Description Task 4: Copy the downloaded Helm binary from `/tmp` to the final destination defined by `helm_bin_path`. The `become: true` option is used to elevate privileges. This task only executes if the `helm_download` task resulted in a change. The source path uses variables `helm_platform` and `helm_arch`. The destination path uses the variable `helm_bin_path`. The file is copied with mode `0755`. The `remote_src: true` option is used.

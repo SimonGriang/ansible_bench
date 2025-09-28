@@ -181,9 +181,13 @@ class PromptOperationManager(BaseOperationManager):
                 # Ansonsten invoke_prompt_chain mit den zurückgegebenen Parametern aufrufen
                 raw_outputs = self.invoke_prompt_chain(template, pb_str)
                 
-                print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
-                cleaned_outputs = self.clean_text(raw_outputs)
-                print(f"___________________________________________Cleaned LLM Output:___________________________________________ \n{cleaned_outputs}")
+                print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs.content}")
+                
+                if self.model_name == "gpt-oss:20b":
+                    cleaned_outputs = raw_outputs.content    
+                else: 
+                    cleaned_outputs = self.clean_text(raw_outputs)
+                    print(f"___________________________________________Cleaned LLM Output:___________________________________________ \n{cleaned_outputs}")
 
                 t1 = time.perf_counter()
 
@@ -212,6 +216,9 @@ class PromptOperationManager(BaseOperationManager):
         if isinstance(raw_output, AIMessage):
             raw_output = raw_output.content
 
+        if self.model_name == "deepseek-r1:32b":
+            raw_output = re.sub(r"<think>.*?</think>", "", raw_output, flags=re.DOTALL)
+            
         if '"' in raw_output:
             raw_output = raw_output.split('"', 1)[1]  
         raw_output = raw_output.lstrip()
@@ -307,7 +314,7 @@ class BenchmarkOperationManager(BaseOperationManager):
             if isinstance(raw_output, AIMessage):
                 raw_output = raw_output.content
             
-            if self.model_name == "deepseek-r1:14b":
+            if self.model_name == "deepseek-r1:32b":
                 raw_output = re.sub(r"<think>.*?</think>", "", raw_output, flags=re.DOTALL)
 
             # remove everything before '---'

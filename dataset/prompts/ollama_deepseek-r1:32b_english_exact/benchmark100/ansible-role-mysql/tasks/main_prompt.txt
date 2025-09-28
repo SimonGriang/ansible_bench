@@ -1,0 +1,36 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import the assert.yml file to ensure environment requirements are met.
+
+Task 2: Install mysql
+Description Task 2: Install MySQL packages specified in the mysql_packages variable and notify handlers to set root password and restart systemd.
+
+Task 3: Configure mysql server
+Description Task 3: Configure the MySQL server by modifying the server configuration file with options from mysql_configuration_options.
+
+Task 4: Configure mysql client
+Description Task 4: Configure the MySQL client by modifying the client configuration file with specific socket settings.
+
+Task 5: Initialize mysql
+Description Task 5: Initialize the MySQL database, only if the distribution is Alpine or Archlinux.
+
+Task 6: Start and enable mysql
+Description Task 6: Start the MySQL service and enable it to start at boot.
+
+Task 7: Flush handlers
+Description Task 7: Flush any pending handlers to ensure all notified tasks are executed.
+
+Task 8: Place my.cnf
+Description Task 8: Place the my.cnf configuration file in the root directory using a template.
+
+Task 9: Create databases
+Description Task 9: Create MySQL databases based on the mysql_databases variable, including encoding, collation, and other specified options.
+
+Task 10: Create users
+Description Task 10: Create MySQL users with specified privileges, host access, and other options from the mysql_users variable.
+
+Task 11: Flush handlers again
+Description Task 11: Flush any pending handlers again to ensure all tasks are executed.

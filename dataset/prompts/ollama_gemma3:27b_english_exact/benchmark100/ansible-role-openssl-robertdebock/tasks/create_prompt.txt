@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: create ssl key
+Description Task 1: Create a private SSL key using the `community.crypto.openssl_privatekey` module. The key should be created at `{{ openssl_key_directory }}/{{ item.name }}.key` with permissions 600, owner `{{ openssl_file_owner }}`, and group `{{ openssl_file_group }}`.
+
+Task 2: create ssl csr
+Description Task 2: Create a Certificate Signing Request (CSR) using the `community.crypto.openssl_csr` module. The CSR should be created at `{{ openssl_csr_directory }}/{{ item.name }}.csr` using the previously created private key and a common name of `{{ item.common_name }}`. Set permissions to 640, owner `{{ openssl_file_owner }}`, and group `{{ openssl_file_group }}`.
+
+Task 3: create ssl certificates
+Description Task 3: Create a self-signed SSL certificate using the `community.crypto.x509_certificate` module. The certificate should be created at `{{ openssl_crt_directory }}/{{ item.name }}.crt` using the private key and CSR. Set permissions to 640, owner `{{ openssl_file_owner }}`, and group `{{ openssl_file_group }}`.
+
+Task 4: create PKCS#12 file
+Description Task 4: Create a PKCS#12 file using the `community.crypto.openssl_pkcs12` module. The file should be created at `{{ openssl_key_directory }}/{{ item.name }}.p12` with a friendly name of `{{ item.name }}` using the private key and certificate. Set permissions to 600, owner `{{ openssl_file_owner }}`, and group `{{ openssl_file_group }}`.
+
+Task 5: read private key
+Description Task 5: Read the content of the private key file using the `ansible.builtin.slurp` module. The key is located at `{{ openssl_key_directory }}/{{ item.name }}.key` and the content is registered to the variable `openssl_private_key`.
+
+Task 6: read certificate
+Description Task 6: Read the content of the SSL certificate file using the `ansible.builtin.slurp` module. The certificate is located at `{{ openssl_crt_directory }}/{{ item.name }}.crt` and the content is registered to the variable `openssl_certifcate`.
+
+Task 7: create combined private_key and certificate file
+Description Task 7: Create a combined file containing the private key and certificate using the `ansible.builtin.copy` module. The combined file should be created at `{{ openssl_key_directory }}/{{ item.name }}.keycrt` with permissions 600, owner `{{ openssl_file_owner }}`, and group `{{ openssl_file_group }}`. The content should be the decoded content of `openssl_private_key` followed by the decoded content of `openssl_certifcate`.

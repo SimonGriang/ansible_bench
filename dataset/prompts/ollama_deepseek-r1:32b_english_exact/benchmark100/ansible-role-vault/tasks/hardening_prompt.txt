@@ -1,0 +1,15 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Disable swap now and permanently
+Description Task 1: Disable swap immediately using swapoff -a if swap is detected (ansible_swaptotal_mb > 0). Then disable swap permanently by modifying the mount configuration.
+
+Task 2: Disable core dumps
+Description Task 2: Configure PAM limits to disable core dumps for all users by setting both hard and soft core limits to 0.
+
+Task 3: Disable Shell Command History
+Description Task 3: Configure the shell to ignore vault-related commands in the command history by creating a profile script (/etc/profile.d/vault.sh) with HISTIGNORE set to vault*.
+
+Task 4: Configure SELinux and AppArmor
+Description Task 4: Enable and configure SELinux by installing selinux-policy and setting the policy to targeted enforcing mode. Additionally, enable AppArmor enforcing for the vault binary if AppArmor is enabled.

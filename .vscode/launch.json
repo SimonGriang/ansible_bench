@@ -13,10 +13,9 @@
             "cwd": "${workspaceFolder}/src/ansible_bench_code",
             "args": [                
                 "-m", "gpt-oss:20b",
-                "-e", "ollama", "benchmark",
+                "-e", "ollama", "prompt",
                 "-d", "example",
                 "-tt", "exact",
-                "-p", "prompts/ollama_gpt-oss:20b_english_exact/example"
             ]
         }
     ]

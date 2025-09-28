@@ -1,0 +1,21 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Set the package state based on how Ansible is installed.  
+Description Task 1: Determine if the Ansible package should be present or absent based on the installation method specified.  
+
+Task 2: Set up Ansible on RedHat.  
+Description Task 2: Include tasks from setup-RedHat.yml when the OS family is RedHat, the distribution is not Fedora, and the installation method is package.  
+
+Task 3: Set up Ansible on Fedora.  
+Description Task 3: Include tasks from setup-Fedora.yml when the distribution is Fedora and the installation method is package.  
+
+Task 4: Set up Ansible on Ubuntu.  
+Description Task 4: Include tasks from setup-Ubuntu.yml when the distribution is Ubuntu and the installation method is package.  
+
+Task 5: Set up Ansible on Debian.  
+Description Task 5: Include tasks from setup-Debian.yml when the distribution is Debian and the installation method is package.  
+
+Task 6: Set up Ansible using Pip.  
+Description Task 6: Include tasks from setup-pip.yml when the installation method is pip.

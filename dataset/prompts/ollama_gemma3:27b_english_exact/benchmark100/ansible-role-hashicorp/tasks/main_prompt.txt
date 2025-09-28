@@ -1,0 +1,39 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import tasks from assert.yml, running only once on localhost.
+
+Task 2: Install using package
+Description Task 2: Begin a block to install Hashicorp products using a package manager, conditional on `hashicorp_installation_method` being "package".
+
+Task 3: Install repository for RedHat
+Description Task 3: Download the Hashicorp repository file for RedHat-based systems (RedHat, Rocky) and place it in /etc/yum.repos.d/hashicorp.repo with permissions 0640.
+
+Task 4: Configure debian
+Description Task 4: Begin a block to configure the Debian package manager, conditional on `ansible_os_family` being "Debian".
+
+Task 5: Install required package gpg
+Description Task 5: Install the `gpg` package on Debian systems.
+
+Task 6: Install apt key for Debian
+Description Task 6: Add the Hashicorp apt key to Debian systems, ignoring certificate validation.
+
+Task 7: Install repository for Debian
+Description Task 7: Add the Hashicorp apt repository to Debian systems, specifying the architecture using `hashicorp_architecture_mapping` and the distribution release.
+
+Task 8: Install hashicorp product using package
+Description Task 8: Begin a block to install Hashicorp products using the package manager, conditional on `hashicorp_products` being defined.
+
+Task 9: Install latest hashicorp product using package
+Description Task 9: Install the latest version of each Hashicorp product defined in `hashicorp_products`, looping through the list and setting a label for each product.
+
+Task 10: Install versioned hashicorp product using package
+Description Task 10: Install a specific version of each Hashicorp product defined in `hashicorp_products` (if a version is specified), looping through the list and setting a label for each product. The version is appended to the product name using the `version_coupler` variable.
+
+Task 11: Install manually
+Description Task 11: Begin a block to install Hashicorp products manually, conditional on `hashicorp_installation_method` being "manual".
+
+Task 12: Install hashicorp product manually
+Description Task 12: Unarchive each Hashicorp product defined in `hashicorp_products` to the destination directory with specified group, mode, and owner. The source is remote and defined by `hashicorp_src`.

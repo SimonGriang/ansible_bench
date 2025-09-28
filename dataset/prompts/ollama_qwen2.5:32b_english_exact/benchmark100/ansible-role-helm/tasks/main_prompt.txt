@@ -1,0 +1,15 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Check if Helm binary exists.
+Description Task 1: Use the `stat` module to check for the existence of the Helm binary at the path specified by `helm_bin_path`. Register the result in `helm_check`.
+
+Task 2: Check Helm version.
+Description Task 2: Execute the `command` module to run the `version` command on the Helm binary located at `helm_bin_path`. Capture the output, even if the command fails, and register the result in `helm_existing_version`.
+
+Task 3: Download helm.
+Description Task 3: Download the specified Helm version from the repository if the Helm binary does not exist or the existing version does not match the desired version. Register the result in `helm_download` and ensure the download only occurs under the specified conditions.
+
+Task 4: Copy helm binary into place.
+Description Task 4: Copy the downloaded Helm binary to the specified path, `helm_bin_path`, with the correct permissions. This task should only execute if the previous download task modified the system (i.e., `helm_download` is changed) and require elevated privileges to execute.

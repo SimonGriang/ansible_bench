@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Run preflight checks
+Description Task 1: Execute the `preflight.yml` tasks file to perform preliminary checks before installation. Tag this with `promtail_install` and `promtail`.
+
+Task 2: Install promtail
+Description Task 2: Execute the `install.yml` tasks file to install the promtail package. Use privilege escalation (`become: True`) and tag this with `promtail_install` and `promtail`.
+
+Task 3: Start and enable promtail service
+Description Task 3: Ensure the promtail systemd service (defined by the variable `promtail_systemd_service`) is started and enabled. Use privilege escalation (`become: True`), reload the systemd daemon, and tag this with `promtail_run` and `promtail`.

@@ -1,0 +1,48 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create local ssh_key_directory for {{ user.name }}  
+Description Task 1: Create a directory on the local machine to store the user's SSH private key, using the path stored in the variable `users_ssh_key_directory`. The directory should have mode `0750` and be created only if the user's `manage_ssh_key` flag is defined and true. This task is delegated to `localhost` and does not require privilege escalation.  
+
+Task 2: Manage user {{ user.name }}  
+Description Task 2: Ensure the user exists or is absent according to `user.state` (defaulting to `present`). The task sets the user's comment, home creation, password, uid, group, groups, shell, and other attributes using the corresponding keys in the `user` dictionary. The result is registered as `users_manage_user`.  
+
+Task 3: Set sudo options for {{ user.name }}  
+Description Task 3: Render the sudoers template `sudo.j2` into `/etc/sudoers.d/{{ user.name | replace(".", "dot") }}` with mode `0640`. The file is validated with `/usr/sbin/visudo --check --file %s`. This task runs only when `user.sudo_options` is defined.  
+
+Task 4: Remove sudo options for {{ user.name }}  
+Description Task 4: Delete the sudoers file `/etc/sudoers.d/{{ user.name | replace(".", "dot") }}` when `user.sudo_options` is not defined.  
+
+Task 5: Generate private ssh key for {{ user.name }}  
+Description Task 5: Generate a private SSH key file at `{{ users_ssh_key_directory }}/{{ user.name }}` by executing the command stored in `users_ssh_keygen_command`. The key is created only if `user.manage_ssh_key` is defined and true. The task is delegated to `localhost` and does not require privilege escalation.  
+
+Task 6: Generate public ssh key for {{ user.name }}  
+Description Task 6: Generate the public key corresponding to the private key and write it to `{{ users_ssh_key_directory }}/{{ user.name }}.pub` by executing the command in `users_ssh_keygen_pubkey_command`. This runs only if `user.manage_ssh_key` is true and is delegated to `localhost`.  
+
+Task 7: Convert ssh key to ppk for {{ user.name }}  
+Description Task 7: Convert the private SSH key to PuTTY PPK format using `ssh-keygen -e` and write the result to `{{ users_ssh_key_directory }}/{{ user.name }}.ppk`. The conversion occurs only when `user.manage_ssh_key` is true and is performed on the local machine.  
+
+Task 8: Get or set the home directory for {{ user.name }}  
+Description Task 8: Retrieve the user's home directory from the system using `getent passwd`. If the user is not found, default to `/home`. The base directory is stored in the variable `users_home_base_dir`.  
+
+Task 9: Create .ssh directory for {{ user.name }}  
+Description Task 9: Ensure the `.ssh` directory exists inside the user's home directory (`{{ users_home_base_dir }}/{{ user.name }}/.ssh`) with mode `0700`. The task runs only when `user.manage_ssh_key` or `user.private_keys` are defined, and it is performed as the user (`become_user: "{{ user.name }}"`).  
+
+Task 10: Deploy authorized keys for {{ user.name }}  
+Description Task 10: Add each SSH key listed in `user.authorized_keys` to the user's `authorized_keys` file using `ansible.posix.authorized_key`. This task runs only if `user.authorized_keys` is defined.  
+
+Task 11: Remove unauthorized keys for {{ user.name }}  
+Description Task 11: Remove each SSH key listed in `user.unauthorized_keys` from the user's `authorized_keys` file using `ansible.posix.authorized_key`. The task runs only if `user.unauthorized_keys` is defined.  
+
+Task 12: Copy generated private ssh key for {{ user.name }}  
+Description Task 12: Copy the locally generated private key from `{{ users_ssh_key_directory }}/{{ user.name }}` to the user's `~/.ssh/id_rsa` with mode `400`, owned by the user. This occurs only when `users_manage_user` is defined and `user.copy_private_key` is true.  
+
+Task 13: Check users password valid time for {{ user.name }}  
+Description Task 13: Retrieve the maximum password age for the user from `/etc/shadow` using an `awk` command, storing the result in `users_pw_valid`. The task is skipped when the user is absent.  
+
+Task 14: Set users password valid time for {{ user.name }}  
+Description Task 14: Update the user's maximum password age to the value specified in `user.password_validity_days` using `chage -M`. The command runs only when the current value differs from the desired value.  
+
+Task 15: Place private key file for {{ user.name }}  
+Description Task 15: Write each private key defined in `user.private_keys` into the user's `~/.ssh` directory with mode `400`, owned by the user, using the content provided in each key definition. This task runs only when `user.private_keys` is defined.

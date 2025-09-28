@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Remove old Docker packages.
+Description Task 1: Ensure any obsolete Docker packages defined in the `docker_obsolete_packages` variable are removed from the system.
+
+Task 2: Add Docker GPG key.
+Description Task 2: Add the Docker GPG key specified in the `docker_yum_gpg_key` variable to the system. This task is conditional and only runs if the `docker_add_repo` variable is true.
+
+Task 3: Add Docker repository.
+Description Task 3: Download the Docker repository file from the URL specified in `docker_yum_repo_url` and save it to `/etc/yum.repos.d/docker-{{ docker_edition }}.repo` with appropriate ownership and permissions. This task is conditional and only runs if the `docker_add_repo` variable is true.
+
+Task 4: Configure Docker Nightly repo.
+Description Task 4: Enable the Docker Nightly repository section (`docker-{{ docker_edition }}-nightly`) in the `/etc/yum.repos.d/docker-{{ docker_edition }}.repo` file using the value of the `docker_yum_repo_enable_nightly` variable. This task is conditional and only runs if the `docker_add_repo` variable is true.
+
+Task 5: Configure Docker Test repo.
+Description Task 5: Enable the Docker Test repository section (`docker-{{ docker_edition }}-test`) in the `/etc/yum.repos.d/docker-{{ docker_edition }}.repo` file using the value of the `docker_yum_repo_enable_test` variable. This task is conditional and only runs if the `docker_add_repo` variable is true.
+
+Task 6: Configure containerd on RHEL 8.
+Description Task 6: A block of tasks to configure containerd on RHEL 8 systems. This block is conditional and only runs if the `ansible_facts.distribution_major_version` is equal to 8.
+    - Ensure runc is uninstalled.
+    - Ensure container-selinux is installed.
+    - Ensure containerd.io is installed.

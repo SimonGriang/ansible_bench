@@ -1,0 +1,36 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: server | Ensure /etc/openvpn/easy-rsa exists  
+Description Task 1: Create the directory /etc/openvpn/easy-rsa with mode 0755 if it does not exist.
+
+Task 2: server | Easyrsa init-pki  
+Description Task 2: Initialize the PKI structure using easyrsa init-pki in the /etc/openvpn/easy-rsa directory.
+
+Task 3: server | Easyrsa build-ca  
+Description Task 3: Generate the Certificate Authority (CA) using easyrsa build-ca with nopass, in batch mode.
+
+Task 4: server | Easyrsa gen-dh  
+Description Task 4: Generate the Diffie-Hellman parameters using easyrsa gen-dh in the /etc/openvpn/easy-rsa directory.
+
+Task 5: server | Easyrsa build-server-full server nopass  
+Description Task 5: Generate the server certificate and key using easyrsa build-server-full with nopass, in batch mode.
+
+Task 6: server | Easyrsa build-client-full client nopass  
+Description Task 6: Generate the client certificate and key using easyrsa build-client-full with nopass, in batch mode.
+
+Task 7: server | Easyrsa gen-crl  
+Description Task 7: Generate the Certificate Revocation List (CRL) using easyrsa gen-crl in the /etc/openvpn/easy-rsa directory.
+
+Task 8: server | Openvpn --genkey --secret /etc/openvpn/easy-rsa/pki/ta.key  
+Description Task 8: Generate the TLS Authentication (ta) key using openvpn --genkey --secret.
+
+Task 9: server | Copy files to /etc/openvpn/server  
+Description Task 9: Copy specific files from /etc/openvpn/easy-rsa/pki to /etc/openvpn/server with mode 0640.
+
+Task 10: server | Copy files to /etc/openvpn  
+Description Task 10: Copy ca.crt and ta.key from /etc/openvpn/easy-rsa/pki to /etc/openvpn with mode 0640.
+
+Task 11: server | Place server.conf  
+Description Task 11: Place the server.conf configuration file using a template, set appropriate ownership and permissions, and notify the Restart openvpn handler.

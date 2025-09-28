@@ -1,0 +1,42 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the assert.yml file to perform prerequisite checks. This task runs once and is delegated to localhost.
+
+Task 2: Install apache httpd  
+Description Task 2: Install the Apache HTTP server using the package manager with the specified package names defined in the httpd_packages variable.
+
+Task 3: Configure selinux  
+Description Task 3: Configure SELinux settings for Apache HTTPD. This includes modifying SELinux booleans and allowing connections to custom ports if SELinux is enabled.
+
+Task 4: Configure httpd  
+Description Task 4: Configure the Apache HTTP server using a template file. The template is copied from the source path to the destination path with the specified file mode, and it triggers handlers to test the configuration and restart the service.
+
+Task 5: Activate httpd module | Debian  
+Description Task 5: Activate Apache HTTPD modules on Debian-based systems using the a2enmod command. This task loops through the list of modules defined in httpd_modules_to_activate_with_command.
+
+Task 6: Import ssl.yml  
+Description Task 6: Import the ssl.yml file to configure SSL settings if the https_ssl_enable variable is set to true.
+
+Task 7: Import locations.yml  
+Description Task 7: Import the locations.yml file to configure HTTP locations if the httpd_locations variable is defined.
+
+Task 8: Import vhosts.yml  
+Description Task 8: Import the vhosts.yml file to configure virtual hosts if the httpd_vhosts variable is defined.
+
+Task 9: Configure ports  
+Description Task 9: Configure Apache HTTPD ports using a template file. This task is only executed on Debian and SUSE operating systems.
+
+Task 10: Import directories.yml  
+Description Task 10: Import the directories.yml file to configure HTTP directories if the httpd_directories variable is defined.
+
+Task 11: Flush handlers  
+Description Task 11: Flush all pending handlers to ensure that any triggered actions are executed immediately.
+
+Task 12: Removing default html  
+Description Task 12: Remove the default HTML file from the Apache HTTPD data directory if the httpd_remove_example variable is set to true.
+
+Task 13: Start and enable httpd  
+Description Task 13: Start the Apache HTTPD service and ensure it is enabled to start on boot using the specified service name from the httpd_service variable.

@@ -1,0 +1,63 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Imports the assert.yml tasks file, running it only once on localhost.
+
+Task 2: Pre-configure debian systems
+Description Task 2: Pre-configures postfix on Debian systems using debconf, setting the mailer type to "No configuration".
+
+Task 3: Install postfix
+Description Task 3: Installs the postfix package.
+
+Task 4: Install postfix-mysql
+Description Task 4: Installs the postfix-mysql package if virtual mailbox maps or domains are configured to use mysql.
+
+Task 5: Configure postfix (transport_maps)
+Description Task 5: Configures the transport_maps file from a template, notifies handlers for validation and database rebuild, if the template is defined.
+
+Task 6: Configure postfix (header_checks)
+Description Task 6: Configures the header_checks file from a template, notifies handlers for validation and postfix reload, if the template is defined.
+
+Task 7: Setting values for main.cf (1/2)
+Description Task 7: Sets facts for use in the main.cf template, conditionally based on variable definitions.
+
+Task 8: Setting values for main.cf (2/2)
+Description Task 8: Sets more facts for use in the main.cf template, handling lists, strings, and default values.
+
+Task 9: Configure postfix (main.cf)
+Description Task 9: Configures the main.cf file from a template, validates the configuration, and notifies handlers for validation and postfix restart.
+
+Task 10: Configure postfix (master.cf)
+Description Task 10: Configures the master.cf file from a template, validates the configuration, and notifies handlers for validation and postfix restart.
+
+Task 11: Creates cert/key directory
+Description Task 11: Creates the directory for the TLS certificate and key if defined.
+
+Task 12: Deploy Postfix TLS server certificate
+Description Task 12: Deploys the TLS server certificate from a source file.
+
+Task 13: Deploy Postfix TLS server key
+Description Task 13: Deploys the TLS server key from a source file.
+
+Task 14: Flush handlers
+Description Task 14: Flushes all registered handlers.
+
+Task 15: Configure aliases
+Description Task 15: Configures postfix aliases from a list of aliases.
+
+Task 16: Configure sender_access
+Description Task 16: Configures the sender_access file with entries from a defined list.
+
+Task 17: Configure recipient_access
+Description Task 17: Configures the recipient_access file with entries from a defined list.
+
+Task 18: Place sasl_password_map
+Description Task 18: Creates or updates the sasl_password_map file with the provided content.
+
+Task 19: Flush handlers again
+Description Task 19: Flushes all registered handlers.
+
+Task 20: Start and enable postfix
+Description Task 20: Starts and enables the postfix service.

@@ -1,0 +1,36 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Includes the tasks defined in the assert.yml file, running it only once on localhost.
+
+Task 2: Install requirements
+Description Task 2: Installs the bash package to ensure necessary tools are available.
+
+Task 3: Install openjdk java (package)
+Description Task 3: Installs the OpenJDK Java package using the package manager, if the java_vendor is set to "openjdk". Sets the USE environment variable to exclude certain features.
+
+Task 4: Install RPM
+Description Task 4: Installs a local Oracle Java RPM package if java_source is "local" and java_format is "rpm". Copies the RPM file to /tmp/ first.
+
+Task 5: Install DEB
+Description Task 5: Installs a local Oracle Java DEB package if java_source is "local" and java_format is "deb". Copies the DEB file to /tmp/ first.
+
+Task 6: Install oracle java (rpm) (repository)
+Description Task 6: Installs Oracle Java using the package manager, if java_source is "repository" and java_format is "rpm".
+
+Task 7: Configure oracle targz
+Description Task 7: Configures and installs Oracle Java from a targz archive if java_format is "targz" and java_vendor is "oracle". Ensures the installation directory exists and extracts the archive.
+
+Task 8: Install oracle java policy software (targz)
+Description Task 8: Installs the Java Cryptography Extension (JCE) policy files from a zip archive, if java_jce is true, java_version is 8 and java_vendor is "oracle".
+
+Task 9: Set alternative (targz)
+Description Task 9: Sets the system-wide Java alternative using the `alternatives` command, if java_format is "targz", the ansible distribution is not Alpine, and java_vendor is "oracle".
+
+Task 10: Find JAVA_HOME
+Description Task 10: Determines the JAVA_HOME directory by resolving the symlink to /usr/bin/java and extracting the parent directory.
+
+Task 11: Set JAVA_HOME in /etc/environment
+Description Task 11: Sets the JAVA_HOME environment variable in the /etc/profile.d/java_home.sh file, creating the file if it doesn't exist.

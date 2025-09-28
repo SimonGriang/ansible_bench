@@ -1,0 +1,15 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Install epel  
+Description Task 1: Install the EPEL repository on supported Amazon and RedHat distributions. This task runs only when the host is Amazon 2 or a RedHat family system with major version 7, 8, or 9. It contains a block that adds the EPEL GPG key, installs the epel-release package, and optionally installs the epel-next-release package if the variable `epel_next` is true. Each package installation notifies the handler `Update package cache`.
+
+Task 2: Install epel gpg key  
+Description Task 2: Add the EPEL GPG key to the system using the `ansible.builtin.rpm_key` module. The key URL is provided by the variable `epel_gpg_key`, and the state is set to `present`.
+
+Task 3: Install epel-release  
+Description Task 3: Install the epel-release package from the URL specified by the variable `epel_url` using the `ansible.builtin.package` module. The package state is set to `present`, and this task notifies the handler `Update package cache`.
+
+Task 4: Install epel-next-release  
+Description Task 4: When the variable `epel_next` is true, install the epel-next-release package from the URL specified by `epel_next_url` using the `ansible.builtin.package` module. The package state is set to `present`, and this task also notifies the handler `Update package cache`.

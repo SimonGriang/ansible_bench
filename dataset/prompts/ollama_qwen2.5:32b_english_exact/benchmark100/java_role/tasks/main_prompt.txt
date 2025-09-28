@@ -1,0 +1,9 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Include a task file named 'install_openjdk.yml' to install OpenJDK implementation.  
+Description Task 1: This task includes the 'install_openjdk.yml' file to handle the installation of the OpenJDK implementation. It should be tagged with 'install'.
+
+Task 2: Include a task file named 'import_certs.yml' to import certificates into Java Keystore, but only if the variable 'java_certs' is defined.  
+Description Task 2: This task includes the 'import_certs.yml' file to import certificates into the Java Keystore. However, it should only execute if the variable 'java_certs' is defined. It should be tagged with 'certs'.

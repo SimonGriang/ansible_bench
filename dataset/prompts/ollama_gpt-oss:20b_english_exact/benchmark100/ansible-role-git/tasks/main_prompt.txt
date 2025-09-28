@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the `assert.yml` task file once, delegating the import to `localhost` and ensuring it runs only once across all hosts.  
+
+Task 2: Install git  
+Description Task 2: Use the `ansible.builtin.package` module to install all packages listed in the variable `git_packages`, ensuring the state is `present`.  
+
+Task 3: See if the specified user exists  
+Description Task 3: Use the `ansible.builtin.getent` module to query the `passwd` database for the key `git_username`, storing the result in `getent_passwd`. The task should only run when `git_username` is defined, and it should not fail if the key is missing (`fail_key: false`).  
+
+Task 4: Create directory for git configuration  
+Description Task 4: Create the directory `/home/{{ git_username }}` with mode `0755`, setting the owner to `git_username` and group to `git_groupname` (if defined). This task should run only when the user exists (`getent_passwd` is defined and `getent_passwd[git_username] != none`).  
+
+Task 5: Place git configuration  
+Description Task 5: Use the `ansible.builtin.template` module to render `gitconfig.j2` to `/home/{{ git_username }}/.gitconfig` with mode `0644`. The task should run only when `git_user_email`, `git_user_name`, and `git_username` are defined, and when the user exists (`getent_passwd[git_username] != none`).  
+
+Task 6: Create repository_destination  
+Description Task 6: Create the directory specified by `git_repository_destination` with mode `0750`, setting the owner to `git_username` and group to `git_groupname` (if defined). This task should run only when `git_username`, `git_repository_destination` are defined, and when the user exists (`getent_passwd[git_username] != none`).  
+
+Task 7: Clone all roles  
+Description Task 7: Loop over the list `git_repositories` and clone each repository into the destination `{{ git_repository_destination }}/{{ item.dest }}` using `ansible.builtin.git`. Use `accept_hostkey: true`, set the branch or tag with `item.version` (defaulting to `HEAD`), and force clone with `item.force` (defaulting to `git_force`). The task should run as the user `git_username`, be executed with privilege escalation (`become: true`), and only run when `git_repositories`, `git_repository_destination`, and `git_username` are defined, and when the user exists (`getent_passwd[git_username] != none`). The loop control label should display `item.dest`.

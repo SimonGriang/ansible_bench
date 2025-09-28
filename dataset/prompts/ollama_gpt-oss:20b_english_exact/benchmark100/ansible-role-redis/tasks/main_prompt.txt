@@ -1,0 +1,18 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the task file `assert.yml` to perform prerequisite checks. Run this task only once and delegate it to `localhost`.  
+
+Task 2: Enable redis module stream (RHEL 8)  
+Description Task 2: On RedHat family systems with major version 8, use the `dnf` module to enable the `redis` package state to `enabled`.  
+
+Task 3: Install redis  
+Description Task 3: Install the Redis packages specified in the variable `redis_packages` using the `package` module, ensuring the packages are present.  
+
+Task 4: Configure redis  
+Description Task 4: Use the `template` module to generate the Redis configuration file from the template `redis.conf-{{ ansible_distribution }}.j2`. Place the file at `{{ redis_configuration_directory }}/{{ redis_configuration_file }}` with ownership `{{ redis_owner }}`/`{{ redis_group }}` and mode `{{ redis_mode }}`. Notify the handler `Restart redis` to restart the service if the configuration changes.  
+
+Task 5: Start and enable redis  
+Description Task 5: Start the Redis service named `{{ redis_service }}` and enable it to start on boot using the `service` module.

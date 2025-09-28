@@ -1,0 +1,63 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: This task imports an assert file to verify certain conditions at the beginning of the playbook execution.
+
+Task 2: Pre-configure debian systems
+Description Task 2: This task pre-configures Debian systems by setting the postfix main mailer type to "No configuration" using debconf.
+
+Task 3: Install postfix
+Description Task 3: This task installs the postfix package to set up the mail server.
+
+Task 4: Install postfix-mysql
+Description Task 4: This task installs the postfix-mysql package if any of the postfix virtual mailbox maps or domains use MySQL.
+
+Task 5: Configure postfix (transport_maps)
+Description Task 5: This task configures postfix by rendering a template for the transport maps file and notifies handlers to validate the configuration and rebuild the transport_maps database if the template is defined.
+
+Task 6: Configure postfix (header_checks)
+Description Task 6: This task configures postfix by rendering a template for the header checks file and notifies handlers to validate the configuration and reload postfix if the template is defined.
+
+Task 7: Setting values for main.cf (1/2)
+Description Task 7: This task sets fact values for parts of the main.cf configuration, specifically for smtpd recipient and sender restrictions.
+
+Task 8: Setting values for main.cf (2/2)
+Description Task 8: This task sets fact values for the remaining parts of the main.cf configuration, including mynetworks, mydestination, relay domains, and more.
+
+Task 9: Configure postfix (main.cf)
+Description Task 9: This task configures postfix by rendering a template for the main.cf file with validation and notifies handlers to validate the configuration and restart postfix.
+
+Task 10: Configure postfix (master.cf)
+Description Task 10: This task configures postfix by rendering a template for the master.cf file with validation and notifies handlers to validate the configuration and restart postfix.
+
+Task 11: Creates cert/key directory
+Description Task 11: This task creates directories for cert and key files for postfix TLS if the respective sources are defined.
+
+Task 12: Deploy Postfix TLS server certificate
+Description Task 12: This task deploys the TLS server certificate for postfix and notifies the handler to reload postfix if the source file is defined.
+
+Task 13: Deploy Postfix TLS server key
+Description Task 13: This task deploys the TLS server key for postfix and notifies the handler to reload postfix if the source file is defined.
+
+Task 14: Flush handlers
+Description Task 14: This task flushes any pending handlers to ensure all configuration changes are applied.
+
+Task 15: Configure aliases
+Description Task 15: This task configures aliases for postfix by updating the alias file and notifies handlers to rebuild the alias database and reload postfix.
+
+Task 16: Configure sender_access
+Description Task 16: This task configures sender access by updating the sender access file and notifies handlers to rebuild the sender access database and reload postfix.
+
+Task 17: Configure recipient_access
+Description Task 17: This task configures recipient access by updating the recipient access file and notifies handlers to validate the configuration, rebuild the recipient access database, and reload postfix.
+
+Task 18: Place sasl_password_map
+Description Task 18: This task places the sasl_password_map file for postfix and notifies the handler to rebuild the sasl_password_map database if the content is defined.
+
+Task 19: Flush handlers again
+Description Task 19: This task flushes any pending handlers again to ensure all configuration changes are applied.
+
+Task 20: Start and enable postfix
+Description Task 20: This task ensures that the postfix service is started and enabled on boot.

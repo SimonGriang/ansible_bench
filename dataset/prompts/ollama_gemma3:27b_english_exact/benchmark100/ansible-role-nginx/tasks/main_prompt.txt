@@ -1,0 +1,21 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import tasks from the `assert.yml` file. This task should run only once and delegate execution to localhost.
+
+Task 2: Install nginx
+Description Task 2: Install the `nginx` package, ensuring it is present on the target system.
+
+Task 3: Place nginx.conf
+Description Task 3: Place the `nginx.conf` template file, located at `nginx.conf.j2`, to the destination `/etc/nginx/nginx.conf` with permissions `0644`. Validate the configuration using `nginx -t -c %s` and notify the `Restart nginx` handler.
+
+Task 4: Ensure /etc/nginx/conf.d exists
+Description Task 4: Ensure the directory `/etc/nginx/conf.d` exists with permissions `0755`.
+
+Task 5: Place default.conf
+Description Task 5: Place the `default.conf` template file, located at `default.conf.j2`, to the destination `/etc/nginx/conf.d/default.conf` with permissions `0644`. Notify the `Restart nginx` handler.
+
+Task 6: Start and enable nginx
+Description Task 6: Start the `nginx` service and enable it to start on boot.

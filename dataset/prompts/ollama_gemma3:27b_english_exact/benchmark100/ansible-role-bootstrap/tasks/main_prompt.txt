@@ -1,0 +1,18 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import the tasks defined in the `assert.yml` file. Run this task only once and delegate it to localhost.
+
+Task 2: Wait for port to be available
+Description Task 2: Wait for a specific port (defined by `ansible_port`, defaulting to 22) to become available with a timeout defined by `bootstrap_timeout`. This task should not use privilege escalation and should only execute if `ansible_connection` is defined, not a container connection type, and `bootstrap_wait_for_host` is true.
+
+Task 3: Prepare system
+Description Task 3: Perform initial system preparation. This includes testing the connection and verifying sudo access. This task should not use privilege escalation. Use a `rescue` block to gather bootstrap facts and install bootstrap packages if initial tests fail.
+
+Task 4: Gather ansible facts
+Description Task 4: Gather facts about the target system using the `setup` module. This task should not use privilege escalation.
+
+Task 5: Install bootstrap packages (package)
+Description Task 5: Install a list of bootstrap packages using the `package` module. The packages are defined in the `bootstrap_facts_packages` variable, split into a list. Use `bootstrap_become` to determine if privilege escalation is required.

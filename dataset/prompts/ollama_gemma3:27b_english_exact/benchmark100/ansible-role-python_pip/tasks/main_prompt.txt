@@ -1,0 +1,21 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import the `assert.yml` tasks file to perform initial checks and validations. Run this task only once on localhost.
+
+Task 2: Install python pip
+Description Task 2: Install the python pip package using the package manager. The package name is determined by the `python_pip_packages` variable.
+
+Task 3: Configure pip proxy
+Description Task 3: Configure the pip proxy settings in `/etc/pip.conf` under the `global` section. The `index-url` option is set to the value of the `python_pip_proxy` variable. Only run this task if the `python_pip_proxy` variable is defined. Set file permissions to 0644.
+
+Task 4: Trust hosts
+Description Task 4: Configure trusted hosts for pip in `/etc/pip.conf` under the `global` section. The `trusted-host` option is set to the value of the `python_pip_trusted_host` variable. Only run this task if the `python_pip_trusted_host` variable is defined. Set file permissions to 0644.
+
+Task 5: Update pip
+Description Task 5: Update the pip package itself using the `pip` module. The package name is determined by `python_pip_pip_package` and state by `python_pip_pip_state`. The `python_pip_executable` variable defines the path to the pip executable. Skip this task on Debian bookworm, noble, and Alpine systems.
+
+Task 6: Install requested modules
+Description Task 6: Install a list of python modules using the `pip` module. Loop through the `python_pip_modules` list and install each module. The module state and version can be defined in the list. The `python_pip_executable` variable defines the path to the pip executable. Skip this task on Debian bookworm, noble, and Alpine systems. Use the module name as the label for the loop.

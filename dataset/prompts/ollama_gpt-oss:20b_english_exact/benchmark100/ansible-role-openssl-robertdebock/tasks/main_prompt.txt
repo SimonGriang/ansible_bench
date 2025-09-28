@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the tasks from `assert.yml` once, delegating the import to the localhost so that the assertions run only on the control node.
+
+Task 2: Install requirements  
+Description Task 2: Use the `package` module to install all packages specified in the `openssl_requirements` variable, ensuring each package is present on the target host.
+
+Task 3: Install pip packages  
+Description Task 3: Use the `pip` module to install the Python packages listed in `openssl_pip_packages`, but only when the list contains at least one element.
+
+Task 4: Create key directory  
+Description Task 4: Create a directory for private keys at the path defined by `openssl_key_directory`, setting it to state `directory`, permissions `700`, and assigning the owner and group from `openssl_file_owner` and `openssl_file_group`.
+
+Task 5: Create csr directory  
+Description Task 5: Create a directory for certificate signing requests at the path defined by `openssl_csr_directory`, setting it to state `directory`, permissions `755`, and assigning the owner and group from `openssl_file_owner` and `openssl_file_group`.
+
+Task 6: Create crt directory  
+Description Task 6: Create a directory for certificates at the path defined by `openssl_crt_directory`, setting it to state `directory`, permissions `755`, and assigning the owner and group from `openssl_file_owner` and `openssl_file_group`.
+
+Task 7: Include create.yml  
+Description Task 7: Include the tasks from `create.yml` for each element in the `openssl_items` list, labeling each loop iteration with the item's `name`, but only when `openssl_items` is defined and contains one or more items.

@@ -1,0 +1,42 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the `assert.yml` file once on the localhost to perform pre‑check assertions before any other actions are taken.  
+
+Task 2: Install requirements  
+Description Task 2: Ensure the `bash` package is present on the target system using the system package manager, so that shell utilities required by later tasks are available.  
+
+Task 3: Install openjdk java (package)  
+Description Task 3: Install the OpenJDK Java package defined by the variable `java_openjdk_package` when the variable `java_vendor` is set to `"openjdk"`. The installation should use the system package manager and set the environment variable `USE` to `"X -cups -alsa -fontconfig"`.  
+
+Task 4: Install RPM  
+Description Task 4: When the source of Java is local (`java_source == "local"`) and the format is RPM (`java_format == "rpm"`), perform the following block:  
+- Copy the Oracle Java RPM file from the path stored in `java_package` to `/tmp/{{ java_package }}` with mode `0640`.  
+- Install the copied RPM file using the system package manager.  
+
+Task 5: Install DEB  
+Description Task 5: When the source of Java is local (`java_source == "local"`) and the format is DEB (`java_format == "deb"`), perform the following block:  
+- Copy the Oracle Java DEB file from the path stored in `java_package` to `/tmp/{{ java_package }}` with mode `0640`.  
+- Install the copied DEB file using the `apt` module with the `deb` option.  
+
+Task 6: Install oracle java (rpm) (repository)  
+Description Task 6: Install the Oracle Java RPM package from a repository when the source is a repository (`java_source == "repository"`) and the format is RPM (`java_format == "rpm"`). The package name is defined by `java_oracle_package`.  
+
+Task 7: Configure oracle targz  
+Description Task 7: When the format is `targz` and the vendor is `oracle`, perform the following block:  
+- Ensure the directory specified by `java_install_directory` exists with mode `0755`.  
+- Unarchive the Oracle Java tar.gz package located at `java_oracle_package` into `java_install_directory` with mode `0755`.  
+
+Task 8: Install oracle java policy software (targz)  
+Description Task 8: When the Java JCE policy is required (`java_jce` is true), the Java version is 8 (`java_version == 8`), and the vendor is `oracle`, unarchive the `jce_policy-8.zip` file into `java_install_directory` with mode `0755`.  
+
+Task 9: Set alternative (targz)  
+Description Task 9: When the format is `targz`, the distribution is not Alpine (`ansible_distribution != "Alpine"`), and the vendor is `oracle`, configure the system alternatives for Java by linking `/usr/bin/java` to the Java executable located at `{{ java_install_directory }}/{{ java_oracle_directory }}/bin/java`.  
+
+Task 10: Find JAVA_HOME  
+Description Task 10: Execute a shell command that resolves the full path of the Java binary by following symlinks and trimming the `/bin/java` suffix, storing the result in the variable `java_home`. The command should not report changes and should run in check mode.  
+
+Task 11: Set JAVA_HOME in /etc/environment  
+Description Task 11: Create or update the file `/etc/profile.d/java_home.sh` to export the `JAVA_HOME` environment variable with the value obtained from `java_home.stdout`. Ensure the file is created with mode `0644` and the line starts with `export JAVA_HOME=`.

@@ -1,0 +1,21 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import the assert.yml file to perform assertions. This task should run once and delegate to localhost.
+
+Task 2: Install logrotate
+Description Task 2: Ensure that the logrotate package is installed using the package name defined in the variable logrotate_packages.
+
+Task 3: Configure logrotate
+Description Task 3: Use a template file to configure logrotate. The source file is defined in the variable logrotate_config_file with a .j2 extension, and the destination is within the directory defined by logrotate_config_directory, with the file mode set to 0644.
+
+Task 4: Generate logrotate.d files
+Description Task 4: Generate individual logrotate configuration files under the logrotate.d directory for each item in the logrotate_entries list, provided the item is defined and its state is not explicitly set to "absent". Use the template file named entry.j2 and set the file mode to 0644.
+
+Task 5: Remove logrotate.d files
+Description Task 5: Remove individual logrotate configuration files from the logrotate.d directory for each item in the logrotate_entries list, if the item is defined and its state is explicitly set to "absent".
+
+Task 6: Start logrotate
+Description Task 6: Start and enable the logrotate service as defined by the variables logrotate_service_state and logrotate_service_enabled, but only if the logrotate_service variable is not empty.

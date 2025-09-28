@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create an SSL private key file with specified permissions and ownership.
+Description Task 1: This task creates an SSL private key file in the specified directory with a mode of 600 and sets the owner and group according to variables.
+
+Task 2: Create an SSL certificate signing request (CSR) with specified permissions and ownership.
+Description Task 2: This task creates an SSL CSR file in the specified directory with a mode of 640, using the previously created private key and setting the owner and group according to variables.
+
+Task 3: Create an SSL certificate using the CSR and private key with specified permissions and ownership.
+Description Task 3: This task creates an SSL certificate in the specified directory with a mode of 640, using the previously created CSR and private key and setting the owner and group according to variables.
+
+Task 4: Create a PKCS#12 file using the private key and certificate with specified permissions and ownership.
+Description Task 4: This task creates a PKCS#12 file in the specified directory with a mode of 600, using the previously created private key and certificate and setting the owner and group according to variables.
+
+Task 5: Read the content of the private key file.
+Description Task 5: This task reads the content of the private key file and registers it under the variable name `openssl_private_key`.
+
+Task 6: Read the content of the SSL certificate file.
+Description Task 6: This task reads the content of the SSL certificate file and registers it under the variable name `openssl_certifcate`.
+
+Task 7: Combine the private key and certificate content into a single file.
+Description Task 7: This task creates a new file that combines the content of the private key and certificate, with specified permissions and ownership, using the contents read in the previous tasks.

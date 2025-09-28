@@ -1,0 +1,4 @@
+.j2" extension.
+
+Task 3: Copy kube-vip load balancer manifests to first server
+Description Task 3: Copies the `kube-vip-cloud-*.j2` template files to the `rke2_data_path}/server/manifests` directory on the target server, setting ownership to root and permissions to 0664. This task is conditional and only executes if the variable `rke2_kubevip_cloud_provider_enable` is set to true. The destination filename is derived from the source filename by removing the ".j2

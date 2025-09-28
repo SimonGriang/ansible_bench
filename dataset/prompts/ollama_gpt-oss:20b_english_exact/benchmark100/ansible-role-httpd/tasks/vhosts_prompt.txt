@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create docroot  
+Description Task 1: Use the `ansible.builtin.file` module to create a directory for each virtual host's `documentroot` defined in the `httpd_vhosts` list. The directory should have mode `0755`. This task should only run when `httpd_vhosts` is defined, the current item has a defined `documentroot`, and either `item.create_docroot` is not defined or it evaluates to true.  
+
+Task 2: Configure vhosts  
+Description Task 2: Use the `ansible.builtin.template` module to copy the template file specified by the variable `vhost_conf_template` to the path `{{ httpd_vhosts_directory }}/{{ item.name }}.conf`. The file should have mode `0644`. Iterate over the `httpd_vhosts` list and notify the handlers `Test httpd configuration validity` and `Restart httpd`.  
+
+Task 3: Enable vhosts  
+Description Task 3: Use the `ansible.builtin.command` module to run `a2ensite {{ item.name }}` for each virtual host, creating the file `{{ httpd_vhosts_enabled_directory }}/{{ item.name }}.conf` if it does not already exist. This task should only execute on Debian family systems (`ansible_os_family == 'Debian'`) and should notify the same handlers as Task 2.

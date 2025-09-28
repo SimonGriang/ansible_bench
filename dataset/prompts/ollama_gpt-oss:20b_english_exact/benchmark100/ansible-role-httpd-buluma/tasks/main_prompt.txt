@@ -1,0 +1,42 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the `assert.yml` task file once, delegate the import to `localhost`, and run it only once across all hosts.  
+
+Task 2: Install apache httpd  
+Description Task 2: Use the package module to install all packages listed in the `httpd_packages` variable, ensuring they are present.  
+
+Task 3: Configure selinux  
+Description Task 3: If SELinux is enabled, modify the boolean settings specified in `httpd_sebooleans` (setting each to true and persistent), and allow connections to the custom `httpd_port` and the optional `httpd_ssl_port` by adding the appropriate SELinux port entries.  
+
+Task 4: Configure httpd  
+Description Task 4: Render the HTTPD configuration file from the template path in `httpd_config_src` to the destination `httpd_config_dest` with mode `0644`, and notify the handlers `Test httpd configuration validity` and `Restart httpd`.  
+
+Task 5: Activate httpd module | Debian  
+Description Task 5: On Debian systems, enable each module listed in `httpd_modules_to_activate_with_command` using the `a2enmod` command, mark the task as unchanged when the command reports no change, and notify the `Test httpd configuration validity` handler.  
+
+Task 6: Import ssl.yml  
+Description Task 6: Import the `ssl.yml` task file only when the variable `https_ssl_enable` evaluates to true.  
+
+Task 7: Import locations.yml  
+Description Task 7: Import the `locations.yml` task file only when the variable `httpd_locations` is defined.  
+
+Task 8: Import vhosts.yml  
+Description Task 8: Import the `vhosts.yml` task file only when the variable `httpd_vhosts` is defined.  
+
+Task 9: Configure ports  
+Description Task 9: Render the ports configuration file from the template `{{ httpd_ports_conf }}.j2` to the path `{{ httpd_server_root }}/{{ httpd_ports_conf }}` with mode `0644`, and notify the handlers `Test httpd configuration validity` and `Restart httpd`, but only on Debian or Suse families.  
+
+Task 10: Import directories.yml  
+Description Task 10: Import the `directories.yml` task file only when the variable `httpd_directories` is defined.  
+
+Task 11: Flush handlers  
+Description Task 11: Flush all pending handlers so that any notified handlers run immediately.  
+
+Task 12: Removing default html  
+Description Task 12: Remove the default `index.html` file located at `{{ httpd_data_directory }}/index.html` when the variable `httpd_remove_example` is true.  
+
+Task 13: Start and enable httpd  
+Description Task 13: Ensure the service named in `httpd_service` is started and enabled to start at boot.

@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Remove old Docker apt key file.
+Description Task 1: Remove the file `/etc/apt/trusted.gpg.d/docker.asc` if it exists.
+
+Task 2: Remove old Docker source list file.
+Description Task 2: Remove the old Docker apt source list file from `/etc/apt/sources.list.d/` based on the `docker_apt_ansible_distribution` variable.
+
+Task 3: Remove obsolete Docker packages.
+Description Task 3: Ensure any obsolete Docker packages defined in the `docker_obsolete_packages` variable are uninstalled.
+
+Task 4: Remove legacy Docker repository file.
+Description Task 4: Remove the legacy Docker repository file located at `/etc/apt/sources.list.d/docker.list` if it exists.
+
+Task 5: Install Docker dependencies.
+Description Task 5: Install the required dependencies: `apt-transport-https`, `ca-certificates`, and `python3-debian` using the `apt` module.
+
+Task 6: Manage Docker repository.
+Description Task 6: Add or remove the Docker repository using the `deb822_repository` module, configuring it with the `docker_apt_filename`, `docker_repo_url`, `ansible_facts.distribution`, `ansible_facts.distribution_release`, `docker_apt_release_channel`, and `docker_apt_gpg_key` variables. The repository state is controlled by the `docker_add_repo` variable and triggers the `apt update` handler when changed.
+
+Task 7: Flush handlers.
+Description Task 7: Flush the registered handlers using the `meta` module to immediately update the apt cache after the repository is added or removed.

@@ -1,0 +1,48 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Ensure unzip package is available  
+Description Task 1: Installs the `unzip` package using the `package` module, ensuring it is present and updating the cache based on the `promtail_apt_update_cache` variable.  
+
+Task 2: Create promtail group  
+Description Task 2: Creates a system group named by `{{ promtail_system_group }}` using the `group` module, only if the group is not `root`.  
+
+Task 3: Create the promtail user  
+Description Task 3: Creates a system user named by `{{ promtail_system_user }}` with the primary group `{{ promtail_system_group }}`, additional groups from `{{ promtail_user_additional_groups }}`, no home directory, and a nologin shell, only if the user is not `root`.  
+
+Task 4: Ensure /usr/local/bin exists  
+Description Task 4: Creates the `/usr/local/bin` directory with `0755` permissions using the `file` module.  
+
+Task 5: Create config directories  
+Description Task 5: Creates the directories `{{ promtail_config_dir }}`, `{{ promtail_config_file_sd_dir }}`, and `{{ promtail_positions_directory }}` with `0770` permissions, owned by root and the group `{{ promtail_system_group }}`, using a loop.  
+
+Task 6: Create application dirs  
+Description Task 6: Creates the directories `{{ promtail_install_dir }}` and `{{ promtail_install_dir }}/{{ promtail_version }}` with `0755` permissions, owned by `{{ promtail_system_user }}` and the group `{{ promtail_system_group }}`, using `with_items`.  
+
+Task 7: Check promtail binary  
+Description Task 7: Uses the `stat` module to check if the promtail binary exists at `{{ promtail_install_dir }}/{{ promtail_version }}/promtail-linux-{{ go_arch }}` and registers the result as `promtail_binary`.  
+
+Task 8: Download promtail binaries  
+Description Task 8: Downloads the promtail archive from `{{ promtail_dist_url }}` to the temporary directory using `get_url`, forcing the download and verifying the checksum (either `promtail_custom_checksum` or `__promtail_checksum`), only if the binary does not exist, no local binary directory is specified, and propagation is disabled.  
+
+Task 9: Propagate locally distributed promtail archive  
+Description Task 9: Copies the locally distributed promtail archive from `{{ promtail_binary_local_dir }}` to the temporary directory using `copy`, setting mode `0755` and ownership to root, only if the binary does not exist, a local binary directory is specified, and propagation is disabled.  
+
+Task 10: Download promtail binaries to controller node  
+Description Task 10: Downloads the promtail archive to the controller node (localhost) using `get_url` with the same URL, destination, and checksum logic, delegating the task to `localhost`, running once, only if propagation is enabled.  
+
+Task 11: Propagate promtail binaries  
+Description Task 11: Copies the downloaded promtail archive from the temporary directory to the same location using `copy`, setting mode `0755`, only if propagation is enabled.  
+
+Task 12: Unpack promtail binaries  
+Description Task 12: Unarchives the promtail zip file from the temporary directory to `{{ promtail_install_dir }}/{{ promtail_version }}` using the `unarchive` module, creating the binary if it does not exist, setting permissions to `0755`, and allowing remote source; ignores errors in check mode.  
+
+Task 13: Create symlink to latest version  
+Description Task 13: Creates a symbolic link `/usr/local/bin/promtail` pointing to the latest promtail binary `{{ promtail_install_dir }}/{{ promtail_version }}/promtail-linux-{{ go_arch }}` with `0755` permissions, notifying the `Restart promtail` handler, and ignoring errors in check mode.  
+
+Task 14: Write config  
+Description Task 14: Templates the promtail configuration file from `config.j2` to `{{ promtail_config_file }}` with ownership root and group `{{ promtail_system_group }}`, permissions `0644`, validating the syntax with `/usr/local/bin/promtail -config.file %s -check-syntax`, and notifying the `Restart promtail` handler.  
+
+Task 15: Create systemd service unit  
+Description Task 15: Templates the systemd service unit from `{{ promtail_systemd_service_template_file }}` to `/etc/systemd/system/{{ promtail_systemd_service }}.service` with permissions `0644`, notifying the `Restart promtail` handler.

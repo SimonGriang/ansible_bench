@@ -1,0 +1,51 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Install Keepalived when HA mode is enabled  
+Description Task 1: Include tasks from keepalived.yml when rke2_api_ip is defined, inventory_hostname is in the rke2_servers_group_name group, rke2_ha_mode and rke2_ha_mode_keepalived are enabled.  
+
+Task 2: Download and install RKE2 {{ rke2_version }}  
+Description Task 2: Include tasks from rke2.yml to download and install RKE2 with the specified version.  
+
+Task 3: CIS Hardening  
+Description Task 3: Include tasks from cis.yml when rke2_cis_profile is defined and has a length greater than zero.  
+
+Task 4: Find Active Server  
+Description Task 4: Include tasks from find_active_server.yml to determine the active server in the cluster.  
+
+Task 5: Enable IPVS kernel module  
+Description Task 5: Use modprobe to enable the ip_vs kernel module when rke2_kubevip_ipvs_lb_enable is enabled, inventory_hostname is in the rke2_servers_group_name group, rke2_ha_mode and rke2_ha_mode_kubevip are enabled, and rke2_ha_mode_keepalived is not enabled.  
+
+Task 6: Copy kube-vip manifests to the masternode  
+Description Task 6: Include tasks from kubevip.yml when inventory_hostname is the first host in the rke2_servers_group_name group, rke2_ha_mode and rke2_ha_mode_kubevip are enabled, and rke2_ha_mode_keepalived is not enabled.  
+
+Task 7: Copy ingress-nginx manifests to the masternode  
+Description Task 7: Include tasks from ingress-nginx.yml when inventory_hostname is the first host in the rke2_servers_group_name group and rke2_ingress_nginx_values is defined and has a length greater than zero.  
+
+Task 8: Prepare very first server node in the cluster  
+Description Task 8: Include tasks from first_server.yml when inventory_hostname is the first host in the rke2_servers_group_name group and either active_server is not defined or the rke2_cluster_group_name group has only one node.  
+
+Task 9: Restore etcd specific tasks  
+Description Task 9: Include tasks from first_server_restore.yml when active_server is defined, inventory_hostname is either the active_server or the first host in the rke2_servers_group_name group, and either do_etcd_restore or do_etcd_restore_from_s3 is defined.  
+
+Task 10: Download kubeconfig to ansible localhost  
+Description Task 10: Include tasks from download_kubeconfig.yaml when rke2_download_kubeconf is enabled and inventory_hostname is the first host in the rke2_servers_group_name group.  
+
+Task 11: Prepare and join remaining nodes of the cluster  
+Description Task 11: Include tasks from remaining_nodes.yml when active_server is defined and the rke2_cluster_group_name group has at least two nodes.  
+
+Task 12: Rolling cordon and drain restart when version changes - servers  
+Description Task 12: Include tasks from rolling_restart.yml for each host in the rke2_servers_group_name group when the current host matches, installed_version is defined and not equal to "not installed", rke2_version is defined, and rke2_version is different from running_version.  
+
+Task 13: Rolling cordon and drain restart when version changes - agents  
+Description Task 13: Include tasks from rolling_restart.yml for each host in the rke2_agents_group_name group when the current host matches, inventory_hostname is not in the rke2_servers_group_name group, installed_version is defined and not equal to "not installed", rke2_version is defined, and rke2_version is different from running_version.  
+
+Task 14: Flush handlers  
+Description Task 14: Flush all pending handlers to ensure all notifications are sent immediately.  
+
+Task 15: Rolling restart when config files change  
+Description Task 15: Include tasks from change_config.yml for each host in the rke2_cluster_group_name group when the current host matches and rke2_restart_needed is enabled.  
+
+Task 16: Final steps  
+Description Task 16: Include tasks from summary.yml to perform final steps after all previous tasks are completed.

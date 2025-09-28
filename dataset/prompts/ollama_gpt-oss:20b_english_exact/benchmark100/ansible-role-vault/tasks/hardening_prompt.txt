@@ -1,0 +1,16 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Disable swap  
+Description Task 1: Use the variable `vault_hardening_disable_swap` to conditionally execute a block that first disables swap immediately with the `ansible.builtin.command` module (`cmd: swapoff -a`) when `ansible_swaptotal_mb > 0`, then permanently removes the swap entry using the `ansible.posix.mount` module with `name: swap` and `state: absent`.
+
+Task 2: Disable core dumps  
+Description Task 2: When `vault_hardening_disable_core_dumps` is true, loop over two items using the `community.general.pam_limits` module to set both hard and soft limits for core dumps to 0 for all domains (`domain: '*'`). The loop items should include `limit_type`, `limit_item: core`, and `value: 0`, and the loop control label should be the limit item.
+
+Task 3: Disable Shell Command History  
+Description Task 3: If `vault_hardening_disable_shell_command_history` is true, copy a file to `/etc/profile.d/vault.sh` with the `ansible.builtin.copy` module, setting its content to `export HISTIGNORE="&:vault*"`, mode `0644`, owner `root`, and group `root`.
+
+Task 4: Configure SELinux / AppArmor  
+Description Task 4: Create a block that first checks if `vault_hardening_configure_selinux_apparmor` is true and `ansible_selinux.status == "enabled"`. Inside that, install the `selinux-policy` package using `ansible.builtin.package`, then set SELinux policy to `targeted` and state to `enforcing` with `ansible.posix.selinux`.  
+Then, outside the SELinux sub‑block, add a task that runs `aa-enforce /etc/apparmor.d/usr.bin.vault` using `ansible.builtin.command` when `ansible_apparmor.status == "enabled"`.

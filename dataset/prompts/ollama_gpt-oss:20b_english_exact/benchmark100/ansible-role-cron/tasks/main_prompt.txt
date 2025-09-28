@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook‑level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the `assert.yml` task file to validate required variables using `ansible.builtin.import_tasks`. Set `run_once: true` and `delegate_to: localhost` so the assertions run only once on the control node.
+
+Task 2: Install cron  
+Description Task 2: Install the cron packages specified in the variable `cron_packages` with the package module, ensuring they are present on the target system.
+
+Task 3: Configure shell  
+Description Task 3: Add or update the `SHELL` directive in the cron configuration file located at `cron_configuration`. Use `ansible.builtin.lineinfile` to set the line to `SHELL={{ cron_shell }}`, create the file if missing, set mode to `0600`, and notify the `Restart cron` handler when the file changes.
+
+Task 4: Configure path  
+Description Task 4: Add or update the `PATH` directive in the cron configuration file at `cron_configuration`. Set the line to `PATH={{ cron_path }}`, create the file if missing, set mode to `0600`, and notify the `Restart cron` handler on changes.
+
+Task 5: Configure mailto  
+Description Task 5: Add or update the `MAILTO` directive in the cron configuration file at `cron_configuration`. Set the line to `MAILTO={{ cron_mailto }}`, create the file if missing, set mode to `0600`, and notify the `Restart cron` handler when modified.
+
+Task 6: Start and enable cron  
+Description Task 6: Start and enable the cron service named by `cron_service` using the service module. Execute this task only when `cron_service` is defined and has a non‑empty value.
+
+Task 7: Schedule requested cron jobs  
+Description Task 7: Create or remove cron jobs defined in the list `cron_jobs`. Loop over each item, using `ansible.builtin.cron` to set the job name, minute, hour, day, month, weekday, special_time, job command, state (defaulting to `present`), and user (if provided). Use `loop_control` to label each iteration with the job name, and run this task only if `cron_jobs` is defined.

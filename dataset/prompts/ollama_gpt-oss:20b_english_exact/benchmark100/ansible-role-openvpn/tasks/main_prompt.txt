@@ -1,0 +1,15 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the file `assert.yml` using `ansible.builtin.import_tasks`, set `run_once` to `true` and delegate the task to `localhost`.  
+
+Task 2: Install openvpn packages  
+Description Task 2: Use `ansible.builtin.package` to install the packages listed in the variable `openvpn_packages`, ensuring they are present.  
+
+Task 3: Setup openvpn server or client  
+Description Task 3: Include the tasks file named after the variable `openvpn_role` (e.g., `server.yml` or `client.yml`) using `ansible.builtin.include_tasks`.  
+
+Task 4: Start and enable openvpn  
+Description Task 4: Start and enable the service named in the variable `openvpn_service` using `ansible.builtin.service`, with `state` set to `started` and `enabled` set to `true`.

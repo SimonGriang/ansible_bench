@@ -1,0 +1,27 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the tasks file `assert.yml` using `ansible.builtin.import_tasks`, run only once, and delegate the import to the `localhost`.  
+
+Task 2: Install fail2ban  
+Description Task 2: Install the packages defined in the variable `fail2ban_packages` with the `ansible.builtin.package` module, ensuring they are present.  
+
+Task 3: Copy filters in filter.d  
+Description Task 3: Copy the path specified in `fail2ban_filterd_path` to `/etc/fail2ban/filter.d/` using `ansible.builtin.copy`, set owner to `root`, group to `root`, mode to `0640`. Only perform this action when `fail2ban_filterd_path` is defined, and notify the handler `Restart fail2ban`.  
+
+Task 4: Configure fail2ban.local  
+Description Task 4: Iterate over the combined list `fail2ban_base_configuration + fail2ban_configuration` using `community.general.ini_file` to write each item's `section`, `option`, and `value` into `/etc/fail2ban/fail2ban.local` with mode `0640`. Notify the handler `Restart fail2ban` and label each loop iteration with the `option` name.  
+
+Task 5: Configure jail.local  
+Description Task 5: Iterate over the combined list `fail2ban_base_jail_configuration + fail2ban_jail_configuration` using `community.general.ini_file` to write each item's `section`, `option`, and `value` into `/etc/fail2ban/jail.local` with mode `0640`. Notify the handler `Restart fail2ban` and label each loop iteration with the `option` name.  
+
+Task 6: Stat auth log file  
+Description Task 6: Check the existence of `/var/log/auth.log` with `ansible.builtin.stat` and register the result as `fail2ban_auth`.  
+
+Task 7: Touch auth log file  
+Description Task 7: Touch or create `/var/log/auth.log` with `ansible.builtin.file`, setting mode to `0640`, only if the file does not already exist (i.e., when `fail2ban_auth.stat.exists` is defined and false).  
+
+Task 8: Start and enable fail2ban  
+Description Task 8: Ensure the service named by `fail2ban_service` is started and enabled using `ansible.builtin.service`.

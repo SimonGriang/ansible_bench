@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Include the assert.yml task file, running it only once on localhost.
+
+Task 2: Configure apk
+Description Task 2: Configure the apk package manager. This includes updating the cache and upgrading all software if the system uses apk. The `Reboot` handler is notified after upgrade.
+
+Task 3: Configure apt
+Description Task 3: Configure the apt package manager. This includes preventing upgrades for a list of packages defined in `update_excluded_packages`, updating the cache and upgrading all software if the system uses apt. The `Reboot` handler is notified after upgrade. Includes apt autoremove if enabled.
+
+Task 4: Update all software (dnf)
+Description Task 4: Update all software using the dnf package manager, excluding packages listed in `update_excluded_packages`. The `Reboot` handler is notified after upgrade. This task is executed when the package manager is dnf or dnf5.
+
+Task 5: Update all software (pacman)
+Description Task 5: Update all software using the pacman package manager. The `Reboot` handler is notified after upgrade. This task is executed when the package manager is pacman.
+
+Task 6: Configure yum
+Description Task 6: Configure the yum package manager. This includes handling different versions of yum (6 vs others) and updating all software, excluding packages listed in `update_excluded_packages`. The `Reboot` handler is notified after upgrade.
+
+Task 7: Update all software (zypper)
+Description Task 7: Update all software using the zypper package manager. The `Reboot` handler is notified after upgrade. This task is executed when the package manager is zypper.

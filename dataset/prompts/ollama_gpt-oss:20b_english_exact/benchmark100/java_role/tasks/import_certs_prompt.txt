@@ -1,0 +1,18 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Java | Check if certificates exists  
+Description Task 1: Use the `stat` module to verify the existence of each certificate file specified in the `java_certs` list. The module should iterate over `java_certs` with `with_items`, checking the `java_cert_path` field of each item, and register the results in a variable named `check_java_certs`.  
+
+Task 2: Java | Fail if some cert doesn't exist  
+Description Task 2: Iterate over the `check_java_certs.results` list with `with_items` and use the `fail` module to abort the play if any certificate path does not exist. The failure message must include the missing path by referencing `item.item.java_cert_path`. The task should run only when `item.stat.exists` is false.  
+
+Task 3: Java | Setting keystore variables in java < 11  
+Description Task 3: Set the variable `java_keystore_dir` using `set_fact` based on the condition that `java_open_jdk_version_major` is less than 11. The value should be `java_keystore_dir` if it is already defined and not None; otherwise, it should fall back to `java_keystore_dir_old`.  
+
+Task 4: Java | Setting keystore variables in java >= 11  
+Description Task 4: Set the variable `java_keystore_dir` using `set_fact` based on the condition that `java_open_jdk_version_major` is greater than or equal to 11. The value should be `java_keystore_dir` if it is already defined and not None; otherwise, it should fall back to `java_keystore_dir_new`.  
+
+Task 5: Java | Import SSL certificates  
+Description Task 5: Import each SSL certificate into the Java keystore by iterating over the `java_certs` list with `with_items`. Use the `java_cert` module to add the certificate located at `item.java_cert_path` to the keystore at `{{ java_open_jdk_home }}/{{ java_keystore_dir }}/cacerts`, using the password `{{ java_cert_keystore_pass }}`. The certificate should be added with `state: present`, assigned the alias `{{ item.java_cert_alias }}`, and the keystore should be created if it does not exist (`keystore_create: true`).

@@ -1,0 +1,30 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import the tasks from assert.yml file, run once and delegate to localhost.
+
+Task 2: Uninstall conflicting systemd-logger
+Description Task 2: Remove the package systemd-logger if it exists.
+
+Task 3: Install rsyslog
+Description Task 3: Install the package(s) listed in the variable rsyslog_packages in the state defined by rsyslog_package_state.
+
+Task 4: Install additional rsyslog packages
+Description Task 4: Install additional rsyslog packages specified in the rsyslog_features list, using the state defined by rsyslog_package_state.
+
+Task 5: Configuring default rsyslog
+Description Task 5: Configure the default rsyslog configuration file using a template, based on the conditions defined by rsyslog_deploy_default_config, and notify the handler to restart rsyslog if the condition is met.
+
+Task 6: Make configuration directory
+Description Task 6: Create the directory /etc/rsyslog.d/ if it does not exist, with specific permissions.
+
+Task 7: Configuring rsyslog forward rule
+Description Task 7: Configure the rsyslog forward rule using a template, provided that rsyslog_deploy_default_config is not set, and notify the handler to restart rsyslog.
+
+Task 8: Configuring additional config files
+Description Task 8: Copy additional configuration files into the /etc/rsyslog.d/ directory from a dictionary variable rsyslog_rsyslog_d_files, validate the configuration if specified, and notify the handler to restart rsyslog.
+
+Task 9: Start and enable rsyslog
+Description Task 9: Ensure the rsyslog service is running and enabled at startup, based on the service name defined in the rsyslog_service variable.

@@ -1,0 +1,15 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Run assert tasks
+Description Task 1: Run the assert tasks defined in `assert.yml` on localhost, only once.
+
+Task 2: Install vsftpd package
+Description Task 2: Install the `vsftpd` package using the package manager.
+
+Task 3: Configure vsftpd using a template
+Description Task 3: Configure `vsftpd` by copying the template file `vsftpd.conf.j2` to the destination file specified by the variable `vsftpd_configuration_file`. Set the owner to root, group to root, and permissions to the value of `vsftpd_configuration_file_mode`. Notify the handler `Restart vsftpd` when the template changes.
+
+Task 4: Start and enable vsftpd service
+Description Task 4: Start the `vsftpd` service and enable it to start on boot.

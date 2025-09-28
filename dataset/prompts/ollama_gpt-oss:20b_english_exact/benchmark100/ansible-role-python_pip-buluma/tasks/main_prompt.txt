@@ -1,0 +1,33 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Check if python3.11 EXTERNALLY-MANAGED file exists  
+Description Task 1: Use ansible.builtin.stat to check for the existence of the file /usr/lib/python3.11/EXTERNALLY-MANAGED and register the result as externally_managed_file_py311.  
+
+Task 2: Rename python3.11 EXTERNALLY-MANAGED file if it exists  
+Description Task 2: Use ansible.builtin.command to move /usr/lib/python3.11/EXTERNALLY-MANAGED to /usr/lib/python3.11/EXTERNALLY-MANAGED.old, only when externally_managed_file_py311.stat.exists is true, and set the creates flag to /usr/lib/python3.11/EXTERNALLY-MANAGED.old.  
+
+Task 3: Check if python3.12 EXTERNALLY-MANAGED file exists  
+Description Task 3: Use ansible.builtin.stat to check for the existence of the file /usr/lib/python3.12/EXTERNALLY-MANAGED and register the result as externally_managed_file_py312.  
+
+Task 4: Rename python3.12 EXTERNALLY-MANAGED file if it exists  
+Description Task 4: Use ansible.builtin.command to move /usr/lib/python3.12/EXTERNALLY-MANAGED to /usr/lib/python3.12/EXTERNALLY-MANAGED.old, only when externally_managed_file_py312.stat.exists is true, and set the creates flag to /usr/lib/python3.12/EXTERNALLY-MANAGED.old.  
+
+Task 5: Import assert.yml  
+Description Task 5: Import tasks from the file assert.yml using ansible.builtin.import_tasks, set run_once to true, and delegate the execution to localhost.  
+
+Task 6: Install python pip  
+Description Task 6: Install the packages listed in the variable python_pip_packages using ansible.builtin.package, ensuring the state is present.  
+
+Task 7: Configure pip proxy  
+Description Task 7: Use community.general.ini_file to set the /etc/pip.conf file in the global section, adding the option index-url with the value from python_pip_proxy, mode 0644, only when python_pip_proxy is defined.  
+
+Task 8: Trust hosts  
+Description Task 8: Use community.general.ini_file to set the /etc/pip.conf file in the global section, adding the option trusted-host with the value from python_pip_trusted_host, mode 0644, only when python_pip_trusted_host is defined.  
+
+Task 9: Update pip.  
+Description Task 9: Use ansible.builtin.pip to update the pip package specified in python_pip_pip_package to the state defined in python_pip_pip_state (no linting for latest), using the executable from python_pip_executable if provided. Run this only when python_pip_update is true, the ansible_distribution_release is not in ["bookworm", "noble"], and ansible_os_family is not "Alpine".  
+
+Task 10: Install requested modules  
+Description Task 10: Use ansible.builtin.pip to install each module defined in the list python_pip_modules, setting the name, state (default present), and version if provided, using the executable from python_pip_executable if provided. Loop over python_pip_modules with loop_control labeling each item by item.name. Execute this only when ansible_distribution_release is not in ["bookworm", "noble"] and ansible_os_family is not "Alpine".

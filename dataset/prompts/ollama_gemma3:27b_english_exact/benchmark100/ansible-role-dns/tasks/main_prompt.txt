@@ -1,0 +1,39 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import the assert.yml tasks file to perform initial assertions. Run this task only once and delegate it to localhost.
+
+Task 2: Install dns
+Description Task 2: Install the DNS packages defined in the `dns_packages` variable.
+
+Task 3: Create directories
+Description Task 3: Create the DNS data and configuration directories with specified permissions, owner, and group. The directories are defined in the `dns_datadir` and `dns_confdir` variables.
+
+Task 4: Create group
+Description Task 4: Create the DNS group defined in the `dns_group` variable if it doesn't exist.
+
+Task 5: Create user
+Description Task 5: Create the DNS user defined in the `dns_owner` variable as a system user.
+
+Task 6: Generate rndc key
+Description Task 6: Generate the rndc key file using `rndc-confgen` and place it in the `dns_confdir` directory. The command should only run if the key file does not already exist.
+
+Task 7: Set permissions on rndc key file
+Description Task 7: Set the owner, group, and permissions of the `rndc.key` file.
+
+Task 8: Get the hints/root file
+Description Task 8: Download the root hints file from the specified URL and place it in the DNS data directory. The download should only happen if `dns_caching_dns` is true and notify the `Rndc reload` handler.
+
+Task 9: Create zone file
+Description Task 9: Create zone files based on the `dns_zones` variable using a Jinja2 template. Validate the zone file using `named-checkzone` and set the owner, group, and permissions. Notify the `Rndc reload` handler.
+
+Task 10: Add zones to configuration
+Description Task 10: Update the named configuration file using a Jinja2 template. Validate the configuration using `named-checkconf` and create a backup. Notify the `Restart dns` handler.
+
+Task 11: Place systemd override
+Description Task 11:  If the system uses systemd, create a directory and copy an override configuration file for the DNS service. Reload the systemd daemon.
+
+Task 12: Start and enable dns
+Description Task 12: Start and enable the DNS service defined in the `dns_service` variable.

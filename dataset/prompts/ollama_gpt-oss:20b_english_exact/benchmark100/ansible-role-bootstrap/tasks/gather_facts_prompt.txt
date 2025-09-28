@@ -1,0 +1,20 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: gather_facts | Lookup bootstrap facts  
+Description Task 1: Use the ansible.builtin.raw module to read the contents of /etc/os-release on the target host.  
+Do not run in become mode and keep check_mode disabled.  
+Register the output in a variable called bootstrap_facts and mark the task as never changed by setting changed_when: false.  
+
+Task 2: gather_facts | Set bootstrap facts (I)  
+Description Task 2: Use ansible.builtin.set_fact to create two facts:  
+- bootstrap_distribution set to the current loop item.  
+- bootstrap_distribution_major_version extracted from bootstrap_facts.stdout_lines using a regex that captures the major version number from the VERSION_ID field; default to 'NA' if not found.  
+Iterate over the flattened list of values from bootstrap_os_family_map (dict2items → map(attribute='value') → flatten).  
+Only run this task when bootstrap_facts.rc equals 0, bootstrap_distribution is not already defined, and the stdout contains a PRETTY_NAME that matches the pattern defined in bootstrap_search[item] (or the item itself if bootstrap_search[item] is undefined).  
+
+Task 3: gather_facts | Set bootstrap facts (II)  
+Description Task 3: Use ansible.builtin.set_fact to set bootstrap_os_family to the key of the current loop item.  
+Iterate over bootstrap_os_family_map using dict2items, labeling each loop iteration with the key.  
+Only run this task when the previously determined bootstrap_distribution is present in the current item's value list.

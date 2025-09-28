@@ -1,0 +1,36 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Ensure the easy-rsa directory exists.
+Description Task 1: Creates the `/etc/openvpn/easy-rsa` directory with appropriate permissions (0755).
+
+Task 2: Initialize the easy-rsa PKI.
+Description Task 2: Runs `easyrsa init-pki` inside the `/etc/openvpn/easy-rsa` directory, creating the PKI structure. It checks for the existence of `/etc/openvpn/easy-rsa/pki` to avoid re-initialization.
+
+Task 3: Build the Certificate Authority (CA).
+Description Task 3: Executes `easyrsa build-ca nopass` within the `/etc/openvpn/easy-rsa` directory to create the CA certificate. It uses the `EASYRSA_BATCH` environment variable set to `yes` for non-interactive execution and checks for the existence of `/etc/openvpn/easy-rsa/pki/ca.crt`.
+
+Task 4: Generate Diffie-Hellman parameters.
+Description Task 4: Runs `easyrsa gen-dh` inside `/etc/openvpn/easy-rsa` to generate the Diffie-Hellman key exchange parameters. It checks for the existence of `/etc/openvpn/easy-rsa/pki/dh.pem`.
+
+Task 5: Build the server certificate.
+Description Task 5: Executes `easyrsa build-server-full server nopass` within `/etc/openvpn/easy-rsa` to generate the server certificate and key.  It uses `EASYRSA_BATCH=yes` and checks for `/etc/openvpn/easy-rsa/pki/issued/server.crt`.
+
+Task 6: Build the client certificate.
+Description Task 6: Runs `easyrsa build-client-full client nopass` inside `/etc/openvpn/easy-rsa` to create the client certificate and key. It sets `EASYRSA_BATCH=yes` and checks for `/etc/openvpn/easy-rsa/pki/issued/client.crt`.
+
+Task 7: Generate the Certificate Revocation List (CRL).
+Description Task 7: Executes `easyrsa gen-crl` within `/etc/openvpn/easy-rsa` to create the CRL file. It checks for the existence of `/etc/openvpn/easy-rsa/pki/crl.pem`.
+
+Task 8: Generate TLS authentication key.
+Description Task 8: Executes `openvpn --genkey --secret /etc/openvpn/easy-rsa/pki/ta.key` to generate the TLS authentication key. It checks for the existence of `/etc/openvpn/easy-rsa/pki/ta.key`.
+
+Task 9: Copy PKI files to the server configuration directory.
+Description Task 9: Copies specific files (ca.crt, dh.pem, ta.key, client.crt, server.crt, ca.key, client.key, server.key) from `/etc/openvpn/easy-rsa/pki` to `/etc/openvpn/server` with permissions 0640.
+
+Task 10: Copy ca.crt and ta.key to /etc/openvpn.
+Description Task 10: Copies ca.crt and ta.key from `/etc/openvpn/easy-rsa/pki` to `/etc/openvpn` with permissions 0640.
+
+Task 11: Place the server configuration file.
+Description Task 11: Uses a Jinja2 template (`server.conf.j2`) to create the server configuration file (`server.conf`) in the specified `openvpn_configuration_directory` with appropriate ownership, group, and permissions (0640). It notifies the `Restart openvpn` handler.

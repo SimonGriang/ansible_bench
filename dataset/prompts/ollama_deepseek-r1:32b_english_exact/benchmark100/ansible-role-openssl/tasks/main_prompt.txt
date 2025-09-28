@@ -1,0 +1,39 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Check if python is installed  
+Description Task 1: Verify if Python is installed on the system by running the 'which python' command and registering the output. Ignore any errors and do not mark the task as changed.
+
+Task 2: Check if python3 is installed  
+Description Task 2: Verify if Python3 is installed on the system by running the 'which python3' command and registering the output. Ignore any errors and do not mark the task as changed.
+
+Task 3: Debug Python executable path  
+Description Task 3: Display the path of the Python executable by debugging the 'python_executable.stdout' variable.
+
+Task 4: Debug Python3 executable path  
+Description Task 4: Display the path of the Python3 executable by debugging the 'python3_executable.stdout' variable.
+
+Task 5: Import assert.yml  
+Description Task 5: Import the 'assert.yml' task file and execute it once on the localhost.
+
+Task 6: Install requirements  
+Description Task 6: Install the required packages specified in the 'openssl_requirements' variable using the package module.
+
+Task 7: Ensure packaging is available via dnf  
+Description Task 7: Install the 'python3-packaging' package using the package module with the state set to 'present'.
+
+Task 8: Install pip packages  
+Description Task 8: Install the pip packages specified in the 'openssl_pip_packages' variable using the pip module.
+
+Task 9: Create key directory  
+Description Task 9: Create the key directory specified in the 'openssl_key_directory' variable with the specified mode, owner, and group.
+
+Task 10: Create csr directory  
+Description Task 10: Create the csr directory specified in the 'openssl_csr_directory' variable with the specified mode, owner, and group.
+
+Task 11: Create crt directory  
+Description Task 11: Create the crt directory specified in the 'openssl_crt_directory' variable with the specified mode, owner, and group.
+
+Task 12: Include create.yml  
+Description Task 12: Include the 'create.yml' task file and execute it in a loop over the 'openssl_items' list. Use the item's name as the label for each iteration and only run if 'openssl_items' is defined and not empty.

@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Lookup and register bootstrap facts.
+Description Task 1: Use the raw module to read the contents of /etc/os-release on the target system and register the output as a variable named bootstrap_facts. Ensure that privilege escalation is not used and that no changes are marked.
+
+Task 2: Set bootstrap facts (I) based on the output of /etc/os-release.
+Description Task 2: Set facts for the bootstrap distribution and its major version by iterating over a list derived from a dictionary named bootstrap_os_family_map. Ensure that the facts are set only if the previous command executed successfully (bootstrap_facts.rc == 0), the bootstrap_distribution is not already defined, and the output of bootstrap_facts.stdout matches a specific regex pattern involving bootstrap_search[item] or item itself.
+
+Task 3: Set bootstrap facts (II) to determine the OS family.
+Description Task 3: Set a fact named bootstrap_os_family by iterating over the items of the bootstrap_os_family_map dictionary. The loop should be labeled with the key of each item in the dictionary. Ensure that the bootstrap_os_family fact is set only if the bootstrap_distribution matches one of the values within the current item of the iteration.

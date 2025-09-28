@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: lookup bootstrap facts (raw).  
+Description Task 1: Use the ansible.builtin.raw module to execute `cat /etc/os-release` on the bootstrap user. The command should not be run in check mode, should not use privilege escalation, and the output should be registered in the variable `bootstrap_facts`. The task must be marked as unchanged (`changed_when: false`).  
+
+Task 2: set bootstrap facts (I) # noqa jinja  
+Description Task 2: Set the facts `bootstrap_distribution` and `bootstrap_distribution_major_version` based on the output of `bootstrap_facts`. The task must loop over the flattened list of values from the dictionary `bootstrap__os_family_map` (using `dict2items | map(attribute='value') | flatten`). It should only run when `bootstrap_facts.rc == 0`, `bootstrap_distribution` is not already defined, and the `stdout` of `bootstrap_facts` matches a regex that checks the `PRETTY_NAME` against `bootstrap__search[item]` (or the item itself if not found). The task should use `become` and `become_user` as defined by the variables `bootstrap_become` and `bootstrap_become_user`.  
+
+Task 3: set bootstrap facts (II)  
+Description Task 3: Set the fact `bootstrap_os_family` by iterating over the key/value pairs of `bootstrap__os_family_map` (using `dict2items`). For each item, label the loop with the key, and set `bootstrap_os_family` to the key when `bootstrap_distribution` is present in the item's value list. This task should also use `become` and `become_user` as defined by `bootstrap_become` and `bootstrap_become_user`.

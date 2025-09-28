@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: gather_facts | Lookup bootstrap facts  
+Description Task 1: Use the raw module to read the contents of /etc/os-release without becoming root and without performing any state changes. Register the output as bootstrap_facts.
+
+Task 2: gather_facts | Set bootstrap facts (I)  
+Description Task 2: Set facts related to the bootstrap distribution and its major version by processing the raw output of /etc/os-release. Loop through the values of bootstrap_os_family_map, and only execute when bootstrap_facts.rc is 0, bootstrap_distribution is not already defined, and the PRETTY_NAME matches the expected pattern.
+
+Task 3: gather_facts | Set bootstrap facts (II)  
+Description Task 3: Set the bootstrap_os_family fact by iterating over the keys of bootstrap_os_family_map. Only execute when the bootstrap_distribution matches one of the values in the current item's list. Use loop_control to label the iteration by the item's key.

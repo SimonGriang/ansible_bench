@@ -1,0 +1,60 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Migrate from adoptopenjdk to temurin if selected.
+Description Task 1: Set the `java_jdk_vendor` fact to "temurin" if it's currently set to "adoptopenjdk".
+
+Task 2: Gather OS specific variables.
+Description Task 2: Include variables based on the `java_jdk_vendor`, `ansible_distribution`, and `ansible_distribution_major_version`.
+
+Task 3: Gather architecture specific variables.
+Description Task 3: Include architecture-specific variables from a file named 'architecture.yml'.
+
+Task 4: Set OS specific variables (I).
+Description Task 4: Set several facts related to the OpenJDK version, repositories, and libraries, using default values if the variables aren't already defined.
+
+Task 5: Set OS and architecture specific variables (II).
+Description Task 5: Set facts for `java_open_jdk_home_dir` and `java_open_jdk_package`, using default values if they aren't already defined.
+
+Task 6: Set specific variables.
+Description Task 6: Set the `java_home` fact to the value of `java_open_jdk_home`.
+
+Task 7: Remove deprecated repositories (Debian).
+Description Task 7: Remove deprecated AdoptOpenJDK repositories on Debian-based systems, using the `java_deprecated_repositories_adoptopenjdk` variable.
+
+Task 8: Install extra apt tools (Debian).
+Description Task 8: Install extra apt tools on Debian systems, if specified in `java_open_jdk_apt_extra_packages`.
+
+Task 9: Add required key repositories (Debian).
+Description Task 9: Add required apt key repositories on Debian systems, using the `java_required_key_repositories_openjdk` variable.
+
+Task 10: Add required repositories (Debian).
+Description Task 10: Add required apt repositories on Debian systems, using the `java_required_repositories_openjdk` variable.
+
+Task 11: Add required key repositories (RedHat).
+Description Task 11: Add required RPM key repositories on RedHat-based systems, using the `java_required_key_repositories_openjdk` variable.
+
+Task 12: Add required repositories (RedHat).
+Description Task 12: Add required YUM repositories on RedHat-based systems, using the `java_required_repositories_openjdk` variable.
+
+Task 13: Install required libs.
+Description Task 13: Install required libraries using the package manager, using the `java_required_libs_openjdk` variable.
+
+Task 14: Install Java (Debian).
+Description Task 14: Install Java on Debian-based systems using the apt module, using the `java_open_jdk_package` and `java_open_jdk_version` variables.
+
+Task 15: Install Java (RedHat).
+Description Task 15: Install Java on RedHat-based systems using the yum module, using the `java_open_jdk_package` and `java_open_jdk_version` variables.
+
+Task 16: Export environment variables.
+Description Task 16: Create a template file `/etc/profile.d/jdk.sh` to set Java environment variables.
+
+Task 17: Source environment variables.
+Description Task 17: Source the `/etc/profile` file to apply the Java environment variables.
+
+Task 18: Correct java version selected (Debian, Java < 11).
+Description Task 18: Set the 'java' alternative to the correct path for Java versions less than 11 on Debian systems.
+
+Task 19: Correct java version selected (Debian, Java >= 11).
+Description Task 19: Set the 'java' alternative to the correct path for Java versions 11 and greater on Debian systems.

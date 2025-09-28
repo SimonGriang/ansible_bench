@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create the RKE2 manifests directory  
+Description Task 1: Use the file module to create a directory at `{{ rke2_data_path }}/server/manifests`. Ensure the directory is owned by root, belongs to the root group, and has permissions set to `0700`.  
+
+Task 2: Copy kube-vip files to first server  
+Description Task 2: Use the template module to copy the files `templates/kube-vip/kube-vip.yml.j2` and `templates/kube-vip/kube-vip-rbac.yml.j2` into the `{{ rke2_data_path }}/server/manifests` directory. The destination filenames should strip the `.j2` extension, be owned by root, belong to the root group, and have permissions set to `0664`.  
+
+Task 3: Copy kube-vip load balancer manifests to first server  
+Description Task 3: When `{{ rke2_kubevip_cloud_provider_enable | bool }}` is true, use the template module to copy all files matching `templates/kube-vip/kube-vip-cloud-*.j2` into the `{{ rke2_data_path }}/server/manifests` directory. Strip the `.j2` extension from the destination filenames, set ownership to root:root, and permissions to `0664`.

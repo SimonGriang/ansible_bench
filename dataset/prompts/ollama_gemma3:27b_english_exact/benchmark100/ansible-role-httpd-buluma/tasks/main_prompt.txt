@@ -1,0 +1,42 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Include the tasks defined in the assert.yml file, running it only once on localhost.
+
+Task 2: Install apache httpd
+Description Task 2: Install the apache httpd packages defined in the variable httpd_packages, ensuring they are present.
+
+Task 3: Configure selinux
+Description Task 3: Configure SELinux settings if SELinux is enabled. This includes modifying boolean values using httpd_sebooleans and allowing connections to custom ports defined by httpd_port and httpd_ssl_port.
+
+Task 4: Configure httpd
+Description Task 4: Configure httpd by templating a configuration file from httpd_config_src to httpd_config_dest, setting the file mode to 0644, and notifying handlers to test the configuration and restart httpd.
+
+Task 5: Activate httpd module | Debian
+Description Task 5: Activate httpd modules using the a2enmod command on Debian-based systems, looping through the list of modules defined in httpd_modules_to_activate_with_command.
+
+Task 6: Import ssl.yml
+Description Task 6: Include the tasks defined in the ssl.yml file if the variable https_ssl_enable is true.
+
+Task 7: Import locations.yml
+Description Task 7: Include the tasks defined in the locations.yml file if the variable httpd_locations is defined.
+
+Task 8: Import vhosts.yml
+Description Task 8: Include the tasks defined in the vhosts.yml file if the variable httpd_vhosts is defined.
+
+Task 9: Configure ports
+Description Task 9: Configure httpd ports by templating a configuration file from httpd_ports_conf.j2 to httpd_ports_conf within the httpd_server_root directory, setting the file mode to 0644, and notifying handlers to test the configuration and restart httpd. This task is only executed on Debian and Suse systems.
+
+Task 10: Import directories.yml
+Description Task 10: Include the tasks defined in the directories.yml file if the variable httpd_directories is defined.
+
+Task 11: Flush handlers
+Description Task 11: Flush all registered handlers to apply any pending changes.
+
+Task 12: Removing default html
+Description Task 12: Remove the default index.html file from the httpd_data_directory if httpd_remove_example is true.
+
+Task 13: Start and enable httpd
+Description Task 13: Start and enable the httpd service using the name defined in httpd_service.

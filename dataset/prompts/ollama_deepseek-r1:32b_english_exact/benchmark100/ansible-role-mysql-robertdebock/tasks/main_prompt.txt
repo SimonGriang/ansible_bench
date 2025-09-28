@@ -1,0 +1,42 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Imports the assert.yml file to ensure certain conditions are met before proceeding.  
+
+Task 2: Install mysql  
+Description Task 2: Installs MySQL using the package specified in the mysql_packages variable.  
+
+Task 3: Configure mysql server  
+Description Task 3: Configures the MySQL server using the ini_file module with options defined in mysql_configuration_options.  
+
+Task 4: Configure mysql client  
+Description Task 4: Configures the MySQL client by setting the socket in the client configuration file.  
+
+Task 5: Initialize mysql  
+Description Task 5: Initializes MySQL on Alpine and Archlinux distributions using the mysql_initialize_command.  
+
+Task 6: Start and enable mysql  
+Description Task 6: Starts and enables the MySQL service.  
+
+Task 7: Flush handlers  
+Description Task 7: Flushes any pending handlers to execute notifications.  
+
+Task 8: Place my.cnf  
+Description Task 8: Creates a .my.cnf file in the root directory using a template.  
+
+Task 9: Create databases  
+Description Task 9: Creates databases using the mysql_db module with configurations from mysql_databases.  
+
+Task 10: List databases  
+Description Task 10: Retrieves a list of existing databases using the mysql_info module.  
+
+Task 11: Import database  
+Description Task 11: Imports databases from files specified in the initial_import property of mysql_databases.  
+
+Task 12: Create users  
+Description Task 12: Creates MySQL users with specified permissions and access using the mysql_user module.  
+
+Task 13: Flush handlers again  
+Description Task 13: Flushes any remaining handlers to ensure all tasks are executed.

@@ -32,10 +32,14 @@ from prompt_templates import (
 def hf_modelfiles_path_for(model_name: str) -> Path:
     model_name = model_name.lower()
     hf_model_paths = {
-        "deepseek-r1:14b": Path.joinpath(TOKENIZER_MODELS_PATH, "deepseek-r1_14b"),
+        "deepseek-r1:14b": Path.joinpath(TOKENIZER_MODELS_PATH, "deepseek-r1"),
+        "deepseek-r1:32b": Path.joinpath(TOKENIZER_MODELS_PATH, "deepseek-r1"),
         "llama3.2": Path.joinpath(TOKENIZER_MODELS_PATH, "Llama-3.2-1B-Instruct"),
-        "codestral": Path.joinpath(TOKENIZER_MODELS_PATH, "Codestral-22B-v0.1"),
-        "gpt-oss:20b": Path.joinpath(TOKENIZER_MODELS_PATH, "gpt-oss:20b"),
+        "codestral": Path.joinpath(TOKENIZER_MODELS_PATH, "codestral"),
+        "gpt-oss:20b": Path.joinpath(TOKENIZER_MODELS_PATH, "gpt-oss"),
+        "qwen2.5:32b": Path.joinpath(TOKENIZER_MODELS_PATH, "qwen2.5"),
+        "gemma3:27b": Path.joinpath(TOKENIZER_MODELS_PATH, "gemma3"),
+
     }
 
     if model_name not in hf_model_paths.keys():
@@ -50,8 +54,13 @@ def apply_chat_template_to_text(text: str, model_name: str) -> str:
     if "codestral" in model_name:
         # The codestral tokenizer does not define a chat template. Codestral uses the same chat template as Mistral. Use that instead.
         tokenizer = AutoTokenizer.from_pretrained(hf_modelfiles_path_for("codestral"))
-    elif "deepseek-r1:14b" in model_name or "gpt-oss:20b" in model_name:
-        # ollama applies the template automatically
+    elif any(m in model_name for m in [
+        "deepseek-r1:14b",
+        "deepseek-r1:32b",
+        "qwen2.5:32b",
+        "gpt-oss:20b",
+        "gemma3:27b"
+    ]):        # ollama applies the template automatically
         return text
     else:
         tokenizer = AutoTokenizer.from_pretrained(hf_modelfiles_path_for(model_name))
