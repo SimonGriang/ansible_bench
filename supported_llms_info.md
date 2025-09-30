@@ -7,10 +7,10 @@ This work focuses on locally executable open-source models available through Oll
 
 | Company       | Selected Model |  Size | #Parameters | Context Window | Quantization |
 | ------------- | -------------- |  ---- | ----------- | -------------- | ------------ |
-| **Alibaba**   |[qwen2.5:32b](https://ollama.com/library/qwen2.5:32b) | 20GB | 32b | 32k | Q4_K_M |
-| **Deepseek**  |[deepseek-r1:32b](https://ollama.com/library/deepseek-r1:32b) | 20GB | 32b | 128k | Q4_K_M |
+| **Alibaba**   |[qwen2.5:14b](https://ollama.com/library/qwen2.5:14b) | 9GB | 14b | 32k | Q4_K_M |
+| **Deepseek**  |[deepseek-r1:14b](https://ollama.com/library/deepseek-r1:14b) | 9GB | 14b | 128k | Q4_K_M |
 | **Google**    |[gemma3:27b](https://ollama.com/library/gemma3:27b) | 17GB | 27b | 128k | Q4_K_M |
-| **IBM**    |[granite-code:34b](https://ollama.com/library/granite-code:34b) | 19GB | 34b | 8k | Q4_0 |
+| **IBM**    |[granite-code:20b](https://ollama.com/library/granite-code:20b) | 12GB | 20b | 8k | Q4_0 |
 | **Meta**      |[llama3.1:8b](https://ollama.com/library/llama3.1:8b) | 4,9GB | 8b | 128k | Q4_K_M |
 | **Microsoft** |[phi4:14b](https://ollama.com/library/phi4:14b) | 9,1GB | 14b | 16k | Q4_K_M |
 | **Mistral**   |[codestral:22b](https://ollama.com/library/codestral:22b) | 13GB | 22b | 32k | Q4_0 |
@@ -20,10 +20,10 @@ From the selected models, 56 possible model constellations arise with respect to
 
 | Prompt \ YAML | **qwen2.5:32b** (Alibaba) | **deepseek-r1:32b** (Deepseek) | **gemma2:27b** (Google) | **granite-code:34b** (IBM) | **llama3.1:8b** (Meta) | **phi4:14b** (Microsoft) |  **codestral:22b** (Mistral) | **gpt-oss:20b** (OpenAI) |
 |---------------|---------|-----------|----------|--------|------|-----------|---------|--------|
-| **qwen2.5:32b** (Alibaba)   |    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
-| **deepseek-r1:32b** (Deepseek) |    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
+| **qwen2.5:14b** (Alibaba)   |    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
+| **deepseek-r1:14b** (Deepseek) |    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
 | **gemma2:27b** (Google) |    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
-| **granite-code:34b** (IBM)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
+| **granite-code:20b** (IBM)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
 | **llama3.1:8b** (Meta)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
 | **phi4:14b** (Microsoft)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
 | **codestral:22b** (Mistral)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
