@@ -54,3 +54,11 @@ Query from a file
 ```bash
 ollama query deepseek-r1:14b "$(cat prompt.txt)"
 ```
+
+## 4. Log Information
+
+journalctl as root to get the logs for the ollama.service
+
+```bash
+sudo journalctl -u ollama.service > ollama_logs.txt
+```
