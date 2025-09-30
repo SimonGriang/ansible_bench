@@ -1,6 +1,8 @@
 # Code Setup Information
-This Repository, more precise, some of the code in this Repository is based on the Code of Vera Kowalczuk and her Master Thesis on Code Translation. [LLM_Code_Translation](https://github.com/ast-fortiss-tum/llm-code-translation))
-Given this code basis, I started to restructure the project and tailoring it to my demands. Therefore I state her some basic information on the original unmodified code. 
+This file gives information about the code setup, and all currently supported Models.
+
+This Repository, more precise, some of the code in this Repository is based on the Code of Vera Kowalczuk and her Master Thesis on Code Translation. [LLM_Code_Translation](https://github.com/ast-fortiss-tum/llm-code-translation)
+Given this code basis, I started to restructure the project and tailoring it to my demands.
 
 ## Supported Models
 This work focuses on locally executable open-source models available through Ollama. The tool currently supports a selected set of models from major AI companies, which are listed in the table below. The results presented in this work are based on these models. Depending on future requirements, the set can be extended with additional models available through Ollama or llamafile.
