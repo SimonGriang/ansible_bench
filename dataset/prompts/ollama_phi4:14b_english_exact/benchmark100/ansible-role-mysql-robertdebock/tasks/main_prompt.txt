@@ -1,0 +1,42 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml from a specified file.  
+Description Task 1: Import tasks from the assert.yml file to be executed once, and delegate to localhost.
+
+Task 2: Install MySQL packages.  
+Description Task 2: Install MySQL using a list of packages defined in the `mysql_packages` variable. Notify handlers to set the root password and re-execute the system daemon.
+
+Task 3: Configure the MySQL server configuration file.  
+Description Task 3: Update the MySQL server configuration file with options from `mysql_configuration_options`, setting appropriate permissions. Notify handlers to restart the MySQL server.
+
+Task 4: Configure the MySQL client configuration file.  
+Description Task 4: Set the socket option in the MySQL client configuration file using the `mysql_socket` variable.
+
+Task 5: Initialize the MySQL database if on Alpine or Archlinux.  
+Description Task 5: Run the MySQL initialization command only if the distribution is Alpine or Archlinux, ensuring the database directory exists.
+
+Task 6: Start and enable the MySQL service.  
+Description Task 6: Ensure the MySQL service is started and enabled to start on boot.
+
+Task 7: Flush handlers to apply previous changes.  
+Description Task 7: Flush any pending handlers to apply changes made by previous tasks.
+
+Task 8: Place the my.cnf configuration file.  
+Description Task 8: Deploy the my.cnf template to the root's home directory with specific permissions.
+
+Task 9: Create MySQL databases.  
+Description Task 9: Create databases as defined in `mysql_databases`, ensuring sensitive information is not logged. Only create databases that do not have an initial import defined.
+
+Task 10: List current MySQL databases.  
+Description Task 10: Retrieve a list of existing databases using MySQL, ensuring sensitive information is not logged.
+
+Task 11: Import databases if initial import is defined and not already present.  
+Description Task 11: Import databases from specified targets if they are defined and not already present in the MySQL instance.
+
+Task 12: Create MySQL users.  
+Description Task 12: Create users as defined in `mysql_users`, ensuring sensitive information is not logged.
+
+Task 13: Flush handlers again to apply user creation changes.  
+Description Task 13: Flush any pending handlers again to ensure user creation changes are applied.

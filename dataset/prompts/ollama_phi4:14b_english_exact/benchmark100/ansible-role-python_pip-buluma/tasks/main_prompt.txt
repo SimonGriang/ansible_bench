@@ -1,0 +1,33 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Check for the existence of the EXTERNALLY-MANAGED file for Python 3.11.  
+Description Task 1: Verify if the file `/usr/lib/python3.11/EXTERNALLY-MANAGED` exists and register the result for potential further action.
+
+Task 2: Rename the EXTERNALLY-MANAGED file for Python 3.11 if it exists.  
+Description Task 2: Rename `/usr/lib/python3.11/EXTERNALLY-MANAGED` to `/usr/lib/python3.11/EXTERNALLY-MANAGED.old` if the file is present, ensuring `/usr/lib/python3.11/EXTERNALLY-MANAGED.old` is created.
+
+Task 3: Check for the existence of the EXTERNALLY-MANAGED file for Python 3.12.  
+Description Task 3: Verify if the file `/usr/lib/python3.12/EXTERNALLY-MANAGED` exists and register the result for potential further action.
+
+Task 4: Rename the EXTERNALLY-MANAGED file for Python 3.12 if it exists.  
+Description Task 4: Rename `/usr/lib/python3.12/EXTERNALLY-MANAGED` to `/usr/lib/python3.12/EXTERNALLY-MANAGED.old` if the file is present, ensuring `/usr/lib/python3.12/EXTERNALLY-MANAGED.old` is created.
+
+Task 5: Import tasks from assert.yml.  
+Description Task 5: Import additional tasks from the file `assert.yml`, ensuring they are executed only once and delegated to the localhost.
+
+Task 6: Install Python pip.  
+Description Task 6: Install the packages specified by the variable `python_pip_packages`.
+
+Task 7: Configure pip proxy settings.  
+Description Task 7: Set the `index-url` option in the `/etc/pip.conf` file to the value of `python_pip_proxy`, if `python_pip_proxy` is defined.
+
+Task 8: Configure trusted hosts for pip.  
+Description Task 8: Set the `trusted-host` option in the `/etc/pip.conf` file to the value of `python_pip_trusted_host`, if `python_pip_trusted_host` is defined.
+
+Task 9: Update pip to the latest version.  
+Description Task 9: Update the pip package specified by `python_pip_pip_package` to the state defined by `python_pip_pip_state`, using the executable defined by `python_pip_executable`, if `python_pip_update` is true and the distribution release is not "bookworm" or "noble", and the OS family is not "Alpine".
+
+Task 10: Install requested Python modules.  
+Description Task 10: Install Python modules specified in `python_pip_modules`, ensuring each module is installed with the state and version defined, using the executable specified by `python_pip_executable`, if the distribution release is not "bookworm" or "noble", and the OS family is not "Alpine".

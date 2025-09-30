@@ -1,0 +1,48 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create a directory for SSH keys if user management is enabled.  
+Description Task 1: Ensure a local directory exists for storing SSH keys of users who have SSH key management enabled.
+
+Task 2: Manage user accounts, ensuring they are created or updated with specified parameters.  
+Description Task 2: Create or update user accounts with specific attributes such as name, state, comment, home directory, shell, and group memberships. Capture the result of this operation.
+
+Task 3: Set sudo privileges for users if specified in their configuration.  
+Description Task 3: Configure sudo privileges for users by creating a specific sudoers file if sudo options are defined for them.
+
+Task 4: Remove sudo privileges for users if not specified in their configuration.  
+Description Task 4: Delete the sudoers file for users if sudo options are not defined in their configuration.
+
+Task 5: Generate a private SSH key for users who require SSH key management.  
+Description Task 5: Create a private SSH key for users with SSH key management enabled, ensuring the key does not already exist.
+
+Task 6: Generate a public SSH key for users who require SSH key management.  
+Description Task 6: Create a public SSH key corresponding to the private key for users with SSH key management enabled, ensuring the public key does not already exist.
+
+Task 7: Convert the SSH key to a PPK format for users who require SSH key management.  
+Description Task 7: Convert the generated SSH key to PPK format for users with SSH key management enabled, ensuring the PPK file does not already exist.
+
+Task 8: Determine the home directory for users, defaulting to /home if the user is not found.  
+Description Task 8: Retrieve or set the base home directory for users, defaulting to /home if the user is not found in the system.
+
+Task 9: Create an .ssh directory in the user's home directory if SSH key management is enabled or private keys need to be set.  
+Description Task 9: Ensure the .ssh directory exists in the user's home directory for storing SSH keys, if SSH key management is enabled or private keys are specified.
+
+Task 10: Deploy authorized SSH keys for users if specified.  
+Description Task 10: Add specified authorized SSH keys to the user's authorized_keys file if they are defined.
+
+Task 11: Remove unauthorized SSH keys from users if specified.  
+Description Task 11: Remove specified unauthorized SSH keys from the user's authorized_keys file if they are defined.
+
+Task 12: Copy generated private SSH keys to the user's .ssh directory if specified.  
+Description Task 12: Transfer the generated private SSH key to the user's .ssh directory if copying the private key is enabled.
+
+Task 13: Check the password validity period for users.  
+Description Task 13: Retrieve the current password validity period for users from the system's shadow file.
+
+Task 14: Set the password validity period for users if a specific duration is defined.  
+Description Task 14: Update the password validity period for users if a specific number of validity days is defined and differs from the current setting.
+
+Task 15: Place additional private key files in the user's .ssh directory if specified.  
+Description Task 15: Copy additional specified private key files to the user's .ssh directory if they are defined.

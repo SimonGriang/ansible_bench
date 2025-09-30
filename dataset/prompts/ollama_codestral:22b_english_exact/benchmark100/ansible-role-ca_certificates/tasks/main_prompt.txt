@@ -1,0 +1,14 @@
+ The reconstructed prompt is as follows:
+
+"Below you will receive task descriptions from which you should generate an Ansible Playbook.
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Install ca_certificates
+Description Task 1: This task is responsible for installing the CA certificates packages that are defined in the variable "ca_certificates_packages". The 'ansible.builtin.package' module is used to manage packages. The 'state: present' parameter ensures that the package is installed.
+
+Task 2: N/A
+Description Task 2: N/A
+
+Task 3: N/A
+Description Task 3: N/A"

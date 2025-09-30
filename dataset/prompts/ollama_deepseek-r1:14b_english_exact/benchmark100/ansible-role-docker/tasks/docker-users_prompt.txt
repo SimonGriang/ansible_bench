@@ -1,0 +1,9 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Add Docker users to the docker group  
+Description Task 1: Ensure that specified users are added to the docker group so they can manage Docker containers. Use a variable (docker_users) to specify the list of users to add.  
+
+Task 2: Reset SSH connection after user changes  
+Description Task 2: Reset the SSH connection to apply the user changes immediately without requiring a reboot or manual intervention.

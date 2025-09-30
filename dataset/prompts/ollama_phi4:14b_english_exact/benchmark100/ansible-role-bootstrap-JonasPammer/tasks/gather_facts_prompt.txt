@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Collect the OS release information from the bootstrap server without making changes.
+Description Task 1: Execute a command to read the contents of `/etc/os-release` on the bootstrap server, ensuring no changes are made to the system. Store the output in a variable named `bootstrap_facts` and ensure it's executed with the user specified by `bootstrap_user`.
+
+Task 2: Set bootstrap facts for distribution and major version.
+Description Task 2: Use the output from the previous task to set facts for `bootstrap_distribution` and `bootstrap_distribution_major_version`. This involves parsing the `PRETTY_NAME` from the `bootstrap_facts` output to extract the distribution name and version. Ensure this is done only if the command was successful (`rc == 0`), the distribution is not already defined, and the `PRETTY_NAME` matches the expected pattern. Use the `bootstrap__os_family_map` for mapping and handle privilege escalation as specified by `bootstrap_become` and `bootstrap_become_user`.
+
+Task 3: Set bootstrap facts for the OS family.
+Description Task 3: Determine the OS family based on the previously set `bootstrap_distribution`. Iterate over the `bootstrap__os_family_map` to match the distribution to its corresponding OS family and set the `bootstrap_os_family` fact accordingly. Ensure this task runs with the appropriate privilege escalation settings as defined by `bootstrap_become` and `bootstrap_become_user`.

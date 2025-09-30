@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: lookup bootstrap facts
+Description Task 1: Lookup bootstrap facts
+
+Task 2: Set bootstrap facts (I)
+Description Task 2: Set bootstrap facts (I)
+
+Task 3: Set bootstrap facts (II)
+Description Task 3: Set bootstrap facts (II)

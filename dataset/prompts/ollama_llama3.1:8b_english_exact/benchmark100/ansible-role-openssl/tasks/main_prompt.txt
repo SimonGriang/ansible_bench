@@ -1,0 +1,40 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Check if python is installed
+Description Task 1: Verify the presence of the python executable on the system.
+
+Task 2: Check if python3 is installed
+Description Task 2: Confirm the installation of python3 on the system.
+
+Task 3: Debug Python executable path
+Description Task 3: Display the path of the python executable found in the previous step for debugging purposes.
+
+Task 4: Debug Python3 executable path
+Description Task 4: Display the path of the python3 executable found in the previous step for debugging purposes.
+
+Task 5: Import assert.yml
+Description Task 5: Include the tasks defined in the assert.yml file for further assertions or checks, limiting this task to run once on the localhost.
+
+Task 6: Install requirements
+Description Task 6: Install the OpenSSL requirements specified by the openssl_requirements variable, making sure they are present on the system.
+
+Task 7: Ensure packaging is available via dnf
+Description Task 7: Install the python3-packaging package to ensure the packaging functionality is available through dnf.
+
+Task 8: Install pip packages
+Description Task 8: Install the specified OpenSSL pip packages listed in the openssl_pip_packages variable.
+
+Task 9: Create key directory
+Description Task 9: Create the OpenSSL key directory with the specified permissions, owner, and group, as defined by the openssl_key_directory, openssl_file_owner, and openssl_file_group variables.
+
+Task 10: Create csr directory
+Description Task 10: Create the OpenSSL CSR directory with the specified permissions, owner, and group, as defined by the openssl_csr_directory, openssl_file_owner, and openssl_file_group variables.
+
+Task 11: Create crt directory
+Description Task 11: Create the OpenSSL CRT directory with the specified permissions, owner, and group, as defined by the openssl_crt_directory, openssl_file_owner, and openssl_file_group variables.
+
+Task 12: Include create.yml
+Description Task 12: Include the tasks defined in the create.yml file for creating various OpenSSL items, looping through each item in the openssl_items list and performing the specified tasks for each item.

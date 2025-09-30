@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import the assert.yml task file to be executed once on localhost.  
+Description Task 1: Import the assert.yml task file to be executed once on localhost, ensuring that any assertions or checks defined within are performed in a centralized manner.
+
+Task 2: Install required packages for OpenSSL as specified in the variable openssl_requirements.  
+Description Task 2: Install the necessary packages for OpenSSL, using the variable openssl_requirements to specify which packages should be present on the system.
+
+Task 3: Install pip packages if the list openssl_pip_packages is not empty.  
+Description Task 3: Install Python pip packages specified in the openssl_pip_packages variable, but only if the list contains one or more packages to ensure unnecessary operations are not performed.
+
+Task 4: Create a directory for OpenSSL keys with specific permissions and ownership.  
+Description Task 4: Create a directory for storing OpenSSL keys, setting the directory's permissions to 700 and assigning ownership using the variables openssl_file_owner and openssl_file_group.
+
+Task 5: Create a directory for OpenSSL Certificate Signing Requests (CSRs) with specific permissions and ownership.  
+Description Task 5: Create a directory for storing OpenSSL Certificate Signing Requests (CSRs), setting the directory's permissions to 755 and assigning ownership using the variables openssl_file_owner and openssl_file_group.
+
+Task 6: Create a directory for OpenSSL certificates with specific permissions and ownership.  
+Description Task 6: Create a directory for storing OpenSSL certificates, setting the directory's permissions to 755 and assigning ownership using the variables openssl_file_owner and openssl_file_group.
+
+Task 7: Include the create.yml task file for each item in openssl_items, if it is defined and not empty.  
+Description Task 7: Include the create.yml task file and execute it for each item in the openssl_items list, provided the list is defined and contains one or more items, allowing for dynamic task inclusion based on the items specified.

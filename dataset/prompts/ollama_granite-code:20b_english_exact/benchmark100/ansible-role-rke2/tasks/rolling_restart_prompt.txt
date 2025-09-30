@@ -1,0 +1,21 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Cordon and Drain the node {{ rke2_node_name }}
+Description Task 1: Cordons and drains the target node to prepare for upgrade. This task is skipped if the variable rke2_drain_node_during_upgrade is set to false.
+
+Task 2: Restart RKE2 service on {{ rke2_node_name }}
+Description Task 2: Restarts the RKE2 service on the target node to apply any configuration changes.
+
+Task 3: Wait for all nodes to be ready again
+Description Task 3: Waits for all nodes in the cluster to be in a ready state.
+
+Task 4: Uncordon the node {{ rke2_node_name }}
+Description Task 4: Uncordons the target node after the upgrade is complete. This task is skipped if the variable rke2_drain_node_during_upgrade is set to false.
+
+Task 5: Wait for all pods to be ready again
+Description Task 5: Waits for all pods in the cluster to be in a ready state. This task is skipped if the variable rke2_wait_for_all_pods_to_be_ready is set to false.
+
+Task 6: Wait for all pods to pass readiness checks
+Description Task 6: Waits for all pods in the cluster to pass their readiness checks. This task is skipped if the variable rke2_wait_for_all_pods_to_be_healthy is set to false.

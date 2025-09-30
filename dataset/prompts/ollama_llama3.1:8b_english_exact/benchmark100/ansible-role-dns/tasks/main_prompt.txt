@@ -1,0 +1,41 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml and run it once on localhost
+Description Task 1: This task is used to import another Ansible task file, assert.yml, and run it once on the localhost.
+
+Task 2: Install the dns packages
+Description Task 2: This task is used to install the required DNS packages on the system.
+
+Task 3: Create the required directories
+Description Task 3: This task is used to create the necessary directories for the DNS configuration and data.
+
+Task 4: Create the required group
+Description Task 4: This task is used to create the required group for the DNS service.
+
+Task 5: Create the required user
+Description Task 5: This task is used to create the required user for the DNS service.
+
+Task 6: Generate the rndc key
+Description Task 6: This task is used to generate the rndc key for the DNS service.
+
+Task 7: Set permissions on the rndc key file
+Description Task 7: This task is used to set the correct permissions on the rndc key file.
+
+Task 8: Download the named.root file
+Description Task 8: This task is used to download the named.root file from the specified URL and save it to the correct location.
+
+Task 9: Create the zone file
+Description Task 9: This task is used to create the zone file for the DNS service using a template.
+
+Task 10: Add zones to the configuration
+Description Task 10: This task is used to add the zones to the DNS configuration file using a template.
+
+Task 11: Place the systemd override
+Description Task 11: This task is used to create a systemd override for the DNS service and reload the daemon.
+
+Task 12: Start and enable the DNS service
+Description Task 12: This task is used to start and enable the DNS service.

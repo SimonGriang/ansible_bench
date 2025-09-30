@@ -1,0 +1,2 @@
+ Task 1: package | Install vault
+   Description Task 1: This task is responsible for installing the Vault package on the target server. It uses the package module from Ansible's built-in modules to accomplish this. The name of the package to be installed is defined in a variable named 'vault_package'. After the installation, it triggers two handlers: 'Daemon reload' and 'Restart vault' to ensure the service is properly started and running.

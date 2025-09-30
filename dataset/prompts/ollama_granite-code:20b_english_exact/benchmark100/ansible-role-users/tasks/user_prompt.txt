@@ -1,0 +1,48 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Create local ssh_key_directory for {{ user.name }}
+Description Task 1: Create the directory {{ users_ssh_key_directory }} with mode 0750.
+
+Task 2: Manage user {{ user.name }}
+Description Task 2: Ensure user {{ user.name }} is present with the specified attributes.
+
+Task 3: Set sudo options for {{ user.name }}
+Description Task 3: Template a sudoers.d file for the user {{ user.name }} with the specified sudo_options.
+
+Task 4: Remove sudo options for {{ user.name }}
+Description Task 4: Remove the sudoers.d file for the user {{ user.name }} if sudo_options is not defined.
+
+Task 5: Generate private ssh key for {{ user.name }}
+Description Task 5: Generate a private ssh key for the user {{ user.name }} using the specified ssh_keygen_command.
+
+Task 6: Generate public ssh key for {{ user.name }}
+Description Task 6: Generate a public ssh key for the user {{ user.name }} using the specified ssh_keygen_pubkey_command.
+
+Task 7: Convert ssh key to ppk for {{ user.name }}
+Description Task 7: Convert the ssh key for the user {{ user.name }} to ppk format using the specified ssh_keygen_pubkey_command.
+
+Task 8: Get or set the home directory for {{ user.name }}
+Description Task 8: Use getent to retrieve system users data for the user {{ user.name }} and set the base home directory accordingly.
+
+Task 9: Create .ssh directory for {{ user.name }}
+Description Task 9: Ensure the .ssh directory for the user {{ user.name }} exists with the specified mode.
+
+Task 10: Deploy authorized keys for {{ user.name }}
+Description Task 10: Ensure the specified authorized keys are deployed for the user {{ user.name }}.
+
+Task 11: Remove unauthorized keys for {{ user.name }}
+Description Task 11: Ensure the specified unauthorized keys are removed for the user {{ user.name }}.
+
+Task 12: Copy generated private ssh key for {{ user.name }}
+Description Task 12: Copy the generated private ssh key for the user {{ user.name }} to the specified destination.
+
+Task 13: Check users password valid time for {{ user.name }}
+Description Task 13: Check the password validity time for the user {{ user.name }} using the awk command.
+
+Task 14: Set users password valid time for {{ user.name }}
+Description Task 14: Set the password validity time for the user {{ user.name }} using the chage command.
+
+Task 15: Place private key file for {{ user.name }}
+Description Task 15: Place the specified private key file for the user {{ user.name }} in the .ssh directory.

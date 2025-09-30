@@ -1,0 +1,21 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml file from the current directory into the playbook.
+Description Task 1: This is a one-time task to import custom assertions from an external file, allowing for more complex conditional logic and variable checking in the playbook. The task will only run once and delegate to the local machine.
+
+Task 2: Install the nginx package.
+Description Task 2: This task will ensure the nginx package is installed and in the present state on the target machine. This means the package will be installed if it's not already, and will be updated if it's already installed.
+
+Task 3: Place a customized nginx.conf file in the /etc/nginx directory.
+Description Task 3: This task will create a customized nginx.conf file using a Jinja2 template (nginx.conf.j2) and place it in the /etc/nginx/nginx.conf location. The template will be validated using the nginx -t -c %s command to ensure the configuration is correct. The file mode will be set to 0644, allowing for read and write permissions for the owner.
+
+Task 4: Ensure the /etc/nginx/conf.d directory exists and is correctly configured.
+Description Task 4: This task will create the /etc/nginx/conf.d directory and ensure it's in the correct state (directory). The directory mode will be set to 0755, providing read and execute permissions for the owner, group, and others.
+
+Task 5: Place a customized default.conf file in the /etc/nginx/conf.d directory.
+Description Task 5: This task will create a customized default.conf file using a Jinja2 template (default.conf.j2) and place it in the /etc/nginx/conf.d/default.conf location. The file mode will be set to 0644, allowing for read and write permissions for the owner. This task will also notify the Restart nginx handler to ensure the new configuration is loaded.
+
+Task 6: Start and enable the nginx service.
+Description Task 6: This task will start the nginx service and enable it to start automatically on boot. The service will be in the started state, indicating it's currently running.

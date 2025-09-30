@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Install the vault package on the target system.  
+Description Task 1: This task installs the vault package using the package manager, ensuring that the specified package name is used, which is defined by the `vault_package` variable. Upon successful installation, it triggers the handlers to reload the daemon and restart the vault service.
+
+Task 2: Reload the system daemon.  
+Description Task 2: This task is executed as a handler to reload the system daemon when notified by the package installation task, ensuring that any changes to the system's service configurations are applied.
+
+Task 3: Restart the vault service.  
+Description Task 3: This task is executed as a handler to restart the vault service when notified by the package installation task, ensuring that the vault service is running with the latest updates or configurations.

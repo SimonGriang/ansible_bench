@@ -69,14 +69,12 @@ class BaseOperationManager:
         tm = GenerationMetadata(self.args.operation_mode, self.model_name, self.model_engine, llm_settings, [self.args.template_type], self.args.language)
         tm.save_to_file(self.main_output_path / "metadata.yml")
 
-    #------------------has to be implemented by subclass
     def setup_files(self):
         raise NotImplementedError
     
     def run(self):
         raise NotImplementedError
-    #------------------necessary independently from run() and setup_files()
-
+    
     def clean_text(self, raw_output: str) -> str:
         raise NotImplementedError
 
@@ -182,10 +180,15 @@ class PromptOperationManager(BaseOperationManager):
                 raw_outputs = self.invoke_prompt_chain(template, pb_str)
                 
                 print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs.content}")
-                
-                if self.model_name == "gpt-oss:20b":
-                    cleaned_outputs = raw_outputs.content    
-                else: 
+
+                if self.model_name in {"gpt-oss:20b", 
+                                       "qwen2.5:14b", 
+                                       "granite-code:20b", 
+                                       "codestral:22b",
+                                       "phi4:14b",
+                                       "llama3.1:8b"}:
+                    cleaned_outputs = raw_outputs.content
+                else:
                     cleaned_outputs = self.clean_text(raw_outputs)
                     print(f"___________________________________________Cleaned LLM Output:___________________________________________ \n{cleaned_outputs}")
 
@@ -216,7 +219,7 @@ class PromptOperationManager(BaseOperationManager):
         if isinstance(raw_output, AIMessage):
             raw_output = raw_output.content
 
-        if self.model_name == "deepseek-r1:32b":
+        if self.model_name == "deepseek-r1:14b":
             raw_output = re.sub(r"<think>.*?</think>", "", raw_output, flags=re.DOTALL)
             
         if '"' in raw_output:
@@ -314,7 +317,7 @@ class BenchmarkOperationManager(BaseOperationManager):
             if isinstance(raw_output, AIMessage):
                 raw_output = raw_output.content
             
-            if self.model_name == "deepseek-r1:32b":
+            if self.model_name == "deepseek-r1:14b":
                 raw_output = re.sub(r"<think>.*?</think>", "", raw_output, flags=re.DOTALL)
 
             # remove everything before '---'
@@ -368,6 +371,7 @@ class BenchmarkOperationManager(BaseOperationManager):
 
 
     def run(self):
+        molecule_works_flag = False
         start_time = datetime.now()
         # loop over input files
         failed_at_stage_yamllint = []
@@ -375,12 +379,27 @@ class BenchmarkOperationManager(BaseOperationManager):
         failed_at_stage_ansiblelint = []
         failed_at_stage_molecule_test = []
         passed_all_stages = []
+        failed_initial_molecule_test = []
         yamllint_runs = 0
+        yamllint_passed_without_iteration = 0
         yamllint_passed_at_first_attempt = 0
         ansiblelint_runs = 0
         ansiblelint_passed_at_first_attempt = 0
 
-        for f in tqdm(self.prompt_files):
+        for f in tqdm(self.prompt_files):   
+            self.reports(start_time, 
+                        failed_initial_molecule_test,
+                        failed_at_stage_yamllint, 
+                        #failed_at_stage_syntax, 
+                        failed_at_stage_ansiblelint, 
+                        failed_at_stage_molecule_test, 
+                        passed_all_stages, 
+                        self.main_output_path,
+                        yamllint_runs,
+                        yamllint_passed_without_iteration,
+                        yamllint_passed_at_first_attempt,
+                        ansiblelint_runs,
+                        ansiblelint_passed_at_first_attempt)
             prompt_file = self.prompt_dir / f
             if not prompt_file.name.endswith("_prompt.txt"):
                 raise ValueError(f"File {prompt_file} does not end with '_prompt.txt'")
@@ -392,6 +411,10 @@ class BenchmarkOperationManager(BaseOperationManager):
                 yaml_path = yaml_path.with_suffix(".yml")
             if not yaml_path.exists():
                 raise FileNotFoundError(f"No YAML/YML found for {prompt_file}")
+            
+            if not check_molecule(yaml_path):
+                failed_initial_molecule_test.append(yaml_path)
+                break
 
             tmp_copy = self.tmp_dir / yaml_path.name
             shutil.copy2(yaml_path, tmp_copy)
@@ -449,9 +472,12 @@ class BenchmarkOperationManager(BaseOperationManager):
                                 f.write(cleaned_outputs)
                     else:
                         print(f"Error: Generated Ansible-YAML did not pass quality gate 'yamllint' after defined maximum of {max_iterations_yamllint} iterations in a row!")
-                    
-                    if i > 1:
-                        yamllint_passed_at_first_attempt += 1
+
+                    if i == 1:
+                        yamllint_passed_without_iteration += 1
+                        if errors_ansiblelint == 0:
+                            ansiblelint_passed_at_first_attempt += 1
+
                         
                     if not status_flag_yamllint:
                         print(f"\nGeneration of playbook '{yaml_path}' failed at stage 'yamllint'")
@@ -541,6 +567,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                 tmp_copy.unlink()
                 print(f"Original YAML file '{yaml_path}' was copied from temp into molecule_test directory.")
         self.reports(start_time, 
+                     failed_initial_molecule_test,
                      failed_at_stage_yamllint, 
                      #failed_at_stage_syntax, 
                      failed_at_stage_ansiblelint, 
@@ -548,6 +575,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                      passed_all_stages, 
                      self.main_output_path,
                      yamllint_runs,
+                     yamllint_passed_without_iteration,
                      yamllint_passed_at_first_attempt,
                      ansiblelint_runs,
                      ansiblelint_passed_at_first_attempt)
@@ -556,6 +584,7 @@ class BenchmarkOperationManager(BaseOperationManager):
     def reports(
         self,
         start_time,
+        failed_initial_molecule_test,
         failed_at_stage_yamllint,
         #failed_at_stage_syntax,
         failed_at_stage_ansiblelint,
@@ -563,6 +592,7 @@ class BenchmarkOperationManager(BaseOperationManager):
         passed_all_stages,
         report_path,
         yamllint_runs,
+        yamllint_passed_without_iteration,
         yamllint_passed_at_first_attempt,
         ansiblelint_runs,
         ansiblelint_passed_at_first_attempt,
@@ -585,6 +615,8 @@ class BenchmarkOperationManager(BaseOperationManager):
 
             # Stats
             f.write("====== Stage Counts ======\n")
+            if len(failed_initial_molecule_test) > 0:
+                f.write(f"Initial molecule failures: {len(failed_initial_molecule_test)}\n")
             f.write(f"yamllint failures   : {len(failed_at_stage_yamllint)}\n")
 #            f.write(f"syntax failures     : {len(failed_at_stage_syntax)}\n")
             f.write(f"ansiblelint failures: {len(failed_at_stage_ansiblelint)}\n")
@@ -602,28 +634,45 @@ class BenchmarkOperationManager(BaseOperationManager):
 
             # Details
             f.write("====== Detailed Entries ======\n")
-            f.write("YAMLLINT Statistics: \n")
+            if len(failed_initial_molecule_test) > 0:
+                f.write("\nInitial Molecule Test Statistics: \n")
+                f.write(f"Initial molecule failures: {len(failed_initial_molecule_test)}\n")
+                for entry in failed_initial_molecule_test:
+                    f.write(f"Initial molecule failed: {entry}\n")
+            f.write("\nYAMLLINT Statistics: \n")
             f.write(f"Total yamllint runs: {yamllint_runs}\n")
+            f.write(f"Yamllint passed without iteration: {yamllint_passed_without_iteration}\n")
             f.write(f"Yamllint passed at first attempt: {yamllint_passed_at_first_attempt}\n")
-            f.write("\nFailed at stage 'yamllint': \n")
+            f.write("Failed at stage 'yamllint': \n")
             for entry in failed_at_stage_yamllint:
                 f.write(f"yamllint failed: {entry}\n")
 #            f.write("\nFailed at stage 'ansible-playbook --syntax-check':\n")
 #            for entry in failed_at_stage_syntax:
 #                f.write(f"syntax failed: {entry}\n")
-            f.write("ANSIBLELINT Statistics: \n")
-            f.write(f"Total ansiblelint runs: {yamllint_runs}\n")
-            f.write(f"Ansiblelint passed at first attempt: {yamllint_passed_at_first_attempt}\n")
-            f.write("\nFailed at stage 'ansiblelint':\n")
+            f.write("\nANSIBLELINT Statistics: \n")
+            f.write(f"Total ansiblelint runs: {ansiblelint_runs}\n")
+            f.write(f"Ansiblelint passed at first attempt: {ansiblelint_passed_at_first_attempt}\n")
+            f.write("Failed at stage 'ansiblelint':\n")
             for entry in failed_at_stage_ansiblelint:
                 f.write(f"ansiblelint failed: {entry}\n")
-            f.write("\nFailed at stage 'molecule-test':\n")
+
+            f.write("\nMOLECULE Statistics: \n")     
+            f.write("failed at stage 'molecule-test':\n")
             for entry in failed_at_stage_molecule_test:
                 f.write(f"molecule failed: {entry}\n")
             f.write("\nSuccessfully passed all stages:\n")
             for entry in passed_all_stages:
                 f.write(f"passed: {entry}\n")
 
+            f.write("====== All run roles ======\n")
+            for entry in failed_at_stage_yamllint:
+                f.write(f"{entry}\n")
+            for entry in failed_at_stage_ansiblelint:
+                f.write(f"{entry}\n")
+            for entry in failed_at_stage_molecule_test:
+                f.write(f"{entry}\n")
+            for entry in passed_all_stages:
+                f.write(f"{entry}\n") 
         print(f"Report written to {report_file}")
 
 ########################___MAIN___########################

@@ -1,0 +1,21 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import an assertion task from a file named `assert.yml` to ensure the playbook's integrity and correctness. This task should only run once and be delegated to the localhost.
+Description Task 1: Import the assertions defined in `assert.yml` ensuring they are executed on the localhost and only once to validate the playbook's environment and prerequisites.
+
+Task 2: Install the logrotate package using variables that specify the package names.
+Description Task 2: Install the logrotate package on the target system using the package names specified in the variable `logrotate_packages`, ensuring it is present on the system.
+
+Task 3: Configure logrotate by creating a template configuration file from a Jinja2 template.
+Description Task 3: Use the Jinja2 template file specified by `logrotate_config_file` to generate the logrotate configuration file, saving it to the directory specified by `logrotate_config_directory` with appropriate permissions.
+
+Task 4: Generate logrotate.d configuration files for each log entry, ensuring they are only created if they should exist.
+Description Task 4: For each log entry defined in `logrotate_entries`, create a configuration file from the `entry.j2` template in the directory specified by `logrotate_confd_directory`. Only generate files for entries that are not marked as "absent".
+
+Task 5: Remove logrotate.d configuration files for entries that are explicitly marked for removal.
+Description Task 5: Identify log entries in `logrotate_entries` marked as "absent" and remove their corresponding configuration files from the directory specified by `logrotate_confd_directory`.
+
+Task 6: Start the logrotate service, ensuring it is enabled and in the desired state.
+Description Task 6: If a logrotate service is defined, ensure it is started and enabled by using the variables `logrotate_service`, `logrotate_service_state`, and `logrotate_service_enabled` to set its state and enabled status.

@@ -1,0 +1,33 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Check if python3.11 EXTERNALLY-MANAGED file exists
+Description Task 1: Verify the existence of the EXTERNALLY-MANAGED file in the python3.11 directory.
+
+Task 2: Rename python3.11 EXTERNALLY-MANAGED file if it exists
+Description Task 2: Rename the EXTERNALLY-MANAGED file to EXTERNALLY-MANAGED.old if it exists in the python3.11 directory.
+
+Task 3: Check if python3.12 EXTERNALLY-MANAGED file exists
+Description Task 3: Verify the existence of the EXTERNALLY-MANAGED file in the python3.12 directory.
+
+Task 4: Rename python3.12 EXTERNALLY-MANAGED file if it exists
+Description Task 4: Rename the EXTERNALLY-MANAGED file to EXTERNALLY-MANAGED.old if it exists in the python3.12 directory.
+
+Task 5: Import assert.yml
+Description Task 5: Import tasks from assert.yml file on the localhost.
+
+Task 6: Install python pip
+Description Task 6: Install python pip packages specified in the variable python_pip_packages.
+
+Task 7: Configure pip proxy
+Description Task 7: Configure the pip proxy in /etc/pip.conf if the variable python_pip_proxy is defined.
+
+Task 8: Trust hosts
+Description Task 8: Set trusted hosts in /etc/pip.conf if the variable python_pip_trusted_host is defined.
+
+Task 9: Update pip.
+Description Task 9: Update pip using the specified parameters if the variable python_pip_update is true and the OS is not bookworm or noble, and is not Alpine.
+
+Task 10: Install requested modules
+Description Task 10: Install specified pip modules defined in python_pip_modules if the OS is not bookworm or noble, and is not Alpine.

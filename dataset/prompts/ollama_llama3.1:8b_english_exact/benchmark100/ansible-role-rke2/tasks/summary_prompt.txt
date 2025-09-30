@@ -1,0 +1,10 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Run bash command to prepare summary on RKE2 nodes
+Description Task 1: Execute a bash command on RKE2 nodes to prepare a summary by running the 'kubectl get nodes' command with specific options and store the output in a variable.
+
+Task 2: Debug the K8s nodes state
+Description Task 2: Display the state of the Kubernetes nodes in a human-readable format.

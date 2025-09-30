@@ -1,0 +1,36 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import a task file named `assert.yml` to be executed once and delegate execution to the localhost.  
+Description Task 1: Import additional tasks from a file named `assert.yml`, ensuring the tasks are executed only once and delegated to the localhost.
+
+Task 2: Install the `bash` package if it is not already present.  
+Description Task 2: Ensure the `bash` package is installed on the target system using the package management module.
+
+Task 3: Install OpenJDK if the `java_vendor` is set to "openjdk" and set specific environment variables during installation.  
+Description Task 3: Install the OpenJDK package specified by the variable `java_openjdk_package` when `java_vendor` equals "openjdk", while setting specific environment variables for the installation process.
+
+Task 4: If the Java source is local and the format is RPM, copy the Oracle Java RPM package to `/tmp` and install it.  
+Description Task 4: When Java is sourced locally and in RPM format, copy the specified Java RPM package to `/tmp` and install it using the package manager.
+
+Task 5: If the Java source is local and the format is DEB, copy the Oracle Java DEB package to `/tmp` and install it.  
+Description Task 5: When Java is sourced locally and in DEB format, copy the specified Java DEB package to `/tmp` and install it using the APT package manager.
+
+Task 6: If the Java source is from a repository and the format is RPM, install the Oracle Java RPM package.  
+Description Task 6: Install the Oracle Java RPM package specified by `java_oracle_package` when the Java source is a repository and the format is RPM.
+
+Task 7: If the Java format is targz and the vendor is Oracle, ensure the installation directory exists, install the Oracle Java tarball, and set appropriate permissions.  
+Description Task 7: For Oracle Java in targz format, ensure the installation directory exists, extract the tarball to the specified directory, and set the directory permissions.
+
+Task 8: If Java version is 8, JCE is enabled, and the vendor is Oracle, install the Oracle Java policy software from a tarball.  
+Description Task 8: Install the Oracle Java Cryptography Extension (JCE) policy software from a zip file if the Java version is 8, JCE is enabled, and the vendor is Oracle.
+
+Task 9: Set Java as the default alternative if the format is targz, the distribution is not Alpine, and the vendor is Oracle.  
+Description Task 9: Configure the system to use Oracle Java as the default alternative for the `java` command when the format is targz, the distribution is not Alpine, and the vendor is Oracle.
+
+Task 10: Determine the JAVA_HOME directory by finding the real path of the Java binary.  
+Description Task 10: Execute a shell command to determine the JAVA_HOME directory by finding the real path of the Java binary.
+
+Task 11: Set the JAVA_HOME environment variable in `/etc/profile.d/java_home.sh`.  
+Description Task 11: Add or update the JAVA_HOME environment variable in the file `/etc/profile.d/java_home.sh` with the path determined from the previous task.

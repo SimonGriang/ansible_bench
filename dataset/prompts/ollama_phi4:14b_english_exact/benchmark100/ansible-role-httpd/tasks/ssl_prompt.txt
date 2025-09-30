@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Install SSL packages  
+Description Task 1: Install the required SSL packages using the variable `httpd_ssl_packages` to ensure the necessary software is present on the system.
+
+Task 2: Place SSL configuration file  
+Description Task 2: Use a Jinja2 template `ssl.conf.j2` to create or update the SSL configuration file at the destination path defined by `httpd_config_directory/ssl.conf` with appropriate permissions and trigger handlers to test and restart the HTTP server if needed.
+
+Task 3: Configure HTTP to HTTPS redirect  
+Description Task 3: Deploy a Jinja2 template `default_vhost.conf.j2` to set up the virtual host configuration for redirecting HTTP to HTTPS, saving it to the path specified by `httpd_config_directory/default_vhost_conf` and ensuring proper file permissions, while notifying handlers to validate and restart the HTTP server if necessary.

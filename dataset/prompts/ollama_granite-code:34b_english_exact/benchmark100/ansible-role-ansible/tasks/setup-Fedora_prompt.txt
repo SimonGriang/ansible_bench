@@ -1,8 +1,0 @@
-Task 1: Install Ansible.
-Description Task 1: Install the Ansible package on the target host.
-
-Task 2: Ensure Ansible local facts directory exists.
-Description Task 2: Ensure the directory /etc/ansible/facts.d/ exists on the target host.
-
-Task 3: Generate Ansible localfacts.
-Description Task 3: Generate the Ansible localfacts on the target host.

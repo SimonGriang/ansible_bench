@@ -1,0 +1,18 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Check if certificates exist
+Description Task 1: Check if the specified certificates exist on the system. The certificate paths are defined in a variable called `java_certs`.
+
+Task 2: Fail if some certificate doesn't exist
+Description Task 2: If any of the certificates specified in the `java_certs` variable do not exist, the task should fail and display a message indicating which certificate is missing.
+
+Task 3: Setting keystore variables in java < 11
+Description Task 3: Set the `java_keystore_dir` variable based on the `java_keystore_dir_old` value if the `java_open_jdk_version_major` is less than 11.
+
+Task 4: Setting keystore variables in java >= 11
+Description Task 4: Set the `java_keystore_dir` variable based on the `java_keystore_dir_new` value if the `java_open_jdk_version_major` is 11 or greater.
+
+Task 5: Import SSL certificates
+Description Task 5: Import the SSL certificates specified in the `java_certs` variable into the Java keystore located at `{{ java_open_jdk_home }}/{{ java_keystore_dir }}/cacerts`, using the `java_cert` module.

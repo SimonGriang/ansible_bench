@@ -1,0 +1,42 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import assertion tasks from assert.yml for local execution.  
+
+Task 2: Install mysql  
+Description Task 2: Install MySQL server packages using the specified packages variable and notify handlers for root password and systemctl daemon reexecution.  
+
+Task 3: Configure mysql server  
+Description Task 3: Configure MySQL server settings by writing options to the configuration file and notify handler for mysql server restart.  
+
+Task 4: Configure mysql client  
+Description Task 4: Configure MySQL client settings by writing the socket option to the client configuration file.  
+
+Task 5: Initialize mysql  
+Description Task 5: Initialize MySQL database on Alpine or Archlinux distributions by running the initialization command.  
+
+Task 6: Start and enable mysql  
+Description Task 6: Start and enable the MySQL service using the specified service name variable.  
+
+Task 7: Flush handlers  
+Description Task 7: Flush all pending handlers after performing configuration tasks.  
+
+Task 8: Place my.cnf  
+Description Task 8: Create a MySQL configuration file using a template with the specified mode.  
+
+Task 9: Create databases  
+Description Task 9: Create MySQL databases from the specified list, skipping if initial import is defined.  
+
+Task 10: List databases  
+Description Task 10: Collect information about existing MySQL databases to check for existence.  
+
+Task 11: Import database  
+Description Task 11: Import MySQL databases from the specified initial import location if they do not exist.  
+
+Task 12: Create users  
+Description Task 12: Create MySQL users with specified privileges and notify handler for mysql server restart.  
+
+Task 13: Flush handlers again  
+Description Task 13: Flush all pending handlers after performing user creation tasks.

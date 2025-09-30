@@ -1,0 +1,39 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import the assert.yml file.
+
+Task 2: Install dns
+Description Task 2: Install the dns package.
+
+Task 3: Create directories
+Description Task 3: Create directories with specified permissions and ownership.
+
+Task 4: Create group
+Description Task 4: Create a group.
+
+Task 5: Create user
+Description Task 5: Create a user.
+
+Task 6: Generate rndc key
+Description Task 6: Generate rndc key file.
+
+Task 7: Set permissions on rndc key file
+Description Task 7: Set permissions on rndc key file.
+
+Task 8: Get the hints/root file
+Description Task 8: Get the hints/root file from a specified URL and place it in the named.root file in the specified directory.
+
+Task 9: Create zone file
+Description Task 9: Create zone files based on the provided template for each zone in the dns_zones variable.
+
+Task 10: Add zones to configuration
+Description Task 10: Add zones to the named.conf file based on the provided template.
+
+Task 11: Place systemd override
+Description Task 11: Place a systemd override file based on the provided template.
+
+Task 12: Start and enable dns
+Description Task 12: Start and enable the dns service.

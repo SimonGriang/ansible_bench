@@ -1,0 +1,21 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml
+Description Task 1: Import the assert.yml file that likely contains pre-requisites and checks.
+
+Task 2: Install required packages
+Description Task 2: Install the packages listed in the service_required_packages variable using the package module.
+
+Task 3: Configure systemd service
+Description Task 3: If the system service manager is systemd, use the template module to deploy service configurations from the systemd.j2 template.
+
+Task 4: Configure sysvinit service
+Description Task 4: If the system service manager is sysvinit, upstart, or openrc, use the template module to deploy service configurations from the sysvinit.j2 template.
+
+Task 5: Manage service
+Description Task 5: Use the service module to start, stop, restart, or enable the services defined in the service_list variable.
+
+Task 6: Flush handlers
+Description Task 6: Use the meta module to flush any handlers that have been notified so far.

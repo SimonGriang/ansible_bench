@@ -1,0 +1,51 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml). Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Install Keepalived
+Description Task 1: When HA mode is enabled and the host is in the RKE2 servers group and HA mode is set to Keepalived, include tasks from keepalived.yml.
+
+Task 2: Install RKE2
+Description Task 2: Download and install RKE2 of a specific version.
+
+Task 3: Apply CIS Hardening
+Description Task 3: If a CIS profile is defined, include tasks from cis.yml.
+
+Task 4: Identify Active Server
+Description Task 4: Include tasks from find_active_server.yml to find the active server in the cluster.
+
+Task 5: Enable IPVS Kernel Module
+Description Task 5: If IPVS load balancing is enabled and the host is in the RKE2 servers group and HA mode is set to Kubevip and not Keepalived, enable the IPVS kernel module.
+
+Task 6: Copy Kube-vip Manifests
+Description Task 6: If the host is the first server in the RKE2 servers group and HA mode is set to Kubevip and not Keepalived, copy the kube-vip manifests to the masternode.
+
+Task 7: Copy Ingress-nginx Manifests
+Description Task 7: If the host is the first server in the RKE2 servers group and ingress-nginx values are defined, copy the ingress-nginx manifests to the masternode.
+
+Task 8: Prepare First Server Node
+Description Task 8: If the host is the first server in the RKE2 servers group and there is no active server or only one server in the cluster, prepare the very first server node in the cluster.
+
+Task 9: Restore etcd
+Description Task 9: If an active server is defined and the host is the active server or the first server in the RKE2 servers group and an etcd restore is needed, include tasks from first_server_restore.yml.
+
+Task 10: Download kubeconfig
+Description Task 10: If kubeconfig download is enabled and the host is the first server in the RKE2 servers group, download the kubeconfig to the ansible localhost.
+
+Task 11: Prepare and Join Remaining Nodes
+Description Task 11: If an active server is defined and there are two or more servers in the cluster, prepare and join the remaining nodes of the cluster.
+
+Task 12: Rolling Restart Servers
+Description Task 12: If the installed version is different from the running version for servers, include tasks from rolling_restart.yml.
+
+Task 13: Rolling Restart Agents
+Description Task 13: If the installed version is different from the running version for agents and the host is not in the RKE2 servers group, include tasks from rolling_restart.yml.
+
+Task 14: Flush Handlers
+Description Task 14: Flush handlers to ensure all notified handlers are executed.
+
+Task 15: Rolling Restart Config Change
+Description Task 15: If a restart is needed due to config file changes, include tasks from change_config.yml.
+
+Task 16: Final Steps
+Description Task 16: Perform final steps in the cluster setup.

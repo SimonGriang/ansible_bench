@@ -1,0 +1,20 @@
+ Task 1: Assert role variables
+Description Task 1: Import the assert.yml task file to ensure that required role variables are defined and valid.
+
+Task 2: Install git
+Description Task 2: Install the git package(s) as defined in the variable 'git_packages'.
+
+Task 3: Check if user exists
+Description Task 3: Check if the user defined in 'git_username' exists in the system's passwd database.
+
+Task 4: Create user's home directory
+Description Task 4: If the user exists, create their home directory with specified ownership and permissions.
+
+Task 5: Configure git
+Description Task 5: If the user exists, user email and name are defined, and the git configuration file template exists, place the git configuration file in the user's home directory.
+
+Task 6: Create repository destination
+Description Task 6: If the user exists, the repository destination is defined, and the user exists, create the repository destination directory with specified ownership and permissions.
+
+Task 7: Clone repositories
+Description Task 7: If the user exists, the repository destination and repositories are defined, and the user exists, clone all the repositories defined in 'git_repositories' to the repository destination directory using git and the user's privileges.

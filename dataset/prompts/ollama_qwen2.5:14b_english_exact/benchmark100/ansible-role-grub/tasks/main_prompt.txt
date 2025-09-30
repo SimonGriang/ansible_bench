@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml
+Description Task 1: Import the assert.yml file for assertions and validations, running only once on localhost.
+
+Task 2: Install required packages
+Description Task 2: Install the packages listed in the variable grub_packages.
+
+Task 3: Set GRUB_TIMEOUT
+Description Task 3: Set the GRUB_TIMEOUT variable in the /etc/default/grub file with the value of the variable grub_timeout and notify the Update grub handler.
+
+Task 4: Set GRUB_RECORDFAIL_TIMEOUT
+Description Task 4: Set the GRUB_RECORDFAIL_TIMEOUT variable in the /etc/default/grub file with the value of the variable grub_recordfail_timeout and notify the Update grub handler.
+
+Task 5: Add options to GRUB_CMDLINE_LINUX
+Description Task 5: Add options to the GRUB_CMDLINE_LINUX variable in the /etc/default/grub file using the list of options in the variable grub_options, notify the Update grub handler, and only perform this task if the grub_options variable is defined and has items.
+
+Task 6: Import password.yml
+Description Task 6: Import the password.yml file when the variable grub_set_password is true.
+
+Task 7: Flush handlers
+Description Task 7: Ensure all handlers are flushed and run after all tasks have completed.

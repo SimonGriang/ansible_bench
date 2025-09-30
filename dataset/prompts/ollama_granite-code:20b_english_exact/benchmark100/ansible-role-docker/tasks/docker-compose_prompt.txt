@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Check current docker-compose version.
+Description Task 1: Registers the current version of docker-compose and stores it in the variable docker_compose_current_version.
+
+Task 2: Delete existing docker-compose version if it's different.
+Description Task 2: Removes the existing docker-compose version if it's different from the desired version.
+
+Task 3: Install Docker Compose (if configured).
+Description Task 3: Downloads and installs Docker Compose if it's not already present or if the installed version is older than the desired version.

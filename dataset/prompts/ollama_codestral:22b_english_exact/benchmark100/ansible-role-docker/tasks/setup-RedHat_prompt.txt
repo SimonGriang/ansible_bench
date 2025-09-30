@@ -1,0 +1,21 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+   Task 1: Remove old Docker versions.
+   Description Task 1: This task is responsible for ensuring that any old or obsolete versions of Docker are not present on the system. It uses the 'package' module to remove the packages listed in the 'docker_obsolete_packages' variable.
+
+   Task 2: Add Docker GPG key.
+   Description Task 2: This task adds the Docker GPG key to the system. The key is specified using the 'docker_yum_gpg_key' variable. The task only runs if the 'docker_add_repo' variable is set to true.
+
+   Task 3: Add Docker repository.
+   Description Task 3: This task adds the Docker repository to the system. The repository URL is specified using the 'docker_yum_repo_url' variable. The task only runs if the 'docker_add_repo' variable is set to true.
+
+   Task 4: Configure Docker Nightly repo.
+   Description Task 4: This task configures the Docker Nightly repository on the system. It uses the 'ini_file' module to set the 'enabled' option in the appropriate section of the Docker repository configuration file. The value for the 'enabled' option is specified using the 'docker_yum_repo_enable_nightly' variable. The task only runs if the 'docker_add_repo' variable is set to true.
+
+   Task 5: Configure Docker Test repo.
+   Description Task 5: This task configures the Docker Test repository on the system. It uses the 'ini_file' module to set the 'enabled' option in the appropriate section of the Docker repository configuration file. The value for the 'enabled' option is specified using the 'docker_yum_repo_enable_test' variable. The task only runs if the 'docker_add_repo' variable is set to true.
+
+   Task 6: Configure containerd on RHEL 8.
+   Description Task 6: This task configures containerd on RHEL 8 systems. It removes the 'runc' package and installs the 'container-selinux' and 'containerd.io' packages. The task only runs if the system is running RHEL 8.

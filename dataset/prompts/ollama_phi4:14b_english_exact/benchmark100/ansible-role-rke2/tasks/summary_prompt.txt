@@ -1,0 +1,9 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Prepare a summary of K8s nodes when the current host is the first in the rke2_servers_group.
+Description Task 1: Execute a shell command to retrieve and display the state of K8s nodes including their labels using the kubectl tool. Ensure the command runs only when the current host matches the first host in the rke2_servers_group. Use the rke2_data_path variable for the path to the kubectl binary and /etc/rancher/rke2/rke2.yaml for the kubeconfig file. Set the shell executable to /bin/bash, and configure the task to not mark the host as changed. Implement retry logic with a maximum of 5 attempts and register the output to a variable named nodes_summary.
+
+Task 2: Display the state of K8s nodes.
+Description Task 2: Output the retrieved node information from the nodes_summary variable to the Ansible debug console to display the state of the K8s nodes.

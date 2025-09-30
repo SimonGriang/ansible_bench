@@ -1,0 +1,39 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Check if Python is installed on the system.  
+Description Task 1: Verify if the Python executable is available by using the 'which' command and register the output. This task should not raise errors if Python is not found, and it should not mark the task as changed.
+
+Task 2: Check if Python3 is installed on the system.  
+Description Task 2: Verify if the Python3 executable is available by using the 'which' command and register the output. This task should ignore errors if Python3 is not found and should not mark the task as changed.
+
+Task 3: Debug the Python executable path.  
+Description Task 3: Output the path of the Python executable if it was found in the previous task, by using the registered variable from Task 1.
+
+Task 4: Debug the Python3 executable path.  
+Description Task 4: Output the path of the Python3 executable if it was found in the previous task, by using the registered variable from Task 2.
+
+Task 5: Import additional assertions.  
+Description Task 5: Import tasks from a file named 'assert.yml' and ensure these tasks are executed only once on the localhost.
+
+Task 6: Install OpenSSL requirements.  
+Description Task 6: Install packages specified in the 'openssl_requirements' variable using the package manager to ensure they are present.
+
+Task 7: Ensure Python3 packaging is available via dnf.  
+Description Task 7: Install the 'python3-packaging' package using the package manager to ensure it is present.
+
+Task 8: Install pip packages for OpenSSL.  
+Description Task 8: Install Python packages specified in the 'openssl_pip_packages' variable using pip.
+
+Task 9: Create a directory for OpenSSL keys.  
+Description Task 9: Create a directory at the path specified by 'openssl_key_directory' with permissions set to 750, and assign ownership to the user and group specified by 'openssl_file_owner' and 'openssl_file_group'.
+
+Task 10: Create a directory for OpenSSL CSR files.  
+Description Task 10: Create a directory at the path specified by 'openssl_csr_directory' with permissions set to 755, and assign ownership to the user and group specified by 'openssl_file_owner' and 'openssl_file_group'.
+
+Task 11: Create a directory for OpenSSL certificate files.  
+Description Task 11: Create a directory at the path specified by 'openssl_crt_directory' with permissions set to 755, and assign ownership to the user and group specified by 'openssl_file_owner' and 'openssl_file_group'.
+
+Task 12: Include tasks to create OpenSSL items.  
+Description Task 12: Include tasks from a file named 'create.yml' for each item in the 'openssl_items' list, ensuring that the task is executed only if 'openssl_items' is defined and not empty. The loop should label each iteration with the name of the item.

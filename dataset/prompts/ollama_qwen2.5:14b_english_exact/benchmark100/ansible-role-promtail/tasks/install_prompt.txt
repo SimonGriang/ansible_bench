@@ -1,0 +1,48 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Ensure the unzip package is available on the target system.
+Description Task 1: Installs the unzip package using apt or yum, depending on the distribution, and updates the package cache if specified.
+
+Task 2: Create a system group for promtail.
+Description Task 2: Creates a system group for promtail, ensuring it is not the root group.
+
+Task 3: Create the promtail user.
+Description Task 3: Creates a system user for promtail, ensuring it is not the root user, and assigns it to the promtail group.
+
+Task 4: Ensure the /usr/local/bin directory exists.
+Description Task 4: Ensures the /usr/local/bin directory exists with the correct permissions.
+
+Task 5: Create config directories.
+Description Task 5: Creates directories for promtail configuration files, ensuring they have the correct permissions and ownership.
+
+Task 6: Create application directories.
+Description Task 6: Creates directories for the promtail application, ensuring they have the correct permissions and ownership.
+
+Task 7: Check if the promtail binary exists.
+Description Task 7: Checks if the promtail binary exists in the specified directory.
+
+Task 8: Download promtail binaries.
+Description Task 8: Downloads promtail binaries from a specified URL if the binary does not exist and if the binaries are not distributed locally or propagated.
+
+Task 9: Propagate locally distributed promtail archive.
+Description Task 9: Copies a locally distributed promtail archive to the target directory if the binary does not exist and if the binaries are distributed locally.
+
+Task 10: Download promtail binaries to controller node.
+Description Task 10: Downloads promtail binaries to the controller node from a specified URL if the binary does not exist and if the binaries are propagated.
+
+Task 11: Propagate promtail binaries.
+Description Task 11: Copies promtail binaries to the target directory if the binaries are propagated.
+
+Task 12: Unpack promtail binaries.
+Description Task 12: Unpacks the promtail binaries into the application directory, ensuring the correct mode and ignoring errors in check mode.
+
+Task 13: Create symlink to latest version.
+Description Task 13: Creates a symlink to the latest version of promtail in /usr/local/bin and restarts the promtail service.
+
+Task 14: Write configuration.
+Description Task 14: Writes the promtail configuration file using a template, ensuring the correct permissions and ownership, and restarts the promtail service.
+
+Task 15: Create systemd service unit.
+Description Task 15: Creates a systemd service unit file for promtail using a template, ensuring the correct permissions, and restarts the promtail service.

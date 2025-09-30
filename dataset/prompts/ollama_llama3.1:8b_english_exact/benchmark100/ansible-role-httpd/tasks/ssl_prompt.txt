@@ -1,0 +1,10 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Install required SSL packages.
+Description Task 1: Install the necessary SSL-related packages on the target system, where the package names are stored in the `httpd_ssl_packages` variable.
+
+Task 2: Place SSL configuration file.
+Description Task 2: Copy the SSL configuration template to the correct location in the Apache configuration directory (`httpd_config_directory`), renaming it to `ssl.conf`, and ensure it has the correct permissions (`0644`). Additionally, this task triggers a handler to test the Apache configuration's validity and, if necessary, restart the service.
+
+Task 3: Configure HTTP to HTTPS redirect.
+Description Task 3: Copy the template for the default Apache vhost configuration (`default_vhost_conf`) to the Apache configuration directory (`httpd_config_directory`), renaming it to match the default vhost configuration's filename, and ensure it has the correct permissions (`0644`). This task also triggers a handler to test the Apache configuration's validity and, if necessary, restart the service.

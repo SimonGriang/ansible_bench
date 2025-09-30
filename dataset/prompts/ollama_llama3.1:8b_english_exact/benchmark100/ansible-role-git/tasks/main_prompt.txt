@@ -1,0 +1,26 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml role.
+Description Task 1: Include the role assert.yml in the current playbook, and run this task only once. Delegation should be to localhost.
+
+Task 2: Install git package.
+Description Task 2: Install the package with the name specified in the variable git_packages, and ensure that it is present on the system.
+
+Task 3: Check if a user exists.
+Description Task 3: Query the passwd database to check if a user with the name specified in the variable git_username exists. If git_username is not defined, skip this task.
+
+Task 4: Create a directory for git configuration.
+Description Task 4: Create a directory at /home/ with the name specified in the variable git_username. Ensure that the directory belongs to the user specified in git_username, and the group specified in git_groupname. If either of these variables is not defined, omit them from the file path. This task should only run if the user exists.
+
+Task 5: Configure git.
+Description Task 5: Use a template to create a git configuration file at /home/ with the name specified in git_username. The template src should be gitconfig.j2. Ensure that the file has a mode of "0644". This task should only run if the user exists, and if the variables git_user_email, git_user_name, and git_username are defined.
+
+Task 6: Create the repository destination.
+Description Task 6: Create a directory at the path specified in the variable git_repository_destination. Ensure that the directory belongs to the user specified in git_username, and the group specified in git_groupname. If either of these variables is not defined, omit them from the file path. This task should only run if the user exists.
+
+Task 7: Clone all specified repositories.
+Description Task 7: Clone the repositories specified in the variable git_repositories. The repo attribute should be the URL of the repository, dest should be the path where the repository will be cloned, and the version should be the version of the repository to clone. If the version is not specified, it defaults to "HEAD". The force attribute should be true if the repository is forced to be cloned. The become_user should be the user specified in git_username. This task should only run if the user exists and if the variables git_repositories and git_repository_destination are defined.

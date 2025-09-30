@@ -1,0 +1,17 @@
+ Task 1: Import assert.yml
+   Description Task 1: Import the assert.yml file from the tasks directory to ensure the playbook's environment is correctly set up.
+
+   Task 2: Install logrotate
+   Description Task 2: Install the logrotate package using the package manager. The package's name is defined by the variable logrotate_packages.
+
+   Task 3: Configure logrotate
+   Description Task 3: Use a Jinja2 template to configure logrotate. The template file is logrotate_config_file.j2, and the output is placed in logrotate_config_directory with the name logrotate_config_file and a permission mode of 0644.
+
+   Task 4: Generate logrotate.d files
+   Description Task 4: Use a Jinja2 template to generate individual logrotate.d files for each entry defined in the logrotate_entries variable. The template file is entry.j2, and the output files are placed in logrotate_confd_directory with the name defined by the name attribute of each entry in logrotate_entries and a permission mode of 0644. This task is only performed if logrotate_entries is defined and the state attribute of each entry is not defined or not set to 'absent'.
+
+   Task 5: Remove logrotate.d files
+   Description Task 5: Remove individual logrotate.d files for each entry defined in the logrotate_entries variable if the state attribute of the entry is set to 'absent'. The files are located in logrotate_confd_directory with the name defined by the name attribute of each entry. This task is only performed if logrotate_entries is defined and the state attribute of each entry is set to 'absent'.
+
+   Task 6: Start logrotate
+   Description Task 6: Start the logrotate service. The service's name is defined by the logrotate_service variable, the desired state is defined by the logrotate_service_state variable, and whether the service should start at boot is defined by the logrotate_service_enabled variable. This task is only performed if logrotate_service is not an empty string.

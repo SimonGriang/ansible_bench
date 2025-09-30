@@ -1,0 +1,51 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Install Keepalived when HA mode is enabled.  
+Description Task 1: Include tasks for installing Keepalived if RKE2 is running in HA mode with Keepalived enabled. This should only apply to nodes in the RKE2 servers group with a defined API IP.
+
+Task 2: Download and install RKE2 version.  
+Description Task 2: Include tasks for downloading and installing a specified version of RKE2.
+
+Task 3: Apply CIS Hardening.  
+Description Task 3: Include tasks for applying CIS hardening profiles if a CIS profile is defined.
+
+Task 4: Find Active Server.  
+Description Task 4: Include tasks for identifying the active server within the RKE2 cluster.
+
+Task 5: Enable IPVS kernel module.  
+Description Task 5: Enable the IPVS kernel module if KubeVip IPVS load balancing is enabled, the node is part of the RKE2 servers group, HA mode is enabled, and Keepalived is not used.
+
+Task 6: Copy kube-vip manifests to the masternode.  
+Description Task 6: Include tasks for copying kube-vip manifests to the master node if HA mode with KubeVip is enabled and Keepalived is not used.
+
+Task 7: Copy ingress-nginx manifests to the masternode.  
+Description Task 7: Include tasks for copying ingress-nginx manifests to the master node if ingress-nginx values are defined and non-empty.
+
+Task 8: Prepare very first server node in the cluster.  
+Description Task 8: Include tasks for preparing the first server node in the cluster if it is the only node or the active server is not defined.
+
+Task 9: Restore etcd specific tasks.  
+Description Task 9: Include tasks for restoring etcd if the active server is defined and either the current node is the active server or the first server node, and an etcd restore is specified.
+
+Task 10: Download kubeconfig to ansible localhost.  
+Description Task 10: Include tasks for downloading the kubeconfig to the Ansible localhost if the download is enabled and the node is the first server node.
+
+Task 11: Prepare and join remaining nodes of the cluster.  
+Description Task 11: Include tasks for preparing and joining remaining nodes to the cluster if there is an active server and the cluster has at least two nodes.
+
+Task 12: Rolling cordon and drain restart when version changes - servers.  
+Description Task 12: Include tasks for performing a rolling cordon and drain restart on server nodes when the RKE2 version changes.
+
+Task 13: Rolling cordon and drain restart when version changes - agents.  
+Description Task 13: Include tasks for performing a rolling cordon and drain restart on agent nodes when the RKE2 version changes.
+
+Task 14: Flush handlers.  
+Description Task 14: Flush handlers to ensure all triggered handlers are executed.
+
+Task 15: Rolling restart when config files change.  
+Description Task 15: Include tasks for performing a rolling restart on all cluster nodes when configuration changes are detected.
+
+Task 16: Final steps.  
+Description Task 16: Include tasks for finalizing the setup or configuration process.

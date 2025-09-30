@@ -1,0 +1,9 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create directories for HTTPD
+Description Task 1: Create directories as specified in the `httpd_directories` variable. The mode of each directory should be set to "0755".
+
+Task 2: Configure HTTPD directories
+Description Task 2: Configure each HTTPD directory by rendering a template file `directory.conf.j2` and placing it in the `httpd_config_directory` directory. The mode of the rendered configuration file should be set to "0644". This task also triggers two handlers: "Test httpd configuration validity" and "Restart httpd".

@@ -1,0 +1,2 @@
+ Task 1: Install centos-release-scl
+   Description Task 1: Use the Ansible built-in package module to install the 'centos-release-scl' package. This task should only run when the target system is running the CentOS distribution.

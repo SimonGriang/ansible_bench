@@ -1,0 +1,7 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Create specified directories with the correct permissions.
+Description Task 1: Create the required system directories for the HTTP server with the specified path, mode, and ensure they exist.
+
+Task 2: Configure directory configurations for HTTP server.
+Description Task 2: Generate the directory configurations for the HTTP server by templating the directory.conf.j2 file and place it in the specified configuration directory with the correct mode, using the list of directories to loop through and configure each one.

@@ -1,0 +1,7 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Create the document root for each vhost
+Description Task 1: Create the document root directories for all the vhosts defined in the `httpd_vhosts` variable, with permissions set to 0755, and only if a document root directory is specified for each vhost and the `create_docroot` attribute is not defined or is set to True.
+
+Task 2: Configure the vhosts
+Description Task 2: For each vhost defined in the `httpd_vhosts` variable, create a configuration file at the specified destination, with a name matching the vhost name, using the `vhost_conf_template` template, and permissions set to 0644. Also, notify the `Test httpd configuration validity` and `Restart httpd` handlers to ensure the configuration is valid and the service is restarted.

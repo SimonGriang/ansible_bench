@@ -1,0 +1,13 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Remove externally managed configuration from Debian 12 systems.
+Description Task 1: This task imports a separate playbook specifically designed for Debian 12 systems to remove any externally managed configurations. The playbook will only be executed if the system is running Debian and its major version is 12 or higher.
+
+Task 2: Install the Pip package on the system.
+Description Task 2: This task ensures that the Pip package is installed on the system. The package name is determined by a variable named `pip_package`, and its state should be present.
+
+Task 3: Install the `python3-packaging` package via DNF.
+Description Task 3: This task ensures that the `python3-packaging` package is installed on the system. This package should be available via DNF (DNF is a package manager for Linux distributions).
+
+Task 4: Install pip packages specified in the `pip_install_packages` list.
+Description Task 4: This task installs packages specified in the `pip_install_packages` list. The task uses a loop to iterate over the list and install each package. The installation of each package is customized based on the `name`, `version`, `virtualenv`, `state`, `extra_args`, and `executable` attributes of each package in the list.

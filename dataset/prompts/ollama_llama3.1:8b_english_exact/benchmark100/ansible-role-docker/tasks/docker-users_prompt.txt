@@ -1,0 +1,7 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Add users to the docker group with append mode.
+Description Task 1: Add users listed in the docker_users variable to the docker group with append mode, ensuring that existing users are not removed.
+
+Task 2: Reset ssh connection.
+Description Task 2: Reset the ssh connection to apply user configuration changes made in the previous task.

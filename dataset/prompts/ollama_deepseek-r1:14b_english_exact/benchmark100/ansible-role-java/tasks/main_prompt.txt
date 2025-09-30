@@ -1,0 +1,36 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assertion file
+Description Task 1: Import assertion file assert.yml and run once on localhost.
+
+Task 2: Install system requirements
+Description Task 2: Install bash package.
+
+Task 3: Install OpenJDK Java
+Description Task 3: Install OpenJDK Java package when java_vendor is set to "openjdk".
+
+Task 4: Install Oracle Java RPM from local
+Description Task 4: Copy and install Oracle Java RPM package when java_source is "local" and java_format is "rpm".
+
+Task 5: Install Oracle Java DEB from local
+Description Task 5: Copy and install Oracle Java DEB package when java_source is "local" and java_format is "deb".
+
+Task 6: Install Oracle Java RPM from repository
+Description Task 6: Install Oracle Java RPM package when java_source is "repository" and java_format is "rpm".
+
+Task 7: Configure Oracle Java targz installation
+Description Task 7: Extract and install Oracle Java targz package when java_format is "targz" and java_vendor is "oracle".
+
+Task 8: Install Oracle Java JCE policy
+Description Task 8: Install Java Cryptography Extension (JCE) policy software when java_jce is enabled, java_version is 8, and java_vendor is "oracle".
+
+Task 9: Set Java alternative
+Description Task 9: Set Java alternative link when java_format is "targz" and distribution is not Alpine.
+
+Task 10: Find Java home directory
+Description Task 10: Determine JAVA_HOME by finding the real path of /usr/bin/java.
+
+Task 11: Set JAVA_HOME in environment
+Description Task 11: Add JAVA_HOME to /etc/profile.d/java_home.sh file.

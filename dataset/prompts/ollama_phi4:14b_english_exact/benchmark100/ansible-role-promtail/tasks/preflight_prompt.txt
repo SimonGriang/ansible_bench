@@ -1,0 +1,15 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Ensure the system is using systemd as the init system.  
+Description Task 1: Assert that the `ansible_service_mgr` variable is set to 'systemd', and if not, provide a message indicating that the playbook only works with systemd.
+
+Task 2: Retrieve the latest release information for Grafana Loki from GitHub.  
+Description Task 2: Use the `uri` module to fetch the latest release data from the GitHub API for Grafana Loki, handling authentication with environment variables, validating the response, and retrying up to 5 times if needed. Register the response and set the `promtail_version` fact based on the release tag name, only if `promtail_version` is set to "latest".
+
+Task 3: Verify the existence of a local promtail binary archive.  
+Description Task 3: Check if the promtail binary archive exists in the specified local directory using the `stat` module, and assert its existence with a message if it does not, but only if `promtail_binary_local_dir` is configured.
+
+Task 4: Download and verify the checksum for the promtail binary if not using a local binary.  
+Description Task 4: If no local binary directory is specified, fetch the checksum list from the GitHub release page for the specified `promtail_version` using the `url` lookup, and extract the checksum for the specified architecture, ensuring the integrity of the binary download.

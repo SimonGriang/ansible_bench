@@ -1,0 +1,51 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Install Keepalived when HA mode is enabled
+Description Task 1: Install Keepalived when in High Availability mode and the server is part of the RKE2 server group
+
+Task 2: Download and install RKE2
+Description Task 2: Download and install RKE2 with the specified version
+
+Task 3: CIS Hardening
+Description Task 3: Perform CIS (Center for Internet Security) Hardening if a CIS profile is provided
+
+Task 4: Find Active Server
+Description Task 4: Identify the active server in the RKE2 cluster
+
+Task 5: Enable IPVS kernel module
+Description Task 5: Enable the IPVS kernel module when using Kube-VIP and HA mode
+
+Task 6: Copy kube-vip manifests to the masternode
+Description Task 6: Copy Kube-VIP manifests to the main server node when not using Keepalived
+
+Task 7: Copy ingress-nginx manifests to the masternode
+Description Task 7: Copy the ingress-nginx manifests to the main server node if the configuration is defined
+
+Task 8: Prepare very first server node in the cluster
+Description Task 8: Prepare the very first server node in the cluster for initial setup
+
+Task 9: Restore etcd specific tasks
+Description Task 9: Restore etcd specific tasks if etcd needs to be restored
+
+Task 10: Download kubeconfig to ansible localhost
+Description Task 10: Download the kubeconfig to the Ansible control machine if enabled
+
+Task 11: Prepare and join remaining nodes of the cluster
+Description Task 11: Prepare and join remaining nodes of the cluster if the active server is defined
+
+Task 12: Rolling cordon and drain restart when version changes - servers
+Description Task 12: Perform rolling restart for servers when the RKE2 version changes
+
+Task 13: Rolling cordon and drain restart when version changes - agents
+Description Task 13: Perform rolling restart for agents when the RKE2 version changes
+
+Task 14: Flush handlers
+Description Task 14: Flush all handlers at this point
+
+Task 15: Rolling restart when config files change
+Description Task 15: Perform rolling restart when configuration files change
+
+Task 16: Final steps
+Description Task 16: Final steps to complete the playbook execution

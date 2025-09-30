@@ -1,0 +1,11 @@
+ Task 1: Check current docker-compose version.
+   Description Task 1: Run the docker-compose command to check its current version. If it's running, store the output in a variable called 'docker_compose_vsn'.
+
+   Task 2: Set fact for current docker-compose version.
+   Description Task 2: If the 'docker_compose_vsn' variable is defined and not empty, extract the version number from its output and store it in a new variable called 'docker_compose_current_version'.
+
+   Task 3: Remove existing docker-compose version if it's different.
+   Description Task 3: If 'docker_compose_current_version' is defined and does not match the desired version stored in 'docker_compose_version', remove the existing docker-compose file at the path specified by 'docker_compose_path'.
+
+   Task 4: Install Docker Compose (if configured).
+   Description Task 4: If 'docker_compose_current_version' is not defined, or if it's empty, or if it's less than the desired version, download the Docker Compose binary from 'docker_compose_url' and save it to 'docker_compose_path'. Set the file permissions to 0755.

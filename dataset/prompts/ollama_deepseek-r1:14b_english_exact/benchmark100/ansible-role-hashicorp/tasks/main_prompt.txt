@@ -1,0 +1,18 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import assertion tasks from assert.yml for validation purposes. This task runs once on localhost.
+
+Task 2: Install using package
+Description Task 2: Install HashiCorp product using package manager. This task includes conditional blocks for different operating systems and installation methods.
+
+Task 3: Configure debian
+Description Task 3: Configure Debian-specific settings for HashiCorp product installation, including GPG key and apt repository setup.
+
+Task 4: Install hashicorp product using package
+Description Task 4: Install HashiCorp products using package manager. This block handles both latest and version-specific installations.
+
+Task 5: Install manually
+Description Task 5: Install HashiCorp product manually by extracting files. This task includes configuration for destination, permissions, and remote source.

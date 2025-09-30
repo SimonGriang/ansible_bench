@@ -1,0 +1,56 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Migrate adoptopenjdk to temurin (if selected)
+Description Task 1: Set the java_jdk_vendor variable to "temurin" if the current value is "adoptopenjdk".
+
+Task 2: Gather OS specific variables
+Description Task 2: Include OS-specific variables based on the current java_jdk_vendor and the system's distribution and major version.
+
+Task 3: Gather architecture specific variables
+Description Task 3: Include architecture-specific variables from a file named "architecture.yml".
+
+Task 4: Set OS-specific variables (I)
+Description Task 4: Set various OS-specific variables, allowing them to be overridden by the role's variables, based on their existence and non-null status.
+
+Task 5: Set OS and architecture specific variables (II)
+Description Task 5: Set the java_open_jdk_home_dir and java_open_jdk_package variables, allowing them to be overridden by the role's variables, based on their existence and non-null status.
+
+Task 6: Set specific variables
+Description Task 6: Set the java_home variable to the value of java_open_jdk_home.
+
+Task 7: Debian pre-requisites
+Description Task 7: Perform pre-requisites for Debian-based systems, including:
+- Removing deprecated repositories
+- Installing extra apt tools
+- Adding required key repositories
+- Adding required repositories
+
+Task 8: RedHat pre-requisites
+Description Task 8: Perform pre-requisites for RedHat-based systems, including:
+- Adding required key repositories
+- Adding required repositories
+
+Task 9: Install required libs
+Description Task 9: Install required libraries for Java.
+
+Task 10: Install Java, Debian
+Description Task 10: Install Java on Debian-based systems, using apt.
+
+Task 11: Install Java, RedHat
+Description Task 11: Install Java on RedHat-based systems, using yum.
+
+Task 12: Export environment variables
+Description Task 12: Export environment variables by creating a template file jdk.sh.j2 in /etc/profile.d/jdk.sh.
+
+Task 13: Source environment variables
+Description Task 13: Source the /etc/profile file using a shell task.
+
+Task 14: Correct java version selected /usr/lib/jvm/{{ java_open_jdk_home_dir }}/jre/bin/java in java < 11
+Description Task 14: Correct the path of java to /usr/lib/jvm/{{ java_open_jdk_home_dir }}/jre/bin/java for Java versions less than 11.
+
+Task 15: Correct java version selected /usr/lib/jvm/{{ java_open_jdk_home_dir }}/bin/java in java >= 11
+Description Task 15: Correct the path of java to /usr/lib/jvm/{{ java_open_jdk_home_dir }}/bin/java for Java versions 11 and above.

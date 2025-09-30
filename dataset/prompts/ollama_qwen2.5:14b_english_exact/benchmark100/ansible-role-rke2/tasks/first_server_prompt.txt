@@ -1,0 +1,48 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create the RKE2 config directory
+Description Task 1: Create the directory /etc/rancher/rke2 for RKE2 configuration files.
+
+Task 2: Set server taints
+Description Task 2: Set the combined_node_taints fact based on the rke2_server_node_taints variable when the server type is set to server.
+
+Task 3: Copy RKE2 configuration file
+Description Task 3: Copy the RKE2 configuration template file to /etc/rancher/rke2/config.yaml and notify the "Config file changed" handler.
+
+Task 4: Copy kubelet configuration file
+Description Task 4: Copy the kubelet configuration template file to /etc/rancher/rke2/kubelet-config.yaml if the rke2_kubelet_config variable is not empty and notify the "Config file changed" handler.
+
+Task 5: Copy Containerd Registry Configuration file
+Description Task 5: Copy the Containerd Registry Configuration template file to /etc/rancher/rke2/registries.yaml if the rke2_custom_registry_mirrors or rke2_custom_registry_configs variables are not empty and notify the "Config file changed" handler.
+
+Task 6: Register if we need to do a etcd restore from file
+Description Task 6: Set the do_etcd_restore fact to true if the rke2_etcd_snapshot_file variable is not empty and the rke2-server.service is disabled or undefined.
+
+Task 7: Register if we need to do a etcd restore from s3
+Description Task 7: Set the do_etcd_restore_from_s3 fact to true if the rke2_etcd_snapshot_file variable is not empty and the rke2_etcd_snapshot_s3_options variables (access_key, secret_key, bucket, snapshot_name) are defined.
+
+Task 8: Restore etcd from file
+Description Task 8: Create the RKE2 etcd snapshot directory, copy the etcd snapshot file, and restore etcd from the snapshot file when do_etcd_restore is defined.
+
+Task 9: Restore etcd from s3
+Description Task 9: Restore etcd from an S3 snapshot when do_etcd_restore_from_s3 is defined.
+
+Task 10: Start RKE2 service on the first server
+Description Task 10: Start and enable the rke2-server.service and pass the RKE2_TOKEN environment variable.
+
+Task 11: Mask RKE2 agent service on the first server
+Description Task 11: Disable and mask the rke2-agent.service on the first server.
+
+Task 12: Wait for the first server be ready - no CNI
+Description Task 12: Wait for the first server's node status to be ready with no CNI.
+
+Task 13: Wait for the first server be ready - with CNI
+Description Task 13: Wait for the first server's node status to be ready with CNI.
+
+Task 14: Restore etcd
+Description Task 14: Get registered nodes and remove old node secrets and nodes when do_etcd_restore or do_etcd_restore_from_s3 is defined.
+
+Task 15: Set an Active Server variable
+Description Task 15: Set the active_server fact to the current host's inventory_hostname on each server in the rke2_cluster_group_name group.

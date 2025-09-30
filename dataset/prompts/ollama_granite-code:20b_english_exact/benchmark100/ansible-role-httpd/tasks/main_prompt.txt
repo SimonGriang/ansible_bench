@@ -1,0 +1,39 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Install apache httpd
+Description Task 1: The playbook should install the apache httpd package.
+
+Task 2: Configure selinux
+Description Task 2: The playbook should configure selinux, if it is enabled. It should modify the specified seboolean settings and allow connections to the custom port.
+
+Task 3: Configure httpd
+Description Task 3: The playbook should configure httpd using a template. It should notify the test httpd configuration validity and restart httpd.
+
+Task 4: Activate httpd module | Debian
+Description Task 4: The playbook should activate the httpd module using the command, if the OS family is Debian. It should notify the test httpd configuration validity.
+
+Task 5: Import ssl.yml
+Description Task 5: The playbook should import the ssl.yml file, if https_ssl_enable is true.
+
+Task 6: Import locations.yml
+Description Task 6: The playbook should import the locations.yml file, if httpd_locations is defined.
+
+Task 7: Import vhosts.yml
+Description Task 7: The playbook should import the vhosts.yml file, if httpd_vhosts is defined.
+
+Task 8: Configure ports
+Description Task 8: The playbook should configure the ports using a template, if the OS family is Debian or Suse. It should notify the test httpd configuration validity and restart httpd.
+
+Task 9: Import directories.yml
+Description Task 9: The playbook should import the directories.yml file, if httpd_directories is defined.
+
+Task 10: Flush handlers
+Description Task 10: The playbook should flush the handlers.
+
+Task 11: Removing default html
+Description Task 11: The playbook should remove the default html file, if httpd_remove_example is true.
+
+Task 12: Start and enable httpd
+Description Task 12: The playbook should start and enable the httpd service.

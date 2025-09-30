@@ -1,0 +1,5 @@
+ Task 1: debian12 | Get python3 version installed
+   Description Task 1: This task retrieves the version of Python3 installed on the system. This information will be used later to determine if a specific file should be removed.
+
+   Task 2: debian12 | Remove EXTERNALLY-MANAGED
+   Description Task 2: If the Python3 version retrieved in the previous task is 3.11, this task removes the file named "EXTERNALLY-MANAGED" located at "/usr/lib/python3.11/EXTERNALLY-MANAGED". This file is removed only on Debian12 systems with Python3.11 installed. The file removal is conditional on the outcome of the previous task. The "molecule-notest" tag is included to exclude this task from certain types of testing.

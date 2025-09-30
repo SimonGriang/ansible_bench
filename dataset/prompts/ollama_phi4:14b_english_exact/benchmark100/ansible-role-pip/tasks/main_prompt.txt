@@ -1,0 +1,15 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Remove the "externally managed" file from the /etc/apt/apt.conf.d/ directory on Debian 12.
+Description Task 1: This task ensures that any "externally managed" configuration files are removed from Debian 12 systems, which can interfere with package management.
+
+Task 2: Ensure that Pip is installed on the target system.
+Description Task 2: This task installs the Pip package, which is necessary for managing Python packages. The package name is specified by the variable `pip_package`.
+
+Task 3: Ensure the `python3-packaging` package is installed using dnf.
+Description Task 3: This task installs the `python3-packaging` package to ensure that packaging tools are available on systems using the dnf package manager.
+
+Task 4: Install specified Python packages using Pip.
+Description Task 4: This task installs a list of Python packages specified in the `pip_install_packages` variable. It handles package names, versions, virtual environments, states, extra arguments, and the Pip executable as needed.

@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create the RKE2 manifests directory  
+Description Task 1: Create a directory to store RKE2 manifests with root ownership and permissions set to 0700.
+
+Task 2: Copy kube-vip files to the first server  
+Description Task 2: Copy kube-vip template files to the RKE2 manifests directory, removing the .j2 extension, and set permissions to 0664.
+
+Task 3: Copy kube-vip load balancer manifests to the first server  
+Description Task 3: Conditionally copy kube-vip load balancer manifests for cloud providers to the RKE2 manifests directory, removing the .j2 extension, and set permissions to 0664. This task is executed only if the cloud provider feature is enabled.

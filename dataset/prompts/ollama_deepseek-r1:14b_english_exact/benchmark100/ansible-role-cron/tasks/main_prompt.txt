@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assertion file
+Description Task 1: Import the assert.yml file for validation purposes. This task runs once on localhost.
+
+Task 2: Install cron packages
+Description Task 2: Install the cron packages specified in the cron_packages variable.
+
+Task 3: Configure cron shell
+Description Task 3: Set the SHELL environment variable in the cron configuration file. This configuration will trigger a restart of the cron service.
+
+Task 4: Configure cron path
+Description Task 4: Set the PATH environment variable in the cron configuration file. This configuration will trigger a restart of the cron service.
+
+Task 5: Configure cron mailto
+Description Task 5: Set the MAILTO environment variable in the cron configuration file. This configuration will trigger a restart of the cron service.
+
+Task 6: Start and enable cron service
+Description Task 6: Start and enable the cron service if the cron_service variable is defined and not empty.
+
+Task 7: Schedule cron jobs
+Description Task 7: Schedule cron jobs from the cron_jobs variable. This task uses the cron module to define job schedules with various parameters like minute, hour, day, etc.

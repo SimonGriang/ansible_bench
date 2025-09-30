@@ -1,0 +1,51 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Install Keepalived when HA mode is enabled
+Description Task 1: Install Keepalived package when High Availability (HA) mode is enabled.
+
+Task 2: Download and install RKE2 {{ rke2_version }}
+Description Task 2: Download and install RKE2 version {{ rke2_version }}.
+
+Task 3: CIS Hardening
+Description Task 3: Apply CIS Benchmark hardening for RKE2.
+
+Task 4: Find Active Server
+Description Task 4: Find the active server in the cluster.
+
+Task 5: Enable IPVS kernel module
+Description Task 5: Enable the IPVS kernel module for kube-vip load balancer.
+
+Task 6: Copy kube-vip manifests to the masternode
+Description Task 6: Copy kube-vip manifests to the master node in the cluster.
+
+Task 7: Copy ingress-nginx manifests to the masternode
+Description Task 7: Copy ingress-nginx manifests to the master node in the cluster.
+
+Task 8: Prepare very first server node in the cluster
+Description Task 8: Prepare the very first server node in the cluster.
+
+Task 9: Restore etcd specific tasks
+Description Task 9: Restore etcd specific tasks based on restore options.
+
+Task 10: Download kubeconfig to ansible localhost
+Description Task 10: Download kubeconfig file to the Ansible localhost.
+
+Task 11: Prepare and join remaining nodes of the cluster
+Description Task 11: Prepare and join the remaining nodes in the cluster.
+
+Task 12: Rolling cordon and drain restart when version changes - servers
+Description Task 12: Perform rolling restart of servers when the version changes.
+
+Task 13: Rolling cordon and drain restart when version changes - agents
+Description Task 13: Perform rolling restart of agents when the version changes.
+
+Task 14: Flush handlers
+Description Task 14: Flush handlers to ensure all handlers are executed.
+
+Task 15: Rolling restart when config files change
+Description Task 15: Perform rolling restart of cluster nodes when configuration files change.
+
+Task 16: Final steps
+Description Task 16: Perform final steps and summary of the playbook.

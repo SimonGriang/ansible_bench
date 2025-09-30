@@ -1,0 +1,36 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Ensure /etc/openvpn/easy-rsa exists
+Description Task 1: Ensure directory /etc/openvpn/easy-rsa exists
+
+Task 2: Easyrsa init-pki
+Description Task 2: Initialize PKI of easyrsa
+
+Task 3: Easyrsa build-ca
+Description Task 3: Build CA for easyrsa
+
+Task 4: Easyrsa gen-dh
+Description Task 4: Generate DH parameters
+
+Task 5: Easyrsa build-server-full server nopass
+Description Task 5: Build server key and certificate
+
+Task 6: Easyrsa build-client-full client nopass
+Description Task 6: Build client key and certificate
+
+Task 7: Easyrsa gen-crl
+Description Task 7: Generate certificate revocation list
+
+Task 8: Openvpn --genkey --secret /etc/openvpn/easy-rsa/pki/ta.key
+Description Task 8: Generate openvpn key
+
+Task 9: Copy files to /etc/openvpn/server
+Description Task 9: Copy ca.crt, dh.pem, ta.key, issued/client.crt, issued/server.crt, private/ca.key, private/client.key, private/server.key to /etc/openvpn/server
+
+Task 10: Copy files to /etc/openvpn
+Description Task 10: Copy ca.crt, ta.key to /etc/openvpn
+
+Task 11: Place server.conf
+Description Task 11: Place server.conf from server.conf.j2 to /etc/openvpn/server.conf

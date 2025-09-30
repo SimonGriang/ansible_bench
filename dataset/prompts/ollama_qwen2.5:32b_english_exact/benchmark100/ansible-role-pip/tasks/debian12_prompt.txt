@@ -1,9 +1,0 @@
-Below you will receive task descriptions from which you should generate an Ansible Playbook.  
-The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
-Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
-
-Task 1: debian12 | Get python3 version installed
-Description Task 1: This task is designed to run the command `python3 --version` to capture the installed Python 3 version on the system. The output of this command will be registered in the variable `py3ver`. The `changed_when: false` ensures that this task will not be marked as changed unless the command itself changes, which is not applicable here as we are only retrieving information.
-
-Task 2: debian12 | Remove EXTERNALLY-MANAGED
-Description Task 2: This task removes the file `/usr/lib/python3.11/EXTERNALLY-MANAGED` if the Python 3 version installed on the system is 3.11. The task uses a conditional `when` statement to check if `py3ver` is defined and if the output of `py3ver.stdout` contains the string "3.11". If both conditions are met, the file is removed.

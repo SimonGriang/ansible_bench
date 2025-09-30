@@ -1,0 +1,10 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Ensure dirmngr is installed on the target machine.
+Description Task 1: This task will install the necessary package dirmngr, which is a dependency for the gnupg package, to ensure that Ansible can work correctly.
+
+Task 2: Add the Ansible repository to the target machine.
+Description Task 2: This task will add the Ansible repository to the target machine, which will allow it to access the latest Ansible packages.
+
+Task 3: Install Ansible on the target machine.
+Description Task 3: This task will install the Ansible package on the target machine, but will use the value of the 'ansible_package_state' variable to determine the state of the package (present or absent).

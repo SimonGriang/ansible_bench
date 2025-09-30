@@ -1,0 +1,24 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml
+Description Task 1: Import the tasks defined in assert.yml, which likely contains assertions for variable definitions. This is done once on the localhost to validate the playbook's assumptions before proceeding with the rest of the tasks.
+
+Task 2: Install cron
+Description Task 2: Utilize the package module to ensure that the cron packages defined in the variable 'cron_packages' are installed on the target system.
+
+Task 3: Configure shell
+Description Task 3: Use the lineinfile module to ensure the shell used by cron is defined in the cron configuration file ('cron_configuration'). If the line already exists, it will be updated. If not, it will be created. The shell is defined by the 'cron_shell' variable. The file will be created with a mode of 0600 if it does not exist. After making the change, it will trigger the handler 'Restart cron'.
+
+Task 4: Configure path
+Description Task 4: Similar to Task 3, use the lineinfile module to ensure the path used by cron is defined in the cron configuration file ('cron_configuration'). The path is defined by the 'cron_path' variable. The file will be created with a mode of 0600 if it does not exist. After making the change, it will trigger the handler 'Restart cron'.
+
+Task 5: Configure mailto
+Description Task 5: Using the lineinfile module, ensure the mailto setting for cron is defined in the cron configuration file ('cron_configuration'). The mailto is defined by the 'cron_mailto' variable. The file will be created with a mode of 0600 if it does not exist. After making the change, it will trigger the handler 'Restart cron'.
+
+Task 6: Start and enable cron
+Description Task 6: Utilize the service module to ensure the cron service (as defined by 'cron_service') is started and enabled. This task will only run if 'cron_service' is defined and not empty.
+
+Task 7: Schedule requested cron jobs
+Description Task 7: Iterate over the 'cron_jobs' variable and use the cron module to schedule each job as defined in the variable. Each job will have a name, a job command, and optional parameters for minute, hour, day, month, weekday, and special_time. The state of the job is defined by the 'state' parameter with a default value of 'present'. The user for the job is defined by the 'user' parameter with a default value of the current user. This task will only run if 'cron_jobs' is defined.

@@ -1,0 +1,33 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Check if python3.11 EXTERNALLY-MANAGED file exists
+Description Task 1: This task checks if a specific file exists in the directory of python3.11. If it does, it will be renamed in the next task.
+
+Task 2: Rename python3.11 EXTERNALLY-MANAGED file if it exists
+Description Task 2: If the file from task 1 exists, this task renames it to 'EXTERNALLY-MANAGED.old' to avoid conflicts with the subsequent installation process.
+
+Task 3: Check if python3.12 EXTERNALLY-MANAGED file exists
+Description Task 3: Similar to task 1, this task checks for the existence of a specific file in the directory of python3.12.
+
+Task 4: Rename python3.12 EXTERNALLY-MANAGED file if it exists
+Description Task 4: If the file from task 3 exists, this task renames it to 'EXTERNALLY-MANAGED.old' to prevent any conflicts with the upcoming installation process.
+
+Task 5: Import assert.yml
+Description Task 5: This task imports and executes tasks defined in 'assert.yml', which is likely a separate playbook used for assertion checks.
+
+Task 6: Install python pip
+Description Task 6: This task installs python pip packages as defined by the variable 'python_pip_packages'.
+
+Task 7: Configure pip proxy
+Description Task 7: If the variable 'python_pip_proxy' is defined, this task configures pip to use the specified proxy URL for package indexing.
+
+Task 8: Trust hosts
+Description Task 8: If the variable 'python_pip_trusted_host' is defined, this task adds the specified host to the list of trusted hosts in pip's configuration.
+
+Task 9: Update pip
+Description Task 9: If the variable 'python_pip_update' is true and the system is not using the 'bookworm' or 'noble' distributions and is not Alpine-based, this task updates pip using the 'pip' package and the executable defined by the variable 'python_pip_executable'.
+
+Task 10: Install requested modules
+Description Task 10: If the system is not using the 'bookworm' or 'noble' distributions and is not Alpine-based, this task installs the python modules specified in the list 'python_pip_modules'. Each module can have a name, state (defaulting to 'present'), and version. The pip executable to use is defined by the variable 'python_pip_executable'.

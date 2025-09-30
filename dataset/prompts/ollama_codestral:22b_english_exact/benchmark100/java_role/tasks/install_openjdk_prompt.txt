@@ -1,0 +1,43 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook. The generated playbook must be valid inside an Ansible Role under the tasks/ directory. Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Migrate Java JDK vendor from 'adoptopenjdk' to 'temurin' if selected
+Description Task 1: This task sets the Java JDK vendor to 'temurin' if the current vendor is 'adoptopenjdk'. This is a preparation step for the migration.
+
+Task 2: Gather OS-specific variables for Java
+Description Task 2: This task includes variables based on the Java JDK vendor and the current OS. The variables are retrieved from the corresponding YAML file.
+
+Task 3: Gather architecture-specific variables for Java
+Description Task 3: Similar to the previous task, this task includes architecture-specific variables for Java. The variables are retrieved from the 'architecture.yml' file.
+
+Task 4: Set OS-specific variables for Java (I)
+Description Task 4: This task sets various OS-specific variables for Java if they are not already defined. The variables are defined using 'set_fact' module.
+
+Task 5: Set OS and architecture-specific variables for Java (II)
+Description Task 5: This task is another step in setting Java-related variables. It sets the 'java_home' variable to the value of 'java_open_jdk_home'.
+
+Task 6: Handle Debian pre-requisites for Java
+Description Task 6: This task includes a block of tasks that handles the pre-requisites for Java in a Debian-based OS. It removes deprecated repositories, installs extra apt tools, adds required key repositories, and adds required repositories.
+
+Task 7: Handle RedHat pre-requisites for Java
+Description Task 7: Similar to the previous task, this task handles the pre-requisites for Java in a RedHat-based OS. It adds required key repositories and adds required repositories.
+
+Task 8: Install required libraries for Java
+Description Task 8: This task installs the required libraries for Java using the 'package' module.
+
+Task 9: Install Java on Debian
+Description Task 9: This task installs Java on a Debian-based OS using the 'apt' module. It updates the cache and installs the Java package.
+
+Task 10: Install Java on RedHat
+Description Task 10: This task installs Java on a RedHat-based OS using the 'yum' module. Similar to the previous task, it updates the cache and installs the Java package.
+
+Task 11: Export environment variables for Java
+Description Task 11: This task uses the 'template' module to export Java-related environment variables. The variables are defined in the 'jdk.sh.j2' template and saved in '/etc/profile.d/jdk.sh'.
+
+Task 12: Source environment variables for Java
+Description Task 12: This task sources the Java-related environment variables using the 'shell' module.
+
+Task 13: Correct Java version selected for Java < 11
+Description Task 13: This task uses the 'alternatives' module to set the correct Java version for Java versions less than 11.
+
+Task 14: Correct Java version selected for Java >= 11
+Description Task 14: This task uses the 'alternatives' module to set the correct Java version for Java versions greater than or equal to 11.

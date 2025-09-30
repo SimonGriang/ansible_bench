@@ -1,0 +1,5 @@
+ Task 1: Create directories
+   Description Task 1: Create directories specified in the variable `httpd_directories` with permissions 0755.
+
+   Task 2: Configure directories
+   Description Task 2: Use the `directory.conf.j2` template to configure directories specified in the variable `httpd_directories`. Place the configured files in the directory specified by `httpd_config_directory` with permissions 0644. After configuration, test the httpd configuration validity and restart the httpd service.

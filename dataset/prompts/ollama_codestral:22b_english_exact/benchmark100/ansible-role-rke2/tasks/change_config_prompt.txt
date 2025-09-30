@@ -1,0 +1,12 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+   Task 1: Restart RKE2 service on a specified node
+   Description Task 1: Use the ansible.builtin.service module to restart the RKE2 service on a node. The service name is stored in the variable `rke2_service_name` and the node name is stored in the variable `rke2_node_name`. Notify a handler named "Service (re)started" when the service is restarted.
+
+   Task 2: Wait for all nodes to be ready
+   Description Task 2: Use the ansible.builtin.shell module to check the status of all nodes in the RKE2 cluster. The cluster group name is stored in the variable `rke2_cluster_group_name`. The command used to check the status is `{{ rke2_data_path }}/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml get nodes | grep " Ready" | wc -l`. Continue checking until all nodes are ready and the count matches the total number of nodes in the cluster. The active server for this task is stored in the variable `active_server` and defaults to the first server in the `rke2_servers_group_name` group if not specified. This task should only run once and should not run in check mode.
+
+   Task 3: Wait for all pods to be ready
+   Description Task 3: Use the ansible.builtin.shell module to check the status of all pods in the RKE2 cluster. The command used to check the status is `{{ rke2_data_path }}/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml get pods -A --field-selector=status.phase!=Running,status.phase!=Succeeded --ignore-not-found | wc -l`. Continue checking until all pods are ready and the count is 0. The active server for this task is the same as in Task 2. This task should only run once and should not run in check mode. This task should only run if the variable `rke2_wait_for_all_pods_to_be_ready` is true.

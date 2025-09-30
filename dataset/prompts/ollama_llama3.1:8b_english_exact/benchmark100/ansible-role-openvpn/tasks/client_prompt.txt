@@ -1,0 +1,7 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Ensure the /etc/openvpn/client directory exists with correct permissions
+Description Task 1: Create a new directory at /etc/openvpn/client with the correct ownership and permissions to allow the specified group to access it.
+
+Task 2: Place the client configuration file in the specified directory
+Description Task 2: Copy the template client.conf.j2 to the client configuration directory and name it client.conf, applying the correct ownership and permissions to the file, and triggering a restart of openvpn upon change.

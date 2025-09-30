@@ -1,0 +1,36 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml from the current working directory
+Description Task 1: Include the assert.yml file in the playbook, which likely contains some assertions or sanity checks for the current task.
+
+Task 2: Install the MySQL package
+Description Task 2: Install the MySQL package using the package module, and set it to present state. Also notify the handlers to set the root password and systemctl daemon-reexec.
+
+Task 3: Configure the MySQL server
+Description Task 3: Use the ini_file module to configure the MySQL server by setting various options in the server.cnf file, which is located in the specified configuration destination. The configuration options are defined in the mysql_configuration_options variable. Notify the handlers to restart the MySQL server.
+
+Task 4: Configure the MySQL client
+Description Task 4: Use the ini_file module to configure the MySQL client by setting the socket option in the client.cnf file, which is located in the specified configuration destination.
+
+Task 5: Initialize the MySQL database
+Description Task 5: Run a shell command to initialize the MySQL database, which is required for certain Linux distributions (Alpine and Archlinux). The command is specified in the mysql_initialize_command variable.
+
+Task 6: Start and enable the MySQL service
+Description Task 6: Use the service module to start and enable the MySQL service, which is specified in the mysql_service variable.
+
+Task 7: Flush handlers
+Description Task 7: Use the meta module to flush the handlers, which are notified in previous tasks.
+
+Task 8: Place the my.cnf file
+Description Task 8: Use the template module to create the my.cnf file, which is a template file located in the my.cnf.j2 file. The file is placed in the /root/.my.cnf location.
+
+Task 9: Create databases
+Description Task 9: Use the mysql_db module to create databases. The databases are defined in the mysql_databases variable. The module is executed in no-log mode.
+
+Task 10: Create users
+Description Task 10: Use the mysql_user module to create users. The users are defined in the mysql_users variable. The module is executed in no-log mode.
+
+Task 11: Flush handlers again
+Description Task 11: Use the meta module to flush the handlers again, which are notified in previous tasks.

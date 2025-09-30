@@ -1,0 +1,6 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Install Ansible using the package manager.
+Description Task 1: Ensure that Ansible is installed on the target system. Use the `ansible` variable `ansible_package_state` to determine the desired state (e.g., present, latest) of the package. This task utilizes the `package` module to manage the installation process, allowing for flexibility in handling different package management systems.

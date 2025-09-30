@@ -1,0 +1,12 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+   Task 1: Create document root directories
+   Description Task 1: This task creates directories specified in the 'documentroot' property of each item in the 'httpd_vhosts' list. It ensures the directories exist with the correct permissions. The 'loop' and 'loop_control' directives are used to iterate over the 'httpd_vhosts' list, and the 'when' directive is used to only create the directories if certain conditions are met.
+
+   Task 2: Configure virtual hosts
+   Description Task 2: This task uses a template to configure virtual hosts. The 'src' property specifies the template file to use, the 'dest' property specifies the destination file for each configured virtual host, and the 'mode' property sets the file permissions. The 'loop' and 'loop_control' directives are used to iterate over the 'httpd_vhosts' list. The 'notify' directive is used to trigger handlers that test the configuration validity and restart the httpd service.
+
+   Task 3: Enable virtual hosts on Debian systems
+   Description Task 3: This task enables configured virtual hosts on Debian systems. The 'cmd' property specifies the command to run, the 'creates' property ensures the command is idempotent, and the 'when' directive is used to only run the command if the system is a Debian system. The 'loop' and 'loop_control' directives are used to iterate over the 'httpd_vhosts' list. The 'notify' directive is used to trigger handlers that test the configuration validity and restart the httpd service.

@@ -1,0 +1,19 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Set the package state based on how Ansible is installed.
+Description Task 1: Determine the package state for Ansible based on the installation method (package or pip) to ensure it is installed correctly and consistently.
+
+Task 2: Set up Ansible on RedHat.
+Description Task 2: Configure Ansible for RedHat-based systems, including setting up package dependencies and installing Ansible, but exclude Fedora since it has its own setup task.
+
+Task 3: Set up Ansible on Fedora.
+Description Task 3: Configure Ansible for Fedora systems, including setting up package dependencies and installing Ansible, as it has a distinct setup process.
+
+Task 4: Set up Ansible on Ubuntu.
+Description Task 4: Configure Ansible for Ubuntu systems, including setting up package dependencies and installing Ansible, which has a unique setup process.
+
+Task 5: Set up Ansible on Debian.
+Description Task 5: Configure Ansible for Debian systems, including setting up package dependencies and installing Ansible, which has a separate setup process.
+
+Task 6: Set up Ansible using Pip.
+Description Task 6: Configure Ansible for installation using Pip, handling the specific setup tasks for pip-based installations.

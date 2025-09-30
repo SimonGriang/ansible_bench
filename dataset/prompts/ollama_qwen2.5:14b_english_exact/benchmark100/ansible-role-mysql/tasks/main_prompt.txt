@@ -1,0 +1,36 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import the assert.yml file to ensure preconditions are met before proceeding with the playbook. This should run only once on localhost.
+
+Task 2: Install mysql
+Description Task 2: Install the MySQL server package using the packages listed in the variable `mysql_packages`. This will notify two handlers: `Set root password` and `Systemctl daemon-reexec`.
+
+Task 3: Configure mysql server
+Description Task 3: Configure MySQL server settings by modifying the configuration file located at `{{ mysql_configuration_destination }}/{{ mysql_name }}-server.cnf` using the options specified in the variable `mysql_configuration_options`. Notify the handler `Restart mysql server` after changes.
+
+Task 4: Configure mysql client
+Description Task 4: Configure MySQL client settings by setting the socket location in the configuration file located at `{{ mysql_configuration_destination }}/{{ mysql_name }}-client.cnf`.
+
+Task 5: Initialize mysql
+Description Task 5: Initialize the MySQL database if running on distributions like Alpine or Archlinux by executing the command specified in the variable `mysql_initialize_command`. This creates necessary files in /var/lib/mysql/mysql.
+
+Task 6: Start and enable mysql
+Description Task 6: Start the MySQL service and ensure it starts automatically on boot by setting the state to started and enabled.
+
+Task 7: Flush handlers
+Description Task 7: Flush handlers to ensure any previously notified handlers are executed before continuing.
+
+Task 8: Place my.cnf
+Description Task 8: Create a custom configuration file at `/root/.my.cnf` using a Jinja2 template file my.cnf.j2.
+
+Task 9: Create databases
+Description Task 9: Create databases specified in the variable `mysql_databases`. Use the root user to create these databases.
+
+Task 10: Create users
+Description Task 10: Create MySQL users and grant privileges as specified in the variable `mysql_users`. Use the root user to create these users.
+
+Task 11: Flush handlers again
+Description Task 11: Flush handlers again to ensure all handlers are executed after database and user creation.

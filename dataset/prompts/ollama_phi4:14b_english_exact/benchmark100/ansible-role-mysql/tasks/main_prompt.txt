@@ -1,0 +1,36 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import a separate tasks file named assert.yml to run once on the localhost.
+
+Task 2: Install mysql  
+Description Task 2: Install MySQL packages defined in the `mysql_packages` variable and notify handlers to set the root password and re-execute the systemd daemon.
+
+Task 3: Configure mysql server  
+Description Task 3: Configure MySQL server settings using a configuration file specified by `mysql_configuration_destination` and `mysql_name`. Use `mysql_configuration_options` to set each configuration option.
+
+Task 4: Configure mysql client  
+Description Task 4: Set the MySQL client configuration to specify the socket path using `mysql_socket` in the client section of the configuration file.
+
+Task 5: Initialize mysql  
+Description Task 5: Initialize MySQL database files if the distribution is Alpine or Archlinux by executing a command specified in `mysql_initialize_command`.
+
+Task 6: Start and enable mysql  
+Description Task 6: Ensure the MySQL service, specified by `mysql_service`, is started and enabled to start on boot.
+
+Task 7: Flush handlers  
+Description Task 7: Flush any pending handlers to ensure they are executed at this point in the playbook.
+
+Task 8: Place my.cnf  
+Description Task 8: Deploy a template file `my.cnf.j2` to `/root/.my.cnf` with permissions set to `0640`.
+
+Task 9: Create databases  
+Description Task 9: Create MySQL databases as defined in `mysql_databases`, using root credentials stored in `mysql_root_password`, while suppressing logging of sensitive data.
+
+Task 10: Create users  
+Description Task 10: Create MySQL users as defined in `mysql_users`, using root credentials stored in `mysql_root_password`, while suppressing logging of sensitive data.
+
+Task 11: Flush handlers again  
+Description Task 11: Flush any pending handlers again to ensure they are executed after creating databases and users.

@@ -1,0 +1,52 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Install Keepalived when HA mode is enabled
+Description Task 1: Include keepalived.yml playbook when HA mode is enabled, and the node is part of the rke2_servers_group.
+
+Task 2: Download and install RKE2 {{ rke2_version }}
+Description Task 2: Include rke2.yml playbook to download and install the specified version of RKE2.
+
+Task 3: CIS Hardening
+Description Task 3: Include cis.yml playbook when a CIS profile is specified.
+
+Task 4: Find Active Server
+Description Task 4: Include find_active_server.yml playbook to identify the active server in the HA cluster.
+
+Task 5: Enable IPVS kernel module
+Description Task 5: Enable the IPVS kernel module on nodes that are part of the rke2_servers_group, when HA mode is enabled and the IPVS LB is enabled.
+
+Task 6: Copy kube-vip manifests to the masternode
+Description Task 6: Include kubevip.yml playbook on the first node of the rke2_servers_group, when HA mode is enabled and the IPVS LB is enabled.
+
+Task 7: Copy ingress-nginx manifests to the masternode
+Description Task 7: Include ingress-nginx.yml playbook on the first node of the rke2_servers_group, when the ingress-nginx-values are defined.
+
+Task 8: Prepare very first server node in the cluster
+Description Task 8: Include first_server.yml playbook on the first node of the rke2_servers_group, when the active server is not defined or there is only one node in the cluster.
+
+Task 9: Restore etcd specific tasks
+Description Task 9: Include first_server_restore.yml playbook when the active server is defined and it is the first node or the last node, and etcd restore is required.
+
+Task 10: Download kubeconfig to ansible localhost
+Description Task 10: Include download_kubeconfig.yaml playbook on the first node of the rke2_servers_group, when the kubeconfig needs to be downloaded.
+
+Task 11: Prepare and join remaining nodes of the cluster
+Description Task 11: Include remaining_nodes.yml playbook when the active server is defined and there are more than one node in the cluster.
+
+Task 12: Rolling cordon and drain restart when version changes - servers
+Description Task 12: Include rolling_restart.yml playbook for each server node, when the version has changed and the RKE2 is installed.
+
+Task 13: Rolling cordon and drain restart when version changes - agents
+Description Task 13: Include rolling_restart.yml playbook for each agent node, when the version has changed and the RKE2 is installed.
+
+Task 14: Flush handlers
+Description Task 14: Flush handlers to ensure that any pending tasks are executed.
+
+Task 15: Rolling restart when config files change
+Description Task 15: Include change_config.yml playbook for each node in the cluster, when the config files have changed and the RKE2 restart is required.
+
+Task 16: Final steps
+Description Task 16: Include summary.yml playbook to perform final steps of the RKE2 installation.

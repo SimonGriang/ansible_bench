@@ -1,0 +1,25 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook. The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml). Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml
+Description Task 1: This task imports the assert.yml file which contains assertions to be run before the main tasks. The import is delegated to the localhost and run only once to optimize performance.
+
+Task 2: Install fail2ban
+Description Task 2: This task installs fail2ban, which is defined in the variable "fail2ban_packages".
+
+Task 3: Copy filters in filter.d
+Description Task 3: This task copies filters from the source path defined in the variable "fail2ban_filterd_path" to the destination "/etc/fail2ban/filter.d/". The task is executed only when "fail2ban_filterd_path" is defined. If the task is successful, it triggers a handler to restart fail2ban.
+
+Task 4: Configure fail2ban.local
+Description Task 4: This task configures the "fail2ban.local" file by setting options in specified sections. The options and their values are defined in a list variable "fail2ban_base_configuration" and "fail2ban_configuration". The task is executed in a loop for each item in the list. If the task is successful, it triggers a handler to restart fail2ban.
+
+Task 5: Configure jail.local
+Description Task 5: This task is similar to Task 4, but it configures the "jail.local" file instead. The options and their values are defined in a list variable "fail2ban_base_jail_configuration" and "fail2ban_jail_configuration".
+
+Task 6: Stat auth log file
+Description Task 6: This task checks if the "/var/log/auth.log" file exists. The result is stored in the variable "fail2ban_auth".
+
+Task 7: Touch auth log file
+Description Task 7: This task creates the "/var/log/auth.log" file if it does not exist. The task is executed only when "fail2ban_auth" does not exist.
+
+Task 8: Start and enable fail2ban
+Description Task 8: This task starts and enables the fail2ban service, which is defined in the variable "fail2ban_service".

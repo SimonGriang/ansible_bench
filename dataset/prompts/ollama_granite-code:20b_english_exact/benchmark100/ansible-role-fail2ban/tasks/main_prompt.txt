@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Install fail2ban
+Description Task 1: Installs the fail2ban package.
+
+Task 2: Copy filters in filter.d
+Description Task 2: Copies the filter files from the specified path to the filter.d directory in the /etc/fail2ban directory. The owner, group, and mode are set to root:root and 0640, respectively.
+
+Task 3: Configure fail2ban.local
+Description Task 3: Configures the fail2ban.local file using the ini_file module. The specified options and values are looped through to create the configuration.
+
+Task 4: Configure jail.local
+Description Task 4: Configures the jail.local file using the ini_file module. The specified options and values are looped through to create the configuration.
+
+Task 5: Stat auth log file
+Description Task 5: Stats the auth log file to check if it exists.
+
+Task 6: Touch auth log file
+Description Task 6: If the auth log file does not exist, it is touched to create the file with the specified owner, group, and mode.
+
+Task 7: Start and enable fail2ban
+Description Task 7: Starts and enables the fail2ban service.

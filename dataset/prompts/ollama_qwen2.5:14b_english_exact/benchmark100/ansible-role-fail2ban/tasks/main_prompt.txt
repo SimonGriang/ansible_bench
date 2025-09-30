@@ -1,0 +1,27 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import assert.yml file only on the control machine to ensure preconditions are met.
+
+Task 2: Install fail2ban
+Description Task 2: Install the fail2ban package using the list defined in the variable fail2ban_packages.
+
+Task 3: Copy filters in filter.d
+Description Task 3: Copy custom filter configuration files from the specified source path to the /etc/fail2ban/filter.d/ directory, setting appropriate permissions, and restart fail2ban service afterward.
+
+Task 4: Configure fail2ban.local
+Description Task 4: Update the fail2ban.local configuration file with the provided settings, ensuring proper permissions, and trigger a service restart after configuration changes.
+
+Task 5: Configure jail.local
+Description Task 5: Apply the specified jail configurations to the fail2ban jail.local file, setting correct permissions, and restart fail2ban after updating.
+
+Task 6: Stat auth log file
+Description Task 6: Check if the /var/log/auth.log file exists.
+
+Task 7: Touch auth log file
+Description Task 7: Create an empty /var/log/auth.log file if it does not exist and set appropriate permissions.
+
+Task 8: Start and enable fail2ban
+Description Task 8: Start the fail2ban service and ensure it starts automatically on boot using the name specified in the variable fail2ban_service.

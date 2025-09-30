@@ -1,0 +1,30 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create necessary directories for cadvisor.  
+Description Task 1: Use the `ansible.builtin.file` module to create directories at the specified paths with the appropriate mode and ensure the operation is performed with elevated privileges.
+
+Task 2: Download the cadvisor binary from a specified URL.  
+Description Task 2: Utilize the `get_url` module to download cadvisor from a given URL, verify its checksum, and place it in the designated directory. Ensure the binary has specific permissions and perform this task as a privileged user if `cadvisor_binary_local_dir` is not set.
+
+Task 3: Copy a locally distributed cadvisor binary if available.  
+Description Task 3: Use the `copy` module to copy the cadvisor binary from a local directory to the target location, setting the necessary permissions and ownership. This task should notify the handler to restart cadvisor if a local binary is available.
+
+Task 4: Create a symbolic link to the cadvisor binary.  
+Description Task 4: Employ the `ansible.builtin.file` module to create a symbolic link for the cadvisor binary at a specified path, ensuring the operation is executed with elevated privileges.
+
+Task 5: Deploy the systemd service file for the cadvisor server.  
+Description Task 5: Use the `ansible.builtin.template` module to deploy the systemd service file for cadvisor from a Jinja2 template to the appropriate system directory, ensuring the file has correct permissions and notifying the handler to restart cadvisor.
+
+Task 6: Test if the cadvisor service is active.  
+Description Task 6: Execute a shell command to check if the cadvisor service is active, capturing the output without failing or changing the task state.
+
+Task 7: Debug the output of the service activity check.  
+Description Task 7: Use the `debug` module to display the result of the previous task that checks the cadvisor service activity status.
+
+Task 8: Enable the cadvisor systemd service to start on boot.  
+Description Task 8: Use the `ansible.builtin.systemd` module to enable the cadvisor service so that it starts automatically at boot time.
+
+Task 9: Start the cadvisor systemd service immediately.  
+Description Task 9: Use the `ansible.builtin.systemd` module to start the cadvisor service immediately, ensuring the systemd manager is reloaded to recognize any recent changes.

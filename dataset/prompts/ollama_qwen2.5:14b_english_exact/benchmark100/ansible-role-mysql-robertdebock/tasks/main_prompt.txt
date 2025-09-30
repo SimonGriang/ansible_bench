@@ -1,0 +1,42 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import the assert.yml file to ensure certain conditions are met before proceeding with the tasks.
+
+Task 2: Install mysql
+Description Task 2: Install the MySQL server using the packages listed in the variable mysql_packages.
+
+Task 3: Configure mysql server
+Description Task 3: Configure the MySQL server by setting options in the MySQL configuration file based on the variables defined in mysql_configuration_options.
+
+Task 4: Configure mysql client
+Description Task 4: Configure the MySQL client by setting the socket parameter in the client configuration file.
+
+Task 5: Initialize mysql
+Description Task 5: Initialize the MySQL database if the distribution is Alpine or Archlinux.
+
+Task 6: Start and enable mysql
+Description Task 6: Start the MySQL service and ensure it is enabled to start on boot.
+
+Task 7: Place my.cnf
+Description Task 7: Place a custom my.cnf file with specified permissions.
+
+Task 8: Create databases
+Description Task 8: Create databases as defined in the mysql_databases variable, excluding those with an initial import.
+
+Task 9: List databases
+Description Task 9: List all databases in the MySQL server.
+
+Task 10: Import database
+Description Task 10: Import databases from specified files if they do not already exist.
+
+Task 11: Create users
+Description Task 11: Create MySQL users with specified privileges as defined in the mysql_users variable.
+
+Task 12: Flush handlers
+Description Task 12: Flush handlers to ensure all changes are applied before proceeding.
+
+Task 13: Flush handlers again
+Description Task 13: Flush handlers again to ensure all changes are applied after creating users.

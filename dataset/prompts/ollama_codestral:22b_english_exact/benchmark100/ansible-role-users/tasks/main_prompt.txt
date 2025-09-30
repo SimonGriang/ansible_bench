@@ -1,0 +1,24 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+   Task 1: Import assert.yml
+   Description Task 1: Import a task file named assert.yml for assertion checks. This task should run once and be delegated to localhost.
+
+   Task 2: Install required software
+   Description Task 2: Install software packages listed in the variable 'users_requirements'. Only install if the variable contains any package names.
+
+   Task 3: Loop over users_groups
+   Description Task 3: If the variable 'users_groups' is defined, loop over each group in the variable and include the task file 'group.yml' for each group.
+
+   Task 4: Ensure the /etc/sudoers.d directory is included
+   Description Task 4: Make sure the line defined in 'users_sudo_includedir' is present in the /etc/sudoers file. Use a regex pattern to match any line starting with '@' or '#' followed by 'includedir'. Validate the changes using 'visudo'.
+
+   Task 5: Loop over users
+   Description Task 5: If the variable 'users' is defined, loop over each user in the variable and include the task file 'user.yml' for each user.
+
+   Task 6: Manage cron permission
+   Description Task 6: If the variable 'users_cron_allow' is true, use a Jinja template to create or update the /etc/cron.allow file with mode 0644.
+
+   Task 7: Check existence of /etc/cron.allow
+   Description Task 7: If the variable 'users_cron_allow' is false, ensure the /etc/cron.allow file is absent.

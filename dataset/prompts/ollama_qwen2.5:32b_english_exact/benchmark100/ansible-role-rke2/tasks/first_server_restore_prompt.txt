@@ -1,9 +1,0 @@
-Below you will receive task descriptions from which you should generate an Ansible Playbook.  
-The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
-Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
-
-Task 1: Restore etcd - get all nodes
-Description Task 1: Use kubectl to get the names of all nodes in the Kubernetes cluster and store them in a variable named node_names.
-
-Task 2: Restore etcd - remove old nodes
-Description Task 2: Use kubectl to delete nodes from the Kubernetes cluster that are not present in the specified group rke2_cluster_group_name. The task should iterate over the list of node names retrieved in the previous task and remove nodes that are not in the current group, without causing a failure if the deletion command fails.

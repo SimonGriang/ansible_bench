@@ -1,0 +1,37 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml task
+Description Task 1: Import a YAML file named 'assert.yml' into the current playbook, ensuring this step is only executed once and on the local host.
+
+Task 2: Install using package task
+Description Task 2: Install the Hashicorp product using the package manager based on the installation method specified. This task includes installing the repository for RedHat and Debian systems, configuring Debian by installing the required package gpg and installing the apt key, and installing the Hashicorp product using the package manager.
+
+  - Task 2.1: Install repository for RedHat task
+  Description Task 2.1: Download and install the Hashicorp repository on RedHat and Rocky Linux systems.
+
+  - Task 2.2: Configure Debian task
+  Description Task 2.2: Configure the Hashicorp installation for Debian systems by installing the required package gpg, installing the apt key, and configuring the repository.
+
+    - Task 2.2.1: Install required package gpg task
+    Description Task 2.2.1: Install the gpg package on Debian systems.
+
+    - Task 2.2.2: Install apt key for Debian task
+    Description Task 2.2.2: Install the apt key for Debian systems.
+
+    - Task 2.2.3: Install repository for Debian task
+    Description Task 2.2.3: Configure the Debian repository for Hashicorp.
+
+  - Task 2.3: Install hashicorp product using package task
+  Description Task 2.3: Install the Hashicorp product using the package manager based on the installation method specified.
+
+    - Task 2.3.1: Install latest hashicorp product using package task
+    Description Task 2.3.1: Install the latest version of the Hashicorp product using the package manager.
+
+    - Task 2.3.2: Install versioned hashicorp product using package task
+    Description Task 2.3.2: Install a specific version of the Hashicorp product using the package manager.
+
+Task 3: Install manually task
+Description Task 3: Install the Hashicorp product manually based on the installation method specified. This task includes downloading and unpacking the Hashicorp product.

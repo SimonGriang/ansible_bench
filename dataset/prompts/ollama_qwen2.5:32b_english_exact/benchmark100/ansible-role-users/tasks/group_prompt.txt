@@ -1,9 +1,0 @@
-Below you will receive task descriptions from which you should generate an Ansible Playbook.  
-The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
-Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
-
-Task 1: Manage group {{ group.name }}  
-Description Task 1: This task manages the group by ensuring that it exists (or does not exist if the state is set to absent) with the specified GID and system status. The task uses the default values if gid and system parameters are omitted.
-
-Task 2: Set sudo options for group {{ group.name }}  
-Description Task 2: This task sets sudo options for the specified group by rendering a template to the sudoers.d directory. The template file (sudo_group.j2) is rendered only if the group.sudo_options variable is defined. The resulting file is validated using the visudo command to ensure it adheres to the correct format. The file is named after the group but with dots replaced by "dot" for compatibility with the sudoers.d directory naming conventions.

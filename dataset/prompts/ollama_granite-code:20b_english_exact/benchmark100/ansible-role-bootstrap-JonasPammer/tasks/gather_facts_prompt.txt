@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: lookup bootstrap facts (raw).
+Description Task 1: lookup bootstrap facts (raw). Use the command module to lookup bootstrap facts. Store the output in a variable called bootstrap_facts.
+
+Task 2: set bootstrap facts (I) # noqa jinja
+Description Task 2: set bootstrap facts (I) # noqa jinja. Use the set_fact module to set bootstrap facts based on the output of the previous task. Loop through the bootstrap__os_family_map variable and set the bootstrap_distribution and bootstrap_distribution_major_version variables based on specific conditions.
+
+Task 3: set bootstrap facts (II)
+Description Task 3: set bootstrap facts (II). Use the set_fact module to set the bootstrap_os_family variable based on the loop through the bootstrap__os_family_map variable and specific conditions.

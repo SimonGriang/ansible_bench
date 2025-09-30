@@ -1,0 +1,36 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Update apt cache
+Description Task 1: Update the apt cache on the system
+
+Task 2: Update dnf cache
+Description Task 2: Update the dnf cache on the system
+
+Task 3: Install packages
+Description Task 3: Install the keepalived package on the system
+
+Task 4: Create directory for keepalived
+Description Task 4: Create a directory for keepalived configuration files
+
+Task 5: Create Kubernetes API health check script for Debian OS family
+Description Task 5: Create a Kubernetes API health check script for Debian-based systems
+
+Task 6: Create Kubernetes API health check script for RedHat OS famliy
+Description Task 6: Create a Kubernetes API health check script for RedHat-based systems
+
+Task 7: Create RKE2 Server health check script for Debian OS family
+Description Task 7: Create an RKE2 Server health check script for Debian-based systems
+
+Task 8: Create RKE2 Server health check script for RedHat OS family
+Description Task 8: Create an RKE2 Server health check script for RedHat-based systems
+
+Task 9: Create keepalived config file
+Description Task 9: Create a configuration file for keepalived
+
+Task 10: Enable keepalived and make sure it is not masked
+Description Task 10: Enable keepalived as a service and ensure it is not masked
+
+Task 11: Flush handlers
+Description Task 11: Flush handlers to apply changes

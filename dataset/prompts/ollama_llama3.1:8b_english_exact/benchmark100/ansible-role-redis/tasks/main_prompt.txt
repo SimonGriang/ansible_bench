@@ -1,0 +1,16 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Import assert.yml
+Description Task 1: Import an external task file named "assert.yml" to the playbook, run it only once, and delegate the execution to the localhost.
+
+Task 2: Enable redis module stream (RHEL 8)
+Description Task 2: Enable the "redis" package using DNF on RedHat 8 systems.
+
+Task 3: Install redis
+Description Task 3: Install the Redis package using Ansible's package module, specifying the package name based on the "redis_packages" variable.
+
+Task 4: Configure redis
+Description Task 4: Configure Redis by copying a template file to the specified configuration directory, setting the owner, group, and mode based on the "redis_owner", "redis_group", and "redis_mode" variables, respectively. Notify the "Restart redis" handler after this task.
+
+Task 5: Start and enable redis
+Description Task 5: Start and enable the Redis service using Ansible's service module, specifying the service name based on the "redis_service" variable.

@@ -1,0 +1,31 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Manage the group
+Description Task 1: This task ensures the existence of a specific group on the system with the given properties. The group's state, GID, and system property can be configured.
+Task 1 Ansible Code:
+- name: group | Manage group {{ group.name }}
+  ansible.builtin.group:
+    name: "{{ group.name }}"
+    state: "{{ group.state | default('present') }}"
+    gid: "{{ group.gid | default(omit) }}"
+    system: "{{ group.system | default(omit) }}"
+
+Task 2: Configure Sudo options for the group
+Description Task 2: This task sets the sudo options for a specified group if sudo options are defined. It uses a template to create the sudoers file for the group with the specified mode and validates it using visudo.
+Task 2 Ansible Code:
+- name: group | Set sudo options for group {{ group.name }}
+  ansible.builtin.template:
+    src: sudo_group.j2
+    dest: '/etc/sudoers.d/{{ group.name | replace(".", "dot") }}'
+    mode: "0640"
+    validate: /usr/sbin/visudo -cf %s
+  when:
+    - group.sudo_options is defined
+  loop_control:
+    label: "{{ group.name }}"
+
+The original prompt could be:
+
+"Create an Ansible Playbook to manage a group on a system with configurable properties. If sudo options are defined for the group, configure them using a template. Use the exact variable names and file paths as provided in the given Ansible Playbook."

@@ -1,0 +1,9 @@
+"Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Enable Apache modules proxy and proxy_http on Debian and Suse systems.  
+Description Task 1: This task ensures that the Apache modules 'proxy' and 'proxy_http' are enabled on systems with the OS family 'Debian' or 'Suse'. It uses the 'community.general.apache2_module' module with a loop to handle both modules and checks the OS family condition before execution.
+
+Task 2: Configure Apache locations using a template.  
+Description Task 2: This task configures Apache locations by rendering a template file 'location.conf.j2' to a destination path defined by '{{ httpd_config_directory }}/{{ item.name }}.conf' for each item in the 'httpd_locations' list. The file permissions are set to '0644'. It uses the 'ansible.builtin.template' module with a loop over 'httpd_locations' and includes a 'loop_control' label for better readability. Notifications are triggered to test the HTTPD configuration validity and to restart the HTTPD service."

@@ -1,0 +1,38 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import Java Asserts and Setup Local Task Execution
+Description Task 1: Import the assert.yml file and run it once on the local machine to set up the environment.
+
+Task 2: Install Bash
+Description Task 2: Install the bash package on the target system.
+
+Task 3: Install OpenJDK Java (Package)
+Description Task 3: Install the OpenJDK Java package if the java_vendor variable is set to "openjdk" and set the environment variable USE to "X -cups -alsa -fontconfig".
+
+Task 4: Install RPM (Local Java Source)
+Description Task 4: If the java_source variable is set to "local" and the java_format variable is set to "rpm", copy the oracle java rpm package to /tmp and install it.
+
+Task 5: Install DEB (Local Java Source)
+Description Task 5: If the java_source variable is set to "local" and the java_format variable is set to "deb", copy the oracle java deb package to /tmp and install it using apt.
+
+Task 6: Install Oracle Java (RPM) (Repository)
+Description Task 6: Install the Oracle Java RPM package if the java_source variable is set to "repository" and the java_format variable is set to "rpm".
+
+Task 7: Configure Oracle Targz
+Description Task 7: If the java_format variable is set to "targz" and the java_vendor variable is set to "oracle", ensure the java_install_directory exists and install the oracle java targz package.
+
+Task 8: Install Oracle Java Policy Software (Targz)
+Description Task 8: If the java_jce variable is set to true, the java_version variable is set to 8, and the java_vendor variable is set to "oracle", install the oracle java policy software targz package.
+
+Task 9: Set Alternative (Targz)
+Description Task 9: If the java_format variable is set to "targz", the ansible_distribution is not Alpine, and the java_vendor variable is set to "oracle", set the java alternative.
+
+Task 10: Find JAVA_HOME
+Description Task 10: Find the JAVA_HOME environment variable by running a shell command to read the link of /usr/bin/java.
+
+Task 11: Set JAVA_HOME in /etc/environment
+Description Task 11: Set the JAVA_HOME environment variable in /etc/profile.d/java_home.sh.

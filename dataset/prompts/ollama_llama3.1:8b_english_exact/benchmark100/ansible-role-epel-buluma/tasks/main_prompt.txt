@@ -1,0 +1,13 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Install epel package repositories for compatible operating systems (RedHat-based and Amazon Linux).
+Description Task 1: The task identifies the target operating systems (RedHat-based and Amazon Linux) and installs the necessary package repositories for the epel package.
+
+Task 2: Install the epel GPG key.
+Description Task 2: The task uses the epel_gpg_key variable to install the GPG key for the epel package repository.
+
+Task 3: Install the epel-release package.
+Description Task 3: The task uses the epel_url variable to install the epel-release package and notifies the Update package cache handler to refresh the package list.
+
+Task 4: Install the epel-next-release package (conditional).
+Description Task 4: The task uses the epel_next variable to conditionally install the epel-next-release package and notifies the Update package cache handler to refresh the package list.

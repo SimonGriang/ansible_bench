@@ -1,0 +1,25 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Create the directories for the cadvisor installation
+Description Task 1: Create the /opt/cadvisor directory and set its permissions to 0755. This is necessary to prepare the directory for the cadvisor installation.
+
+Task 2: Download the cadvisor binary from the internet
+Description Task 2: Download the cadvisor binary from the specified URL, using the specified checksum for verification. The binary will be saved in the /opt/cadvisor directory. This task should only run if the local directory is empty.
+
+Task 3: Copy the locally distributed cadvisor binary
+Description Task 3: Copy the cadvisor binary from the local directory to the /opt/cadvisor directory. This task should only run if the local directory is not empty.
+
+Task 4: Create a symlink to the cadvisor binary
+Description Task 4: Create a symlink to the cadvisor binary in the /opt/cadvisor directory. This ensures that the binary can be easily accessed and started.
+
+Task 5: Configure the cadvisor systemd service
+Description Task 5: Configure the cadvisor systemd service by creating a configuration file using a template. This task should only run if the local directory is not empty.
+
+Task 6: Test if the cadvisor service is active
+Description Task 6: Test if the cadvisor service is active by checking its status using systemctl. The result of this test will be stored in a variable named service_active.
+
+Task 7: Enable the cadvisor systemd service
+Description Task 7: Enable the cadvisor systemd service to start at boot time.
+
+Task 8: Start the cadvisor systemd service
+Description Task 8: Start the cadvisor systemd service and reload the systemd daemon to pick up the changes.

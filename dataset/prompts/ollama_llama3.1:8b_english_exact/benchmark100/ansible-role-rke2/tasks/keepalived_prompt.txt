@@ -1,0 +1,37 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Update the package cache on systems that use apt.
+Description Task 1: This task updates the package cache for systems that use the apt package manager, such as Debian-based systems.
+
+Task 2: Update the package cache on systems that use dnf.
+Description Task 2: This task updates the package cache for systems that use the dnf package manager, such as RPM-based systems like RHEL and CentOS.
+
+Task 3: Install the keepalived package.
+Description Task 3: This task installs the keepalived package, which is a high availability and load balancing solution for Linux systems.
+
+Task 4: Create the /etc/keepalived directory with the correct permissions.
+Description Task 4: This task creates the /etc/keepalived directory and sets the owner and group to root, as well as the permissions to 0755, to ensure proper access and security.
+
+Task 5: Create the Kubernetes API health check script for Debian-based systems.
+Description Task 5: This task creates the check_apiserver.sh script for Debian-based systems, which is used to check the health of the Kubernetes API. The script is created in the /etc/keepalived directory and has the correct owner, group, and permissions.
+
+Task 6: Create the Kubernetes API health check script for RHEL-based systems.
+Description Task 6: This task creates the check_apiserver.sh script for RHEL-based systems, which is used to check the health of the Kubernetes API. The script is created in the /usr/libexec/keepalived directory and has the correct owner, group, and permissions.
+
+Task 7: Create the RKE2 Server health check script for Debian-based systems.
+Description Task 7: This task creates the check_rke2server.sh script for Debian-based systems, which is used to check the health of the RKE2 Server. The script is created in the /etc/keepalived directory and has the correct owner, group, and permissions.
+
+Task 8: Create the RKE2 Server health check script for RHEL-based systems.
+Description Task 8: This task creates the check_rke2server.sh script for RHEL-based systems, which is used to check the health of the RKE2 Server. The script is created in the /usr/libexec/keepalived directory and has the correct owner, group, and permissions.
+
+Task 9: Create the keepalived configuration file.
+Description Task 9: This task creates the keepalived.conf file in the /etc/keepalived directory, which contains the configuration for the keepalived service. The file has the correct owner, group, and permissions.
+
+Task 10: Enable the keepalived service and ensure it is not masked.
+Description Task 10: This task enables the keepalived service and ensures it is not masked, which allows the service to start automatically on boot.
+
+Task 11: Flush the handlers to execute any pending tasks.
+Description Task 11: This task flushes the handlers to execute any pending tasks, such as restarting the keepalived service.
