@@ -1,0 +1,33 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Create the RKE2 config directory
+Description Task 1: Create a directory for RKE2 configuration files.
+
+Task 2: Set server taints
+Description Task 2: Set node taints specifically for server nodes based on the rke2_type variable.
+
+Task 3: Set agent taints
+Description Task 3: Set node taints specifically for agent nodes based on the rke2_type variable.
+
+Task 4: Copy RKE2 config file
+Description Task 4: Copy a RKE2 configuration file to the designated directory and notify a handler on file change.
+
+Task 5: Copy kubelet config file
+Description Task 5: Copy a kubelet configuration file to the designated directory only if a certain variable has content and notify a handler on file change.
+
+Task 6: Copy Containerd Registry Configuration file
+Description Task 6: Copy a Containerd Registry Configuration file to the designated directory based on certain conditions and notify a handler on file change.
+
+Task 7: Start RKE2 service
+Description Task 7: Start the RKE2 service on the rest of the nodes, retry until successful and notify a handler on service restart.
+
+Task 8: Mask other RKE2 services
+Description Task 8: Mask other RKE2 services on the rest of the nodes based on the node type.
+
+Task 9: Wait for remaining nodes to be ready - no CNI
+Description Task 9: Wait for remaining nodes to be ready without CNI initialization, check for node conditions and retry.
+
+Task 10: Wait for remaining nodes to be ready - with CNI
+Description Task 10: Wait for remaining nodes to be ready with CNI initialization, check for node status and retry.

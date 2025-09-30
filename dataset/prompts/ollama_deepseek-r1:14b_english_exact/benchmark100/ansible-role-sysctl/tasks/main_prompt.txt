@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import assertion tasks from assert.yml for validation and testing purposes. This task runs once on localhost to ensure the role is functioning correctly.  
+
+Task 2: Install requirements  
+Description Task 2: Install system utilities or packages required for sysctl configuration using the package module. The packages to install are defined by the sysctl_requirements variable.  
+
+Task 3: Set sysctl setting  
+Description Task 3: Configure sysctl kernel parameters by iterating over items defined in sysctl_items. Each item specifies a name and value to set. The settings are applied only if sysctl_items is defined and the connection is not container-based. The reload parameter determines whether to reload the sysctl configuration.

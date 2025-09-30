@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import the assert.yml tasks file to be executed once on the localhost.  
+Description Task 1: Import assert.yml and ensure it is run only once on the localhost to handle specific assertions or checks.
+
+Task 2: Install required software packages based on the users_requirements variable.  
+Description Task 2: Use the package module to install software packages listed in the users_requirements variable, but only if the list is not empty.
+
+Task 3: Loop through the users_groups variable and include tasks from group.yml for each group.  
+Description Task 3: Iterate over each group in the users_groups variable, including the group.yml tasks file for each, and label each iteration with the group's name.
+
+Task 4: Ensure the /etc/sudoers file includes the /etc/sudoers.d directory.  
+Description Task 4: Use lineinfile to add or modify a line in /etc/sudoers to include the /etc/sudoers.d directory, ensuring the line matches the regexp and validates with visudo.
+
+Task 5: Loop through the users variable and include tasks from user.yml for each user.  
+Description Task 5: Iterate over each user in the users variable, including the user.yml tasks file for each, and label each iteration with the user's name.
+
+Task 6: Manage cron permissions by creating or updating /etc/cron.allow with a template.  
+Description Task 6: Use the template module to create or update /etc/cron.allow with the content from cron.allow.j2, setting the file mode to 0644, but only if users_cron_allow is true.
+
+Task 7: Remove the /etc/cron.allow file if cron permissions are not required.  
+Description Task 7: Ensure /etc/cron.allow is absent if users_cron_allow is false, effectively removing the file if cron permissions are not needed.

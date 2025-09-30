@@ -1,0 +1,9 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+   Task 1: Create the RKE2 manifests directory
+   Description Task 1: Ensure that the RKE2 manifests directory exists at the specified path with the correct owner, group, and permissions. This directory is used to store custom Kubernetes manifest files for RKE2.
+
+   Task 2: Copy ingress-nginx files to first server
+   Description Task 2: Copy a customized ingress-nginx configuration file from the templates directory to the RKE2 manifests directory on the first server. The file is named rke2-ingress-nginx-config.yaml and has specific owner, group, and permissions.

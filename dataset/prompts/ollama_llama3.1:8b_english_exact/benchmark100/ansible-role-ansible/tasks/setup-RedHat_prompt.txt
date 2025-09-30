@@ -1,0 +1,10 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Install Ansible package.
+Description Task 1: Install the Ansible package with the specified state and repository.
+
+Task 2: 
+Description Task 2: Configure the state of the Ansible package and the name of the EPEL repository.
+
+Task 3: 
+Description Task 3: Enable the specified EPEL repository for package installation.

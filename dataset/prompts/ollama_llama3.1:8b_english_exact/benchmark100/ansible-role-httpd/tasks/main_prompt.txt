@@ -1,0 +1,44 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import necessary tasks from assert.yml for the httpd role.
+Description Task 1: The playbook should import tasks from assert.yml to validate the httpd role setup, and this task should only run once on the localhost.
+
+Task 2: Install the Apache HTTP Server on the target machine.
+Description Task 2: The task should use the ansible.builtin.package module to install the Apache HTTP Server with the httpd_packages variable, and it should ensure the package is present on the target machine.
+
+Task 3: Configure SELinux settings for the httpd service if SELinux is enabled on the target machine.
+Description Task 3: The task should only run if SELinux is enabled on the target machine. It should then modify SELinux settings for the httpd service by enabling specific booleans defined in the httpd_sebooleans variable, and it should allow connections to custom ports defined in the httpd_port variable, as well as the SSL port if it's defined.
+
+Task 4: Configure the Apache HTTP Server on the target machine.
+Description Task 4: The task should use the ansible.builtin.template module to configure the Apache HTTP Server by generating a configuration file from a template defined in the httpd_config_src variable, and it should ensure the configuration file has the correct permissions and mode. The task should also notify two handlers: Test httpd configuration validity and Restart httpd.
+
+Task 5: Activate specific Apache HTTP Server modules on Debian-based systems using the a2enmod command.
+Description Task 5: The task should only run on Debian-based systems, and it should use the ansible.builtin.command module to activate specific Apache HTTP Server modules defined in the httpd_modules_to_activate_with_command variable using the a2enmod command. The task should also notify the Test httpd configuration validity handler.
+
+Task 6: Import tasks related to SSL configuration if the https_ssl_enable variable is defined.
+Description Task 6: The task should only run if the https_ssl_enable variable is defined, and it should import tasks from the ssl.yml file to configure SSL for the Apache HTTP Server.
+
+Task 7: Import tasks related to locations configuration if the httpd_locations variable is defined.
+Description Task 7: The task should only run if the httpd_locations variable is defined, and it should import tasks from the locations.yml file to configure locations for the Apache HTTP Server.
+
+Task 8: Import tasks related to virtual hosts configuration if the httpd_vhosts variable is defined.
+Description Task 8: The task should only run if the httpd_vhosts variable is defined, and it should import tasks from the vhosts.yml file to configure virtual hosts for the Apache HTTP Server.
+
+Task 9: Configure custom ports for the Apache HTTP Server on Debian-based and Suse-based systems.
+Description Task 9: The task should only run on Debian-based and Suse-based systems, and it should use the ansible.builtin.template module to configure custom ports for the Apache HTTP Server by generating a configuration file from a template defined in the httpd_ports_conf variable. The task should also notify two handlers: Test httpd configuration validity and Restart httpd.
+
+Task 10: Import tasks related to directories configuration if the httpd_directories variable is defined.
+Description Task 10: The task should only run if the httpd_directories variable is defined, and it should import tasks from the directories.yml file to configure directories for the Apache HTTP Server.
+
+Task 11: Flush handlers to ensure that any pending handlers are executed.
+Description Task 11: The task should use the ansible.builtin.meta module to flush handlers, ensuring that any pending handlers are executed.
+
+Task 12: Remove the default index.html file from the Apache HTTP Server's data directory if the httpd_remove_example variable is defined.
+Description Task 12: The task should only run if the httpd_remove_example variable is defined, and it should use the ansible.builtin.file module to remove the default index.html file from the Apache HTTP Server's data directory.
+
+Task 13: Start and enable the Apache HTTP Server service.
+Description Task 13: The task should use the ansible.builtin.service module to start and enable the Apache HTTP Server service, ensuring it is running and enabled on the target machine.

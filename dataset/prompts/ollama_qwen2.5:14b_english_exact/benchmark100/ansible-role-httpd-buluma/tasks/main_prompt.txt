@@ -1,0 +1,42 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import assert.yml file for validation purposes, only run once on localhost.
+
+Task 2: Install apache httpd
+Description Task 2: Install the Apache HTTPD server from the package manager using the variable httpd_packages.
+
+Task 3: Configure selinux
+Description Task 3: Modify SELinux settings if SELinux is enabled. This block will modify SELinux booleans and allow connections to custom ports as defined in the variables.
+
+Task 4: Configure httpd
+Description Task 4: Template the main httpd configuration file using src and dest variables, and notify handlers to test and restart the service.
+
+Task 5: Activate httpd module | Debian
+Description Task 5: Activate Apache modules using a2enmod command on Debian-based systems, notify handlers to test and restart the service.
+
+Task 6: Import ssl.yml
+Description Task 6: Import ssl.yml tasks file if HTTPS SSL is enabled.
+
+Task 7: Import locations.yml
+Description Task 7: Import locations.yml tasks file if there are defined locations for the Apache server.
+
+Task 8: Import vhosts.yml
+Description Task 8: Import vhosts.yml tasks file if there are defined virtual hosts for the Apache server.
+
+Task 9: Configure ports
+Description Task 9: Template the ports configuration file and notify handlers to test and restart the service if the OS is Debian or Suse.
+
+Task 10: Import directories.yml
+Description Task 10: Import directories.yml tasks file if there are defined directories for the Apache server.
+
+Task 11: Flush handlers
+Description Task 11: Flush all handlers to ensure they are executed after the tasks are completed.
+
+Task 12: Removing default html
+Description Task 12: Remove the default index.html file if the variable httpd_remove_example is true.
+
+Task 13: Start and enable httpd
+Description Task 13: Start and enable the Apache service using the variable httpd_service.

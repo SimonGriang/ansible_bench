@@ -1,0 +1,7 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Install OpenJDK implementation
+Description Task 1: Install OpenJDK, an open-source implementation of the Java Platform, Standard Edition (Java SE), on the target system.
+
+Task 2: Import certificates into Java Keystore
+Description Task 2: Import certificates into the Java Keystore, but only if the variable 'java_certs' is defined, to secure the Java application with trusted certificates.

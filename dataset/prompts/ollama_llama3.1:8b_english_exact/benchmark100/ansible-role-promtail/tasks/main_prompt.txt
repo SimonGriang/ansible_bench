@@ -1,0 +1,10 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Import preflight tasks for Promtail installation
+Description Task 1: Import preflight tasks for the Promtail installation, including tasks that run before installation, such as configuration checks or setup tasks.
+
+Task 2: Import tasks for installing Promtail
+Description Task 2: Import tasks for installing the Promtail service, including the installation of any required packages and configuration files.
+
+Task 3: Ensure Promtail service is started and enabled
+Description Task 3: Configure the Promtail service to start automatically on boot and ensure it is running. This includes reloading the systemd daemon to apply any changes made to the service configuration.

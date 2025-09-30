@@ -1,0 +1,44 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml and run it once on localhost.
+Description Task 1: The playbook should import an external task file named assert.yml and execute it once on the localhost machine.
+
+Task 2: Install the mysql package.
+Description Task 2: The playbook should install the mysql package on the target machine using the package manager.
+
+Task 3: Configure the mysql server.
+Description Task 3: The playbook should configure the mysql server by creating a configuration file named {{ mysql_name }}-server.cnf in the specified destination directory. The configuration file should be updated with the specified options and values from the mysql_configuration_options list.
+
+Task 4: Configure the mysql client.
+Description Task 4: The playbook should configure the mysql client by creating a configuration file named {{ mysql_name }}-client.cnf in the specified destination directory with the specified socket option and value.
+
+Task 5: Initialize the mysql service.
+Description Task 5: The playbook should initialize the mysql service on machines running Alpine or Archlinux by executing the mysql_initialize_command command.
+
+Task 6: Start and enable the mysql service.
+Description Task 6: The playbook should start and enable the mysql service on the target machine.
+
+Task 7: Flush handlers to ensure tasks are executed in the correct order.
+Description Task 7: The playbook should flush the handlers to ensure that tasks are executed in the correct order.
+
+Task 8: Create a my.cnf file in the /root/.my.cnf directory.
+Description Task 8: The playbook should create a my.cnf file in the /root/.my.cnf directory using the my.cnf.j2 template.
+
+Task 9: Create databases.
+Description Task 9: The playbook should create databases on the target machine using the community.mysql.mysql_db module. The module should be executed for each database in the mysql_databases list.
+
+Task 10: List databases on the target machine.
+Description Task 10: The playbook should list the databases on the target machine using the community.mysql.mysql_info module.
+
+Task 11: Import databases.
+Description Task 11: The playbook should import databases on the target machine using the community.mysql.mysql_db module. The module should be executed for each database in the mysql_databases list that has an initial_import defined.
+
+Task 12: Create users.
+Description Task 12: The playbook should create users on the target machine using the community.mysql.mysql_user module. The module should be executed for each user in the mysql_users list.
+
+Task 13: Flush handlers again to ensure tasks are executed in the correct order.
+Description Task 13: The playbook should flush the handlers again to ensure that tasks are executed in the correct order.

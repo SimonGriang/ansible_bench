@@ -1,0 +1,60 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Download RKE2 installation script
+Description Task 1: Download RKE2 installation script from a remote URL to a specified directory with the given mode and timeout.
+
+Task 2: Copy local RKE2 installation script
+Description Task 2: Copy the local RKE2 installation script to the specified directory with mode 0700 and force set to yes, conditional on the variables rke2_airgap_mode and rke2_airgap_implementation.
+
+Task 3: Create RKE2 artifacts folder
+Description Task 3: Create an artifacts folder for RKE2 with mode 0700, conditional on rke2_airgap_mode and rke2_airgap_implementation being not equal to "exists".
+
+Task 4: Download RKE2 checksum and artifacts
+Description Task 4: Download RKE2 checksum and artifacts from a remote URL, conditional on the variables rke2_airgap_mode and rke2_airgap_implementation being set to "download". This task includes downloading the checksum file, downloading the artifacts, and downloading the install script.
+
+Task 5: Rescue for failed download
+Description Task 5: In case of a failed download, create a directory and download RKE2 artifacts and install script locally before copying them to remote hosts.
+
+Task 6: Copy local RKE2 artifacts
+Description Task 6: Copy local RKE2 artifacts to the remote RKE2 artifact path with mode 0640 and force set to yes, conditional on rke2_airgap_mode and rke2_airgap_implementation being set to "copy".
+
+Task 7: Airgap mode - additional images tarballs
+Description Task 7: Create a folder for additional images tarballs and copy them to the RKE2 tarball images path, conditional on rke2_airgap_mode and the length of rke2_airgap_copy_additional_tarballs being greater than 0 and rke2_airgap_implementation not being "exists".
+
+Task 8: Ensure artifacts exist and have acceptable permissions
+Description Task 8: Ensure that artifacts and the RKE2 install script exist and have acceptable permissions, conditional on rke2_airgap_mode and rke2_airgap_implementation being "exists". If permissions are too permissive, modify them.
+
+Task 9: Populate service facts
+Description Task 9: Get service facts.
+
+Task 10: Get stats of the FS object
+Description Task 10: Check the stats of the FS object at /usr/local.
+
+Task 11: Check if separate partition
+Description Task 11: Check if /usr/local is on a separate partition by grepping /proc/mounts.
+
+Task 12: Set RKE2 bin path
+Description Task 12: Set the RKE2 bin path based on the output of previous tasks.
+
+Task 13: Check RKE2 version
+Description Task 13: Check the installed and running RKE2 versions and register them.
+
+Task 14: Set RKE2 versions
+Description Task 14: Set the installed and running RKE2 versions as facts when not in ansible check mode.
+
+Task 15: Prevent accidental RKE2 downgrade
+Description Task 15: Prevent accidental RKE2 downgrades unless explicitly allowed, based on the installed and running versions.
+
+Task 16: Run RKE2 install script
+Description Task 16: Run the RKE2 install script if the version is not the installed version and not in ansible check mode. This includes running the script with airgap variables if in airgap mode.
+
+Task 17: Copy Custom Manifests
+Description Task 17: Copy custom manifests to the RKE2 data path if there are any custom manifests.
+
+Task 18: Copy Static Pods
+Description Task 18: Copy static pods to the RKE2 agent pod manifests path if there are any static pods.
+
+Task 19: Copy RKE2 environment file
+Description Task 19: Copy the RKE2 environment file to the default location if environment options are defined and not empty.

@@ -1,0 +1,21 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Ensure old versions of Docker are not installed.
+Description Task 1: Remove any obsolete or old versions of Docker packages that might be installed on the system.
+
+Task 2: Add Docker GPG key.
+Description Task 2: Add the GPG key for Docker repository to ensure that the packages are signed by Docker.
+
+Task 3: Add Docker repository.
+Description Task 3: Add the official Docker repository to the system's package manager configuration.
+
+Task 4: Configure Docker Nightly repo.
+Description Task 4: Enable the Docker nightly repository if specified, allowing access to the latest builds.
+
+Task 5: Configure Docker Test repo.
+Description Task 5: Enable the Docker test repository if specified, providing access to the testing builds.
+
+Task 6: Configure containerd on RHEL 8.
+Description Task 6: On RHEL 8 systems, ensure that runc is not installed and that container-selinux and containerd.io are installed.

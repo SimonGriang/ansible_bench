@@ -1,0 +1,22 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Import the assert.yml file
+Description Task 1: Import the necessary tasks from the assert.yml file, running the task only once and delegating to the localhost.
+
+Task 2: Install required packages
+Description Task 2: Install the required packages as specified in the openssl_requirements variable, ensuring they are present on the system.
+
+Task 3: Install pip packages
+Description Task 3: Install the pip packages specified in the openssl_pip_packages variable, but only if there are packages to install (i.e., the list is not empty).
+
+Task 4: Create the key directory
+Description Task 4: Create the directory for storing keys, with the specified path, mode, owner, and group, as defined in the openssl_key_directory, openssl_file_owner, and openssl_file_group variables.
+
+Task 5: Create the csr directory
+Description Task 5: Create the directory for storing certificate signing requests (CSRs), with the specified path, mode, owner, and group, as defined in the openssl_csr_directory, openssl_file_owner, and openssl_file_group variables.
+
+Task 6: Create the crt directory
+Description Task 6: Create the directory for storing certificates, with the specified path, mode, owner, and group, as defined in the openssl_crt_directory, openssl_file_owner, and openssl_file_group variables.
+
+Task 7: Include the create.yml tasks
+Description Task 7: Include the create.yml tasks for each item in the openssl_items list, looping through the items and using the item name as the loop label, but only if the openssl_items list is defined and not empty.

@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Generate SSL private key files for each item.  
+Description Task 1: This task creates SSL private key files using the `community.crypto.openssl_privatekey` module, specifying the file path, permissions, owner, and group based on predefined variables.
+
+Task 2: Generate SSL CSR (Certificate Signing Request) files for each item.  
+Description Task 2: This task creates SSL CSR files using the `community.crypto.openssl_csr` module, linking each CSR to its corresponding private key, setting the common name, and configuring file permissions, owner, and group.
+
+Task 3: Generate SSL certificates for each item.  
+Description Task 3: This task generates SSL certificates using the `community.crypto.x509_certificate` module, signing them with their respective private keys and CSRs, and setting file permissions, owner, and group.
+
+Task 4: Create PKCS#12 files for each item.  
+Description Task 4: This task creates PKCS#12 files using the `community.crypto.openssl_pkcs12` module, exporting the private key and certificate, setting a friendly name, and configuring file permissions, owner, and group.
+
+Task 5: Read and register the content of the private key files for each item.  
+Description Task 5: This task reads the content of the private key files using the `ansible.builtin.slurp` module and registers the output for later use.
+
+Task 6: Read and register the content of the certificate files for each item.  
+Description Task 6: This task reads the content of the certificate files using the `ansible.builtin.slurp` module and registers the output for later use.
+
+Task 7: Combine the registered private key and certificate content into a single file for each item.  
+Description Task 7: This task creates a combined private key and certificate file using the `ansible.builtin.copy` module, decoding the base64 content, and setting file permissions, owner, and group.

@@ -1,0 +1,12 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml
+Description Task 1: This task imports the assert.yml file from the localhost and runs it once. This is likely used to validate initial conditions or prerequisites for the playbook.
+
+Task 2: Install using package
+Description Task 2: This task installs HashiCorp products using the package method if the hashicorp_installation_method variable is set to "package". It involves setting up repositories for RedHat/Rocky and Debian systems, installing required packages, and then installing HashiCorp products using their package manager.
+
+Task 3: Install manually
+Description Task 3: This task installs HashiCorp products manually if the hashicorp_installation_method variable is set to "manual". It uses the unarchive module to extract files from a source location to a destination location with specified permissions and ownership.

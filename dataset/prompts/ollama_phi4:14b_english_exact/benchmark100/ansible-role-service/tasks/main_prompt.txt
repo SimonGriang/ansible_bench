@@ -1,0 +1,21 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml task to perform necessary checks.  
+Description Task 1: Import a separate tasks file named `assert.yml` to execute additional assertions. This task should run only once and delegate execution to localhost.
+
+Task 2: Install required packages specified by a variable.  
+Description Task 2: Install packages listed in the variable `service_required_packages` using the package manager. Ensure the packages are present. Notify the handler `Gather facts` after installation.
+
+Task 3: Configure systemd service templates for services listed in a variable.  
+Description Task 3: Use a template to configure systemd service files for each service defined in `service_list`. The template source is `systemd.j2`, and the destination path is `/etc/systemd/system/{{ item.name }}.service` with mode `0644`. This task runs when the service manager is systemd and triggers the `Systemctl daemon-reload` handler.
+
+Task 4: Configure sysvinit service templates for services listed in a variable.  
+Description Task 4: Use a template to configure sysvinit service files for each service defined in `service_list`. The template source is `sysvinit.j2`, and the destination path is `/etc/init.d/{{ item.name }}` with mode `0755`. This task runs when the service manager is sysvinit, upstart, or openrc.
+
+Task 5: Manage the state and enablement of services listed in a variable.  
+Description Task 5: Manage services defined in `service_list` by setting their state and enabled status. This task checks if either `state` or `enabled` is defined for a service before applying changes.
+
+Task 6: Flush handlers to ensure all notifications are executed.  
+Description Task 6: Execute the `ansible.builtin.meta: flush_handlers` task to ensure that all handlers triggered by previous tasks are executed.

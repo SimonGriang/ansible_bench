@@ -1,0 +1,9 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create necessary directories for HTTPD with appropriate permissions.  
+Description Task 1: Create directories specified in the `httpd_directories` variable with `755` permissions to ensure they are accessible with the correct permissions for the HTTPD service.
+
+Task 2: Configure HTTPD directories using template files.  
+Description Task 2: Use a Jinja2 template (`directory.conf.j2`) to generate configuration files for each directory listed in the `httpd_directories` variable. Place these configuration files in the `httpd_config_directory` with `644` permissions and notify handlers to test the HTTPD configuration and restart the service if necessary.

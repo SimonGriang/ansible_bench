@@ -1,0 +1,48 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Set fact java_jdk_vendor to temurin if java_jdk_vendor equals adoptopenjdk
+Description Task 1: Set fact java_jdk_vendor to temurin if java_jdk_vendor equals adoptopenjdk
+
+Task 2: Include OS specific variables based on java_jdk_vendor, ansible_distribution, and ansible_distribution_major_version
+Description Task 2: Include OS specific variables based on java_jdk_vendor, ansible_distribution, and ansible_distribution_major_version
+
+Task 3: Include architecture specific variables
+Description Task 3: Include architecture specific variables
+
+Task 4: Set OS specific variables (I)
+Description Task 4: Set OS specific variables (I)
+
+Task 5: Set OS and architecture specific variables (II)
+Description Task 5: Set OS and architecture specific variables (II)
+
+Task 6: Set specific variables
+Description Task 6: Set specific variables
+
+Task 7: Add pre-requisites for Debian if ansible_os_family equals Debian
+Description Task 7: Add pre-requisites for Debian if ansible_os_family equals Debian
+
+Task 8: Add pre-requisites for RedHat if ansible_os_family equals RedHat
+Description Task 8: Add pre-requisites for RedHat if ansible_os_family equals RedHat
+
+Task 9: Install required libs
+Description Task 9: Install required libs
+
+Task 10: Install Java, Debian if ansible_os_family equals Debian
+Description Task 10: Install Java, Debian if ansible_os_family equals Debian
+
+Task 11: Install Java, RedHat if ansible_os_family equals RedHat
+Description Task 11: Install Java, RedHat if ansible_os_family equals RedHat
+
+Task 12: Export environment variables
+Description Task 12: Export environment variables
+
+Task 13: Source environment variables
+Description Task 13: Source environment variables
+
+Task 14: Correct java version selected /usr/lib/jvm/{{ java_open_jdk_home_dir }}/jre/bin/java in java < 11 if ansible_os_family equals Debian and java_open_jdk_version_major is less than 11
+Description Task 14: Correct java version selected /usr/lib/jvm/{{ java_open_jdk_home_dir }}/jre/bin/java in java < 11 if ansible_os_family equals Debian and java_open_jdk_version_major is less than 11
+
+Task 15: Correct java version selected /usr/lib/jvm/{{ java_open_jdk_home_dir }}/bin/java in java >= 11 if ansible_os_family equals Debian and java_open_jdk_version_major is greater than or equal to 11
+Description Task 15: Correct java version selected /usr/lib/jvm/{{ java_open_jdk_home_dir }}/bin/java in java >= 11 if ansible_os_family equals Debian and java_open_jdk_version_major is greater than or equal to 11

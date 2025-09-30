@@ -1,0 +1,5 @@
+ Task 1: Manage Docker Users
+   Description Task 1: Ensure that all users listed in the variable "docker_users" are added to the docker group.
+
+   Task 2: Apply User Changes
+   Description Task 2: Reset the SSH connection to make the changes to the user groups take effect. This is done using the Ansible meta module with the reset_connection action.

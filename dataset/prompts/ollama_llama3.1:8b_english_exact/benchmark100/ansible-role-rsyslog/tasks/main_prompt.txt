@@ -1,0 +1,31 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml from the current directory into the playbook and run it once on the localhost.
+Description Task 1: This task is used to import the assert.yml file, which is a common practice in Ansible, especially when working with roles.
+
+Task 2: Uninstall the systemd-logger package.
+Description Task 2: This task removes any existing systemd-logger package to avoid conflicts with rsyslog.
+
+Task 3: Install rsyslog and its required packages.
+Description Task 3: This task installs the rsyslog package and any additional packages specified in the rsyslog_packages variable, ensuring rsyslog is properly set up on the system.
+
+Task 4: Install additional rsyslog features or packages.
+Description Task 4: This task loops through the list of rsyslog features specified in the rsyslog_features variable and installs each one as a separate package, further customizing rsyslog.
+
+Task 5: Configure the default rsyslog configuration if specified by the rsyslog_deploy_default_config variable.
+Description Task 5: This task uses a template to configure the default rsyslog settings. It copies the rsyslog.conf.j2 template to the specified destination, overwriting any existing file, and sets the mode to 0644 for read-only access. The task also notifies the handler Restart rsyslog to ensure rsyslog is restarted after the configuration change.
+
+Task 6: Create the /etc/rsyslog.d/ directory with proper permissions.
+Description Task 6: This task creates the /etc/rsyslog.d/ directory if it does not exist, setting its mode to 0755 for read, write, and execute permissions by the owner and group, and read permission for others.
+
+Task 7: Configure a forward rule for rsyslog if the default configuration is not being deployed.
+Description Task 7: This task uses a template to configure a forward rule for rsyslog. It copies the forward_rule.conf.j2 template to the specified destination, overwriting any existing file, and sets the mode to 0644 for read-only access. The task also notifies the handler Restart rsyslog to ensure rsyslog is restarted after the configuration change.
+
+Task 8: Configure additional rsyslog configuration files.
+Description Task 8: This task loops through the dictionary of additional configuration files specified in the rsyslog_rsyslog_d_files variable. For each file, it copies the content to the specified destination, sets the owner and group to root, and the mode to 0440 for read access by the owner and group, and read access by others. The task also notifies the handler Restart rsyslog to ensure rsyslog is restarted after the configuration change.
+
+Task 9: Start and enable the rsyslog service.
+Description Task 9: This task starts the rsyslog service and enables it to run at boot time, ensuring rsyslog is running and configured as expected.

@@ -1,0 +1,30 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml
+Description Task 1: This task is used to import the assert.yml file, which checks if all the necessary variables are defined before running the tasks. It is run once and delegated to the localhost.
+
+Task 2: Uninstall conflicting systemd-logger
+Description Task 2: This task removes the systemd-logger package from the system as it may conflict with rsyslog.
+
+Task 3: Install rsyslog
+Description Task 3: This task installs the rsyslog package on the system. The package name and state are defined by the variables 'rsyslog_packages' and 'rsyslog_package_state' respectively.
+
+Task 4: Install additional rsyslog packages
+Description Task 4: This task installs additional rsyslog packages based on the items in the 'rsyslog_features' variable. The package state is defined by the 'rsyslog_package_state' variable.
+
+Task 5: Configuring default rsyslog
+Description Task 5: This task configures the default rsyslog service. It uses a template to generate the configuration file. The template file used is defined by the 'rsyslog_config_file_format' variable. The configuration file is written to the location defined by the 'rsyslog_dest_conf_file' variable. This task only runs if the 'rsyslog_deploy_default_config' variable is true. If the task runs successfully, it notifies the handler to restart rsyslog.
+
+Task 6: Make configuration directory
+Description Task 6: This task creates a directory at /etc/rsyslog.d/ with the permissions 0755.
+
+Task 7: Configuring rsyslog forward rule
+Description Task 7: This task configures the rsyslog forward rule. It uses a template to generate the configuration file. The configuration file is written to /etc/rsyslog.d/{{ rsyslog_forward_rule_name }}.conf. This task only runs if the 'rsyslog_deploy_default_config' variable is false. If the task runs successfully, it notifies the handler to restart rsyslog.
+
+Task 8: Configuring additional config files
+Description Task 8: This task configures additional configuration files. It loops over the 'rsyslog_rsyslog_d_files' variable. For each item, it copies the content to a file in /etc/rsyslog.d/. The file name is defined by the item's key. The content is validated using the command defined by the 'validate' key in the item's value. If 'validate' is not defined, it uses 'true %s'. If the 'state' key in the item's value is 'present' or not defined, the task runs. If the task runs successfully, it notifies the handler to restart rsyslog.
+
+Task 9: Start and enable rsyslog
+Description Task 9: This task starts and enables the rsyslog service. The service name is defined by the 'rsyslog_service' variable.

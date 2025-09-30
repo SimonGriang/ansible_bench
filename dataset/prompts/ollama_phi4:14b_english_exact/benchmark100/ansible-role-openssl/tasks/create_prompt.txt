@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create SSL key for each item.  
+Description Task 1: Use the `community.crypto.openssl_privatekey` module to generate an SSL key file at the specified path, ensuring the file permissions, owner, and group are set according to the defined variables.
+
+Task 2: Create SSL CSR for each item.  
+Description Task 2: Use the `community.crypto.openssl_csr` module to generate a Certificate Signing Request (CSR) for each item, linking it to the previously created SSL key, and setting appropriate permissions, owner, and group.
+
+Task 3: Create SSL certificates for each item.  
+Description Task 3: Use the `community.crypto.x509_certificate` module to create a self-signed SSL certificate for each item, associating it with the corresponding key and CSR, and setting the file permissions, owner, and group.
+
+Task 4: Create PKCS#12 file for each item.  
+Description Task 4: Use the `community.crypto.openssl_pkcs12` module to export the SSL key and certificate into a PKCS#12 format file, setting the file permissions, owner, and group.
+
+Task 5: Read private key for each item.  
+Description Task 5: Use the `ansible.builtin.slurp` module to read and register the content of the SSL key file for each item.
+
+Task 6: Read certificate for each item.  
+Description Task 6: Use the `ansible.builtin.slurp` module to read and register the content of the SSL certificate file for each item.
+
+Task 7: Create a combined private key and certificate file for each item.  
+Description Task 7: Use the `ansible.builtin.copy` module to create a file that combines the content of the SSL key and certificate for each item, decoding the base64 content and setting the file permissions, owner, and group.

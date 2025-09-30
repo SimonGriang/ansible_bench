@@ -1,0 +1,47 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Create local ssh key directory for a user.
+Description Task 1: Create a directory to store the user's SSH keys on the local machine. This directory will be used to store the user's private and public SSH keys. The directory should be created with the correct permissions (0750) and should be accessible only to the user and the group owner.
+
+Task 2: Manage the user account.
+Description Task 2: Create or manage an existing user account with the specified name, comment, and group. The task should also create a home directory for the user if the 'create_home' variable is set to 'true'. The task should also set the user's password, password expiration, and other attributes as specified in the user variables.
+
+Task 3: Set up the user's sudo options.
+Description Task 3: If the user has sudo options defined, the task should generate a template for the sudo configuration file for the user. The template should be stored in the /etc/sudoers.d directory with the correct permissions. The task should also remove the sudo configuration file for the user if the user does not have sudo options defined.
+
+Task 4: Generate the user's private SSH key.
+Description Task 4: If the user has SSH key management enabled, the task should generate a private SSH key for the user using the ssh-keygen command. The key should be stored in the SSH key directory on the local machine. The task should also create the SSH key directory if it does not exist.
+
+Task 5: Generate the user's public SSH key.
+Description Task 5: If the user has SSH key management enabled, the task should generate a public SSH key for the user using the ssh-keygen command. The key should be stored in the SSH key directory on the local machine.
+
+Task 6: Convert the user's SSH key to PPK format.
+Description Task 6: If the user has SSH key management enabled, the task should convert the user's private SSH key to PPK format using the ssh-keygen command. The PPK key should be stored in the SSH key directory on the local machine.
+
+Task 7: Get or set the user's home directory.
+Description Task 7: The task should retrieve the user's home directory from the system's password database or use a default home directory if the user does not exist. The task should also set the base home directory for the user.
+
+Task 8: Create the user's .ssh directory.
+Description Task 8: Create the .ssh directory for the user in their home directory with the correct permissions. The task should also set the owner and group of the .ssh directory to the user and the group owner respectively.
+
+Task 9: Deploy authorized keys for the user.
+Description Task 9: If the user has authorized keys defined, the task should deploy the public SSH keys for the user using the authorized_key module. The task should also set the permissions of the authorized keys file to 600.
+
+Task 10: Remove unauthorized keys for the user.
+Description Task 10: If the user has unauthorized keys defined, the task should remove the public SSH keys for the user using the authorized_key module.
+
+Task 11: Copy the generated private SSH key for the user.
+Description Task 11: If the user has a copy private key defined, the task should copy the user's private SSH key from the SSH key directory to their home directory. The task should also set the permissions of the private key file to 400.
+
+Task 12: Check the user's password validity.
+Description Task 12: The task should check the user's password validity by querying the /etc/shadow file. The task should also register the output of the command in a variable called 'users_pw_valid'.
+
+Task 13: Set the user's password validity.
+Description Task 13: If the user has password validity defined and the password is not valid, the task should set the password validity for the user using the chage command.
+
+Task 14: Place the private key file for the user.
+Description Task 14: If the user has private keys defined, the task should copy the private key file for the user from the SSH key directory to their home directory. The task should also set the permissions of the private key file to 400.

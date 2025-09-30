@@ -1,0 +1,13 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Install EPEL package repository for Amazon Linux 2 or RedHat-based systems.
+Description Task 1: The task checks if the system is either Amazon Linux 2 or a RedHat-based system with version 7, 8, 9, or 10, and installs the EPEL package repository if the conditions are met.
+
+Task 2: Install the EPEL GPG key.
+Description Task 2: The task installs the EPEL GPG key using the `ansible.builtin.rpm_key` module, specifying the key from the `epel_gpg_key` variable.
+
+Task 3: Install the EPEL-release package.
+Description Task 3: The task installs the EPEL-release package using the `ansible.builtin.package` module, specifying the package name from the `epel_url` variable, and notifies the `Update package cache` handler.
+
+Task 4: Install the EPEL-next-release package (conditional).
+Description Task 4: The task installs the EPEL-next-release package using the `ansible.builtin.package` module, specifying the package name from the `epel_next_url` variable, when the `epel_next` variable is truthy, and notifies the `Update package cache` handler.

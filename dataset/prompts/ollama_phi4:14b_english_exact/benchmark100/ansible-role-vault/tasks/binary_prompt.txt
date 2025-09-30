@@ -1,0 +1,54 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create a system group for Vault.  
+Description Task 1: This task creates a system group named after the `vault_group` variable to be used by the Vault service.
+
+Task 2: Create a system user for Vault.  
+Description Task 2: This task creates a system user named after the `vault_user` variable, assigns it to the `vault_group`, and sets the shell to `vault_user_shell`.
+
+Task 3: Create a download directory for Vault.  
+Description Task 3: This task ensures the directory specified by `vault_download_path` exists with appropriate ownership and permissions for downloading the Vault binary.
+
+Task 4: Download the Vault binary.  
+Description Task 4: This task downloads and unarchives the specified version of the Vault binary from HashiCorp's release URL, ensuring the binary is owned by root and has appropriate permissions.
+
+Task 5: Check if the main Vault directory exists.  
+Description Task 5: This task checks if the directory specified by `vault_path` exists, registering the result as `vault_check_path`.
+
+Task 6: Create the main Vault directory if it does not exist.  
+Description Task 6: This task creates the main Vault directory specified by `vault_path` if it does not exist, setting ownership and permissions based on `vault_user` and `vault_group`.
+
+Task 7: Create additional directories in the main Vault directory.  
+Description Task 7: This task iterates over `vault_directories` to create additional directories within the main Vault directory, setting ownership and permissions as specified in each item.
+
+Task 8: Create data directories for Vault.  
+Description Task 8: This task iterates over `vault_data_directories` to create data directories within the Vault setup, ensuring correct ownership and permissions.
+
+Task 9: Generate a TLS key and certificate for Vault.  
+Description Task 9: This task generates a TLS key and certificate using OpenSSL, placing them in the `vault_data_directory/tls` directory, and notifies the handler to restart Vault if successful.
+
+Task 10: Set ownership of TLS files.  
+Description Task 10: This task sets the ownership and permissions of TLS files specified in `vault_tls_files` to ensure proper access control.
+
+Task 11: Copy the Vault binary to the appropriate location.  
+Description Task 11: This task copies the Vault binary from the download directory to `vault_path/usr/bin/vault`, ensuring it is owned by root and has the correct permissions, and notifies the handler to restart Vault.
+
+Task 12: Set specific capabilities on the Vault binary.  
+Description Task 12: This task sets the `cap_ipc_lock=ep` capability on the Vault binary to allow it to lock memory, ensuring proper operation without changing the binary's state.
+
+Task 13: Create a vault environment file.  
+Description Task 13: This task creates a `vault.env` file in the `vault_path/etc/vault.d` directory with specific ownership and permissions, preserving modification and access times, and notifies the handler to restart Vault.
+
+Task 14: Ensure the systemd system directory exists.  
+Description Task 14: This task ensures the `/usr/lib/systemd/system` directory exists with appropriate ownership and permissions for managing systemd services.
+
+Task 15: Copy the Vault service file for systemd.  
+Description Task 15: This task copies a templated Vault service file to the systemd system directory, setting ownership and permissions, and notifies the handler to reload systemd if the service manager is systemd.
+
+Task 16: Copy the Vault configuration file.  
+Description Task 16: This task copies the Vault configuration file `vault.hcl` to `vault_path/etc/vault.d`, ensuring it is owned by root and has the correct permissions, and notifies the handler to restart Vault.
+
+Task 17: Flush handlers to apply changes.  
+Description Task 17: This task flushes all registered handlers to ensure any changes they manage are applied immediately.

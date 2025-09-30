@@ -1,0 +1,40 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook. The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml). Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assertions
+Description Task 1: This task imports the assertions from the file 'assert.yml', which is used to verify certain conditions. This task is run only once and delegated to localhost for execution.
+
+Task 2: Install apache httpd
+Description Task 2: This task installs Apache HTTPD using the package module. The package to be installed is specified by the variable 'httpd_packages'.
+
+Task 3: Configure selinux
+Description Task 3: When selinux is enabled, this task modifies selinux settings using the seboolean module. The settings to be modified are specified by the variable 'httpd_sebooleans'. It also allows connections to a custom port specified by 'httpd_port' and 'httpd_ssl_port' (if defined) using the seport module.
+
+Task 4: Configure httpd
+Description Task 4: This task configures Apache HTTPD using the template module. The source file for the configuration is specified by the variable 'httpd_config_src', and the destination is specified by 'httpd_config_dest'. After the configuration, it notifies the handlers to test the configuration validity and restart httpd.
+
+Task 5: Activate httpd module | Debian
+Description Task 5: When the OS family is Debian, this task activates the httpd module using the command module. The module to be activated is specified by the variable 'httpd_modules_to_activate_with_command'. After the activation, it notifies the handlers to test the configuration validity.
+
+Task 6: Import ssl configuration
+Description Task 6: If SSL is enabled, this task imports the SSL configuration from the file 'ssl.yml'.
+
+Task 7: Import locations
+Description Task 7: If 'httpd_locations' is defined, this task imports the locations configuration from the file 'locations.yml'.
+
+Task 8: Import virtual hosts
+Description Task 8: If 'httpd_vhosts' is defined, this task imports the virtual hosts configuration from the file 'vhosts.yml'.
+
+Task 9: Configure ports
+Description Task 9: If the OS family is Debian or Suse, this task configures the ports using the template module. The source file for the configuration is specified by the variable 'httpd_ports_conf', and the destination is specified by 'httpd_server_root'. After the configuration, it notifies the handlers to test the configuration validity and restart httpd.
+
+Task 10: Import directories
+Description Task 10: If 'httpd_directories' is defined, this task imports the directories configuration from the file 'directories.yml'.
+
+Task 11: Flush handlers
+Description Task 11: This task flushes the handlers, which ensures that all notified handlers are run.
+
+Task 12: Remove default HTML
+Description Task 12: If 'httpd_remove_example' is true, this task removes the default HTML file located at 'httpd_data_directory'.
+
+Task 13: Start and enable httpd
+Description Task 13: This task starts and enables the Apache HTTPD service. The service to be managed is specified by the variable 'httpd_service'.

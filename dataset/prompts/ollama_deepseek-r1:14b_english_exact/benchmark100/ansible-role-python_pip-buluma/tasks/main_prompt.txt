@@ -1,0 +1,33 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Check if python3.11 EXTERNALLY-MANAGED file exists  
+Description Task 1: Use the stat module to check if the /usr/lib/python3.11/EXTERNALLY-MANAGED file exists. Register the result to the variable externally_managed_file_py311.
+
+Task 2: Rename python3.11 EXTERNALLY-MANAGED file if it exists  
+Description Task 2: Rename the python3.11 EXTERNALLY-MANAGED file to /usr/lib/python3.11/EXTERNALLY-MANAGED.old if it exists. Use the creates argument to avoid idempotent issues.
+
+Task 3: Check if python3.12 EXTERNALLY-MANAGED file exists  
+Description Task 3: Use the stat module to check if the /usr/lib/python3.12/EXTERNALLY-MANAGED file exists. Register the result to the variable externally_managed_file_py312.
+
+Task 4: Rename python3.12 EXTERNALLY-MANAGED file if it exists  
+Description Task 4: Rename the python3.12 EXTERNALLY-MANAGED file to /usr/lib/python3.12/EXTERNALLY-MANAGED.old if it exists. Use the creates argument to avoid idempotent issues.
+
+Task 5: Import assert.yml  
+Description Task 5: Import the assert.yml file as tasks. Set run_once to true and delegate_to localhost.
+
+Task 6: Install python pip  
+Description Task 6: Install python pip packages using the package module. Use the variable python_pip_packages to specify the packages.
+
+Task 7: Configure pip proxy  
+Description Task 7: Configure the pip proxy settings in /etc/pip.conf. Use the community.general.ini_file module. Set the index-url under the global section. Only execute if python_pip_proxy is defined.
+
+Task 8: Trust hosts  
+Description Task 8: Configure trusted hosts in /etc/pip.conf. Use the community.general.ini_file module. Set trusted-host under the global section. Only execute if python_pip_trusted_host is defined.
+
+Task 9: Update pip  
+Description Task 9: Update pip using the pip module. Use the variables python_pip_pip_package and python_pip_pip_state. Only execute if python_pip_update is true and the OS is not bookworm, noble, or Alpine.
+
+Task 10: Install requested modules  
+Description Task 10: Install requested Python modules using the pip module. Loop through the python_pip_modules variable. Use item.name as the label. Only execute if the OS is not bookworm, noble, or Alpine.

@@ -1,0 +1,13 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Import the assert.yml file from the current directory.
+Description Task 1: This task is necessary to run the assertions in the assert.yml file and check for any errors.
+
+Task 2: Install the openvpn packages specified in the openvpn_packages variable.
+Description Task 2: This task installs the necessary packages for OpenVPN to function correctly.
+
+Task 3: Set up the OpenVPN server or client based on the role specified in the openvpn_role variable.
+Description Task 3: This task will execute the tasks defined in the {{ openvpn_role }}.yml file to set up the OpenVPN server or client.
+
+Task 4: Start the OpenVPN service and enable it to start at boot time.
+Description Task 4: This task starts the OpenVPN service and configures it to start automatically when the system boots.

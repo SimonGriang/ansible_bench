@@ -1,0 +1,42 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import a task file named "assert.yml" to be executed once on the localhost.
+Description Task 1: This task imports the `assert.yml` file and ensures it runs only once, delegating execution to the localhost.
+
+Task 2: Install the Apache HTTP server.
+Description Task 2: Use the `ansible.builtin.package` module to install the Apache HTTP server using the package names specified in the `httpd_packages` variable.
+
+Task 3: Configure SELinux if it is enabled.
+Description Task 3: If SELinux is enabled, modify SELinux settings by enabling specified booleans (`httpd_sebooleans`) and allowing connections to custom ports (`httpd_port` and optionally `httpd_ssl_port`) using SELinux ports configuration.
+
+Task 4: Configure the main Apache HTTP server configuration file.
+Description Task 4: Use the `ansible.builtin.template` module to configure the Apache HTTP server by rendering a template from `httpd_config_src` to `httpd_config_dest`. Ensure the file has appropriate permissions and notify handlers for configuration validity testing and service restart.
+
+Task 5: Activate specified Apache HTTP server modules on Debian systems.
+Description Task 5: On Debian systems, activate specified HTTP modules (`httpd_modules_to_activate_with_command`) using the `a2enmod` command. This task does not change the system state but triggers configuration validity testing.
+
+Task 6: Import SSL configuration tasks if HTTPS is enabled.
+Description Task 6: Import the `ssl.yml` task file conditionally, based on whether HTTPS SSL is enabled (`https_ssl_enable`).
+
+Task 7: Import location configuration tasks if locations are defined.
+Description Task 7: Import the `locations.yml` task file conditionally, based on whether `httpd_locations` is defined.
+
+Task 8: Import virtual host configuration tasks if virtual hosts are defined.
+Description Task 8: Import the `vhosts.yml` task file conditionally, based on whether `httpd_vhosts` is defined.
+
+Task 9: Configure ports for Debian and SUSE systems.
+Description Task 9: Use the `ansible.builtin.template` module to configure ports by rendering a template from `httpd_ports_conf` to the appropriate destination in the server root. Ensure the file has appropriate permissions and notify handlers for configuration validity testing and service restart. This task runs only on Debian and SUSE systems.
+
+Task 10: Import directory configuration tasks if directories are defined.
+Description Task 10: Import the `directories.yml` task file conditionally, based on whether `httpd_directories` is defined.
+
+Task 11: Flush all pending handlers to ensure immediate execution.
+Description Task 11: Use the `ansible.builtin.meta: flush_handlers` module to flush any pending handlers, ensuring they are executed immediately.
+
+Task 12: Remove the default HTML index file if specified.
+Description Task 12: Conditionally remove the default HTML index file (`index.html`) from the data directory if `httpd_remove_example` is true.
+
+Task 13: Start and enable the Apache HTTP server service.
+Description Task 13: Use the `ansible.builtin.service` module to start the Apache HTTP server service (`httpd_service`) and ensure it is enabled to start on boot.

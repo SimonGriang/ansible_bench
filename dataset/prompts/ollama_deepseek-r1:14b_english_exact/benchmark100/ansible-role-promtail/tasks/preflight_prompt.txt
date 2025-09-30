@@ -1,0 +1,15 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Assert usage of systemd as an init system  
+Description Task 1: Assert that the system uses systemd as the init system and provide an appropriate message if it does not  
+
+Task 2: Get latest release and set promtail version  
+Description Task 2: Fetch the latest release information from the Grafana Loki repository and set the promtail_version variable based on the latest release tag  
+
+Task 3: Test if zip local archive exists and assert local binary exists  
+Description Task 3: Check if a local binary archive exists and assert its presence when a local directory is specified  
+
+Task 4: Get checksum list and set checksum for target architecture  
+Description Task 4: Retrieve checksum information for the Promtail binary and set the checksum value for the target architecture (e.g., amd64 or arm64)

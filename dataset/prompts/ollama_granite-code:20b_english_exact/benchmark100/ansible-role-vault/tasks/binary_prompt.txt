@@ -1,0 +1,39 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create group vault
+Description Task 1: Create the vault system group
+
+Task 2: Create user vault
+Description Task 2: Create the vault system user
+
+Task 3: Create directory /opt/vault
+Description Task 3: Create the directory where the vault binary will be downloaded and extracted
+
+Task 4: Download Vault binary
+Description Task 4: Download and extract the Vault binary
+
+Task 5: Create directory /etc/vault.d
+Description Task 5: Create the directory where the Vault configuration file will be stored
+
+Task 6: Copy Vault binary
+Description Task 6: Copy the Vault binary to the installation directory
+
+Task 7: Set cap_ipc_lock=ep on /usr/bin/vault
+Description Task 7: Set the cap_ipc_lock=ep capability on the Vault binary
+
+Task 8: Create file /etc/vault.d/vault.env
+Description Task 8: Create the Vault environment configuration file
+
+Task 9: Create directory /usr/lib/systemd/system
+Description Task 9: Create the directory where the Vault service file will be stored
+
+Task 10: Copy Vault service file
+Description Task 10: Copy the Vault service file to the installation directory
+
+Task 11: Copy vault configuration
+Description Task 11: Copy the Vault configuration file to the installation directory
+
+Task 12: Flush handlers
+Description Task 12: Flush the handlers to restart Vault

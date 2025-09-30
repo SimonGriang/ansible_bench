@@ -1,0 +1,60 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+   Task 1: Import assert.yml
+   Description Task 1: Import the assert.yml file to ensure the playbook is being used correctly.
+
+   Task 2: Pre-configure Debian systems
+   Description Task 2: Configure the debconf for Postfix on Debian systems to select "No configuration" as the main mailer type.
+
+   Task 3: Install postfix
+   Description Task 3: Install the Postfix package on the target system.
+
+   Task 4: Install postfix-mysql
+   Description Task 4: Install the Postfix MySQL package if specific variables are defined and their values include 'mysql'.
+
+   Task 5: Configure postfix (transport_maps)
+   Description Task 5: Configure the Postfix transport maps using a template if the 'postfix_transport_maps_template' variable is defined.
+
+   Task 6: Configure postfix (header_checks)
+   Description Task 6: Configure the Postfix header checks using a template if the 'postfix_header_checks_template' variable is defined.
+
+   Task 7: Setting values for main.cf
+   Description Task 7: Set fact variables for specific configurations in main.cf, such as 'postfix_smtpd_recipient_restrictions' and 'postfix_smtpd_sender_restrictions'.
+
+   Task 8: Configure postfix (main.cf)
+   Description Task 8: Configure the Postfix main.cf file using a template and validate the configuration using 'postconf -d -c %s'.
+
+   Task 9: Configure postfix (master.cf)
+   Description Task 9: Configure the Postfix master.cf file using a template and validate the configuration using 'postconf -d -c %s'.
+
+   Task 10: Create cert/key directory
+   Description Task 10: Create directories for the Postfix TLS server certificate and key if specific variables are defined.
+
+   Task 11: Deploy Postfix TLS server certificate
+   Description Task 11: Deploy the Postfix TLS server certificate if the 'postfix_smtpd_tls_cert_file_source' variable is defined.
+
+   Task 12: Deploy Postfix TLS server key
+   Description Task 12: Deploy the Postfix TLS server key if the 'postfix_smtpd_tls_key_file_source' variable is defined.
+
+   Task 13: Flush handlers
+   Description Task 13: Flush any pending handlers to ensure that all previous tasks have completed before moving on.
+
+   Task 14: Configure aliases
+   Description Task 14: Configure Postfix aliases if the 'postfix_aliases' variable is defined.
+
+   Task 15: Configure sender_access
+   Description Task 15: Configure the Postfix sender_access file if the 'postfix_sender_access' variable is defined.
+
+   Task 16: Configure recipient_access
+   Description Task 16: Configure the Postfix recipient_access file if the 'postfix_recipient_access' variable is defined.
+
+   Task 17: Place sasl_password_map
+   Description Task 17: Place the sasl_password_map file if the 'postfix_smtp_sasl_password_map' variable is defined and not empty.
+
+   Task 18: Flush handlers (again)
+   Description Task 18: Flush any pending handlers to ensure that all previous tasks have completed before moving on.
+
+   Task 19: Start and enable postfix
+   Description Task 19: Start and enable the Postfix service.

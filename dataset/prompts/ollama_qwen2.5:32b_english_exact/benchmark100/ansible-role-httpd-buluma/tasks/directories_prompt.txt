@@ -1,9 +1,0 @@
-Below you will receive task descriptions from which you should generate an Ansible Playbook.  
-The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
-Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
-
-Task 1: directories | Create directories
-Description Task 1: This task creates multiple directories based on a list defined in the variable 'httpd_directories'. Each directory's path is derived from the 'path' attribute of each item in the list, and the mode for each directory is set to '0755'.
-
-Task 2: directories | Configure directories
-Description Task 2: This task generates configuration files for each directory defined in 'httpd_directories'. It uses a template file named 'directory.conf.j2' to create configuration files stored in the 'httpd_config_directory' directory with the filename as '<item.name>.conf'. The mode for each generated file is set to '0644'. After configuration, it tests the httpd configuration validity and restarts httpd.

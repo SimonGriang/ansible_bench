@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Ensure the Docker apt key is removed from the trusted.gpg.d directory.  
+Description Task 1: Remove the Docker apt key file to prevent it from being used in future package installations.
+
+Task 2: Remove the old Docker apt source list from the sources.list.d directory.  
+Description Task 2: Delete the outdated Docker source list file to ensure only the current repository configuration is used.
+
+Task 3: Uninstall obsolete Docker packages.  
+Description Task 3: Remove any outdated Docker packages that are no longer needed or supported.
+
+Task 4: Remove the legacy Docker repository file.  
+Description Task 4: Delete the old Docker repository file to prevent it from being used in the package manager.
+
+Task 5: Install necessary dependencies for Docker.  
+Description Task 5: Ensure that the required packages for adding Docker repositories are installed.
+
+Task 6: Add or remove the Docker repository based on a condition.  
+Description Task 6: Configure the Docker repository in the package manager, adding it if specified, or removing it if not.
+
+Task 7: Flush handlers to update the apt cache immediately.  
+Description Task 7: Trigger any defined handlers to ensure the package manager cache is updated right away.

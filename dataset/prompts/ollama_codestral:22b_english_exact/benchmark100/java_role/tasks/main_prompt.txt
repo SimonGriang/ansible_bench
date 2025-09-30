@@ -1,0 +1,21 @@
+ The reconstructed prompt is as follows:
+
+   "Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+   Task 1: Java | Install OpenJDK implementation
+   Description Task 1: This task includes another task file named install_openjdk.yml that handles the installation of OpenJDK, which is an open-source implementation of Java. The 'install' tag is used to group tasks that install software.
+
+   Task 2: Java | Import certificates into Java Keystore
+   Description Task 2: This task includes another task file named import_certs.yml that imports certificates into the Java Keystore. This action is only executed when the variable 'java_certs' is defined. The 'certs' tag is used to group tasks that manage certificates.
+
+   Guidelines:
+   - Each task should be short and clearly describe one specific action.
+   - The tasks must match the actual tasks in the playbook both in content and order.
+   - Use the exact terminology and labels as used in the playbook.
+   - Provide a more detailed description of the task next to each task.
+   - Include the exact names of variables, handlers, etc. used in the playbook.
+   "
+
+   This prompt should assist in recreating the same Ansible Playbook, as it contains the necessary information for each task, such as the task name, description, use of other task files, and the use of conditional statements and tags.

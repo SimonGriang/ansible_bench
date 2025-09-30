@@ -1,0 +1,13 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Restart RKE2 service on a node.
+Description Task 1: Restart the RKE2 service on a node with a name defined by the variable rke2_node_name, and notify the Service (re)started handler.
+
+Task 2: Wait for all nodes to be ready again.
+Description Task 2: Run a shell command to wait for all nodes in the RKE2 cluster to be ready again. The command gets the number of nodes in the Ready state. The task will retry this for a maximum of 100 times with a 15-second delay. It will delegate to the active server (or the first server in the rke2_servers_group_name group if no active server is available) and will only run once. The task will only run if the check mode is off. The task will register the output in the all_ready_nodes variable.
+
+Task 3: Wait for all pods to be ready again.
+Description Task 3: Run a shell command to wait for all pods in the RKE2 cluster to be ready again. The command gets the number of pods that are not in the Running or Succeeded state. The task will retry this for a maximum of 100 times with a 15-second delay. It will delegate to the active server (or the first server in the rke2_servers_group_name group if no active server is available) and will only run once. The task will only run if the check mode is off and the variable rke2_wait_for_all_pods_to_be_ready is true. The task will register the output in the all_pods_ready variable.

@@ -1,0 +1,27 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: hashicorp_installation_method == "package"
+Description Task 1: Install using package
+
+Task 2: hashicorp_products is defined
+Description Task 2: Install latest hashicorp product using package
+
+Task 3: item.version is not defined
+Description Task 3: Install latest hashicorp product using package
+
+Task 4: hashicorp_products is defined
+Description Task 4: Install versioned hashicorp product using package
+
+Task 5: item.version is defined
+Description Task 5: Install versioned hashicorp product using package
+
+Task 6: hashicorp_installation_method == "manual"
+Description Task 6: Install manually
+
+Task 7: hashicorp_products is defined
+Description Task 7: Install hashicorp product manually
+
+Task 8: hashicorp_products is defined
+Description Task 8: Install hashicorp product manually

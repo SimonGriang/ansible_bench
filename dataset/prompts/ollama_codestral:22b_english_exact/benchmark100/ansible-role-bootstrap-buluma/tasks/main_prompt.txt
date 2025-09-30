@@ -1,0 +1,14 @@
+ Task 1: Import assert.yml
+   Description Task 1: This task imports the assert.yml file which is likely a file containing assertions to validate the environment or variables before the playbook continues.
+
+   Task 2: Wait for port to be available
+   Description Task 2: This task waits for the specified port (default is 22) to be available, up to a timeout specified by the bootstrap_timeout variable. This is useful when the target host might not be immediately accessible.
+
+   Task 3: Prepare system
+   Description Task 3: This task block is designed to prepare the system. It first tests the connection and then checks if sudo is available. If any of these checks fail, it resorts to gathering bootstrap facts and installing necessary bootstrap packages using the raw module. It also ensures libdnf5 is present on Fedora/RedHat systems.
+
+   Task 4: Gather ansible facts
+   Description Task 4: This task gathers facts about the system using the setup module. This is a common task in Ansible playbooks as it allows you to use information about the system in later tasks.
+
+   Task 5: Install bootstrap packages (package)
+   Description Task 5: This task installs the bootstrap packages listed in the bootstrap_facts_packages variable. The loop ensures that each package in the list is installed. The become option is set based on the bootstrap_become variable, which might be defined elsewhere in the role.

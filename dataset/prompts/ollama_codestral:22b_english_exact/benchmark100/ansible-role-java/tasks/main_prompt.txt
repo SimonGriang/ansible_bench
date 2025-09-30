@@ -1,0 +1,36 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml
+Description Task 1: Importing the assert.yml file which is assumed to contain necessary assertions or checks. This file is executed only once and delegated to the localhost.
+
+Task 2: Install requirements
+Description Task 2: Ensuring that the bash package is installed on the target system. This could be a prerequisite for subsequent tasks.
+
+Task 3: Install openjdk java (package)
+Description Task 3: When the java_vendor variable is set to "openjdk", this task will install the java package specified in the variable java_openjdk_package. The environment variable USE is set to "X -cups -alsa -fontconfig".
+
+Task 4: Install RPM
+Description Task 4: If the java_source variable is set to "local" and java_format is set to "rpm", this task will copy the specified java package to a temporary location on the target system and then install it.
+
+Task 5: Install DEB
+Description Task 5: If the java_source variable is set to "local" and java_format is set to "deb", this task will copy the specified java package to a temporary location on the target system and then install it using the apt package manager.
+
+Task 6: Install oracle java (rpm) (repository)
+Description Task 6: If the java_source variable is set to "repository" and java_format is set to "rpm", this task will install the java package specified in the variable java_oracle_package.
+
+Task 7: Configure oracle targz
+Description Task 7: If the java_format variable is set to "targz" and java_vendor is set to "oracle", this task will ensure that the directory specified in java_install_directory exists and then unarchive the java package specified in java_oracle_package into this directory.
+
+Task 8: Install oracle java policy software (targz)
+Description Task 8: If the java_jce variable is set to true, java_version is 8, and java_vendor is set to "oracle", this task will unarchive the jce_policy-8.zip file into the directory specified in java_install_directory.
+
+Task 9: Set alternative (targz)
+Description Task 9: If the java_format variable is set to "targz", the target system is not Alpine, and java_vendor is set to "oracle", this task will set the alternative for java to the java executable in the oracle java installation directory.
+
+Task 10: Find JAVA_HOME
+Description Task 10: This task will find the JAVA_HOME by reading the link of the java executable and removing "/bin/java" from the end.
+
+Task 11: Set JAVA_HOME in /etc/environment
+Description Task 11: This task will set the JAVA_HOME in the /etc/profile.d/java_home.sh file to the value obtained in the previous task. If the file does not exist, it will be created.

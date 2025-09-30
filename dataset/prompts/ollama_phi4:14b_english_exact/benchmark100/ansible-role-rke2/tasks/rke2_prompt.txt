@@ -1,0 +1,57 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Download RKE2 installation script if not in airgap mode.  
+Description Task 1: This task downloads the RKE2 installation script from a specified URL, setting the appropriate file permissions and timeout. It only executes when the `rke2_airgap_mode` is not enabled.
+
+Task 2: Copy local RKE2 installation script if in airgap mode using the 'copy' method.  
+Description Task 2: This task copies a local RKE2 installation script to the designated directory when `rke2_airgap_mode` is enabled and the `rke2_airgap_implementation` is set to 'copy'. It enforces file permissions and uses the `force` option to overwrite any existing files.
+
+Task 3: Create RKE2 artifacts folder if in airgap mode and the implementation is not 'exists'.  
+Description Task 3: This task creates a directory for RKE2 artifacts under certain conditions. It runs when `rke2_airgap_mode` is enabled, and the `rke2_airgap_implementation` is not set to 'exists', ensuring the directory has the correct permissions.
+
+Task 4: Download RKE2 checksum and artifacts with a fallback mechanism for airgap mode using the 'download' method.  
+Description Task 4: This task block is responsible for downloading the RKE2 checksum file and artifacts, with a fallback mechanism. It attempts remote download first and, if it fails, downloads locally and pushes to remote hosts. It handles checksum validation and retries downloading the installation script.
+
+Task 5: Copy local RKE2 artifacts if in airgap mode using the 'copy' method.  
+Description Task 5: This task copies specific RKE2 artifacts to the target directory when `rke2_airgap_mode` is enabled and the `rke2_airgap_implementation` is set to 'copy'. It ensures correct permissions are set and uses the `force` option.
+
+Task 6: Handle additional tarballs in airgap mode if not using 'exists' implementation.  
+Description Task 6: This task block manages additional images tarballs in airgap mode. It creates a directory for these tarballs and copies them if the `rke2_airgap_copy_additional_tarballs` list is not empty and the implementation is not 'exists'.
+
+Task 7: Ensure artifacts exist and have acceptable permissions in airgap mode with 'exists' implementation.  
+Description Task 7: This task block ensures that RKE2 artifacts exist and have appropriate permissions when in airgap mode with the 'exists' implementation. It checks and adjusts file permissions and confirms that the installation script is executable.
+
+Task 8: Populate service facts to gather information about system services.  
+Description Task 8: This task gathers facts about system services, which can be used in subsequent tasks to make decisions based on the current state of services on the system.
+
+Task 9: Get filesystem statistics for the /usr/local directory.  
+Description Task 9: This task retrieves filesystem statistics for the /usr/local directory, storing the information for later use in determining the appropriate RKE2 binary path.
+
+Task 10: Check if /usr/local is on a separate partition.  
+Description Task 10: This task checks if the /usr/local directory is mounted on a separate partition by examining the /proc/mounts file. It sets a condition based on the output to determine the correct RKE2 binary path.
+
+Task 11: Determine the RKE2 binary path based on filesystem checks.  
+Description Task 11: This task sets the RKE2 binary path variable based on whether /usr/local is writeable or on a separate partition, ensuring the correct path is used for RKE2 installations.
+
+Task 12: Check the installed and running RKE2 versions.  
+Description Task 12: This task determines the installed and running RKE2 versions by examining the RKE2 binary and service status. It outputs the results in JSON format for further processing.
+
+Task 13: Set RKE2 version facts based on the version check results.  
+Description Task 13: This task sets Ansible facts for the installed and running RKE2 versions using the results from the version check task, provided the playbook is not in check mode.
+
+Task 14: Prevent accidental RKE2 downgrade unless explicitly allowed.  
+Description Task 14: This task asserts that a downgrade of RKE2 is not allowed unless explicitly permitted. It compares the desired version with the running version and fails if a downgrade is detected without permission.
+
+Task 15: Run RKE2 install script if the version needs to be updated.  
+Description Task 15: This task block runs the RKE2 installation script if the current version does not match the desired version. It handles both airgap and non-airgap scenarios, setting the appropriate environment variables.
+
+Task 16: Copy custom manifests if they are defined.  
+Description Task 16: This task copies custom RKE2 manifests to the server's manifests directory if any custom manifests are defined.
+
+Task 17: Copy static pods if they are defined.  
+Description Task 17: This task copies static pod manifests to the agent's pod-manifests directory if any static pods are specified.
+
+Task 18: Copy RKE2 environment file if environment options are defined.  
+Description Task 18: This task copies the RKE2 environment file to the appropriate location, applying it only if environment options are defined and non-empty.

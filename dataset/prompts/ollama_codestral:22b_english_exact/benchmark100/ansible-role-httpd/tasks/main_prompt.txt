@@ -1,0 +1,42 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml
+Description Task 1: This task is designed to import a file named assert.yml. This file likely contains assert tasks that validate the system's state before performing any configuration.
+
+Task 2: Install apache httpd
+Description Task 2: This task is responsible for installing the Apache HTTP Server (httpd) on the target system. The package name is stored in the variable 'httpd_packages'.
+
+Task 3: Configure selinux
+Description Task 3: If SELinux is enabled on the system, this task will modify the SELinux settings using the variables 'httpd_sebooleans'. It will also allow connections to custom ports defined in 'httpd_port' and 'httpd_ssl_port'.
+
+Task 4: Configure httpd
+Description Task 4: This task is used to configure the Apache HTTP Server (httpd) using a template. The source of the template is stored in 'httpd_config_src' and the destination is stored in 'httpd_config_dest'. After the configuration, it will notify the handlers to test the configuration validity and restart the httpd service.
+
+Task 5: Activate httpd module | Debian
+Description Task 5: If the target system is running a Debian-based OS, this task is used to activate specific httpd modules. The names of the modules are stored in 'httpd_modules_to_activate_with_command'. After activation, it will notify the handlers to test the configuration validity.
+
+Task 6: Import ssl.yml
+Description Task 6: If SSL is enabled, this task is designed to import a file named ssl.yml. This file likely contains tasks related to configuring SSL for httpd.
+
+Task 7: Import locations.yml
+Description Task 7: If 'httpd_locations' is defined, this task will import a file named locations.yml. This file likely contains tasks related to configuring locations for httpd.
+
+Task 8: Import vhosts.yml
+Description Task 8: If 'httpd_vhosts' is defined, this task will import a file named vhosts.yml. This file likely contains tasks related to configuring virtual hosts for httpd.
+
+Task 9: Configure ports
+Description Task 9: If the target system is running a Debian-based or SUSE-based OS, this task is used to configure ports for httpd using a template. The source of the template is stored in 'httpd_ports_conf' and the destination is stored in 'httpd_server_root/httpd_ports_conf'. After the configuration, it will notify the handlers to test the configuration validity and restart the httpd service.
+
+Task 10: Import directories.yml
+Description Task 10: If 'httpd_directories' is defined, this task will import a file named directories.yml. This file likely contains tasks related to creating and configuring directories for httpd.
+
+Task 11: Flush handlers
+Description Task 11: This task is used to ensure that all notified handlers are run.
+
+Task 12: Removing default html
+Description Task 12: If 'httpd_remove_example' is true, this task is used to remove the default index.html file that comes with httpd. The path to the index.html file is stored in 'httpd_data_directory'.
+
+Task 13: Start and enable httpd
+Description Task 13: This task is used to start and enable the Apache HTTP Server (httpd) service. The service name is stored in 'httpd_service'.

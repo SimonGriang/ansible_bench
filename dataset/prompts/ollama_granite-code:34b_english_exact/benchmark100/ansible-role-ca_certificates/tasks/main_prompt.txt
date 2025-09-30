@@ -1,2 +1,0 @@
-Task 1: Install ca_certificates
-Description Task 1: Install the ca_certificates package using the package module.

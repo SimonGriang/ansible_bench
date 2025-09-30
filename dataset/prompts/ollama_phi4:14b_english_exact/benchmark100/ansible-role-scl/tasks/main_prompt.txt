@@ -1,0 +1,9 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Install the package centos-release-scl on CentOS systems.  
+Description Task 1: Ensure the centos-release-scl package is installed on systems running CentOS. This package is necessary for enabling Software Collections (SCL) on CentOS. Use the ansible.builtin.package module and include a condition to check if the system's distribution is CentOS before executing the task.
+
+Task 2: No additional task is present.  
+Description Task 2: The playbook only contains one task related to installing the centos-release-scl package on CentOS systems. There are no further tasks specified in this playbook.

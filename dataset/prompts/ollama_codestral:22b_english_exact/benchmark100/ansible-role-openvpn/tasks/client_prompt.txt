@@ -1,0 +1,38 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Ensure OpenVPN client directory exists
+Description Task 1: Create the directory /etc/openvpn/client if it does not exist, and set the correct permissions and ownership.
+
+Task 2: Place OpenVPN client configuration file
+Description Task 2: Use the template client.conf.j2 to create a client configuration file in the specified directory. Set the correct ownership and permissions, and trigger a restart of the OpenVPN service if the file changes.
+
+Guidelines:
+- The tasks must match the actual tasks in the playbook **both in content and order**.
+- Use the exact terminology and labels as used in the playbook.
+- Provide a more detailed description of the task next to each task.
+- Include the exact names of variables, handlers, etc. used in the playbook.
+
+Playbook:
+---
+
+- name: client | Ensure /etc/openvpn/client exists
+  ansible.builtin.file:
+    path: /etc/openvpn/client
+    state: directory
+    owner: root
+    group: "{{ openvpn_group }}"
+    mode: "0750"
+
+- name: client | Place client.conf
+  ansible.builtin.template:
+    src: client.conf.j2
+    dest: "{{ openvpn_configuration_directory }}/client.conf"
+    owner: root
+    group: "{{ openvpn_group }}"
+    mode: "0640"
+  notify:
+    - Restart openvpn
+
+This prompt was used to reconstruct the original task descriptions based on the provided Ansible Playbook.

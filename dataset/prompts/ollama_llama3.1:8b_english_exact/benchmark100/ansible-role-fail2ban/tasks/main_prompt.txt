@@ -1,0 +1,28 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml file
+Description Task 1: This task imports another YAML file, assert.yml, into the current playbook, and it is run only once. The import is delegated to the localhost.
+
+Task 2: Install fail2ban package
+Description Task 2: This task installs the fail2ban package on the system. The package name is determined by the variable "fail2ban_packages" and is installed in the present state.
+
+Task 3: Copy fail2ban filters
+Description Task 3: This task copies fail2ban filters from the variable "fail2ban_filterd_path" to the /etc/fail2ban/filter.d/ directory. The filters are owned by root, and the group is also root. The mode of the files is set to "0640". The task is conditional and only runs if the "fail2ban_filterd_path" variable is defined. After this task, the fail2ban service is restarted.
+
+Task 4: Configure fail2ban.local
+Description Task 4: This task configures the fail2ban.local file by setting various options from a list of variables. The options are determined by the "fail2ban_base_configuration" and "fail2ban_configuration" variables. The file is owned by root, and the mode is set to "0640". After this task, the fail2ban service is restarted.
+
+Task 5: Configure jail.local
+Description Task 5: This task configures the jail.local file by setting various options from a list of variables. The options are determined by the "fail2ban_base_jail_configuration" and "fail2ban_jail_configuration" variables. The file is owned by root, and the mode is set to "0640". After this task, the fail2ban service is restarted.
+
+Task 6: Check the existence of the auth log file
+Description Task 6: This task checks if the auth log file exists at /var/log/auth.log. The result is stored in the "fail2ban_auth" variable.
+
+Task 7: Create the auth log file if it does not exist
+Description Task 7: This task creates the auth log file at /var/log/auth.log if it does not already exist. The mode of the file is set to "0640". The task is conditional and only runs if the "fail2ban_auth" variable has a defined "exists" attribute and the attribute is set to false.
+
+Task 8: Start and enable the fail2ban service
+Description Task 8: This task starts and enables the fail2ban service on the system. The service name is determined by the variable "fail2ban_service".

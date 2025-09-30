@@ -1,0 +1,36 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Ensure /etc/openvpn/easy-rsa directory exists
+Description Task 1: Ensure the directory /etc/openvpn/easy-rsa exists with mode 0755.
+
+Task 2: Easyrsa init-pki
+Description Task 2: Initialize PKI in /etc/openvpn/easy-rsa directory if it doesn't already exist.
+
+Task 3: Easyrsa build-ca
+Description Task 3: Build the Certificate Authority (CA) without interactive prompts if the CA certificate does not already exist.
+
+Task 4: Easyrsa gen-dh
+Description Task 4: Generate Diffie-Hellman parameters if they do not already exist.
+
+Task 5: Easyrsa build-server-full server nopass
+Description Task 5: Build a server certificate and key without interactive prompts if the server certificate does not already exist.
+
+Task 6: Easyrsa build-client-full client nopass
+Description Task 6: Build a client certificate and key without interactive prompts if the client certificate does not already exist.
+
+Task 7: Easyrsa gen-crl
+Description Task 7: Generate a Certificate Revocation List (CRL) if it does not already exist.
+
+Task 8: Openvpn --genkey --secret /etc/openvpn/easy-rsa/pki/ta.key
+Description Task 8: Generate a static key for the OpenVPN tunnel if the static key does not already exist.
+
+Task 9: Copy files to /etc/openvpn/server
+Description Task 9: Copy necessary files from /etc/openvpn/easy-rsa/pki to /etc/openvpn/server directory with appropriate permissions.
+
+Task 10: Copy files to /etc/openvpn
+Description Task 10: Copy necessary files from /etc/openvpn/easy-rsa/pki to /etc/openvpn directory with appropriate permissions.
+
+Task 11: Place server.conf
+Description Task 11: Place the server configuration file using a template and notify the handler to restart openvpn service after the file is placed.

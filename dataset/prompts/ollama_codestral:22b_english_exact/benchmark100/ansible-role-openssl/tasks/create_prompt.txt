@@ -1,0 +1,24 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: create | Create ssl key
+Description Task 1: Generate an SSL private key using the openssl_privatekey module and store it at a specified path. The key should have a specific mode and be owned by a specific user and group.
+
+Task 2: create | Create ssl csr
+Description Task 2: Generate a Certificate Signing Request (CSR) using the openssl_csr module. The CSR should be associated with the previously generated SSL private key. The CSR should be stored at a specified path, have a specific mode, and be owned by a specific user and group.
+
+Task 3: create | Create ssl certificates
+Description Task 3: Generate a self-signed SSL certificate using the x509_certificate module. The certificate should be associated with the previously generated SSL private key and CSR. The certificate should be stored at a specified path, have a specific mode, and be owned by a specific user and group.
+
+Task 4: create | Create PKCS#12 file
+Description Task 4: Generate a PKCS#12 file using the openssl_pkcs12 module. The PKCS#12 file should contain the previously generated SSL private key and certificate. The PKCS#12 file should be stored at a specified path, have a specific mode, and be owned by a specific user and group.
+
+Task 5: create | Read private key
+Description Task 5: Read the contents of the SSL private key file using the slurp module and store the result in a variable for later use.
+
+Task 6: create | Read certificate
+Description Task 6: Read the contents of the SSL certificate file using the slurp module and store the result in a variable for later use.
+
+Task 7: create | Create combined private_key and certificate file
+Description Task 7: Create a new file that combines the contents of the SSL private key and certificate files. The combined file should be stored at a specified path, have a specific mode, and be owned by a specific user and group.

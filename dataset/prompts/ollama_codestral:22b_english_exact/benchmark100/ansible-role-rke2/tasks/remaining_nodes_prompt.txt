@@ -1,0 +1,29 @@
+ Task 1: Create the RKE2 config directory
+   Description Task 1: Create a directory at /etc/rancher/rke2 with specific ownership and permissions for RKE2 configuration files.
+
+   Task 2: Set server taints
+   Description Task 2: Based on the variable rke2_type, set the node taints to the value of rke2_server_node_taints. This is only done when rke2_type is 'server'.
+
+   Task 3: Set agent taints
+   Description Task 3: If the variable rke2_type is 'agent', set the node taints to the value of rke2_agent_node_taints.
+
+   Task 4: Copy RKE2 config
+   Description Task 4: Copy the RKE2 configuration file from the source specified by the variable rke2_config to /etc/rancher/rke2/config.yaml. Ensure the file has the correct ownership and permissions. Notify the "Config file changed" handler.
+
+   Task 5: Copy kubelet config
+   Description Task 5: If the variable rke2_kubelet_config is not empty, copy the kubelet configuration file from templates/kubelet-config.yaml.j2 to /etc/rancher/rke2/kubelet-config.yaml. Ensure the file has the correct ownership and permissions. Notify the "Config file changed" handler.
+
+   Task 6: Copy Containerd Registry Configuration file
+   Description Task 6: If either of the variables rke2_custom_registry_mirrors or rke2_custom_registry_configs is not empty, copy the registry configuration file from the source specified by the variable rke2_custom_registry_path to /etc/rancher/rke2/registries.yaml. Ensure the file has the correct ownership and permissions. Notify the "Config file changed" handler.
+
+   Task 7: Start RKE2 service on the rest of the nodes
+   Description Task 7: Start the RKE2 service specified by the variable rke2_service_name. Enable the service to start on boot. Set the RKE2_TOKEN environment variable to the value of rke2_token. Notify the "Service (re)started" handler.
+
+   Task 8: Mask other RKE2 service on the rest of the nodes
+   Description Task 8: Disable and mask the RKE2 service for the other node type (i.e., if rke2_type is 'server', mask the 'agent' service, and vice versa).
+
+   Task 9: Wait for remaining nodes to be ready - no CNI
+   Description Task 9: If rke2_cni is 'none', wait for all nodes in the group specified by rke2_cluster_group_name to have specific conditions met in their node status. This is done by executing a shell command that checks the node status and retries until the conditions are met.
+
+   Task 10: Wait for remaining nodes to be ready - with CNI
+   Description Task 10: If rke2_cni is not 'none', wait for all nodes in the group specified by rke2_cluster_group_name to be ready. This is done by executing a shell command that counts the number of ready nodes and retries until all nodes are ready.

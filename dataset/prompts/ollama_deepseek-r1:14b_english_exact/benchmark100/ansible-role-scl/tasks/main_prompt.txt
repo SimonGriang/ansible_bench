@@ -1,0 +1,8 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Install centos-release-scl package
+Description Task 1: Install the centos-release-scl package using the ansible.builtin.package module. The package should be set to 'present' state, ensuring it is installed. This task should only execute when the distribution is CentOS, as specified by the 'ansible_distribution' variable.
+
+Task 2: [No additional tasks provided]

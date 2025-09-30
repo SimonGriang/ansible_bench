@@ -1,0 +1,36 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml
+Description Task 1: Import the assert.yml file to apply assertions.
+
+Task 2: Install requirements
+Description Task 2: Install the bash package as a requirement.
+
+Task 3: Install openjdk java (package)
+Description Task 3: Install the openjdk package if the java_vendor variable is set to "openjdk".
+
+Task 4: Install RPM
+Description Task 4: Install Oracle Java RPM package from a local source.
+
+Task 5: Install DEB
+Description Task 5: Install Oracle Java DEB package from a local source.
+
+Task 6: Install oracle java (rpm) (repository)
+Description Task 6: Install Oracle Java RPM package from a repository.
+
+Task 7: Configure oracle targz
+Description Task 7: Install Oracle Java TARGZ package and ensure the installation directory exists.
+
+Task 8: Install oracle java policy software (targz)
+Description Task 8: Install Oracle Java JCE policy files for Java 8.
+
+Task 9: Set alternative (targz)
+Description Task 9: Set an alternative for the java binary when using a TARGZ installation and not on Alpine Linux.
+
+Task 10: Find JAVA_HOME
+Description Task 10: Determine the JAVA_HOME directory using the readlink command.
+
+Task 11: Set JAVA_HOME in /etc/environment
+Description Task 11: Update the /etc/environment file to include JAVA_HOME.

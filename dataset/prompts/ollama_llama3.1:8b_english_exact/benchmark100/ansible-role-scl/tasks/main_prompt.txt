@@ -1,0 +1,7 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Install centos-release-scl package.
+Description Task 1: Install the centos-release-scl package on systems running CentOS, ensuring it is present in the system's package list. 
+
+Task 2: Ensure centos-release-scl is present.
+Description Task 2: For systems that are CentOS, verify the centos-release-scl package is installed and in a state that matches the system's requirements.

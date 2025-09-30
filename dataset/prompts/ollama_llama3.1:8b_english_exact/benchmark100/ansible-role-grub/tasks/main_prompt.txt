@@ -1,0 +1,22 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Import assert file to validate playbook variables.
+Description Task 1: This task imports another playbook fragment (assert.yml) to validate the values of certain variables. This ensures that the necessary values are present before proceeding with other tasks.
+
+Task 2: Install packages required by GRUB.
+Description Task 2: This task uses the Ansible package module to install the packages specified in the variable `grub_packages`. The `state: present` parameter ensures that if the package is already installed, it will remain installed.
+
+Task 3: Configure the GRUB_TIMEOUT value in /etc/default/grub.
+Description Task 3: This task updates the GRUB_TIMEOUT value in the `/etc/default/grub` file. The `lineinfile` module is used to add or update the line in the file. The `create` parameter is set to `true` to create the file if it doesn't exist. The `mode` parameter sets the permissions of the file to 0664. The task also notifies the `Update grub` handler to ensure that GRUB is updated after this change.
+
+Task 4: Configure the GRUB_RECORDFAIL_TIMEOUT value in /etc/default/grub.
+Description Task 4: This task updates the GRUB_RECORDFAIL_TIMEOUT value in the `/etc/default/grub` file, similar to Task 3, but for the GRUB_RECORDFAIL_TIMEOUT variable.
+
+Task 5: Add options to GRUB_CMDLINE_LINUX in /etc/default/grub.
+Description Task 5: This task uses the `replace` module to add options to the GRUB_CMDLINE_LINUX variable in the `/etc/default/grub` file. The `regexp` parameter is used to find the line to update, and the `replace` parameter adds the new option. The `loop` parameter is used to iterate over the `grub_options` list, and the `label` parameter is used to set the label for the loop. The task also notifies the `Update grub` handler to ensure that GRUB is updated after this change. The `when` clause is used to only execute this task if `grub_options` is defined and not empty.
+
+Task 6: Import password file to set GRUB password.
+Description Task 6: This task imports another playbook fragment (password.yml) to set the GRUB password. The task is only executed if the `grub_set_password` variable is set to `true`.
+
+Task 7: Flush handlers to ensure that all notified handlers are executed.
+Description Task 7: This task uses the `meta` module to flush all notified handlers, ensuring that all tasks notified by the `notify` parameter in previous tasks are executed.

@@ -1,0 +1,25 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Assert that systemd is being used as the init system.
+Description Task 1: Ensure that the playbook only runs on systems using systemd, and display an error message if it doesn't.
+
+Task 2: Get the latest release of the Grafana Loki project from the GitHub API.
+Description Task 2: Retrieve the latest release information from the GitHub API and store it in the variable _latest_release. Ensure the request is successful by checking the status code. If the request fails, retry up to 5 times.
+
+Task 3: Set the promtail version to the latest release tag (excluding the 'v' prefix) if it's set to 'latest'.
+Description Task 3: When the promtail version is set to 'latest', update the promtail_version variable to the latest release tag.
+
+Task 4: Test if the zip local archive exists in the specified directory.
+Description Task 4: Check if a zip archive for the promtail binary exists in the specified local directory. If the directory is not empty, check if the archive exists.
+
+Task 5: Assert that the local binary exists in the specified directory.
+Description Task 5: If the local directory is not empty, verify that the promtail binary archive exists in that directory.
+
+Task 6: Get the checksum list for the latest release.
+Description Task 6: Retrieve the checksum list for the latest release from the GitHub API and store it in the variable __promtail_checksums.
+
+Task 7: Get the checksum for the specified architecture.
+Description Task 7: From the list of checksums, find the one that matches the specified architecture (promtail-linux-<arch>.zip) and store it in the variable __promtail_checksum. This task is only executed if the local directory is empty.

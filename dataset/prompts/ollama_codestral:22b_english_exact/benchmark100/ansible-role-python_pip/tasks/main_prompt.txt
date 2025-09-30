@@ -1,0 +1,19 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook. The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml). Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml
+Description Task 1: Import the assert.yml file for validation checks. This task should only run once and be delegated to the localhost.
+
+Task 2: Install python pip
+Description Task 2: Install the python pip packages as defined by the variable "python_pip_packages". The state of the packages should be present.
+
+Task 3: Configure pip proxy
+Description Task 3: If the variable "python_pip_proxy" is defined, configure the pip proxy by modifying the global index-url in the /etc/pip.conf file. Ensure the file has a mode of 0644.
+
+Task 4: Trust hosts
+Description Task 4: If the variable "python_pip_trusted_host" is defined, add the host to the trusted hosts list in the /etc/pip.conf file. Ensure the file has a mode of 0644.
+
+Task 5: Update pip
+Description Task 5: If the variable "python_pip_update" is true and the OS is not Bookworm or Noble and the OS family is not Alpine, update pip by using the pip module with the package name defined by the variable "python_pip_pip_package" and the state defined by the variable "python_pip_pip_state". If the variable "python_pip_executable" is defined, use it as the executable for pip.
+
+Task 6: Install requested modules
+Description Task 6: If the OS is not Bookworm or Noble and the OS family is not Alpine, install the requested python pip modules as defined by the list "python_pip_modules". Each module has a name, state (default to present if not specified), and an optional version. If the variable "python_pip_executable" is defined, use it as the executable for pip. Loop through the list and use the module name as the label for each loop iteration.

@@ -1,0 +1,63 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import tasks from assert.yml for validation and assertions, ensuring the playbook runs correctly.
+
+Task 2: Pre-configure debian systems
+Description Task 2: Configure debconf settings for postfix on Debian systems to handle mail configuration.
+
+Task 3: Install postfix
+Description Task 3: Install the postfix package ensuring it is present on the system.
+
+Task 4: Install postfix-mysql
+Description Task 4: Install postfix-mysql package if virtual mailbox mappings or domains are configured to use MySQL.
+
+Task 5: Configure postfix (transport_maps)
+Description Task 5: Configure postfix transport maps using a template and notify handlers to validate and rebuild the database.
+
+Task 6: Configure postfix (header_checks)
+Description Task 6: Configure postfix header checks using a template and notify handlers to validate and reload postfix.
+
+Task 7: Setting values for main.cf (1/2)
+Description Task 7: Set facts for postfix configuration related to recipient and sender access restrictions.
+
+Task 8: Setting values for main.cf (2/2)
+Description Task 8: Set facts for postfix configuration related to mynetworks, mydestination, relay domains, and other settings.
+
+Task 9: Configure postfix (main.cf)
+Description Task 9: Configure postfix main.cf using a template and notify handlers to validate and restart postfix.
+
+Task 10: Configure postfix (master.cf)
+Description Task 10: Configure postfix master.cf using a template and notify handlers to validate and restart postfix.
+
+Task 11: Creates cert/key directory
+Description Task 11: Create directories for TLS certificates and keys with proper permissions.
+
+Task 12: Deploy Postfix TLS server certificate
+Description Task 12: Copy TLS server certificate to the specified location and notify handler to reload postfix.
+
+Task 13: Deploy Postfix TLS server key
+Description Task 13: Copy TLS server key to the specified location and notify handler to reload postfix.
+
+Task 14: Flush handlers
+Description Task 14: Flush all handlers to ensure they run at the appropriate time.
+
+Task 15: Configure aliases
+Description Task 15: Configure postfix aliases by inserting lines into the alias file and notify handlers to rebuild and reload postfix.
+
+Task 16: Configure sender_access
+Description Task 16: Configure postfix sender access restrictions and notify handlers to rebuild and reload postfix.
+
+Task 17: Configure recipient_access
+Description Task 17: Configure postfix recipient access restrictions and notify handlers to validate, rebuild, and reload postfix.
+
+Task 18: Place sasl_password_map
+Description Task 18: Copy SASL password map content to the specified location and notify handler to rebuild the map.
+
+Task 19: Flush handlers again
+Description Task 19: Flush handlers again to ensure all tasks are processed correctly.
+
+Task 20: Start and enable postfix
+Description Task 20: Start postfix service and ensure it is enabled to start on boot.

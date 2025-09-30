@@ -1,0 +1,10 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Gather Bootstrap Facts
+Description Task 1: Execute a shell command to display the /etc/os-release file and store the output in the bootstrap_facts variable. The become flag should be set to false to prevent privilege escalation.
+
+Task 2: Set Bootstrap Distribution Facts (I)
+Description Task 2: Iterate over a list of values from the bootstrap_os_family_map variable and extract the distribution name and major version from the /etc/os-release file. The extracted values should be assigned to the bootstrap_distribution and bootstrap_distribution_major_version variables, respectively. The loop should be applied to the flattened list of values from bootstrap_os_family_map. The when condition should check that the previous command was successful (rc == 0), the bootstrap_distribution variable is not defined, and the /etc/os-release file matches a specific pattern based on the bootstrap_search dictionary.
+
+Task 3: Set Bootstrap OS Family Facts (II)
+Description Task 3: Iterate over a dictionary of key-value pairs from the bootstrap_os_family_map variable and extract the OS family name from the dictionary. The extracted values should be assigned to the bootstrap_os_family variable. The loop should be applied to the dictionary items, and the when condition should check that the bootstrap_distribution variable is present in the item's value. The become flag should be set to false to prevent privilege escalation.

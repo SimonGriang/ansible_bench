@@ -1,0 +1,36 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Ensure the directory /etc/openvpn/easy-rsa exists with appropriate permissions.  
+Description Task 1: Create the /etc/openvpn/easy-rsa directory with mode 0755 to store EasyRSA files and configurations.
+
+Task 2: Initialize the PKI directory using EasyRSA.  
+Description Task 2: Run the EasyRSA command `init-pki` within the /etc/openvpn/easy-rsa directory to set up the PKI environment, creating the pki directory if it does not exist.
+
+Task 3: Build a CA certificate using EasyRSA without a passphrase.  
+Description Task 3: Execute the EasyRSA command `build-ca nopass` in the /etc/openvpn/easy-rsa directory to generate a CA certificate, using batch mode to avoid interactive prompts.
+
+Task 4: Generate a Diffie-Hellman parameters file using EasyRSA.  
+Description Task 4: Run the EasyRSA command `gen-dh` to create the Diffie-Hellman parameters file, which is necessary for setting up a secure VPN connection.
+
+Task 5: Build a server certificate using EasyRSA without a passphrase.  
+Description Task 5: Use the EasyRSA command `build-server-full server nopass` to generate a server certificate, employing batch mode to automate the process.
+
+Task 6: Build a client certificate using EasyRSA without a passphrase.  
+Description Task 6: Execute the EasyRSA command `build-client-full client nopass` to create a client certificate, using batch mode to streamline the certificate creation process.
+
+Task 7: Generate a Certificate Revocation List using EasyRSA.  
+Description Task 7: Run the EasyRSA command `gen-crl` to generate a Certificate Revocation List, which is used to revoke certificates when necessary.
+
+Task 8: Generate a TLS auth key using OpenVPN.  
+Description Task 8: Use the OpenVPN command `--genkey --secret /etc/openvpn/easy-rsa/pki/ta.key` to create a TLS authentication key, ensuring secure communication.
+
+Task 9: Copy necessary EasyRSA files to /etc/openvpn/server.  
+Description Task 9: Transfer files such as CA certificate, Diffie-Hellman parameters, TLS auth key, and server/client certificates to the /etc/openvpn/server directory with appropriate permissions.
+
+Task 10: Copy necessary EasyRSA files to /etc/openvpn.  
+Description Task 10: Move files like the CA certificate and TLS auth key to the /etc/openvpn directory, maintaining secure file permissions.
+
+Task 11: Deploy the OpenVPN server configuration file.  
+Description Task 11: Use a Jinja2 template to place the server configuration file in the OpenVPN configuration directory, ensuring the file is owned by root and has the correct permissions, and notify the handler to restart OpenVPN upon changes.

@@ -1,0 +1,9 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Gather facts about all services on the managed nodes.  
+Description Task 1: Collect and store service-related facts to be used in subsequent tasks for condition checks and decision-making.
+
+Task 2: Determine the active RKE2 server among the cluster group.  
+Description Task 2: Set a fact named `active_server` to the current inventory host's name if the host is part of the RKE2 servers group and the `rke2-server.service` is running. This task delegates the fact setting to each host in the RKE2 cluster group to ensure the correct host is identified as the active server.

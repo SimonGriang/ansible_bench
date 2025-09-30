@@ -1,0 +1,10 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Remove any packages that conflict with the core dependencies.
+Description Task 1: This task removes any packages that may conflict with the core dependencies, ensuring a clean installation.
+
+Task 2: Install all the core dependencies.
+Description Task 2: This task installs all the required core dependencies, including any packages specified in the core_dependencies_packages variable, and updates the package cache.
+
+Task 3: Trigger a handlers run.
+Description Task 3: This task triggers a handlers run to execute any tasks that depend on the package installation, which is notified by the Gather facts handler.

@@ -1,0 +1,43 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook. The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml). Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Download RKE2 installation script
+Description Task 1: Download the RKE2 installation script from a specified URL to a specified destination path. Only perform this task if the RKE2 airgap mode is not enabled.
+
+Task 2: Copy local RKE2 installation script
+Description Task 2: Copy the RKE2 installation script from a specified local source path to a specified destination path. Only perform this task if the RKE2 airgap mode is enabled and the airgap implementation is set to 'copy'.
+
+Task 3: Create RKE2 artifacts folder
+Description Task 3: Create a directory at a specified path with specified permissions. Only perform this task if the RKE2 airgap mode is enabled and the airgap implementation is not set to 'exists'.
+
+Task 4: Download RKE2 checksum and artifacts
+Description Task 4: Download the RKE2 checksum file and artifacts from a specified URL to a specified destination path. Compare the checksums of the downloaded artifacts with the checksum file. If the checksums do not match, download the RKE2 install script from a specified URL to a specified destination path. If the remote download fails, locally download the checksum file and artifacts, then copy them to the remote hosts. Only perform this task if the RKE2 airgap mode is enabled and the airgap implementation is set to 'download'.
+
+Task 5: Copy local RKE2 artifacts
+Description Task 5: Copy the RKE2 artifacts from a specified local source path to a specified destination path. Only perform this task if the RKE2 airgap mode is enabled and the airgap implementation is set to 'copy'.
+
+Task 6: Copy additional images tarballs
+Description Task 6: Create a directory at a specified path with specified permissions, then copy additional tarball images RKE2 components from a specified local source path to the specified destination path. Only perform this task if the RKE2 airgap mode is enabled, there are additional tarball images to copy, and the airgap implementation is not set to 'exists'.
+
+Task 7: Ensure artifacts exist and have acceptable permissions
+Description Task 7: Check if the RKE2 artifacts exist and have acceptable permissions. If the artifacts have write permissions, change them to read-only. If the install script is not executable, make it executable. If the install script is not executable and does not exist, fail the task. Only perform this task if the RKE2 airgap mode is enabled and the airgap implementation is set to 'exists'.
+
+Task 8: Set RKE2 bin path
+Description Task 8: Populate service facts, get stats of the filesystem object, check if separate partition, and set the RKE2 bin path based on the results.
+
+Task 9: Check RKE2 version
+Description Task 9: Check the RKE2 version by running the RKE2 binary with the --version flag. If the binary does not exist, set the installed version to 'not installed'. If the RKE2 service is active, use the running service's binary to check the running version. If the service's binary does not exist, set the running version to the desired RKE2 version.
+
+Task 10: Prevent accidental RKE2 downgrade
+Description Task 10: Prevent accidental RKE2 downgrade by comparing the desired RKE2 version with the running version. If the desired version is less than the running version and downgrades are not allowed, fail the task.
+
+Task 11: Run RKE2 install script
+Description Task 11: Run the RKE2 install script with airgap variables if the RKE2 airgap mode is enabled. If the RKE2 airgap mode is not enabled, run the RKE2 install script without airgap variables. Only perform this task if the RKE2 version is not installed or if the RKE2 version is different from the installed version.
+
+Task 12: Copy Custom Manifests
+Description Task 12: Copy custom manifests from a specified source path to a specified destination path. Only perform this task if there are custom manifests to copy.
+
+Task 13: Copy Static Pods
+Description Task 13: Copy static pods from a specified source path to a specified destination path. Only perform this task if there are static pods to copy.
+
+Task 14: Copy RKE2 environment file
+Description Task 14: Copy the RKE2 environment file from a specified source path to a specified destination path. Only perform this task if there are environment options to set.

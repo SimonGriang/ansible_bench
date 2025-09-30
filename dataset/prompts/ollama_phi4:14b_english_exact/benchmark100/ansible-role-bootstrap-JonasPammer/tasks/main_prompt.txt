@@ -1,0 +1,15 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Check if all necessary variables have been set correctly.  
+Description Task 1: Import a task file to assert the correct configuration of variables needed for the playbook to execute properly. This task should run once and delegate to localhost.
+
+Task 2: Wait for the host to become available if specified in the configuration.  
+Description Task 2: Use the wait_for module to check if the host is available on the specified port (default is 22). This task should only execute when the connection type is not container-based and when waiting for the host is enabled. It should use local connection and become options if configured.
+
+Task 3: Prepare the system by ensuring connectivity and installing necessary packages.  
+Description Task 3: Create a block that tests the connection to the host and registers the result. If connection fails, provide a debug message with the timeout value. Always execute tasks to gather facts and install packages using either raw commands or Ansible's package module, depending on the OS family. Ensure execution is conditioned by the become settings.
+
+Task 4: Ensure the system is fully prepared by executing necessary Ansible modules.  
+Description Task 4: Use a block to gather Ansible facts and install required packages using the package module. Ensure the packages are updated and present on the system, iterating over a list of packages defined in the variables.

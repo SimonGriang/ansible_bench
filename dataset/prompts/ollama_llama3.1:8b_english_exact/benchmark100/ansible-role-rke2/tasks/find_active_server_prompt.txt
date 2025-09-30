@@ -1,0 +1,7 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Populate services facts
+Description Task 1: Gather information about the services running on the system.
+
+Task 2: Set the Active Server variable
+Description Task 2: Set the active_server variable to the current hostname, but only if the current hostname is in the rke2_servers_group_name group and the rke2-server service is running. Delegating facts and tasks to all hosts in the rke2_cluster_group_name group.

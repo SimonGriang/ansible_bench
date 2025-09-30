@@ -1,0 +1,41 @@
+ Task 1: Create the RKE2 config directory
+   Description Task 1: This task creates a directory at '/etc/rancher/rke2' with specific ownership and permissions. The directory is used to store the RKE2 configuration files.
+
+   Task 2: Set server taints
+   Description Task 2: This task sets the 'combined_node_taints' variable to the value of 'rke2_server_node_taints' if the 'rke2_type' is 'server'. Taints are used to repel certain pods from running on specific nodes.
+
+   Task 3: Copy rke2 config
+   Description Task 3: This task copies the RKE2 configuration file from the source path specified by 'rke2_config' to the destination '/etc/rancher/rke2/config.yaml'. The file is owned by 'root' and has permissions set to '0600'. The task also triggers the 'Config file changed' handler.
+
+   Task 4: Copy kubelet config
+   Description Task 4: This task copies the kubelet configuration file from the source path 'templates/kubelet-config.yaml.j2' to the destination '/etc/rancher/rke2/kubelet-config.yaml'. The file is owned by 'root' and has permissions set to '0600'. The task is only executed when 'rke2_kubelet_config' is not empty. It also triggers the 'Config file changed' handler.
+
+   Task 5: Copy Containerd Registry Configuration file
+   Description Task 5: This task copies the Containerd registry configuration file from the source path specified by 'rke2_custom_registry_path' to the destination '/etc/rancher/rke2/registries.yaml'. The file is owned by 'root' and has permissions set to '0600'. The task is only executed when 'rke2_custom_registry_mirrors' or 'rke2_custom_registry_configs' is not empty. It also triggers the 'Config file changed' handler.
+
+   Task 6: Register if we need to do a etcd restore from file
+   Description Task 6: This task sets the 'do_etcd_restore' variable to 'true' if 'rke2_etcd_snapshot_file' is not empty and the RKE2 server service is not running or is disabled.
+
+   Task 7: Register if we need to do a etcd restore from s3
+   Description Task 7: This task sets the 'do_etcd_restore_from_s3' variable to 'true' if 'rke2_etcd_snapshot_file' is not empty and 'rke2_etcd_snapshot_s3_options' is defined with necessary attributes like 'access_key', 'secret_key', 'bucket', and 'snapshot_name'.
+
+   Task 8: Restore etcd from file
+   Description Task 8: This block of tasks is executed when 'do_etcd_restore' is defined. It creates a directory for the etcd snapshot, copies the snapshot file, and restores etcd from the snapshot using the 'rke2 server' command. The command output is registered and used to determine if the task has changed.
+
+   Task 9: Restore etcd from s3
+   Description Task 9: This block of tasks is executed when 'do_etcd_restore_from_s3' is defined. It restores etcd from a s3 snapshot using the 'rke2 server' command with various options like 'etcd-s3-bucket', 'etcd-s3-access-key', 'etcd-s3-secret-key', etc. The command output is registered and used to determine if the task has changed.
+
+   Task 10: Start RKE2 service on the first server
+   Description Task 10: This task starts the 'rke2-server.service' and enables it. The 'RKE2_TOKEN' environment variable is set to the value of 'rke2_token'. It also triggers the 'Service (re)started' handler.
+
+   Task 11: Mask RKE2 agent service on the first server
+   Description Task 11: This task disables and masks the 'rke2-agent.service'.
+
+   Task 12: Wait for the first server to be ready - no CNI
+   Description Task 12: This task waits for the first server to be ready by checking the node status using the 'kubectl' command. The task is only executed when 'rke2_cni' is 'none'.
+
+   Task 13: Wait for the first server to be ready - with CNI
+   Description Task 13: This task waits for the first server to be ready by checking the node status using the 'kubectl' command. The task is only executed when 'rke2_cni' is not 'none'.
+
+   Task 14: Restore etcd
+   Description Task 14: This block of tasks is executed when 'do_etcd_restore' or 'do_etcd_restore_from_s3' is defined. It gets the registered nodes, removes old node-password secrets and nodes, and sets an 'Active Server' variable for the cluster.

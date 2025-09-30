@@ -1,0 +1,56 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Download RKE2 installation script
+Description Task 1: Download the RKE2 installation script from the provided URL and save it to a specified directory with the correct permissions.
+
+Task 2: Copy local RKE2 installation script
+Description Task 2: Copy the RKE2 installation script from a local source path to a specified destination directory with the correct permissions. This task should only run when in airgap mode and when the implementation is set to 'copy'.
+
+Task 3: Create RKE2 artifacts folder
+Description Task 3: Create a directory for RKE2 artifacts with the correct permissions. This task should only run when in airgap mode and when the implementation is not set to 'exists'.
+
+Task 4: Download RKE2 checksum and artifacts
+Description Task 4: Download the RKE2 checksum and artifacts from the provided URL and save them to a specified directory with the correct permissions. This task should only run when in airgap mode and when the implementation is set to 'download'. If remote downloading fails, it should fall back to local downloading and pushing.
+
+Task 5: Airgap mode - additional images tarballs
+Description Task 5: Create a directory for additional images tarballs and copy the RKE2 components to this directory with the correct permissions. This task should only run when in airgap mode and when the implementation is not set to 'exists' and when there are additional tarballs to copy.
+
+Task 6: Airgap mode - ensure artifacts exist and have acceptable permissions
+Description Task 6: Ensure the RKE2 artifacts exist and have the correct permissions. This task should only run when in airgap mode and when the implementation is set to 'exists'.
+
+Task 7: Populate service facts
+Description Task 7: Populate service facts using the Ansible service_facts module.
+
+Task 8: Get stats of the FS object
+Description Task 8: Get the stats of the FS object at the specified path.
+
+Task 9: Check if separate partition
+Description Task 9: Check if the specified partition is a separate partition by checking the output of the grep command.
+
+Task 10: Set RKE2 bin path
+Description Task 10: Set the RKE2 bin path based on the writeability of the /usr/local directory and the result of the partition check.
+
+Task 11: Check RKE2 version
+Description Task 11: Check the RKE2 version by running a shell command that checks the version of the RKE2 binary and the RKE2 service.
+
+Task 12: Set RKE2 versions
+Description Task 12: Set the RKE2 versions based on the result of the version check.
+
+Task 13: Prevent accidental RKE2 downgrade
+Description Task 13: Prevent accidental RKE2 downgrades by asserting that the running version is greater than or equal to the desired version.
+
+Task 14: Run RKE2 install script
+Description Task 14: Run the RKE2 install script with the provided variables. This task should only run when the desired version is not the same as the installed version.
+
+Task 15: Copy Custom Manifests
+Description Task 15: Copy custom manifests from the provided source path to the specified destination directory with the correct permissions. This task should only run when custom manifests are provided.
+
+Task 16: Copy Static Pods
+Description Task 16: Copy static pods from the provided source path to the specified destination directory with the correct permissions. This task should only run when static pods are provided.
+
+Task 17: Copy RKE2 environment file
+Description Task 17: Copy the RKE2 environment file from the provided source path to the specified destination file with the correct permissions. This task should only run when environment options are provided.

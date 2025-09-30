@@ -1,0 +1,56 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Create the Vault group
+Description Task 1: Create the Vault group with the name specified by the variable `vault_group` and set system to true.
+
+Task 2: Create the Vault user
+Description Task 2: Create the Vault user with the name specified by the variable `vault_user`, set the shell to the value specified by the variable `vault_user_shell`, and set the group to the value specified by the variable `vault_group`.
+
+Task 3: Create the Vault download directory
+Description Task 3: Create the directory specified by the variable `vault_download_path` with the correct owner, group, and mode.
+
+Task 4: Download the Vault binary
+Description Task 4: Download the Vault binary from the specified URL, extract it to the specified directory, and set the correct ownership and mode.
+
+Task 5: Check if the vault_path exists
+Description Task 5: Check if the directory specified by the variable `vault_path` exists.
+
+Task 6: Create vault_path if it does not exist
+Description Task 6: Create the directory specified by the variable `vault_path` with the correct owner, group, and mode if it does not exist.
+
+Task 7: Create directories in vault_path
+Description Task 7: Create directories specified by the variable `vault_directories` with the correct ownership, group, and mode.
+
+Task 8: Create data directories
+Description Task 8: Create directories specified by the variable `vault_data_directories` with the correct ownership, group, and mode.
+
+Task 9: Generate TLS key and certificate
+Description Task 9: Generate a TLS key and certificate using OpenSSL and save them to the specified directory.
+
+Task 10: Set ownership of TLS material
+Description Task 10: Set the ownership of the TLS material specified by the variable `vault_tls_files` to the correct user and group.
+
+Task 11: Copy the Vault binary
+Description Task 11: Copy the Vault binary to the specified location and set the correct ownership and mode.
+
+Task 12: Set cap_ipc_lock=ep on /usr/bin/vault
+Description Task 12: Set the capability cap_ipc_lock=ep on the specified binary.
+
+Task 13: Touch vault.env
+Description Task 13: Create a touch file at the specified location with the correct ownership and mode.
+
+Task 14: Create /usr/lib/systemd/system
+Description Task 14: Create the directory /usr/lib/systemd/system with the correct ownership and mode.
+
+Task 15: Copy the Vault service file
+Description Task 15: Copy the Vault service file to the specified location and set the correct ownership and mode.
+
+Task 16: Copy the Vault configuration
+Description Task 16: Copy the Vault configuration file to the specified location and set the correct ownership and mode.
+
+Task 17: Flush handlers
+Description Task 17: Flush the handlers to ensure any pending tasks are executed.

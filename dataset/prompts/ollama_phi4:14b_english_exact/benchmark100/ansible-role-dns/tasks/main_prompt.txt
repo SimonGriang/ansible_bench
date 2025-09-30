@@ -1,0 +1,39 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import external tasks from assert.yml to be executed once on localhost.  
+Description Task 1: Import tasks from a file named assert.yml, ensuring they are run once and delegated to localhost.
+
+Task 2: Install DNS-related packages.  
+Description Task 2: Use the package module to install DNS packages specified in the dns_packages variable.
+
+Task 3: Create necessary directories for DNS configuration and data.  
+Description Task 3: Use the file module to create directories specified in dns_datadir and dns_confdir, setting appropriate permissions, owner, and group.
+
+Task 4: Create a group for DNS service.  
+Description Task 4: Ensure the DNS group specified in dns_group exists using the group module.
+
+Task 5: Create a user for the DNS service.  
+Description Task 5: Ensure the DNS user specified in dns_owner exists, marked as a system user, using the user module.
+
+Task 6: Generate the rndc key for DNS configuration.  
+Description Task 6: Use the command module to generate an rndc key, ensuring it only creates the file if it does not already exist.
+
+Task 7: Set file permissions for the rndc key.  
+Description Task 7: Use the file module to set the owner, group, and permissions for the rndc key file to 0640.
+
+Task 8: Download the root hints file if DNS caching is enabled.  
+Description Task 8: Use the get_url module to download the root hints file from a specified URL, setting appropriate permissions and ownership, and notify Rndc reload if successful.
+
+Task 9: Create primary zone files from templates.  
+Description Task 9: Use the template module to create zone files for each DNS zone listed in dns_zones, validating them with named-checkzone, and notify Rndc reload if successful.
+
+Task 10: Add DNS zones to the main configuration file.  
+Description Task 10: Use the template module to generate the named.conf file from a template, validate it with named-checkconf, and notify a restart of the DNS service if successful.
+
+Task 11: Create systemd service override if using systemd.  
+Description Task 11: If the service manager is systemd, create a directory for service overrides, copy an override.conf file, and reload systemd.
+
+Task 12: Start and enable the DNS service.  
+Description Task 12: Use the service module to start and enable the DNS service specified in dns_service.

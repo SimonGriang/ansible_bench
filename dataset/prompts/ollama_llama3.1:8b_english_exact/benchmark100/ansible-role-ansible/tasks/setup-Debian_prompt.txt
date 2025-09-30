@@ -1,0 +1,13 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Enable Backports repository for Debian versions older than 9.
+Description Task 1: Enable the Backports repository on the system to install packages from the backports repository.
+
+Task 2: Set default_release option for older Debian versions.
+Description Task 2: Set the default release option for Debian versions older than 9 to the current release with backports.
+
+Task 3: Install Ansible package with default release.
+Description Task 3: Install the Ansible package from the configured default release (which is the current release with backports for older Debian versions).

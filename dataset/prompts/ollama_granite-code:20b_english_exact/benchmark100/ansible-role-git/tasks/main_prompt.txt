@@ -1,0 +1,21 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Install git
+Description Task 1: Install git using the package module. The git_packages variable should contain the list of packages to install.
+
+Task 2: See if the specified user exists
+Description Task 2: Use the getent module to check if the specified user exists in the passwd database. The git_username variable should contain the username to check.
+
+Task 3: Create directory for git configuration
+Description Task 3: Use the file module to create a directory for git configuration. The directory should be owned by the git_username and have the appropriate permissions. The git_username and git_groupname variables should be used for this task.
+
+Task 4: Place git configuration
+Description Task 4: Use the template module to place git configuration in the home directory of the git_username. The git_user_email, git_user_name, and git_username variables should be used for this task.
+
+Task 5: Create repository_destination
+Description Task 5: Use the file module to create the repository_destination directory. The directory should be owned by the git_username and have the appropriate permissions. The git_username and git_groupname variables should be used for this task.
+
+Task 6: Clone all roles
+Description Task 6: Use the git module to clone all roles specified in the git_repositories variable. The git_repository_destination variable should be used as the destination directory for the cloning. The git_username variable should be used to run the git commands as the specified user.

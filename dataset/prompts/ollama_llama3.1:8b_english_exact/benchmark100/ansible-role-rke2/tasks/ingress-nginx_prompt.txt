@@ -1,0 +1,7 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Create the RKE2 manifests directory
+Description Task 1: Create a directory at the specified path for storing RKE2 manifests, ensuring ownership and permissions are correctly set.
+
+Task 2: Copy ingress-nginx files to first server
+Description Task 2: Copy the ingress-nginx template to a specific location within the RKE2 manifests directory, setting the correct ownership and permissions.

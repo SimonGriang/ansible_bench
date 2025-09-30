@@ -1,0 +1,7 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Create necessary directories for HTTP server
+Description Task 1: The first task creates directories with the specified paths, mode, and state using the `file` module, iterating over the `httpd_directories` list and setting the `label` parameter to the directory path.
+
+Task 2: Configure directory configurations for HTTP server
+Description Task 2: The second task uses the `template` module to generate configuration files for each directory in the `httpd_directories` list, rendering the `directory.conf.j2` template and placing it in the corresponding directory under the `httpd_config_directory`, with the filename matching the directory name. This task notifies the `Test httpd configuration validity` and `Restart httpd` handlers.

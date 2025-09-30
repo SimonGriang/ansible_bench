@@ -1,0 +1,15 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Assert usage of systemd as an init system
+Description Task 1: This task verifies that the system's init system is systemd. If not, it will raise an error with the message "This module only works with systemd".
+
+Task 2: Get the latest release version of Promtail from GitHub
+Description Task 2: This task retrieves the latest release version of Promtail from GitHub's API. It uses the GitHub API credentials stored in the environment variables GH_USER and GH_TOKEN. If the release version is set to "latest", it fetches the latest version from GitHub. The task is delegated to localhost and runs once.
+
+Task 3: Check if the local Promtail binary archive exists
+Description Task 3: This task checks if the local Promtail binary archive exists in the directory specified by promtail_binary_local_dir. If the directory is specified, it asserts that the binary exists. If the binary does not exist, it raises an error with the message "When using 'promtail_binary_local_dir' please ensure that the binary exists". The task is delegated to localhost and runs once.
+
+Task 4: Get the checksum for the Promtail binary
+Description Task 4: This task retrieves the checksum for the Promtail binary. If promtail_binary_local_dir is not specified, it fetches the checksum list from GitHub's releases page and sets the checksum for the specified architecture (go_arch). The task runs once.

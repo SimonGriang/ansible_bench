@@ -1,0 +1,45 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create local SSH key directory for user
+Description Task 1: Create a directory for storing SSH keys for the user. The directory should be owned by the user and have mode 0750.
+
+Task 2: Manage user account
+Description Task 2: Create or modify a user account with specified attributes such as state, comment, home directory, shell, etc.
+
+Task 3: Set sudo options for user
+Description Task 3: Configure sudo access for the user by creating or removing a sudoers file in /etc/sudoers.d.
+
+Task 4: Generate private SSH key for user
+Description Task 4: Generate a private SSH key for the user using a specified command. The key will be stored in a designated directory.
+
+Task 5: Generate public SSH key for user
+Description Task 5: Generate a public SSH key for the user and save it in a .pub file.
+
+Task 6: Convert SSH key to ppk format for user
+Description Task 6: Convert the user's SSH key to the ppk format required by some systems like Windows.
+
+Task 7: Get or set the home directory for user
+Description Task 7: Determine or set the user's home directory. If the user does not exist, default to /home.
+
+Task 8: Create .ssh directory for user
+Description Task 8: Create the .ssh directory in the user's home directory with mode 0700.
+
+Task 9: Deploy authorized keys for user
+Description Task 9: Add authorized SSH keys to the user's .ssh/authorized_keys file.
+
+Task 10: Remove unauthorized keys for user
+Description Task 10: Remove any keys that are not authorized from the user's .ssh/authorized_keys file.
+
+Task 11: Copy generated private SSH key for user
+Description Task 11: Copy the generated private SSH key to the user's home directory.
+
+Task 12: Check users password valid time for user
+Description Task 12: Check the validity period of the user's password.
+
+Task 13: Set users password valid time for user
+Description Task 13: Set or update the password validity period for the user.
+
+Task 14: Place private key file for user
+Description Task 14: Copy private key files to the user's .ssh directory with appropriate permissions.

@@ -1,0 +1,10 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Install package with name stored in the 'vault_package' variable
+Description Task 1: Use the Ansible package module to install the package specified by the 'vault_package' variable, which stores the name of the package to be installed. This task should be executed during the playbook run.
+
+Task 2: Reload daemon on changes
+Description Task 2: Reload the daemon to ensure it picks up any changes made to the system, such as newly installed packages. This task should be executed whenever the daemon reload handler is notified.
+
+Task 3: Restart vault service
+Description Task 3: Restart the vault service to ensure it picks up any changes made to the system, such as newly installed packages or configuration changes. This task should be executed whenever the vault restart handler is notified.

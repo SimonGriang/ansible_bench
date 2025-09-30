@@ -1,0 +1,15 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Validate all variables are set correctly  
+Description Task 1: Check if all variables are correctly configured by importing the assert.yml file and running it once on localhost.  
+
+Task 2: Wait for host to be available  
+Description Task 2: Ensure the target host is reachable by waiting on the specified port with a timeout.  
+
+Task 3: Prepare system for bootstrap  
+Description Task 3: Perform initial system preparation including testing the connection, handling connection failures, gathering facts, and installing raw bootstrap packages.  
+
+Task 4: Ensure system preparation with Ansible modules  
+Description Task 4: Use Ansible modules to gather facts, install packages based on detected OS family, and ensure the system is fully prepared.

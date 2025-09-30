@@ -1,0 +1,32 @@
+ Task 1: Ensure /etc/openvpn/easy-rsa directory exists
+   Description Task 1: Create a directory named /etc/openvpn/easy-rsa with the specified permissions if it does not already exist.
+
+   Task 2: Initialize easy-rsa
+   Description Task 2: Run the "easyrsa init-pki" command in the /etc/openvpn/easy-rsa directory if the /etc/openvpn/easy-rsa/pki directory does not already exist. The path to the easyrsa command is defined by the openvpn_easyrsa_path variable.
+
+   Task 3: Build CA
+   Description Task 3: Run the "easyrsa build-ca nopass" command in the /etc/openvpn/easy-rsa directory if the /etc/openvpn/easy-rsa/pki/ca.crt file does not already exist. The path to the easyrsa command is defined by the openvpn_easyrsa_path variable. Set the EASYRSA_BATCH environment variable to "yes" to run the command in batch mode.
+
+   Task 4: Generate Diffie-Hellman parameters
+   Description Task 4: Run the "easyrsa gen-dh" command in the /etc/openvpn/easy-rsa directory if the /etc/openvpn/easy-rsa/pki/dh.pem file does not already exist. The path to the easyrsa command is defined by the openvpn_easyrsa_path variable.
+
+   Task 5: Build server certificates
+   Description Task 5: Run the "easyrsa build-server-full server nopass" command in the /etc/openvpn/easy-rsa directory if the /etc/openvpn/easy-rsa/pki/issued/server.crt file does not already exist. The path to the easyrsa command is defined by the openvpn_easyrsa_path variable. Set the EASYRSA_BATCH environment variable to "yes" to run the command in batch mode.
+
+   Task 6: Build client certificates
+   Description Task 6: Run the "easyrsa build-client-full client nopass" command in the /etc/openvpn/easy-rsa directory if the /etc/openvpn/easy-rsa/pki/issued/client.crt file does not already exist. The path to the easyrsa command is defined by the openvpn_easyrsa_path variable. Set the EASYRSA_BATCH environment variable to "yes" to run the command in batch mode.
+
+   Task 7: Generate Certificate Revocation List
+   Description Task 7: Run the "easyrsa gen-crl" command in the /etc/openvpn/easy-rsa directory if the /etc/openvpn/easy-rsa/pki/crl.pem file does not already exist. The path to the easyrsa command is defined by the openvpn_easyrsa_path variable.
+
+   Task 8: Generate TLS Auth Key
+   Description Task 8: Run the "openvpn --genkey --secret /etc/openvpn/easy-rsa/pki/ta.key" command if the /etc/openvpn/easy-rsa/pki/ta.key file does not already exist.
+
+   Task 9: Copy files to /etc/openvpn/server
+   Description Task 9: Copy specific files from the /etc/openvpn/easy-rsa/pki directory to the /etc/openvpn/server directory with the specified permissions. The files to be copied are defined in a loop.
+
+   Task 10: Copy files to /etc/openvpn
+   Description Task 10: Copy specific files from the /etc/openvpn/easy-rsa/pki directory to the /etc/openvpn directory with the specified permissions. The files to be copied are defined in a loop.
+
+   Task 11: Place server.conf
+   Description Task 11: Use a template to place the server.conf file in the directory defined by the openvpn_configuration_directory variable. Set the owner and group of the file to root and the value of the openvpn_group variable, respectively. Set the permissions of the file to 0640. Notify the handler "Restart openvpn" to restart the OpenVPN service.

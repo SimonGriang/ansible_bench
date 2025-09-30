@@ -1,0 +1,9 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create document root directories for Apache virtual hosts.  
+Description Task 1: Ensure that the document root directories for each Apache virtual host are created if they do not already exist. Use the `httpd_vhosts` variable to loop through each virtual host configuration, checking if `httpd_vhosts` is defined, if the `documentroot` is defined for each item, and if `create_docroot` is either not defined or explicitly set to true.
+
+Task 2: Configure Apache virtual hosts.  
+Description Task 2: Create configuration files for each Apache virtual host using a template. Use the `vhost_conf_template` variable to specify the source template, and save the configuration to the `httpd_vhosts_directory` with the virtual host name as the filename. Ensure the file permissions are set to `0644`. This task should notify the handlers `Test httpd configuration validity` and `Restart httpd` after the configuration is applied.

@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Generate an OpenSSL private key
+Description Task 1: Create a private key file using OpenSSL with specified permissions and ownership. The key will be stored in the designated key directory with the appropriate mode and ownership settings.
+
+Task 2: Generate an OpenSSL Certificate Signing Request (CSR)
+Description Task 2: Create a Certificate Signing Request using OpenSSL based on the provided configuration. The CSR will be stored in the specified directory with the correct permissions and ownership, using the previously created private key and common name.
+
+Task 3: Generate an OpenSSL X.509 certificate
+Description Task 3: Create a self-signed X.509 certificate using OpenSSL. The certificate will be stored in the designated directory with appropriate permissions and ownership, using the private key and CSR created earlier.
+
+Task 4: Generate a PKCS#12 file
+Description Task 4: Create a PKCS#12 file containing the private key and certificate for secure storage. This will be stored in the key directory with the correct permissions and ownership, using the friendly name specified.
+
+Task 5: Read private key content
+Description Task 5: Read the contents of the private key file and store it in a variable for further processing. This will be used to create a combined key and certificate file.
+
+Task 6: Read certificate content
+Description Task 6: Read the contents of the certificate file and store it in a variable for further processing. This will be used to create a combined key and certificate file.
+
+Task 7: Create a combined private key and certificate file
+Description Task 7: Combine the private key and certificate contents into a single file for ease of use. This file will be stored in the key directory with the appropriate permissions and ownership.

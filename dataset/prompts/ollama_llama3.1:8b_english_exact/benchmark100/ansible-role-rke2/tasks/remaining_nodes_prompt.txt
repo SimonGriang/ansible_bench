@@ -1,0 +1,35 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Create the RKE2 config directory.
+Description: Create the /etc/rancher/rke2 directory with the correct ownership and permissions.
+
+Task 2: Set server taints.
+Description: Set the combined_node_taints variable to the value of rke2_server_node_taints, but only if rke2_type is 'server'.
+
+Task 3: Set agent taints.
+Description: Set the combined_node_taints variable to the value of rke2_agent_node_taints, but only if rke2_type is 'agent'.
+
+Task 4: Copy RKE2 config.
+Description: Copy the RKE2 config file from the given source to the destination, with correct ownership and permissions, and notify the Config file changed handler.
+
+Task 5: Copy kubelet config.
+Description: Copy the kubelet config file from a template to the destination, with correct ownership and permissions, but only if rke2_kubelet_config is not empty, and notify the Config file changed handler.
+
+Task 6: Copy Containerd Registry Configuration file.
+Description: Copy the Containerd Registry Configuration file from the given source to the destination, with correct ownership and permissions, but only if either rke2_custom_registry_mirrors or rke2_custom_registry_configs is not empty, and notify the Config file changed handler.
+
+Task 7: Start RKE2 service on the rest of the nodes.
+Description: Start the RKE2 service on the rest of the nodes with the given name, and set it to enabled, with retries and delay, and notify the Service (re)started handler.
+
+Task 8: Mask other RKE2 service on the rest of the nodes.
+Description: Mask the other RKE2 services on the rest of the nodes, by iterating over the services that are not of type rke2_type.
+
+Task 9: Wait for remaining nodes to be ready - no CNI.
+Description: Wait for the remaining nodes to be ready, by checking the status of each node, without CNI, with retries and delay, and loop over the nodes in the given group.
+
+Task 10: Wait for remaining nodes to be ready - with CNI.
+Description: Wait for the remaining nodes to be ready, by checking the number of ready nodes, with CNI, with retries and delay, and check if the current node is either the active server or the first server in the group.
