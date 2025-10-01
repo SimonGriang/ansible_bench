@@ -261,13 +261,13 @@ def check_molecule(task_path: Path) -> bool:
             
             failed_matches = re.findall(r"failed=(\d+)", output)
             scenario_success = result.returncode == 0 and all(int(x) == 0 for x in failed_matches)
-            print(f"Molecule test role '{role_dir.parent.name}' for Scenario '{scenario}' was {scenario_success}")
+            print(f"Molecule test role '{role_dir.name}' for Scenario '{scenario}' was {scenario_success}")
             if not scenario_success:
                 overall_success = False
                 print("Scenario failed, stopping further tests. Overall result will be False.")
                 break  # If one scenario fails, no need to continue
 
-        print(f"Overall Molecule test result for role '{role_dir.parent.name}': {overall_success}")        
+        print(f"Overall Molecule test result for role '{role_dir.name}': {overall_success}")        
         return overall_success
 
     except FileNotFoundError:
