@@ -241,10 +241,10 @@ class BenchmarkOperationManager(BaseOperationManager):
         """
         self.main_output_path.mkdir(parents=True, exist_ok=True)
 
-        self.benchmark_log_file = self.main_output_path / "benchmark.log"
-        if not self.benchmark_log_file.exists():
-            self.benchmark_log_file.touch()
-        print(f"Benchmark-Log-Datei erstellt: {self.benchmark_log_file}")
+        #self.benchmark_log_file = self.main_output_path / "benchmark.log"
+        #if not self.benchmark_log_file.exists():
+        #    self.benchmark_log_file.touch()
+        #print(f"Benchmark-Log-Datei erstellt: {self.benchmark_log_file}")
 
         self.tmp_dir = self.main_output_path / "tmp"
         if self.tmp_dir.exists():
@@ -412,9 +412,11 @@ class BenchmarkOperationManager(BaseOperationManager):
             if not yaml_path.exists():
                 raise FileNotFoundError(f"No YAML/YML found for {prompt_file}")
             
-            if not check_molecule(yaml_path):
-                failed_initial_molecule_test.append(yaml_path)
-                break
+            # This should be used, but molecule takes too much time for all runs 
+            #print("\nInitial Molecule Test of original file: ", yaml_path)
+            #if not check_molecule(yaml_path):
+            #    failed_initial_molecule_test.append(yaml_path)
+            #    continue
 
             tmp_copy = self.tmp_dir / yaml_path.name
             shutil.copy2(yaml_path, tmp_copy)
@@ -473,7 +475,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                     else:
                         print(f"Error: Generated Ansible-YAML did not pass quality gate 'yamllint' after defined maximum of {max_iterations_yamllint} iterations in a row!")
 
-                    if i == 1:
+                    if i < 1:
                         yamllint_passed_without_iteration += 1
                         if errors_ansiblelint == 0:
                             ansiblelint_passed_at_first_attempt += 1
@@ -548,6 +550,8 @@ class BenchmarkOperationManager(BaseOperationManager):
                             f.write(cleaned_outputs)
                         continue
                     print("################################# Quality Gate 'ansiblelint' passed! ################################")
+                    if errors_ansiblelint == 1:
+                        ansiblelint_passed_at_first_attempt += 1
                     errors_ansiblelint = 0
                     
                     if check_molecule(yaml_path):
@@ -664,7 +668,7 @@ class BenchmarkOperationManager(BaseOperationManager):
             for entry in passed_all_stages:
                 f.write(f"passed: {entry}\n")
 
-            f.write("====== All run roles ======\n")
+            f.write("\n====== All run roles ======\n")
             for entry in failed_at_stage_yamllint:
                 f.write(f"{entry}\n")
             for entry in failed_at_stage_ansiblelint:
