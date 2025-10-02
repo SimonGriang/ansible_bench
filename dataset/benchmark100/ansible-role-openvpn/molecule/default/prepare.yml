@@ -7,3 +7,9 @@
   roles:
     - role: robertdebock.bootstrap
     - role: robertdebock.epel
+
+  tasks:
+    - name: Ensure net-tools is installed (for netstat)
+      ansible.builtin.dnf:
+        name: net-tools
+        state: present
