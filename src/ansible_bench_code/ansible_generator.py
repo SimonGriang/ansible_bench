@@ -285,8 +285,10 @@ class BenchmarkOperationManager(BaseOperationManager):
         if not self.input_dir.exists():
             raise FileNotFoundError(f"Directory {str(self.input_dir)} does not exist.")
 
+        prompt_model = self.extract_prompt_model(str(self.prompt_dir))
+
         self.main_output_path = (
-            self.config.output_dir / f"{self.model_engine}_{self.model_name}_{self.args.language}_{self.args.template_type}" / self.args.dataset
+            self.config.output_dir / f"{self.model_engine}_{self.model_name}_{self.args.language}_{self.args.template_type}" / self.args.dataset / prompt_model
         )
         self.out_folder = self.main_output_path
         os.makedirs(self.out_folder, exist_ok=True)
@@ -303,6 +305,13 @@ class BenchmarkOperationManager(BaseOperationManager):
         for file_name in self.prompt_files:
             print(file_name)
         print(f"found {len(self.prompt_files)} inputs")
+
+    def extract_prompt_model(self, path: str) -> str:
+        m = re.search(r"ollama_(.*?)_[^_/]+_[^_/]+", path)
+        if not m:
+            return path
+        core = m.group(1)
+        return f"prompts_{core}"
     
     def clean_text(self, raw_output: str) -> str:
             """
@@ -313,9 +322,13 @@ class BenchmarkOperationManager(BaseOperationManager):
             - removes everything after two consecutive empty lines
             - removes everything after a single empty line if the next line
             does not contain ':' and is not indented
+            - checks output is not empty
             """
+            
             if isinstance(raw_output, AIMessage):
                 raw_output = raw_output.content
+            
+            backup_input = raw_output
             
             if self.model_name == "deepseek-r1:14b":
                 raw_output = re.sub(r"<think>.*?</think>", "", raw_output, flags=re.DOTALL)
@@ -367,7 +380,14 @@ class BenchmarkOperationManager(BaseOperationManager):
                 if is_empty:
                     cleaned_lines.append(line)
 
+            # check if output is empty if so return uncleaned output
+            if not cleaned_lines:
+                return backup_input.strip() + "\n"
+            
+            if (model := self.model_name) in {"gemma3:27b",}:
+                return ''.join(cleaned_lines)
             return ''.join(cleaned_lines) + "\n"
+
 
 
     def run(self):
@@ -475,7 +495,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                     else:
                         print(f"Error: Generated Ansible-YAML did not pass quality gate 'yamllint' after defined maximum of {max_iterations_yamllint} iterations in a row!")
 
-                    if i < 1:
+                    if i < 2:
                         yamllint_passed_without_iteration += 1
                         if errors_ansiblelint == 0:
                             ansiblelint_passed_at_first_attempt += 1
@@ -550,7 +570,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                             f.write(cleaned_outputs)
                         continue
                     print("################################# Quality Gate 'ansiblelint' passed! ################################")
-                    if errors_ansiblelint == 1:
+                    if errors_ansiblelint < 1:
                         ansiblelint_passed_at_first_attempt += 1
                     errors_ansiblelint = 0
                     
