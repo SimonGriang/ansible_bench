@@ -31,9 +31,9 @@ From the selected models, 56 possible model constellations arise with respect to
 | **codestral:22b** (Mistral)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
 | **gpt-oss:20b** (OpenAI)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
 
- **✓** = combination run
-**(✓)** = ran but without certain KPIs
- **–** = combination did not run yet
+ **✓** = combination run  <br>
+**(✓)** = ran but without certain KPIs  <br>
+ **–** = combination did not run yet  <br>
 
 ## Configuration Files
 
