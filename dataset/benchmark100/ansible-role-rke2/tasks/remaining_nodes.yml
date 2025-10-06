@@ -5,7 +5,7 @@
     path: /etc/rancher/rke2
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Set server taints
   ansible.builtin.set_fact:
@@ -23,7 +23,7 @@
     dest: /etc/rancher/rke2/config.yaml
     owner: root
     group: root
-    mode: 0600
+    mode: "0600"
   notify: "Config file changed"
 
 - name: Copy kubelet config
@@ -32,7 +32,7 @@
     dest: /etc/rancher/rke2/kubelet-config.yaml
     owner: root
     group: root
-    mode: 0600
+    mode: "0600"
   when: rke2_kubelet_config | length > 0
   notify: "Config file changed"
 
@@ -42,7 +42,7 @@
     dest: /etc/rancher/rke2/registries.yaml
     owner: root
     group: root
-    mode: 0600
+    mode: "0600"
   when: (rke2_custom_registry_mirrors | length > 0 or rke2_custom_registry_configs | length > 0)
   notify: "Config file changed"
 
@@ -69,8 +69,10 @@
 
 - name: Wait for remaining nodes to be ready - no CNI
   ansible.builtin.shell: |
-    {{ rke2_data_path }}/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml get node "{{ item }}" -o jsonpath='{range .status.conditions[*]}{.message}{"\n"}{end}'
-  args:
+    {{ rke2_data_path }}/bin/kubectl \
+      --kubeconfig /etc/rancher/rke2/rke2.yaml \
+      get node "{{ item }}" \
+      -o jsonpath='{range .status.conditions[*]}{.message}{"\n"}{end}'  args:
     executable: /bin/bash
   changed_when: false
   register: node_status

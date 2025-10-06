@@ -1,22 +1,24 @@
 ---
-- import_tasks: preflight.yml
+- name: Import preflight checks
+  ansible.builtin.import_tasks: preflight.yml
   tags:
     - promtail_install
     - promtail
 
-- import_tasks: install.yml
-  become: True
+- name: Import installation tasks
+  ansible.builtin.import_tasks: install.yml
+  become: true
   tags:
     - promtail_install
     - promtail
 
 - name: Ensure promtail service is started and enabled
-  become: True
-  systemd:
-    daemon_reload: True
+  ansible.builtin.systemd:
+    daemon_reload: true
     name: "{{ promtail_systemd_service }}"
     state: started
-    enabled: True
+    enabled: true
+  become: true
   tags:
     - promtail_run
     - promtail

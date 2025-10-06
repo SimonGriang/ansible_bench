@@ -1,3 +1,4 @@
+---
 - name: Restart RKE2 service on {{ rke2_node_name }}
   ansible.builtin.service:
     name: "{{ rke2_service_name }}"
@@ -7,7 +8,9 @@
 - name: Wait for all nodes to be ready again
   ansible.builtin.shell: |
     set -o pipefail
-    {{ rke2_data_path }}/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml get nodes | grep " Ready" | wc -l
+    {{ rke2_data_path }}/bin/kubectl \
+      --kubeconfig /etc/rancher/rke2/rke2.yaml get nodes \
+      | grep " Ready" | wc -l
   args:
     executable: /bin/bash
   changed_when: false
@@ -23,13 +26,16 @@
 - name: Wait for all pods to be ready again
   ansible.builtin.shell: |
     set -o pipefail
-    {{ rke2_data_path }}/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml get pods -A --field-selector=status.phase!=Running,status.phase!=Succeeded --ignore-not-found | wc -l
+    {{ rke2_data_path }}/bin/kubectl \
+      --kubeconfig /etc/rancher/rke2/rke2.yaml get pods -A \
+      --field-selector=status.phase!=Running,status.phase!=Succeeded \
+      --ignore-not-found | wc -l
   args:
     executable: /bin/bash
   changed_when: false
   register: all_pods_ready
   until:
-    '"0" in all_pods_ready.stdout'
+    - '"0" in all_pods_ready.stdout'
   retries: 100
   delay: 15
   delegate_to: "{{ active_server | default(groups[rke2_servers_group_name].0) }}"
