@@ -1,137 +1,164 @@
 ---
-
 - name: Java | Migrate adoptopenjdk to temurin (if selected)
-  set_fact:
+  ansible.builtin.set_fact:
     java_jdk_vendor: "temurin"
-  when: "java_jdk_vendor == 'adoptopenjdk'"
+  when: java_jdk_vendor == 'adoptopenjdk'
 
 - name: Java | Gather OS specific variables
-  include_vars: "{{ item }}"
+  ansible.builtin.include_vars: "{{ item }}"
   with_first_found:
     - "{{ java_jdk_vendor }}/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
 
 - name: Java | Gather architecture specific variables
-  include_vars: "{{ item }}"
+  ansible.builtin.include_vars: "{{ item }}"
   with_first_found:
     - "architecture.yml"
 
-# Using pattern described in Ansible Best Practices and Conventions (Appendix B), Ansible for Devops (p. 406)
-# Allowing to 'override' variables that are defined using include_vars
 - name: Java | Setting OS specific variables (I)
-  set_fact:
-    java_open_jdk_version_major: "{{ java_open_jdk_version_major if java_open_jdk_version_major is defined and java_open_jdk_version_major is not sameas None and java_open_jdk_version_major else __java_open_jdk_version_major }}"
-    java_required_repositories_openjdk: "{{ java_required_repositories_openjdk if java_required_repositories_openjdk is defined and java_required_repositories_openjdk is not sameas None and java_required_repositories_openjdk | length else __java_required_repositories_openjdk }}"
-    java_required_key_repositories_openjdk: "{{ java_required_key_repositories_openjdk if java_required_key_repositories_openjdk is defined and java_required_key_repositories_openjdk is not sameas None and java_required_key_repositories_openjdk | length  else __java_required_key_repositories_openjdk }}"
-    java_required_libs_openjdk: "{{ java_required_libs_openjdk if java_required_libs_openjdk is defined and java_required_libs_openjdk is not sameas None and java_required_libs_openjdk | length else __java_required_libs_openjdk }}"
-    java_deprecated_repositories_adoptopenjdk: "{{ java_deprecated_repositories_adoptopenjdk if java_deprecated_repositories_adoptopenjdk is defined and java_deprecated_repositories_adoptopenjdk is not sameas None and java_deprecated_repositories_adoptopenjdk | length else __java_deprecated_repositories_adoptopenjdk }}"
+  ansible.builtin.set_fact:
+    java_open_jdk_version_major: >-
+      {{ java_open_jdk_version_major if (java_open_jdk_version_major is defined
+      and java_open_jdk_version_major is not sameas None and java_open_jdk_version_major)
+      else __java_open_jdk_version_major }}
+    java_required_repositories_openjdk: >-
+      {{ java_required_repositories_openjdk if (java_required_repositories_openjdk is defined
+      and java_required_repositories_openjdk is not sameas None and java_required_repositories_openjdk | length)
+      else __java_required_repositories_openjdk }}
+    java_required_key_repositories_openjdk: >-
+      {{ java_required_key_repositories_openjdk if (java_required_key_repositories_openjdk is defined
+      and java_required_key_repositories_openjdk is not sameas None and java_required_key_repositories_openjdk | length)
+      else __java_required_key_repositories_openjdk }}
+    java_required_libs_openjdk: >-
+      {{ java_required_libs_openjdk if (java_required_libs_openjdk is defined
+      and java_required_libs_openjdk is not sameas None and java_required_libs_openjdk | length)
+      else __java_required_libs_openjdk }}
+    java_deprecated_repositories_adoptopenjdk: >-
+      {{ java_deprecated_repositories_adoptopenjdk if (java_deprecated_repositories_adoptopenjdk is defined
+      and java_deprecated_repositories_adoptopenjdk is not sameas None and java_deprecated_repositories_adoptopenjdk | length)
+      else __java_deprecated_repositories_adoptopenjdk }}
 
 - name: Java | Setting OS and architecture specific variables (II)
-  set_fact:
-    java_open_jdk_home_dir: "{{ java_open_jdk_home_dir if java_open_jdk_home_dir is defined and java_open_jdk_home_dir is not sameas None and java_open_jdk_home_dir else __java_open_jdk_home_dir }}"
-    java_open_jdk_package: "{{ java_open_jdk_package if java_open_jdk_package is defined and java_open_jdk_package is not sameas None and java_open_jdk_package else __java_open_jdk_package }}"
+  ansible.builtin.set_fact:
+    java_open_jdk_home_dir: >-
+      {{ java_open_jdk_home_dir if (java_open_jdk_home_dir is defined
+      and java_open_jdk_home_dir is not sameas None and java_open_jdk_home_dir)
+      else __java_open_jdk_home_dir }}
+    java_open_jdk_package: >-
+      {{ java_open_jdk_package if (java_open_jdk_package is defined
+      and java_open_jdk_package is not sameas None and java_open_jdk_package)
+      else __java_open_jdk_package }}
 
 - name: Java | Setting specific variables
-  set_fact:
+  ansible.builtin.set_fact:
     java_home: "{{ java_open_jdk_home }}"
 
 - name: Java | Debian pre-requisites
+  when: ansible_os_family == 'Debian'
   block:
     - name: Java | Remove deprecated repositories
-      apt_repository:
+      ansible.builtin.apt_repository:
         repo: "{{ item }}"
         state: absent
-      with_items: "{{ java_deprecated_repositories_adoptopenjdk }}"
+      loop: "{{ java_deprecated_repositories_adoptopenjdk }}"
       when: java_deprecated_repositories_adoptopenjdk | length > 0
+
     - name: Java | Install extra apt tools
-      package:
+      ansible.builtin.package:
         name: "{{ java_open_jdk_apt_extra_packages }}"
         state: present
-      until: apt_tools_installed is succeeded
       register: apt_tools_installed
-      when: java_open_jdk_apt_extra_packages |length > 0
-    - name: Java | add required key repositories, Debian
-      apt_key:
+      until: apt_tools_installed is succeeded
+      when: java_open_jdk_apt_extra_packages | length > 0
+
+    - name: Java | Add required key repositories, Debian
+      ansible.builtin.apt_key:
         url: "{{ item }}"
         state: present
-      with_items: "{{ java_required_key_repositories_openjdk }}"
+      loop: "{{ java_required_key_repositories_openjdk }}"
+
     - name: Java | Add required repositories, Debian
-      apt_repository:
+      ansible.builtin.apt_repository:
         repo: "{{ item }}"
         state: present
         update_cache: true
-      with_items: "{{ java_required_repositories_openjdk }}"
-  when: ansible_os_family == 'Debian'
+      loop: "{{ java_required_repositories_openjdk }}"
 
 - name: Java | RedHat pre-requisites
+  when: ansible_os_family == 'RedHat'
   block:
     - name: Java | Add required key repositories, RedHat
-      rpm_key:
+      ansible.builtin.rpm_key:
         key: "{{ item }}"
         state: present
-      with_items: "{{ java_required_key_repositories_openjdk }}"
+      loop: "{{ java_required_key_repositories_openjdk }}"
+
     - name: Java | Add required repositories, RedHat
-      yum_repository:
+      ansible.builtin.yum_repository:
         name: "{{ item.name }}"
         description: OpenJDK YUM alt repo
         file: "{{ item.name }}.repo"
         baseurl: "{{ item.baseurl }}"
         gpgcheck: true
-      with_items: "{{ java_required_repositories_openjdk }}"
-  when: ansible_os_family == 'RedHat'
+      loop: "{{ java_required_repositories_openjdk }}"
 
 - name: Java | Install required libs
-  package:
+  ansible.builtin.package:
     name: "{{ java_required_libs_openjdk }}"
     state: present
-  until: java_required_libs_installed is succeeded
   register: java_required_libs_installed
+  until: java_required_libs_installed is succeeded
 
 - name: Java | Install Java, Debian
-  apt:
-    name: "{{ ( java_open_jdk_package + '=' + java_open_jdk_version ) if java_open_jdk_version is defined  and java_open_jdk_version is not sameas None else java_open_jdk_package }}"
+  ansible.builtin.apt:
+    name: >-
+      {{ (java_open_jdk_package + '=' + java_open_jdk_version)
+      if (java_open_jdk_version is defined and java_open_jdk_version is not sameas None)
+      else java_open_jdk_package }}
     state: present
     update_cache: true
     cache_valid_time: 3600
-  until: java_package_installed is succeeded
   register: java_package_installed
+  until: java_package_installed is succeeded
   when: ansible_os_family == 'Debian'
 
 - name: Java | Install Java, RedHat
-  yum:
-    name: "{{ ( java_open_jdk_package + '-' + java_open_jdk_version ) if java_open_jdk_version is defined and java_open_jdk_version is not sameas None else java_open_jdk_package }}"
+  ansible.builtin.dnf:
+    name: >-
+      {{ (java_open_jdk_package + '-' + java_open_jdk_version)
+      if (java_open_jdk_version is defined and java_open_jdk_version is not sameas None)
+      else java_open_jdk_package }}
     state: present
     update_cache: true
-  until: java_package_installed is succeeded
   register: java_package_installed
+  until: java_package_installed is succeeded
   when: ansible_os_family == 'RedHat'
 
 - name: Java | Export environment variables
-  template:
+  ansible.builtin.template:
     src: jdk.sh.j2
     dest: /etc/profile.d/jdk.sh
-    mode: 0755
+    mode: '0755'
     owner: root
     group: root
 
 - name: Java | Source environment variables
-  shell: source /etc/profile
+  ansible.builtin.shell: source /etc/profile
   args:
     executable: /bin/bash
   changed_when: false
   tags:
     - skip_ansible_lint
 
-- name: "Correct java version selected /usr/lib/jvm/{{ java_open_jdk_home_dir }}/jre/bin/java in java < 11"
-  alternatives:
+- name: Java | Select correct java version (< 11)
+  community.general.alternatives:
     name: java
     path: "/usr/lib/jvm/{{ java_open_jdk_home_dir }}/jre/bin/java"
   when:
     - ansible_os_family == 'Debian'
     - java_open_jdk_version_major | int < 11
 
-
-- name: "Correct java version selected /usr/lib/jvm/{{ java_open_jdk_home_dir }}/bin/java in java >= 11"
-  alternatives:
+- name: Java | Select correct java version (>= 11)
+  community.general.alternatives:
     name: java
     path: "/usr/lib/jvm/{{ java_open_jdk_home_dir }}/bin/java"
   when:

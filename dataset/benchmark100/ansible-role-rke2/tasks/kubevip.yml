@@ -5,7 +5,7 @@
     path: "{{ rke2_data_path }}/server/manifests"
     owner: root
     group: root
-    mode: 0700
+    mode: "0700"
 
 - name: Copy kube-vip files to first server
   ansible.builtin.template:
@@ -13,7 +13,7 @@
     dest: "{{ rke2_data_path }}/server/manifests/{{ item | basename | regex_replace('.j2$', '') }}"
     owner: root
     group: root
-    mode: 0664
+    mode: "0664"
   with_fileglob:
     - "templates/kube-vip/kube-vip.yml.j2"
     - "templates/kube-vip/kube-vip-rbac.yml.j2"
@@ -24,7 +24,7 @@
     dest: "{{ rke2_data_path }}/server/manifests/{{ item | basename | regex_replace('.j2$', '') }}"
     owner: root
     group: root
-    mode: 0664
+    mode: "0664"
   with_fileglob:
     - "templates/kube-vip/kube-vip-cloud-*.j2"
   when:
