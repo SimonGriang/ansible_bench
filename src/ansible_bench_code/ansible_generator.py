@@ -3,7 +3,6 @@ from io import TextIOWrapper
 from langchain.schema import AIMessage
 import os
 import re
-import logging
 import traceback
 import shutil
 from typing import Tuple
@@ -18,7 +17,10 @@ import llm_chain
 from utils.cli_abstraction import CLIArgumentsBase, CLIArgumentsPrompt, CLIArgumentsBenchmark, CLIArgumentsGeneration
 from utils.config import Config, load_config
 from utils.metadata import GenerationMetadata
+from utils.logging_utilities import setup_logging
+import logging
 
+setup_logging()
 logger = logging.getLogger(__name__)
 
 
@@ -32,20 +34,25 @@ class BaseOperationManager:
         if "llamafile" in self.args.engine:
             self.model_name = self.args.model
             print("Name for the llamafile model:", self.model_name)
+            logger.info(f"Name for the llamafile model: {self.model_name}")
             self.model_engine = "llamafile"
         elif "ollama" in self.args.engine:
             self.model_name = self.args.model
             print("Name for the ollama model:", self.model_name)
+            logger.info(f"Name for the ollama model: {self.model_name}")
             self.model_engine = "ollama"
         elif "langchain" in self.args.engine:
             self.model_name = self.args.model
             print("Name for the langchain model:", self.model_name)
+            logger.info(f"Name for the langchain model: {self.model_name}")
             self.model_engine = "torch"
         else:
             raise NotImplementedError("The given model was not implemented.")
+            logger.error("The given model was not implemented.")
         return self.model_name, self.model_engine
 
     def scan_tasks(self, file_extension, directory):
+        logger.info(f"Scanning directory {directory} for files with extension {file_extension}")
         result = []
         for root, _, files in os.walk(directory):
             if os.path.basename(root) == "tasks":
@@ -53,6 +60,9 @@ class BaseOperationManager:
                 for f in yml_files:
                     rel_dir = os.path.relpath(root, directory)
                     result.append(os.path.join(rel_dir, f))
+        logger.info(f"Found {len(result)} files with extension {file_extension} in {directory}")
+        for r in result:
+            logger.info(f"Found file: {r}")
         return result
 
     def setup_llm(self):
@@ -62,10 +72,12 @@ class BaseOperationManager:
             temperature=self.args.temperature,
             repeat_penalty=1,
         )
+        logger.info(f"Setup LLM: {llm_settings}")
         self.llm = llm_wrapper(self.model_name, self.model_engine, llm_settings=llm_settings)
         self.save_model_metadata(llm_settings)
 
     def save_model_metadata(self, llm_settings):
+        logger.info("Saving model metadata")
         tm = GenerationMetadata(self.args.operation_mode, self.model_name, self.model_engine, llm_settings, [self.args.template_type], self.args.language)
         tm.save_to_file(self.main_output_path / "metadata.yml")
 
@@ -79,44 +91,47 @@ class BaseOperationManager:
         raise NotImplementedError
 
     def create_prompt_validate_context(self, input_str, stage):
+        logger.info(f"Creating prompt for stage: {stage}")
         templates = llm_chain.create_prompt_template_for_model(self.model_name, self.args.operation_mode, self.args.language, self.args.template_type, stage)
-
+        logger.info(f"Filling prompt template: {templates[0]}")
         prompt = llm_chain.fillin_prompt_template(
             templates[0],
             input_str,
         )
-
+        logger.info(f"Created prompt: {prompt}")
         print("\n\nPrompt: " + prompt)
-
+        logger.info(f"Checking context size for model: {self.model_name}")
         max_output_tokens = llm_chain.check_context_size(prompt, self.model_name)
         if max_output_tokens <= 0:
             logger.info(f"The tokens exceeded the maximum size of the context window by {max_output_tokens} tokens.")
             return f"# Token size exceeded by {-max_output_tokens} tokens"
-
+        logger.info(f"Context size is within limits. Max output tokens: {max_output_tokens}")
         return templates[0], input_str, None
     
     def create_recursive_prompt_validate_context(self, input_str, recursive_str, error_str, stage):
+        logger.info(f"Creating recursive prompt for stage: {stage}")
         templates = llm_chain.create_prompt_template_for_model(self.model_name, self.args.operation_mode, self.args.language, self.args.template_type, stage)
-
+        logger.info(f"Filling recursive prompt template: {templates[0]}")
         prompt = llm_chain.fillin_prompt_template(
             templates[0],
             input_str,
             recursive_str,
             error_str,
         )
-
+        logger.info(f"Created recursive prompt: {prompt}")
         print("Prompt: " + prompt)
 
         max_output_tokens = llm_chain.check_context_size(prompt, self.model_name)
         if max_output_tokens <= 0:
             logger.info(f"The tokens exceeded the maximum size of the context window by {max_output_tokens} tokens.")
             return f"# Token size exceeded by {-max_output_tokens} tokens"
-
+        logger.info(f"Context size is within limits. Max output tokens: {max_output_tokens}")
         return templates[0], input_str, recursive_str, error_str, None
 
     #def create_prompt_validate_context_recursive selbe methode nur um weitere Felder im prompt erweitert
     
     def invoke_prompt_chain(self, template, input_str):
+        logger.info("Invoking prompt chain")
         return llm_chain.create_and_invoke_prompt_chain(
             template,
             self.llm,
@@ -124,6 +139,7 @@ class BaseOperationManager:
         )
     
     def invoke_recursive_chain(self, template, input_str, recursive_str, error_str):
+        logger.info("Invoking recursive prompt chain")
         return llm_chain.create_and_invoke_recursive_chain(
             template,
             self.llm,
@@ -138,17 +154,18 @@ class PromptOperationManager(BaseOperationManager):
     def setup_files(self):
         self.input_dir = self.config.dataset_dir / self.args.dataset
         print("\nInput_Directory: "+str(self.input_dir))
-
+        logger.info(f"Input_Directory: {self.input_dir}")
         if not self.input_dir.exists():
+            logger.error(f"Directory {str(self.input_dir)} does not exist.")
             raise FileNotFoundError(f"Directory {str(self.input_dir)} does not exist.")
 
         self.main_output_path = (
             self.config.dataset_dir/ "prompts" /f"{self.model_engine}_{self.model_name}_{self.args.language}_{self.args.template_type}" / self.args.dataset
         )
-        self.out_folder = self.main_output_path
-        os.makedirs(self.out_folder, exist_ok=True)
-        print("\nOutput_Directory: "+str(self.out_folder))
-
+        self.main_output_path = self.main_output_path
+        os.makedirs(self.main_output_path, exist_ok=True)
+        print("\nOutput_Directory: "+str(self.main_output_path))
+        logger.info(f"Output_Directory: {self.main_output_path}")
         self.in_files = self.scan_tasks(('.yml', '.yaml'), self.input_dir)
 
         self.in_files = [
@@ -157,26 +174,33 @@ class PromptOperationManager(BaseOperationManager):
         ]
 
         print("\nInput-Files:")
+        logger.info(f"Input-Files: {self.in_files}")
+        logger.info(f"Found {len(self.in_files)} input files.")
         for file_name in self.in_files:
             print(file_name)
+            logger.info(f"Found input file: {file_name}")
         print(f"Found {len(self.in_files)} inputs\n")
 
     def run(self):
+        logger.info("Starting prompt generation run")
         for f in tqdm(self.in_files):
             playbook_file = self.input_dir / f
-
+            logger.info(f"Processing file: {playbook_file}")
             playbook_str = ""
             with open(playbook_file, "r", encoding="UTF-8", errors="ignore") as fin:
+                logger.info(f"Reading file: {playbook_file}")
                 playbook_str = fin.read()
 
             try:
+                logger.info(f"Start try catch block for file: {playbook_file}")
                 t0 = time.perf_counter()
+                logger.info("Creating prompt and validating context")
                 template, pb_str, error_msg = self.create_prompt_validate_context(playbook_str, "first")
-                # Falls ein Fehler vorliegt, gib ihn zurück oder behandle ihn entsprechend
                 if error_msg:
+                    logger.error(f"Error in creating prompt or validating context: {error_msg}")
                     return error_msg
                 
-                # Ansonsten invoke_prompt_chain mit den zurückgegebenen Parametern aufrufen
+                logger.info("Invoking prompt chain")
                 raw_outputs = self.invoke_prompt_chain(template, pb_str)
                 
                 print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs.content}")
@@ -188,25 +212,31 @@ class PromptOperationManager(BaseOperationManager):
                                        "phi4:14b",
                                        "llama3.1:8b"}:
                     cleaned_outputs = raw_outputs.content
+                    logger.info(f"No cleaning applied for {self.model_name}.")
+                    logger.info(f"Raw output: {cleaned_outputs}")
                 else:
                     cleaned_outputs = self.clean_text(raw_outputs)
+                    logger.info(f"Cleaned output for {self.model_name}.")
+                    logger.info(f"Cleaned output: {cleaned_outputs}")
                     print(f"___________________________________________Cleaned LLM Output:___________________________________________ \n{cleaned_outputs}")
 
                 t1 = time.perf_counter()
 
                 f_path = Path(f)
                 relative_dir = f_path.parent
-                target_dir = self.out_folder / relative_dir
+                target_dir = self.main_output_path / relative_dir
                 target_dir.mkdir(parents=True, exist_ok=True)
                 base_name = f_path.stem
                 out_file = target_dir / f"{base_name}_prompt.txt"
 
                 print(f"\n{time.ctime()}: {out_file} Total generation time:", t1 - t0)
+                logger.info(f"Total generation time for {out_file}: {t1 - t0} seconds")
                 with open(out_file, "w") as fot:
                     print(cleaned_outputs, file=fot)
 
-            except (ValueError, FileNotFoundError) as e:
+            except (ValueError, FileNotFoundError, Exception) as e:
                 print(e)
+
                 continue
     
     def clean_text(self, raw_output: str) -> str:
@@ -218,18 +248,29 @@ class PromptOperationManager(BaseOperationManager):
         """
         if isinstance(raw_output, AIMessage):
             raw_output = raw_output.content
+            logger.info(f"Raw output is an AIMessage. Extracted content: {raw_output}")
 
         if self.model_name == "deepseek-r1:14b":
             raw_output = re.sub(r"<think>.*?</think>", "", raw_output, flags=re.DOTALL)
+            logger.info("Removed <think>...</think> tags for deepseek-r1:14b model.")
+            logger.info(f"Output after removing <think> tags: {raw_output}")
             
         if '"' in raw_output:
             raw_output = raw_output.split('"', 1)[1]  
+            logger.info("Removed text before the first quotation mark.")
+            logger.info(f"Output after removing text before first quotation mark: {raw_output}")
         raw_output = raw_output.lstrip()
+        logger.info(f"Output after left stripping whitespace: {raw_output}")
 
         if '"' in raw_output:
             raw_output = raw_output.rsplit('"', 1)[0]
+            logger.info("Removed text after the last quotation mark.")
+            logger.info(f"Output after removing text after last quotation mark: {raw_output}")
+
 
         raw_output = re.sub(r'</s>', '', raw_output, flags=re.IGNORECASE)
+        logger.info("Removed </s> tags.")
+        logger.info(f"Output after removing </s> tags: {raw_output}")
 
         return raw_output.strip()
 
@@ -241,16 +282,13 @@ class BenchmarkOperationManager(BaseOperationManager):
         """
         self.main_output_path.mkdir(parents=True, exist_ok=True)
 
-        #self.benchmark_log_file = self.main_output_path / "benchmark.log"
-        #if not self.benchmark_log_file.exists():
-        #    self.benchmark_log_file.touch()
-        #print(f"Benchmark-Log-Datei erstellt: {self.benchmark_log_file}")
-
         self.tmp_dir = self.main_output_path / "tmp"
         if self.tmp_dir.exists():
             shutil.rmtree(self.tmp_dir)
+            logger.info(f"Removed existing temporary directory: {self.tmp_dir}")
         self.tmp_dir.mkdir()
-        print(f"Temporärer Ordner erstellt: {self.tmp_dir}")
+        logger.info(f"Created temporary directory: {self.tmp_dir}")
+        print(f"\nTemporary directory for benchmark run created: {self.tmp_dir}")
 
     def setup_test_directory(self):
         """
@@ -262,7 +300,8 @@ class BenchmarkOperationManager(BaseOperationManager):
                 if target.exists():
                     shutil.rmtree(target)
                 shutil.copytree(role_dir, target)
-                print(f"{role_dir.name} in {target} kopiert")
+                logger.info(f"Copied role directory {role_dir} to {target}")
+                print(f"Copied {role_dir.name} to {target}.")
     
     
     def setup_files(self):
@@ -270,19 +309,16 @@ class BenchmarkOperationManager(BaseOperationManager):
         Setup files:
             - File directory with original Ansible-Roles
             - File directory with the generated prompts
-            - File directory with the generated YAML files one folder for each exit-point?
-                - yamllint
-                - ansible-playbook --synthax-check
-                - ansible-lint
-                - molcule test
-                - successfully passed all stages --> perfectly correct YAML
         """
         self.input_dir = self.config.dataset_dir / self.args.dataset
         print("\nInput_Directory: "+str(self.input_dir))
+        logger.info(f"Input_Directory: {self.input_dir}")
         self.prompt_dir = self.config.dataset_dir / self.args.prompts
         print("\nPrompts_Directory: "+str(self.prompt_dir)+"\n")
+        logger.info(f"Prompts_Directory: {self.prompt_dir}")
 
         if not self.input_dir.exists():
+            logger.error(f"Directory {str(self.input_dir)} does not exist.")
             raise FileNotFoundError(f"Directory {str(self.input_dir)} does not exist.")
 
         prompt_model = self.extract_prompt_model(str(self.prompt_dir))
@@ -290,21 +326,24 @@ class BenchmarkOperationManager(BaseOperationManager):
         self.main_output_path = (
             self.config.output_dir / f"{self.model_engine}_{self.model_name}_{self.args.language}_{self.args.template_type}" / self.args.dataset / prompt_model
         )
-        self.out_folder = self.main_output_path
-        os.makedirs(self.out_folder, exist_ok=True)
+        logger.info(f"Main output path: {self.main_output_path}")
+        os.makedirs(self.main_output_path, exist_ok=True)
 
         self.setup_test_directory()
         
         self.setup_benchmark_tmp_log()
 
-        print("\nOutput_Directory: "+str(self.out_folder))
-
+        print("\nOutput_Directory: "+str(self.main_output_path))
+        logger.info(f"Output_Directory: {self.main_output_path}")
 
         self.prompt_files = self.scan_tasks('.txt', self.prompt_dir)
         print("\nInput-Files:")
+        logger.info(f"Prompt files: {self.prompt_files}")
         for file_name in self.prompt_files:
             print(file_name)
+            logger.info(f"Found prompt file: {file_name}")
         print(f"found {len(self.prompt_files)} inputs")
+        logger.info(f"Found {len(self.prompt_files)} prompt files.")
 
     def extract_prompt_model(self, path: str) -> str:
         m = re.search(r"ollama_(.*?)_[^_/]+_[^_/]+", path)
@@ -327,26 +366,37 @@ class BenchmarkOperationManager(BaseOperationManager):
             
             if isinstance(raw_output, AIMessage):
                 raw_output = raw_output.content
+                logger.info(f"Raw output is an AIMessage. Extracted content: {raw_output}")
             
             backup_input = raw_output
             
             if self.model_name == "deepseek-r1:14b":
                 raw_output = re.sub(r"<think>.*?</think>", "", raw_output, flags=re.DOTALL)
+                logger.info("Removed <think>...</think> tags for deepseek-r1:14b model.")
+                logger.info(f"Output after removing <think> tags: {raw_output}")
 
             # remove everything before '---'
             if '---' in raw_output:
                 raw_output = '---' + raw_output.split('---', 1)[1]
+                logger.info("Removed text before the first '---'.")
+                logger.info(f"Output after removing text before '---': {raw_output}")
 
             # remove everything after '```'
             if '```' in raw_output:
                 raw_output = raw_output.split('```', 1)[0]
+                logger.info("Removed text after the first '```'.")
+                logger.info(f"Output after removing text after '```': {raw_output}")
 
             # remove everything after '...'
             if '...' in raw_output:
                 raw_output = raw_output.split('...', 1)[0]
+                logger.info("Removed text after the first '...'.")
+                logger.info(f"Output after removing text after '...': {raw_output}")
 
             # remove </s>
             raw_output = raw_output.replace("</s>", "")
+            logger.info("Removed </s> tags.")
+            logger.info(f"Output after removing </s> tags: {raw_output}")
 
             # remove everything after the last non-empty line
             lines = raw_output.splitlines(keepends=True)
@@ -382,11 +432,15 @@ class BenchmarkOperationManager(BaseOperationManager):
 
             # check if output is empty if so return uncleaned output
             if not cleaned_lines:
+                logger.warning("Cleaned output is empty, returning uncleaned output.")
                 return backup_input.strip() + "\n"
-            
-            if (model := self.model_name) in {"gemma3:27b",}:
-                return ''.join(cleaned_lines)
-            return ''.join(cleaned_lines) + "\n"
+
+            if self.model_name in {"gpt-oss:20b",}:
+                logger.info("Appending newline to cleaned output for gpt-oss:20b model.")
+                return ''.join(cleaned_lines) + "\n"
+            logger.info("Returning cleaned output.")
+            logger.info(f"Cleaned output: {''.join(cleaned_lines)}")
+            return ''.join(cleaned_lines)
 
 
 
@@ -406,7 +460,8 @@ class BenchmarkOperationManager(BaseOperationManager):
         ansiblelint_runs = 0
         ansiblelint_passed_at_first_attempt = 0
 
-        for f in tqdm(self.prompt_files):   
+        for f in tqdm(self.prompt_files):  
+            logger.info(f"Processing prompt file: {f}") 
             self.reports(start_time, 
                         failed_initial_molecule_test,
                         failed_at_stage_yamllint, 
@@ -420,16 +475,21 @@ class BenchmarkOperationManager(BaseOperationManager):
                         yamllint_passed_at_first_attempt,
                         ansiblelint_runs,
                         ansiblelint_passed_at_first_attempt)
+            logger.info("Intermediate report generated.")
             prompt_file = self.prompt_dir / f
             if not prompt_file.name.endswith("_prompt.txt"):
+                logger.error(f"File {prompt_file} does not end with '_prompt.txt', raised ValueError")
                 raise ValueError(f"File {prompt_file} does not end with '_prompt.txt'")
 
+            logger.info(f"Looking for corresponding YAML/YML file for prompt: {prompt_file}")
             yaml_file = f.replace("_prompt.txt", ".yaml")
             yaml_path = self.main_output_path / "molecule_test" / yaml_file
             #yaml_path = prompt_file.with_name(prompt_file.stem.replace("_prompt.txt", "") + ".yaml")
             if not yaml_path.exists():
+                logger.info(f"YAML file {yaml_path} not found, trying .yml extension.")
                 yaml_path = yaml_path.with_suffix(".yml")
             if not yaml_path.exists():
+                logger.error(f"No YAML/YML found for {prompt_file}, raised FileNotFoundError")
                 raise FileNotFoundError(f"No YAML/YML found for {prompt_file}")
             
             # This should be used, but molecule takes too much time for all runs 
@@ -440,77 +500,113 @@ class BenchmarkOperationManager(BaseOperationManager):
 
             tmp_copy = self.tmp_dir / yaml_path.name
             shutil.copy2(yaml_path, tmp_copy)
+            logger.info(f"Copied original YAML file {yaml_path} to temporary location {tmp_copy}")
 
             prompt_str = ""
             with open(prompt_file, "r", encoding="UTF-8", errors="ignore") as fin:
                 prompt_str = fin.read()
+            logger.info(f"Read prompt file: {prompt_file}")
 
             try:
+                logger.info(f"Start try catch block for file: {yaml_path}")
                 t0 = time.perf_counter()
+                logger.info("Creating prompt and validating context for benchmark")
                 template, p_str, error_msg = self.create_prompt_validate_context(prompt_str, "first_yamllint")
                 if error_msg:
+                    logger.error(f"Error in creating prompt or validating context: {error_msg}")
                     return error_msg
+                logger.info("Invoking prompt chain for benchmark")
                 raw_outputs = self.invoke_prompt_chain(template, p_str)
                 print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
+                logger.info(f"Raw LLM output: {raw_outputs}")
                 cleaned_outputs = self.clean_text(raw_outputs)
                 print(f"_______________________________________Cleaned LLM Output:_______________________________________ \n{cleaned_outputs}")
+                logger.info(f"Cleaned LLM output: {cleaned_outputs}")
                 t1 = time.perf_counter()
                 print(f"\n{time.ctime()}: {yaml_path} Total generation time:", t1 - t0)
+                logger.info(f"Total generation time for {yaml_path}: {t1 - t0} seconds")
 
                 # copy generated file into molecule test directory
+                logger.info(f"Writing cleaned output to YAML file: {yaml_path}")
                 with yaml_path.open("w", encoding="utf-8") as f:
                     f.write(cleaned_outputs)
                 
                 max_iterations_yamllint = 5
+                logger.info(f"setting max iterations for yamllint to {max_iterations_yamllint}")
+
 #                max_iterations_syntax = 5
                 max_iterations_ansiblelint = 5
+                logger.info(f"setting max iterations for ansiblelint to {max_iterations_ansiblelint}")
 #                errors_syntax = 0
+                logger.info("setting up error counters")
                 errors_ansiblelint = 0
 
                 while True:
+                    logger.info("Starting quality assurance while loop")
                     # check yamllint, syntax, ansiblelint from here
                     status_flag_yamllint = False
+                    logger.info("setting status_flag_yamllint to False")
                     for i in range(1,max_iterations_yamllint+1): 
+                        logger.info(f"Yamllint iteration {i}")
                         print(f"________________________________________Yamllint Run: {i}________________________________________\n")
                         yamllint_check_results: Tuple[bool, str] = check_yamllint(yaml_path)
                         yamllint_runs += 1
                         if yamllint_check_results[0]:
+                            logger.info(f"Yamllint passed at iteration {i}")
                             status_flag_yamllint=True
                             break
                         else: 
+                            logger.info(f"Yamllint failed at iteration {i} with message: {yamllint_check_results[1]}")
                             print(f"{i}. Iteration in a row: Generated Ansible-YAML did not pass quality gate 'yamllint'")
                             template, p_str, recursive_str, error_str, error_msg = self.create_recursive_prompt_validate_context(prompt_str, cleaned_outputs, yamllint_check_results[1], "recursive_yamllint")
+                            logger.info("Created recursive prompt for yamllint")
                             if error_msg:
+                                logger.error(f"Error in creating recursive prompt or validating context: {error_msg}")
                                 return error_msg
                             raw_outputs = self.invoke_recursive_chain(template, p_str, cleaned_outputs, yamllint_check_results[1])
+                            logger.info("Invoked recursive prompt chain for yamllint")
                             print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
+                            logger.info(f"Raw LLM output after yamllint: {raw_outputs}")
                             cleaned_outputs = self.clean_text(raw_outputs)
+                            logger.info("Cleaned LLM output after yamllint")
                             print(f"_______________________________________Cleaned LLM Output:_______________________________________ \n{cleaned_outputs}")
                             t1 = time.perf_counter()
                             print(f"\n{time.ctime()}: {yaml_path} Total generation time:", t1 - t0)
+                            logger.info(f"Total generation time for {yaml_path}: {t1 - t0} seconds")
 
                             # copy generated file into molecule test directory
                             with yaml_path.open("w", encoding="utf-8") as f:
                                 f.write(cleaned_outputs)
+                            logger.info(f"Wrote cleaned output to YAML file: {yaml_path}")
                     else:
+                        logger.info(f"Yamllint did not pass after {max_iterations_yamllint} iterations, breaking loop.")
                         print(f"Error: Generated Ansible-YAML did not pass quality gate 'yamllint' after defined maximum of {max_iterations_yamllint} iterations in a row!")
 
                     if i < 2:
+                        logger.info("Yamllint passed without iteration")
                         yamllint_passed_without_iteration += 1
+                        print(f"yamllint_passed_without_iteration increased to {yamllint_passed_without_iteration}")
                         if errors_ansiblelint == 0:
-                            ansiblelint_passed_at_first_attempt += 1
+                            logger.info("ansiblelint also passed at first attempt")
+                            yamllint_passed_at_first_attempt += 1
+                            print(f"yamllint_passed_at_first_attempt increased to {yamllint_passed_at_first_attempt}")
+
 
                         
                     if not status_flag_yamllint:
+                        logger.error("Yamllint failed, exiting while loop")
                         print(f"\nGeneration of playbook '{yaml_path}' failed at stage 'yamllint'")
                         if(errors_ansiblelint>0):
+                            logger.error(f"Generation of playbook '{yaml_path}' failed at stage 'ansiblelint'")
                             print(f"Note: {errors_ansiblelint} ansible-lint iterations were done before!")
                             failed_at_stage_ansiblelint.append(yaml_path)
+                            logger.error(f"added {yaml_path} to failed_at_stage_ansiblelint list")
 #                        elif(errors_syntax>0):
 #                            print(f"Note: {errors_syntax} syntax-check iterations were done before!")
 #                            failed_at_stage_syntax.append(yaml_path)
                         else:
                             failed_at_stage_yamllint.append(yaml_path)
+                            logger.error(f"added {yaml_path} to failed_at_stage_yamllint list")
                         break
                     
                     print("################################# Quality Gate 'yamllint' passed! ################################")
@@ -546,50 +642,70 @@ class BenchmarkOperationManager(BaseOperationManager):
                     ansiblelint_runs += 1
                     if not ansiblelint_check[0]:
                         errors_ansiblelint += 1
+                        logger.info(f"Ansiblelint failed at iteration {errors_ansiblelint} with message: {ansiblelint_check[1]}")
+                        logger.info(f"Ansiblelint runs so far: {ansiblelint_runs}")
+                        logger.info(f"Ansiblelint errors so far: {errors_ansiblelint}")
                         if errors_ansiblelint >= max_iterations_ansiblelint:
+                            logger.info(f"Ansiblelint did not pass after {max_iterations_ansiblelint} iterations, breaking loop.")
                             print(f"Error: Generated Ansible-YAML did not pass quality gate 'ansiblelint' after defined maximum of {max_iterations_ansiblelint} iterations!")
                             print(f"\nGeneration of playbook '{yaml_path}' failed at stage 'ansiblelint'")
                             failed_at_stage_ansiblelint.append(yaml_path)
+                            logger.info(f"added {yaml_path} to failed_at_stage_ansiblelint list")
                             break
                         print(f"{errors_ansiblelint+1}. Iteration: Generated Ansible-YAML did not pass quality gate 'ansiblelint'")
-                        if errors_ansiblelint == 1:
-                            ansiblelint_passed_at_first_attempt += 1
+                        logger.info("Creating recursive prompt for ansiblelint")
                         template, p_str, recursive_str, error_str, error_msg = self.create_recursive_prompt_validate_context(prompt_str, cleaned_outputs, ansiblelint_check[1], "recursive_ansiblelint")
                         if error_msg:
+                            logger.info(f"Error in creating recursive prompt or validating context: {error_msg}")
+                            print(f"Error: {error_msg}")
                             return error_msg
+                        logger.info("Invoking recursive prompt chain for ansiblelint")
                         raw_outputs = self.invoke_recursive_chain(template, p_str, cleaned_outputs, ansiblelint_check[1])
-                        print(f"Prompt String: \n{p_str}")
                         print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
+                        logger.info(f"Raw LLM output after ansiblelint: {raw_outputs}")
                         cleaned_outputs = self.clean_text(raw_outputs)
                         print(f"_______________________________________Cleaned LLM Output:_______________________________________ \n{cleaned_outputs}")
+                        logger.info("Cleaned LLM output after ansiblelint")
                         t1 = time.perf_counter()
                         print(f"\n{time.ctime()}: {yaml_path} Total generation time:", t1 - t0)
-
+                        logger.info(f"Total generation time for {yaml_path}: {t1 - t0} seconds")
                         # copy generated file into molecule test directory
                         with yaml_path.open("w", encoding="utf-8") as f:
                             f.write(cleaned_outputs)
+                        logger.info(f"Wrote cleaned output to YAML file: {yaml_path}")
+                        logger.info("Continuing while loop for next ansiblelint iteration")
                         continue
-                    print("################################# Quality Gate 'ansiblelint' passed! ################################")
-                    if errors_ansiblelint < 1:
+                    if errors_ansiblelint == 1:
                         ansiblelint_passed_at_first_attempt += 1
+                        logger.info(f"Ansiblelint passed at first attempt, total so far: {ansiblelint_passed_at_first_attempt}")
+                        print(f"ansiblelint_passed_at_first_attempt increased to {ansiblelint_passed_at_first_attempt}")
+                    print("################################# Quality Gate 'ansiblelint' passed! ################################")
+                    logger.info("Ansiblelint passed, proceeding to molecule test")
                     errors_ansiblelint = 0
                     
                     if check_molecule(yaml_path):
+                        logger.info("Molecule test passed")
                         print(f"\n Generation and test of '{yaml_path}' sucessfull!")
                         passed_all_stages.append(yaml_path)
+                        logger.info(f"added {yaml_path} to passed_all_stages list")
                         break
                     else: 
+                        logger.info("Molecule test failed")
                         print(f"Error: Generated Ansible-YAML did not pass quality gate 'molecule-test'!")
                         print(f"\nGeneration of playbook '{yaml_path}' failed at stage 'molecule-test'")
                         failed_at_stage_molecule_test.append(yaml_path)
+                        logger.info(f"added {yaml_path} to failed_at_stage_molecule_test list")
                         break
             except (ValueError, FileNotFoundError) as e:
+                logger.error(f"Exception occurred: {e}")
                 print(e)
                 continue
             if tmp_copy.exists():  
+                logger.info(f"Restoring original YAML file from temporary location {tmp_copy} to {yaml_path}")
                 shutil.copy2(tmp_copy, yaml_path) 
                 tmp_copy.unlink()
                 print(f"Original YAML file '{yaml_path}' was copied from temp into molecule_test directory.")
+        logger.info("Benchmark run completed, generating final report.")
         self.reports(start_time, 
                      failed_initial_molecule_test,
                      failed_at_stage_yamllint, 
