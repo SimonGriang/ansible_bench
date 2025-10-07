@@ -24,7 +24,7 @@ From the selected models, 56 possible model constellations arise with respect to
 |---------------|---------|-----------|----------|--------|------|-----------|---------|--------|
 | **qwen2.5:14b** (Alibaba)   |    (✓)    |     (✓)     |    (✓)     |   (✓)    |  (✓)   |     (✓)     |    (✓)    |   (✓)    |
 | **deepseek-r1:14b** (Deepseek) |    (✓)    |     (✓)     |    (✓)     |   (✓)    |  (✓)   |     (✓)     |    (✓)    |   (✓)    |
-| **gemma3:27b** (Google) |    (✓)    |     ✓     |    ✓     |   ✓    |  ✓   |     ✓     |    Running    |   Running    |
+| **gemma3:27b** (Google) |    (✓)    |     (✓)     |    (✓)     |   (✓)    |  (✓)   |     (✓)     |    (✓)    |   Running    |
 | **granite-code:20b** (IBM)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
 | **llama3.1:8b** (Meta)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
 | **phi4:14b** (Microsoft)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
@@ -32,7 +32,7 @@ From the selected models, 56 possible model constellations arise with respect to
 | **gpt-oss:20b** (OpenAI)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
 
  **✓** = combination run  <br>
-**(✓)** = ran but without certain KPIs  <br>
+**(✓)** = ran but without latest KPIs  <br>
  **–** = combination did not run yet  <br>
 
 ## Configuration Files
