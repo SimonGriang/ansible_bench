@@ -1,0 +1,8 @@
+Output-Verzeichnis erstellt: ../../output/ollama_gpt-oss:20b_english_exact/benchmark100/
+
+>> [2025-10-09 13:08:45] Führe aus: python ansible_generator.py -m gpt-oss:20b -e ollama benchmark -d benchmark100 -tt exact -p prompts/ollama_qwen2.5:14b_english_exact/benchmark100 > ../../output/ollama_gpt-oss:20b_english_exact/benchmark100/qwen_to_gpt-oss_benchmark.log 2>&1
+>> [2025-10-09 13:08:45] Läuft: python ansible_generator.py -m gpt-oss:20b -e ollama benchmark -d benchmark100 -tt exact -p prompts/ollama_qwen2.5:14b_english_exact/benchmark100 > ../../output/ollama_gpt-oss:20b_english_exact/benchmark100/qwen_to_gpt-oss_benchmark.log 2>&1
+Traceback (most recent call last):
+  File "/home/studgoetsi5301/documents/ansible_bench/src/ansible_bench_code/auto_run.py", line 37, in <module>
+    time.sleep(60)
+KeyboardInterrupt
