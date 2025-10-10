@@ -326,6 +326,7 @@ class BenchmarkOperationManager(BaseOperationManager):
         self.main_output_path = (
             self.config.output_dir / f"{self.model_engine}_{self.model_name}_{self.args.language}_{self.args.template_type}" / self.args.dataset / prompt_model
         )
+        logger.info(f"Setting main output path: {self.main_output_path} / {self.model_engine}_{self.model_name}_{self.args.language}_{self.args.template_type} / {self.args.dataset} / {prompt_model}")
         logger.info(f"Main output path: {self.main_output_path}")
         os.makedirs(self.main_output_path, exist_ok=True)
 
@@ -346,7 +347,7 @@ class BenchmarkOperationManager(BaseOperationManager):
         logger.info(f"Found {len(self.prompt_files)} prompt files.")
 
     def extract_prompt_model(self, path: str) -> str:
-        m = re.search(r"ollama_(.*?)_[^_/]+_[^_/]+", path)
+        m = re.search(r"(?:ollama|llamafile)_(.*?)_[^_/]+_[^_/]+", path)
         if not m:
             return path
         core = m.group(1)
