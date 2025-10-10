@@ -22,9 +22,9 @@ From the selected models, 56 possible model constellations arise with respect to
 
 | Benchmark → / Prompt ↓ | **qwen2.5:14b** (Alibaba) | **deepseek-r1:14b** (Deepseek) | **gemma3:27b** (Google) | **granite-code:20b** (IBM) | **llama3.1:8b** (Meta) | **phi4:14b** (Microsoft) |  **codestral:22b** (Mistral) | **gpt-oss:20b** (OpenAI) |
 |---------------|---------|-----------|----------|--------|------|-----------|---------|--------|
-| **qwen2.5:14b** (Alibaba)   |    ✓   |     ✓    |    ✓    |   ✓   |  ✓  |     ✓    |    ✓   |   ✓   |
-| **deepseek-r1:14b** (Deepseek) |    ✓    |     ✓    |    ✓    |   ✓   |  ✓  |     (✓) Running    |    (✓) Running   |   (✓) Running   |
-| **gemma3:27b** (Google) |    (✓)    |     (✓)     |    (✓)     |   (✓)    |  (✓)   |     (✓)     |    (✓)    |   ✓    |
+| **qwen2.5:14b** (Alibaba)   |    (✓)   |    (✓)    |    (✓)    |   (✓)   |  (✓)  |     (✓)    |    (✓)   |   (✓)   |
+| **deepseek-r1:14b** (Deepseek) |    (✓)    |     (✓)    |    (✓)    |   (✓)   |  (✓)  |     (✓)    |    (✓)   |   (✓)   |
+| **gemma3:27b** (Google) |    Running    |     Running     |    Running     |   Running    |  Running   |     Running     |    Running    |   (✓)    |
 | **granite-code:20b** (IBM)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
 | **llama3.1:8b** (Meta)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
 | **phi4:14b** (Microsoft)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
@@ -32,7 +32,7 @@ From the selected models, 56 possible model constellations arise with respect to
 | **gpt-oss:20b** (OpenAI)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
 
  **✓** = combination run  <br>
-**(✓)** = ran but without latest KPIs  <br>
+**(✓)** = ran but with wrong passed_ansiblelint_at_first_iteration and 8000 tokens for all models  <br>
  **–** = combination did not run yet  <br>
 
 ## Configuration Files
