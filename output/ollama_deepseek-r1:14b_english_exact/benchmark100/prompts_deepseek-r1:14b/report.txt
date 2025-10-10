@@ -4,11 +4,11 @@ End time   : 2025-10-09 23:43:17.947510
 Duration   : 3:44:08.080427
 
 ====== Stage Counts ======
-yamllint failures   : 55
+yamllint failures   : 57
 ansiblelint failures: 8
 molecule failures   : 25
 all passed          : 10
-TOTAL entries       : 98
+TOTAL entries       : 100
 
 ====== Detailed Entries ======
 
@@ -72,6 +72,8 @@ yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_deep
 yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-cron-buluma/tasks/main.yml
 yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-java/tasks/main.yml
 yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-selinux-robertdebock/tasks/main.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-openssl/tasks/create.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-hashicorp/tasks/main.yml
 
 ANSIBLELINT Statistics: 
 Total ansiblelint runs: 126
@@ -225,3 +227,5 @@ passed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:1
 /home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-ansible/tasks/setup-pip.yml
 /home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-ansible/tasks/setup-Fedora.yml
 /home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-scl/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-openssl/tasks/create.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-hashicorp/tasks/main.yml

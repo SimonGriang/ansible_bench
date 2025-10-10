@@ -1,0 +1,33 @@
+====== Run Summary ======
+Start time : 2025-10-10 10:29:32.009193
+End time   : 2025-10-10 10:30:16.059346
+Duration   : 0:00:44.050153
+
+====== Stage Counts ======
+yamllint failures   : 1
+ansiblelint failures: 0
+molecule failures   : 0
+all passed          : 0
+TOTAL entries       : 1
+
+====== Detailed Entries ======
+
+YAMLLINT Statistics: 
+Total yamllint runs: 5
+Yamllint passed without iteration: 0
+Yamllint passed at first attempt: 0
+Failed at stage 'yamllint': 
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/download_kubeconfig.yaml
+
+ANSIBLELINT Statistics: 
+Total ansiblelint runs: 0
+Ansiblelint passed at first attempt: 0
+Failed at stage 'ansiblelint':
+
+MOLECULE Statistics: 
+failed at stage 'molecule-test':
+
+Successfully passed all stages:
+
+====== All run roles ======
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/download_kubeconfig.yaml

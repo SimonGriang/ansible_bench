@@ -1,0 +1,476 @@
+Loaded config from file config/config.yaml: config: {'base_dir': '/home/studgoetsi5301/documents/ansible_bench', 'output_dir': 'output', 'dataset_dir': 'dataset', 'config_dir': 'config', 'logs_dir': 'logs', 'testresults_dir': 'testresults', 'postprocessing_reports_dir': 'postprocessing_reports', 'temp_exec_dir': 'temp'}
+Name for the ollama model: gemma3:27b
+
+Input_Directory: /home/studgoetsi5301/documents/ansible_bench/dataset/benchmark100
+
+Prompts_Directory: /home/studgoetsi5301/documents/ansible_bench/dataset/prompts/ollama_deepseek-r1:14b_to_gemma3:27b_benchmark100_missing_files_prompts
+
+Copied ansible-role-docker_compose to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-docker_compose.
+Copied ansible-role-cadvisor to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-cadvisor.
+Copied ansible-role-vsftpd to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-vsftpd.
+Copied ansible-role-epel-buluma to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-epel-buluma.
+Copied ansible-role-vault to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-vault.
+Copied ansible-role-dns to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-dns.
+Copied ansible-role-grub to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-grub.
+Copied ansible-role-service to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-service.
+Copied ansible-role-bootstrap-buluma to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-bootstrap-buluma.
+Copied ansible-role-docker to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-docker.
+Copied ansible-role-selinux to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-selinux.
+Copied ansible-role-mysql-robertdebock to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-mysql-robertdebock.
+Copied ansible-role-sysctl to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-sysctl.
+Copied ansible-role-bootstrap-JonasPammer to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-bootstrap-JonasPammer.
+Copied ansible-role-update to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-update.
+Copied ansible-role-python_pip-buluma to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-python_pip-buluma.
+Copied ansible-role-buildtools-buluma to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-buildtools-buluma.
+Copied ansible-role-pip to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-pip.
+Copied ansible-role-helm to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-helm.
+Copied ansible-role-bootstrap to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-bootstrap.
+Copied ansible-role-openvpn to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-openvpn.
+Copied ansible-role-core_dependencies-buluma to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-core_dependencies-buluma.
+Copied ansible-role-openssl-robertdebock to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-openssl-robertdebock.
+Copied ansible-role-logrotate to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-logrotate.
+Copied ansible-role-promtail to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-promtail.
+Copied ansible-role-python_pip to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-python_pip.
+Copied ansible-role-httpd to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-httpd.
+Copied ansible-role-redis to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-redis.
+Copied ansible-role-openssl to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-openssl.
+Copied ansible-role-users to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-users.
+Copied ansible-role-ca_certificates to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-ca_certificates.
+Copied ansible-role-httpd-buluma to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-httpd-buluma.
+Copied ansible-role-apt_autostart to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-apt_autostart.
+Copied java_role to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/java_role.
+Copied ansible-role-core_dependencies to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-core_dependencies.
+Copied ansible-role-postfix to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-postfix.
+Copied ansible-role-git to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-git.
+Copied ansible-role-php-robertdebock to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-php-robertdebock.
+Copied ansible-role-rke2 to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2.
+Copied ansible-role-buildtools to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-buildtools.
+Copied ansible-role-mysql to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-mysql.
+Copied ansible-role-cron to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-cron.
+Copied ansible-role-nginx to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-nginx.
+Copied ansible-role-ansible to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-ansible.
+Copied ansible-role-rsyslog to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rsyslog.
+Copied ansible-role-fail2ban to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-fail2ban.
+Copied ansible-role-scl to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-scl.
+Copied ansible-role-cron-buluma to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-cron-buluma.
+Copied ansible-role-hashicorp to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-hashicorp.
+Copied ansible-role-java to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-java.
+Copied ansible-role-selinux-robertdebock to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-selinux-robertdebock.
+Copied ansible-role-epel to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-epel.
+
+Temporary directory for benchmark run created: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/tmp
+
+Output_Directory: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b
+
+Input-Files:
+ansible-role-rke2/tasks/download_kubeconfig_prompt.txt
+found 1 inputs
+Serving model via Ollama
+  0%|          | 0/1 [00:00<?, ?it/s]Report written to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/report.txt
+
+
+Prompt: You are a professional developer. Your task is to generate an Ansible Playbook that strictly adheres to the given instructions.  
+The playbook must: 
+- Begin with '---' on the very first line.  
+- Be a valid Ansbile Playbook YAML file, conforming to yamllint and ansible-lint standards.  
+- Be structured so it can be directly included in an Ansible Role.  
+- Contain the tasks exactly as described, with the precise names and order provided.  
+
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Download RKE2 kubeconfig to localhost  
+Description Task 1: Fetch the RKE2 configuration file from the server’s local path and copy it to a specified destination on the local machine. This task ensures the kubeconfig file is available for further processing.  
+
+Task 2: Replace loopback IP by master server IP  
+Description Task 2: Update the IP address in the downloaded kubeconfig file from the loopback interface to the master server’s IP. This ensures the kubeconfig points to the correct API server endpoint.
+
+
+Important:  
+- Use the exact task names and module calls as specified.  
+- Do not add, omit, or modify tasks.  
+- The output must consist only of the complete YAML playbook, without explanations, comments, or formatting outside of YAML.
+- The playbook must start with '---' and a linebreak
+
+Total input tokens: 364
+___________________________________________LLM Output:___________________________________________ 
+content='```yaml\n---\n\n- name: Download RKE2 kubeconfig to localhost\n  fetch:\n    src: /etc/rke2/rke2.yaml\n    dest: ./rke2.yaml\n    flat: yes\n\n- name: Replace loopback IP by master server IP\n  replace:\n    path: ./rke2.yaml\n    regexp: \'127.0.0.1\'\n    replace: "{{ master_server_ip }}"\n```' additional_kwargs={} response_metadata={'model': 'gemma3:27b', 'created_at': '2025-10-10T08:29:43.389021197Z', 'done': True, 'done_reason': 'stop', 'total_duration': 9915268494, 'load_duration': 4703598440, 'prompt_eval_count': 372, 'prompt_eval_duration': 456570590, 'eval_count': 106, 'eval_duration': 4754210538, 'model_name': 'gemma3:27b'} id='run--f5cc703e-a82d-444e-a4ae-2514b867d408-0' usage_metadata={'input_tokens': 372, 'output_tokens': 106, 'total_tokens': 478}
+_______________________________________Cleaned LLM Output:_______________________________________ 
+---
+
+- name: Download RKE2 kubeconfig to localhost
+  fetch:
+    src: /etc/rke2/rke2.yaml
+    dest: ./rke2.yaml
+    flat: yes
+
+- name: Replace loopback IP by master server IP
+  replace:
+    path: ./rke2.yaml
+    regexp: '127.0.0.1'
+    replace: "{{ master_server_ip }}"
+
+
+Fri Oct 10 10:29:43 2025: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/download_kubeconfig.yaml Total generation time: 11.378995780018158
+________________________________________Yamllint Run: 1________________________________________
+
+1. Iteration in a row: Generated Ansible-YAML did not pass quality gate 'yamllint'
+Prompt: You are a professional developer. The Ansible Playbook generated from the prompt below did not pass yamllint checks.  
+Your task is to automatically correct the playbook while adhering strictly to the original instructions.  
+
+Requirements:
+- Generate a valid YAML playbook, conforming to yamllint and ansible-lint.
+- Follow the original task names and order exactly.
+- Only fix issues reported in the error logs; do not alter the functional intent or add/remove tasks.
+- Output must consist solely of the corrected YAML playbook.
+
+Inputs:
+- Original generation prompt: 
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Download RKE2 kubeconfig to localhost  
+Description Task 1: Fetch the RKE2 configuration file from the server’s local path and copy it to a specified destination on the local machine. This task ensures the kubeconfig file is available for further processing.  
+
+Task 2: Replace loopback IP by master server IP  
+Description Task 2: Update the IP address in the downloaded kubeconfig file from the loopback interface to the master server’s IP. This ensures the kubeconfig points to the correct API server endpoint.
+
+
+- Last generated (faulty) playbook: 
+---
+
+- name: Download RKE2 kubeconfig to localhost
+  fetch:
+    src: /etc/rke2/rke2.yaml
+    dest: ./rke2.yaml
+    flat: yes
+
+- name: Replace loopback IP by master server IP
+  replace:
+    path: ./rke2.yaml
+    regexp: '127.0.0.1'
+    replace: "{{ master_server_ip }}"
+
+
+- Error messages from yamllint checks: 
+7:11: truthy value should be one of [false, true] (truthy)
+
+Important:  
+- Keep all task names, variables, and custom identifiers exactly as in the faulty playbook unless necessary to fix yamllint errors.
+- Use the exact task names and module calls as specified.  
+- Do not add, omit, or modify tasks.  
+- The output must consist only of the complete YAML playbook, without explanations, comments, or formatting outside of YAML.
+- The playbook must start with '---' and a linebreak
+
+Total input tokens: 552
+___________________________________________LLM Output:___________________________________________ 
+content='---\n\n- name: Download RKE2 kubeconfig to localhost\n  fetch:\n    src: /etc/rke2/rke2.yaml\n    dest: ./rke2.yaml\n    flat: yes\n\n- name: Replace loopback IP by master server IP\n  replace:\n    path: ./rke2.yaml\n    regexp: \'127.0.0.1\'\n    replace: "{{ master_server_ip }}"\n' additional_kwargs={} response_metadata={'model': 'gemma3:27b', 'created_at': '2025-10-10T08:29:49.869215097Z', 'done': True, 'done_reason': 'stop', 'total_duration': 5248253584, 'load_duration': 161704979, 'prompt_eval_count': 560, 'prompt_eval_duration': 519647543, 'eval_count': 102, 'eval_duration': 4566317753, 'model_name': 'gemma3:27b'} id='run--0132d589-82e1-4f3b-bed3-5e7d06967367-0' usage_metadata={'input_tokens': 560, 'output_tokens': 102, 'total_tokens': 662}
+_______________________________________Cleaned LLM Output:_______________________________________ 
+---
+
+- name: Download RKE2 kubeconfig to localhost
+  fetch:
+    src: /etc/rke2/rke2.yaml
+    dest: ./rke2.yaml
+    flat: yes
+
+- name: Replace loopback IP by master server IP
+  replace:
+    path: ./rke2.yaml
+    regexp: '127.0.0.1'
+    replace: "{{ master_server_ip }}"
+
+
+Fri Oct 10 10:29:49 2025: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/download_kubeconfig.yaml Total generation time: 17.8590382989496
+________________________________________Yamllint Run: 2________________________________________
+
+2. Iteration in a row: Generated Ansible-YAML did not pass quality gate 'yamllint'
+Prompt: You are a professional developer. The Ansible Playbook generated from the prompt below did not pass yamllint checks.  
+Your task is to automatically correct the playbook while adhering strictly to the original instructions.  
+
+Requirements:
+- Generate a valid YAML playbook, conforming to yamllint and ansible-lint.
+- Follow the original task names and order exactly.
+- Only fix issues reported in the error logs; do not alter the functional intent or add/remove tasks.
+- Output must consist solely of the corrected YAML playbook.
+
+Inputs:
+- Original generation prompt: 
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Download RKE2 kubeconfig to localhost  
+Description Task 1: Fetch the RKE2 configuration file from the server’s local path and copy it to a specified destination on the local machine. This task ensures the kubeconfig file is available for further processing.  
+
+Task 2: Replace loopback IP by master server IP  
+Description Task 2: Update the IP address in the downloaded kubeconfig file from the loopback interface to the master server’s IP. This ensures the kubeconfig points to the correct API server endpoint.
+
+
+- Last generated (faulty) playbook: 
+---
+
+- name: Download RKE2 kubeconfig to localhost
+  fetch:
+    src: /etc/rke2/rke2.yaml
+    dest: ./rke2.yaml
+    flat: yes
+
+- name: Replace loopback IP by master server IP
+  replace:
+    path: ./rke2.yaml
+    regexp: '127.0.0.1'
+    replace: "{{ master_server_ip }}"
+
+
+- Error messages from yamllint checks: 
+7:11: truthy value should be one of [false, true] (truthy)
+
+Important:  
+- Keep all task names, variables, and custom identifiers exactly as in the faulty playbook unless necessary to fix yamllint errors.
+- Use the exact task names and module calls as specified.  
+- Do not add, omit, or modify tasks.  
+- The output must consist only of the complete YAML playbook, without explanations, comments, or formatting outside of YAML.
+- The playbook must start with '---' and a linebreak
+
+Total input tokens: 552
+___________________________________________LLM Output:___________________________________________ 
+content='---\n\n- name: Download RKE2 kubeconfig to localhost\n  fetch:\n    src: /etc/rke2/rke2.yaml\n    dest: ./rke2.yaml\n    flat: yes\n\n- name: Replace loopback IP by master server IP\n  replace:\n    path: ./rke2.yaml\n    regexp: \'127.0.0.1\'\n    replace: "{{ master_server_ip }}"\n' additional_kwargs={} response_metadata={'model': 'gemma3:27b', 'created_at': '2025-10-10T08:29:56.088488668Z', 'done': True, 'done_reason': 'stop', 'total_duration': 5032432280, 'load_duration': 168533943, 'prompt_eval_count': 560, 'prompt_eval_duration': 47965023, 'eval_count': 102, 'eval_duration': 4814961490, 'model_name': 'gemma3:27b'} id='run--79fe18cf-c64b-48af-b3a0-bbf680004ef8-0' usage_metadata={'input_tokens': 560, 'output_tokens': 102, 'total_tokens': 662}
+_______________________________________Cleaned LLM Output:_______________________________________ 
+---
+
+- name: Download RKE2 kubeconfig to localhost
+  fetch:
+    src: /etc/rke2/rke2.yaml
+    dest: ./rke2.yaml
+    flat: yes
+
+- name: Replace loopback IP by master server IP
+  replace:
+    path: ./rke2.yaml
+    regexp: '127.0.0.1'
+    replace: "{{ master_server_ip }}"
+
+
+Fri Oct 10 10:29:56 2025: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/download_kubeconfig.yaml Total generation time: 24.07826920703519
+________________________________________Yamllint Run: 3________________________________________
+
+3. Iteration in a row: Generated Ansible-YAML did not pass quality gate 'yamllint'
+Prompt: You are a professional developer. The Ansible Playbook generated from the prompt below did not pass yamllint checks.  
+Your task is to automatically correct the playbook while adhering strictly to the original instructions.  
+
+Requirements:
+- Generate a valid YAML playbook, conforming to yamllint and ansible-lint.
+- Follow the original task names and order exactly.
+- Only fix issues reported in the error logs; do not alter the functional intent or add/remove tasks.
+- Output must consist solely of the corrected YAML playbook.
+
+Inputs:
+- Original generation prompt: 
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Download RKE2 kubeconfig to localhost  
+Description Task 1: Fetch the RKE2 configuration file from the server’s local path and copy it to a specified destination on the local machine. This task ensures the kubeconfig file is available for further processing.  
+
+Task 2: Replace loopback IP by master server IP  
+Description Task 2: Update the IP address in the downloaded kubeconfig file from the loopback interface to the master server’s IP. This ensures the kubeconfig points to the correct API server endpoint.
+
+
+- Last generated (faulty) playbook: 
+---
+
+- name: Download RKE2 kubeconfig to localhost
+  fetch:
+    src: /etc/rke2/rke2.yaml
+    dest: ./rke2.yaml
+    flat: yes
+
+- name: Replace loopback IP by master server IP
+  replace:
+    path: ./rke2.yaml
+    regexp: '127.0.0.1'
+    replace: "{{ master_server_ip }}"
+
+
+- Error messages from yamllint checks: 
+7:11: truthy value should be one of [false, true] (truthy)
+
+Important:  
+- Keep all task names, variables, and custom identifiers exactly as in the faulty playbook unless necessary to fix yamllint errors.
+- Use the exact task names and module calls as specified.  
+- Do not add, omit, or modify tasks.  
+- The output must consist only of the complete YAML playbook, without explanations, comments, or formatting outside of YAML.
+- The playbook must start with '---' and a linebreak
+
+Total input tokens: 552
+___________________________________________LLM Output:___________________________________________ 
+content='```yaml\n---\n\n- name: Download RKE2 kubeconfig to localhost\n  fetch:\n    src: /etc/rke2/rke2.yaml\n    dest: ./rke2.yaml\n    flat: yes\n\n- name: Replace loopback IP by master server IP\n  replace:\n    path: ./rke2.yaml\n    regexp: \'127.0.0.1\'\n    replace: "{{ master_server_ip }}"\n```' additional_kwargs={} response_metadata={'model': 'gemma3:27b', 'created_at': '2025-10-10T08:30:02.811844393Z', 'done': True, 'done_reason': 'stop', 'total_duration': 5401306173, 'load_duration': 198416033, 'prompt_eval_count': 560, 'prompt_eval_duration': 56311741, 'eval_count': 106, 'eval_duration': 5145634841, 'model_name': 'gemma3:27b'} id='run--f1a4a729-afcd-4637-9c72-7c53141a20a8-0' usage_metadata={'input_tokens': 560, 'output_tokens': 106, 'total_tokens': 666}
+_______________________________________Cleaned LLM Output:_______________________________________ 
+---
+
+- name: Download RKE2 kubeconfig to localhost
+  fetch:
+    src: /etc/rke2/rke2.yaml
+    dest: ./rke2.yaml
+    flat: yes
+
+- name: Replace loopback IP by master server IP
+  replace:
+    path: ./rke2.yaml
+    regexp: '127.0.0.1'
+    replace: "{{ master_server_ip }}"
+
+
+Fri Oct 10 10:30:02 2025: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/download_kubeconfig.yaml Total generation time: 30.803425851045176
+________________________________________Yamllint Run: 4________________________________________
+
+4. Iteration in a row: Generated Ansible-YAML did not pass quality gate 'yamllint'
+Prompt: You are a professional developer. The Ansible Playbook generated from the prompt below did not pass yamllint checks.  
+Your task is to automatically correct the playbook while adhering strictly to the original instructions.  
+
+Requirements:
+- Generate a valid YAML playbook, conforming to yamllint and ansible-lint.
+- Follow the original task names and order exactly.
+- Only fix issues reported in the error logs; do not alter the functional intent or add/remove tasks.
+- Output must consist solely of the corrected YAML playbook.
+
+Inputs:
+- Original generation prompt: 
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Download RKE2 kubeconfig to localhost  
+Description Task 1: Fetch the RKE2 configuration file from the server’s local path and copy it to a specified destination on the local machine. This task ensures the kubeconfig file is available for further processing.  
+
+Task 2: Replace loopback IP by master server IP  
+Description Task 2: Update the IP address in the downloaded kubeconfig file from the loopback interface to the master server’s IP. This ensures the kubeconfig points to the correct API server endpoint.
+
+
+- Last generated (faulty) playbook: 
+---
+
+- name: Download RKE2 kubeconfig to localhost
+  fetch:
+    src: /etc/rke2/rke2.yaml
+    dest: ./rke2.yaml
+    flat: yes
+
+- name: Replace loopback IP by master server IP
+  replace:
+    path: ./rke2.yaml
+    regexp: '127.0.0.1'
+    replace: "{{ master_server_ip }}"
+
+
+- Error messages from yamllint checks: 
+7:11: truthy value should be one of [false, true] (truthy)
+
+Important:  
+- Keep all task names, variables, and custom identifiers exactly as in the faulty playbook unless necessary to fix yamllint errors.
+- Use the exact task names and module calls as specified.  
+- Do not add, omit, or modify tasks.  
+- The output must consist only of the complete YAML playbook, without explanations, comments, or formatting outside of YAML.
+- The playbook must start with '---' and a linebreak
+
+Total input tokens: 552
+___________________________________________LLM Output:___________________________________________ 
+content='---\n\n- name: Download RKE2 kubeconfig to localhost\n  fetch:\n    src: /etc/rke2/rke2.yaml\n    dest: ./rke2.yaml\n    flat: yes\n\n- name: Replace loopback IP by master server IP\n  replace:\n    path: ./rke2.yaml\n    regexp: \'127.0.0.1\'\n    replace: "{{ master_server_ip }}"\n' additional_kwargs={} response_metadata={'model': 'gemma3:27b', 'created_at': '2025-10-10T08:30:09.542163704Z', 'done': True, 'done_reason': 'stop', 'total_duration': 5235123619, 'load_duration': 208747277, 'prompt_eval_count': 560, 'prompt_eval_duration': 55359445, 'eval_count': 102, 'eval_duration': 4970075529, 'model_name': 'gemma3:27b'} id='run--e4d70e86-a042-4ba1-9fdf-8811f68e1eeb-0' usage_metadata={'input_tokens': 560, 'output_tokens': 102, 'total_tokens': 662}100%|██████████| 1/1 [00:44<00:00, 44.05s/it]100%|██████████| 1/1 [00:44<00:00, 44.05s/it]
+
+_______________________________________Cleaned LLM Output:_______________________________________ 
+---
+
+- name: Download RKE2 kubeconfig to localhost
+  fetch:
+    src: /etc/rke2/rke2.yaml
+    dest: ./rke2.yaml
+    flat: yes
+
+- name: Replace loopback IP by master server IP
+  replace:
+    path: ./rke2.yaml
+    regexp: '127.0.0.1'
+    replace: "{{ master_server_ip }}"
+
+
+Fri Oct 10 10:30:09 2025: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/download_kubeconfig.yaml Total generation time: 37.53269091702532
+________________________________________Yamllint Run: 5________________________________________
+
+5. Iteration in a row: Generated Ansible-YAML did not pass quality gate 'yamllint'
+Prompt: You are a professional developer. The Ansible Playbook generated from the prompt below did not pass yamllint checks.  
+Your task is to automatically correct the playbook while adhering strictly to the original instructions.  
+
+Requirements:
+- Generate a valid YAML playbook, conforming to yamllint and ansible-lint.
+- Follow the original task names and order exactly.
+- Only fix issues reported in the error logs; do not alter the functional intent or add/remove tasks.
+- Output must consist solely of the corrected YAML playbook.
+
+Inputs:
+- Original generation prompt: 
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Download RKE2 kubeconfig to localhost  
+Description Task 1: Fetch the RKE2 configuration file from the server’s local path and copy it to a specified destination on the local machine. This task ensures the kubeconfig file is available for further processing.  
+
+Task 2: Replace loopback IP by master server IP  
+Description Task 2: Update the IP address in the downloaded kubeconfig file from the loopback interface to the master server’s IP. This ensures the kubeconfig points to the correct API server endpoint.
+
+
+- Last generated (faulty) playbook: 
+---
+
+- name: Download RKE2 kubeconfig to localhost
+  fetch:
+    src: /etc/rke2/rke2.yaml
+    dest: ./rke2.yaml
+    flat: yes
+
+- name: Replace loopback IP by master server IP
+  replace:
+    path: ./rke2.yaml
+    regexp: '127.0.0.1'
+    replace: "{{ master_server_ip }}"
+
+
+- Error messages from yamllint checks: 
+7:11: truthy value should be one of [false, true] (truthy)
+
+Important:  
+- Keep all task names, variables, and custom identifiers exactly as in the faulty playbook unless necessary to fix yamllint errors.
+- Use the exact task names and module calls as specified.  
+- Do not add, omit, or modify tasks.  
+- The output must consist only of the complete YAML playbook, without explanations, comments, or formatting outside of YAML.
+- The playbook must start with '---' and a linebreak
+
+Total input tokens: 552
+___________________________________________LLM Output:___________________________________________ 
+content='---\n\n- name: Download RKE2 kubeconfig to localhost\n  fetch:\n    src: /etc/rke2/rke2.yaml\n    dest: ./rke2.yaml\n    flat: yes\n\n- name: Replace loopback IP by master server IP\n  replace:\n    path: ./rke2.yaml\n    regexp: \'127.0.0.1\'\n    replace: "{{ master_server_ip }}"\n' additional_kwargs={} response_metadata={'model': 'gemma3:27b', 'created_at': '2025-10-10T08:30:16.05745769Z', 'done': True, 'done_reason': 'stop', 'total_duration': 4946502409, 'load_duration': 191183301, 'prompt_eval_count': 560, 'prompt_eval_duration': 84609644, 'eval_count': 102, 'eval_duration': 4670131510, 'model_name': 'gemma3:27b'} id='run--18692a03-9a40-40ec-be9c-2c5683019127-0' usage_metadata={'input_tokens': 560, 'output_tokens': 102, 'total_tokens': 662}
+_______________________________________Cleaned LLM Output:_______________________________________ 
+---
+
+- name: Download RKE2 kubeconfig to localhost
+  fetch:
+    src: /etc/rke2/rke2.yaml
+    dest: ./rke2.yaml
+    flat: yes
+
+- name: Replace loopback IP by master server IP
+  replace:
+    path: ./rke2.yaml
+    regexp: '127.0.0.1'
+    replace: "{{ master_server_ip }}"
+
+
+Fri Oct 10 10:30:16 2025: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/download_kubeconfig.yaml Total generation time: 44.04717377398629
+Error: Generated Ansible-YAML did not pass quality gate 'yamllint' after defined maximum of 5 iterations in a row!
+
+Generation of playbook '/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/download_kubeconfig.yaml' failed at stage 'yamllint'
+Original YAML file '/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/download_kubeconfig.yaml' was copied from temp into molecule_test directory.
+Report written to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/report.txt
