@@ -436,8 +436,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                 return backup_input.strip() + "\n"
 
             if self.model_name in {"gpt-oss:20b",
-                                   "granite-code:20b",
-                                   "deepseek-r1:14b",}:
+                                   "granite-code:20b",}:
                 logger.info("Appending newline to cleaned output for gpt-oss:20b model.")
                 return ''.join(cleaned_lines) + "\n"
             logger.info("Returning cleaned output.")
