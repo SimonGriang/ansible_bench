@@ -137,7 +137,7 @@ Important:
 - Use the exact task names and module calls as specified.  
 - Do not add, omit, or modify tasks.  
 - The output must consist only of the complete YAML playbook, without explanations, comments, or formatting outside of YAML.
-- The playbook must start with --- and a linebreak
+- The playbook must start with '---' and a linebreak
 """
 
 benchmark_precise_english_first_yamllint_template = """You are a professional developer. Your task is to generate an Ansible Playbook based on the task descriptions provided below.  
@@ -193,7 +193,7 @@ Important:
 - Use the exact task names and module calls as specified.  
 - Do not add, omit, or modify tasks.  
 - The output must consist only of the complete YAML playbook, without explanations, comments, or formatting outside of YAML.
-- The playbook must start with --- and a linebreak
+- The playbook must start with '---' and a linebreak
 """
 
 benchmark_precise_english_recursive_yamllint_template = """You are a professional developer. The Ansible Playbook generated from the prompt below failed yamllint checks.  
@@ -217,7 +217,7 @@ Inputs:
 Guidelines:
 - Preserve variables, handlers, and custom names unless absolutely necessary to fix errors.
 - Output only the corrected YAML playbook; do not include explanations or comments.
-- The playbook must start with --- and a linebreak
+- The playbook must start with '---' and a linebreak
 """
 
 benchmark_approximate_english_recursive_yamllint_template = """You are a professional developer. The Ansible Playbook generated from the prompt below did not pass yamllint checks.  
@@ -267,7 +267,7 @@ Important:
 - Use the exact task names and module calls as specified.  
 - Do not add, omit, or modify tasks.  
 - The output must consist only of the complete YAML playbook, without explanations, comments, or formatting outside of YAML.
-- The playbook must start with --- and a linebreak
+- The playbook must start with '---' and a linebreak
 """
 
 benchmark_precise_english_recursive_syntax_template = """You are a professional developer. The Ansible Playbook generated from the prompt below failed ansible-playbook --syntax-check.  
@@ -340,7 +340,7 @@ Important:
 - Use the exact task names and module calls as specified.  
 - Do not add, omit, or modify tasks.  
 - The output must consist only of the complete YAML playbook, without explanations, comments, or formatting outside of YAML.
-- The playbook must start with --- and a linebreak
+- The playbook must start with '---' and a linebreak
 """
 
 benchmark_precise_english_recursive_ansiblelint_template = """You are a professional developer. The Ansible Playbook generated from the prompt below failed ansible-lint.  
