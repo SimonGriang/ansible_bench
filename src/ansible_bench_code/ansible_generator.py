@@ -589,7 +589,6 @@ class BenchmarkOperationManager(BaseOperationManager):
                         yamllint_passed_without_iteration += 1
                         print(f"yamllint_passed_without_iteration increased to {yamllint_passed_without_iteration}")
                         if errors_ansiblelint == 0:
-                            logger.info("ansiblelint also passed at first attempt")
                             yamllint_passed_at_first_attempt += 1
                             print(f"yamllint_passed_at_first_attempt increased to {yamllint_passed_at_first_attempt}")
 
@@ -598,11 +597,12 @@ class BenchmarkOperationManager(BaseOperationManager):
                     if not status_flag_yamllint:
                         logger.error("Yamllint failed, exiting while loop")
                         print(f"\nGeneration of playbook '{yaml_path}' failed at stage 'yamllint'")
+                        logger.error(f"Generation of playbook '{yaml_path}' failed at stage 'ansiblelint'")
+
                         if(errors_ansiblelint>0):
-                            logger.error(f"Generation of playbook '{yaml_path}' failed at stage 'ansiblelint'")
                             print(f"Note: {errors_ansiblelint} ansible-lint iterations were done before!")
                             failed_at_stage_ansiblelint.append(yaml_path)
-                            logger.error(f"added {yaml_path} to failed_at_stage_ansiblelint list")
+                            logger.error(f"Note: {errors_ansiblelint} ansible-lint iterations were done before!")
 #                        elif(errors_syntax>0):
 #                            print(f"Note: {errors_syntax} syntax-check iterations were done before!")
 #                            failed_at_stage_syntax.append(yaml_path)
@@ -677,7 +677,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                         logger.info(f"Wrote cleaned output to YAML file: {yaml_path}")
                         logger.info("Continuing while loop for next ansiblelint iteration")
                         continue
-                    if errors_ansiblelint == 1:
+                    if errors_ansiblelint < 1:
                         ansiblelint_passed_at_first_attempt += 1
                         logger.info(f"Ansiblelint passed at first attempt, total so far: {ansiblelint_passed_at_first_attempt}")
                         print(f"ansiblelint_passed_at_first_attempt increased to {ansiblelint_passed_at_first_attempt}")
