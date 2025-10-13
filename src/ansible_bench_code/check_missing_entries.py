@@ -80,7 +80,7 @@ def get_unprocessed_files(prompt_files: list[str], processed_files: list[str]) -
 def create_missing_dataset(unprocessed_files: list[str], dataset_name: str, model_name: str, prompt_model: str):
     config = load_config()
     prompt_dir = Path(config.dataset_dir) / "prompts" / f"ollama_{prompt_model}_english_exact" / dataset_name
-    output_dir = Path(config.dataset_dir) / "prompts" / f"{model_name}_{prompt_model}_{dataset_name}_missing_files_prompts"
+    output_dir = Path(config.dataset_dir) / "prompts" / f"ollama_{prompt_model}_to_{model_name}_{dataset_name}_missing_files_prompts"
     output_dir.mkdir(parents=True, exist_ok=True)
 
     print(f"\nPrompt Directory: {prompt_dir}")
@@ -113,9 +113,9 @@ def create_missing_dataset(unprocessed_files: list[str], dataset_name: str, mode
 
 if __name__ == "__main__":
     # Configuration
-    model = "gpt-oss:20b"
-    prompt_model = "qwen2.5:14b"
-    create_missing_dataset_flag = False
+    model = "gemma3:27b" 
+    prompt_model = "gemma3:27b"
+    create_missing_dataset_flag = True
     dataset_name = "benchmark100"
 
     processed_files_path = f"ollama_{model}_english_exact/benchmark100/prompts_{prompt_model}"
