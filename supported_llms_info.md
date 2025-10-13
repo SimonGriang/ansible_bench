@@ -5,7 +5,15 @@ This Repository, more precise, some of the code in this Repository is based on t
 Given this code basis, I started to restructure the project and tailoring it to my demands.
 
 ## Supported Models
-This work focuses on locally executable open-source models available through Ollama. The tool currently supports a selected set of models from major AI companies, which are listed in the table below. The results presented in this work are based on these models. Depending on future requirements, the set can be extended with additional models available through Ollama or llamafile.
+This work focuses on locally executable open-source language models available through Ollama. The tool currently supports a curated selection of models from major AI developers, as listed in the table below. The evaluation and results presented in this study are based on these models. Depending on future requirements, the selection can be extended with additional models provided via Ollama or llamafile.
+
+A key selection criterion was that each model must be executable under the following hardware constraints:
+
+RAM: minimum 32 GB
+
+VRAM: 20 GB
+
+Because large context windows lead to substantial VRAM usage, primarily due to the self-attention mechanism, smaller models must be preferred to ensure stable execution within these limits.
 
 | Company       | Selected Model |  Size | #Parameters | Context Window | Quantization |
 | ------------- | -------------- |  ---- | ----------- | -------------- | ------------ |
@@ -18,7 +26,7 @@ This work focuses on locally executable open-source models available through Oll
 | **Mistral**   |[codestral:22b](https://ollama.com/library/codestral:22b) | 13GB | 22b | 32k | Q4_0 |
 | **OpenAI**    |[gpt-oss:20b](https://ollama.com/library/gpt-oss:20b) | 14GB | 20b | 128k | MXFP4 |
 
-From the selected models, 56 possible model constellations arise with respect to prompt generation and Ansible-YAML generation.
+From the selected models, 64 possible model constellations arise with respect to prompt generation and Ansible-YAML generation.
 
 | Benchmark → / Prompt ↓ | **qwen2.5:14b** (Alibaba) | **deepseek-r1:14b** (Deepseek) | **gemma3:27b** (Google) | **granite-code:20b** (IBM) | **llama3.1:8b** (Meta) | **phi4:14b** (Microsoft) |  **codestral:22b** (Mistral) | **gpt-oss:20b** (OpenAI) |
 |---------------|---------|-----------|----------|--------|------|-----------|---------|--------|
