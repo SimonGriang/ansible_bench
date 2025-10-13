@@ -13,7 +13,7 @@ TOTAL entries       : 52
 ====== Detailed Entries ======
 
 YAMLLINT Statistics: 
-Total yamllint runs: 269
+Total yamllint runs: 267
 Yamllint passed without iteration: 2
 Yamllint passed at first attempt: 2
 Failed at stage 'yamllint': 
@@ -62,7 +62,7 @@ yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_code
 yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_codestral:22b_english_exact/benchmark100/prompts_granite-code:20b/molecule_test/ansible-role-users/tasks/main.yml
 
 ANSIBLELINT Statistics: 
-Total ansiblelint runs: 10
+Total ansiblelint runs: 9
 Ansiblelint passed at first attempt: 3
 Failed at stage 'ansiblelint':
 ansiblelint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_codestral:22b_english_exact/benchmark100/prompts_granite-code:20b/molecule_test/ansible-role-service/tasks/main.yml

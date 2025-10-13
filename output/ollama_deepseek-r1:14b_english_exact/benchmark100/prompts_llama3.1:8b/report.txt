@@ -1,0 +1,49 @@
+====== Run Summary ======
+Start time : 2025-10-13 10:18:50.382625
+End time   : 2025-10-13 10:39:43.632221
+Duration   : 0:20:53.249596
+
+====== Stage Counts ======
+yamllint failures   : 7
+ansiblelint failures: 1
+molecule failures   : 1
+all passed          : 0
+TOTAL entries       : 9
+
+====== Detailed Entries ======
+
+YAMLLINT Statistics: 
+Total yamllint runs: 51
+Yamllint passed without iteration: 4
+Yamllint passed at first attempt: 2
+Failed at stage 'yamllint': 
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_llama3.1:8b/molecule_test/ansible-role-cadvisor/tasks/main.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_llama3.1:8b/molecule_test/ansible-role-vsftpd/tasks/main.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_llama3.1:8b/molecule_test/ansible-role-epel-buluma/tasks/main.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_llama3.1:8b/molecule_test/ansible-role-vault/tasks/binary.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_llama3.1:8b/molecule_test/ansible-role-vault/tasks/package.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_llama3.1:8b/molecule_test/ansible-role-vault/tasks/main.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_llama3.1:8b/molecule_test/ansible-role-dns/tasks/main.yml
+
+ANSIBLELINT Statistics: 
+Total ansiblelint runs: 6
+Ansiblelint passed at first attempt: 0
+Failed at stage 'ansiblelint':
+ansiblelint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_llama3.1:8b/molecule_test/ansible-role-docker_compose/tasks/main.yml
+
+MOLECULE Statistics: 
+failed at stage 'molecule-test':
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_llama3.1:8b/molecule_test/ansible-role-vault/tasks/hardening.yml
+
+Successfully passed all stages:
+
+====== All run roles ======
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_llama3.1:8b/molecule_test/ansible-role-cadvisor/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_llama3.1:8b/molecule_test/ansible-role-vsftpd/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_llama3.1:8b/molecule_test/ansible-role-epel-buluma/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_llama3.1:8b/molecule_test/ansible-role-vault/tasks/binary.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_llama3.1:8b/molecule_test/ansible-role-vault/tasks/package.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_llama3.1:8b/molecule_test/ansible-role-vault/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_llama3.1:8b/molecule_test/ansible-role-dns/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_llama3.1:8b/molecule_test/ansible-role-docker_compose/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_deepseek-r1:14b_english_exact/benchmark100/prompts_llama3.1:8b/molecule_test/ansible-role-vault/tasks/hardening.yml
