@@ -33,8 +33,8 @@ From the selected models, 64 possible model constellations arise with respect to
 | **qwen2.5:14b** (Alibaba)   |    (✓)   |    (✓)    |    (✓)    |   (✓)   |  (✓)  |     (✓)    |    (✓)   |   (✓)   |
 | **deepseek-r1:14b** (Deepseek) |    (✓)    |     (✓)    |    (✓)    |   (✓)   |  (✓)  |     (✓)    |    (✓)   |   (✓)   |
 | **gemma3:27b** (Google) |    ✓    |     ✓     |    ✓     |   ✓    |  ✓   |     ✓     |    ✓    |   ✓    |
-| **granite-code:20b** (IBM)|    ✓    |     ✓     |    ✓     |   ✓    |  ✓   |     ✓     |    Running    |   ✓    |
-| **llama3.1:8b** (Meta)|    Running    |     Running     |    Running     |   Running    |  Running   |     Running     |    Running    |   Running    |
+| **granite-code:20b** (IBM)|    ✓    |     ✓     |    ✓     |   ✓    |  ✓   |     ✓     |    ✓    |   ✓    |
+| **llama3.1:8b** (Meta)|    ✓    |     Running     |    Running     |   Running    |  Running   |     Running     |    Running    |   Running    |
 | **phi4:14b** (Microsoft)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
 | **codestral:22b** (Mistral)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
 | **gpt-oss:20b** (OpenAI)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
