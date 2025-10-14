@@ -2,21 +2,21 @@
 # tasks file for testing that variables of ansible-role jonaspammer.bootstrap are set correctly
 # https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html
 
-- name: test if 'bootstrap_user' is set correctly
+- name: Test if 'bootstrap_user' is set correctly
   ansible.builtin.assert:
     that:
       - bootstrap_user is defined
       - bootstrap_user is string
     quiet: true
 
-- name: test if 'bootstrap_wait_for_host' is set correctly
+- name: Test if 'bootstrap_wait_for_host' is set correctly
   ansible.builtin.assert:
     that:
       - bootstrap_wait_for_host is defined
       - bootstrap_wait_for_host is boolean
     quiet: true
 
-- name: test if 'bootstrap_timeout' is set correctly
+- name: Test if 'bootstrap_timeout' is set correctly
   ansible.builtin.assert:
     that:
       - bootstrap_timeout is defined
