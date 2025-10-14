@@ -27,6 +27,29 @@ Thesis (only changes to be made):
 - [ ] Workflowkapitel: Wie wird vorgegangen und was ist das Ziel (Unterschiede zwischen den verschiedenen CM-Tools aufzeigen und anschließend auf ein Tool festlegen, für welches die Skriptgenerierung betrachtet wird.)
 - [ ] Vergleichskriterien klarer darstellen (Auflistung oder Tabelle, wird zwar später ersichtlich aber muss auf ersten Blick in Kapitel 3.1 ersichtlich sein.)
 - [ ] ggf. Konfigurationsmanagement noch klarer darstellen in Kapitel 2
+- [ ] Forschungsfragen und Unterforschungsfragen zu Beginn eines Jeden Teils stellen
+    - [ ] FF1 vor Vergleichskriterien
+    - [ ] Unterforschungsfragen
+        - [ ] Wo liegen die technischen zwischen den verschiednene CM-Tools
+        - [ ] Wie unterscheidet sich die Nutzung der unterschiedlichen CM-Tools, also welche sind mehr oder weniger verbreitet?
+        - [ ] Welche Stärken und Schwächen haben die verschiedenen CM-Tools?
+    - [ ] Am Ende des ersten Parts nach Tabelle 3.2 beantwortung der Fragen. Oder in Kapitel 3.4
+    - [ ] FF2 vor Überblick über den Ansible-Benchmark
+        - [ ] Unterforschungsfragen
+            - [ ] Wie kann die Semantik von generiertem Code geprüft werden?
+            - [ ] Wie kann die Syntaktik von generiertem Code geprüft werden?
+    - [ ] evtl. FF3 "Wie gut können leichtgewichtige Sprachmodelle (LLMs) syntaktisch und semantisch korrektes Ansible-YAML auf Basis eines neu entwickelten Benchmarks generieren?"
+        - [ ] Subforschungsfragen:
+            - [ ] In welchem Maß erreichen leichtgewichtige LLMs syntaktische Korrektheit im Vergleich zu großen Modellen?
+            - [ ] In welchem Maß erreichen leichtgewichtige LLMs semantische Korrektheit im Vergleich zu großen Modellen?  
+            - [ ] Wie gut schneiden LLMs bei bei Generierung basierend auf deutscher Sprache ab?
+    - [ ] evtl. FF4 "Welche Optimierungsmethoden existieren für um die Fähigkeit Ansible-YAML zu verbessern existieren?"
+    - [ ] Subforschungsfragen:
+        - [ ] Andere Pompts? (Detaillierungsgrad)
+        - [ ] Andere Temperature?
+        - [ ] Mehr/Weniger Ansiblelint/Yamllint iterationen?
+        - [ ] LLM-as-a-Judge bei der Promptgenerierung/YAML-Generierung?
+        - [ ] Kein Fine-Tuning/RAG da ja bereits in anderen Arbeiten beleuchtet (Pujar, Lightspeed, DocCGen, Darnell)
 
 ## Weiteres
 - [ ] Da ich einen Teil von Veras Code verwende sollte ich eine Referenz dazu angeben.
