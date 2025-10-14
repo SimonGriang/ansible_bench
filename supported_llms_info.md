@@ -34,8 +34,8 @@ From the selected models, 64 possible model constellations arise with respect to
 | **deepseek-r1:14b** (Deepseek) |    (✓)    |     (✓)    |    (✓)    |   (✓)   |  (✓)  |     (✓)    |    (✓)   |   (✓)   |
 | **gemma3:27b** (Google) |    ✓    |     ✓     |    ✓     |   ✓    |  ✓   |     ✓     |    ✓    |   ✓    |
 | **granite-code:20b** (IBM)|    ✓    |     ✓     |    ✓     |   ✓    |  ✓   |     ✓     |    ✓    |   ✓    |
-| **llama3.1:8b** (Meta)|    ✓    |     ✓     |    ✓     |   ✓    |  ✓   |     ✓     |    ✓    |   Running    |
-| **phi4:14b** (Microsoft)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
+| **llama3.1:8b** (Meta)|    ✓    |     ✓     |    ✓     |   ✓    |  ✓   |     ✓     |    ✓    |   ✓    |
+| **phi4:14b** (Microsoft)|    ✓    |     Running     |    Running     |   Running    |  Running   |     Running     |    Running    |   Running    |
 | **codestral:22b** (Mistral)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
 | **gpt-oss:20b** (OpenAI)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
 

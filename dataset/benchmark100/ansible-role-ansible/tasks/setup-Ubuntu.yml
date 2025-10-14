@@ -1,15 +1,15 @@
 ---
 - name: Ensure dirmngr is installed (gnupg dependency).
-  apt:
+  ansible.builtin.apt:
     name: dirmngr
     state: present
 
 - name: Add ansible repository.
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: 'ppa:ansible/ansible'
     update_cache: true
 
 - name: Install Ansible.
-  apt:
+  ansible.builtin.apt:
     name: ansible
     state: "{{ ansible_package_state }}"
