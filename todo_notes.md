@@ -53,6 +53,7 @@ Thesis (only changes to be made):
 
 ## Weiteres
 - [ ] Da ich einen Teil von Veras Code verwende sollte ich eine Referenz dazu angeben.
+- [ ] Used max_iterations_yamllint = 5 and max_iterations_ansiblelint = 4 in benchmark runs!
 
 ## Notes
 ```bash

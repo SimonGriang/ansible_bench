@@ -545,7 +545,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                 logger.info(f"setting max iterations for yamllint to {max_iterations_yamllint}")
 
 #                max_iterations_syntax = 5
-                max_iterations_ansiblelint = 5
+                max_iterations_ansiblelint = 4
                 logger.info(f"setting max iterations for ansiblelint to {max_iterations_ansiblelint}")
 #                errors_syntax = 0
                 logger.info("setting up error counters")
@@ -659,7 +659,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                         logger.info(f"Ansiblelint failed at iteration {errors_ansiblelint} with message: {ansiblelint_check[1]}")
                         logger.info(f"Ansiblelint runs so far: {ansiblelint_runs}")
                         logger.info(f"Ansiblelint errors so far: {errors_ansiblelint}")
-                        if errors_ansiblelint >= max_iterations_ansiblelint:
+                        if errors_ansiblelint > max_iterations_ansiblelint:
                             logger.info(f"Ansiblelint did not pass after {max_iterations_ansiblelint} iterations, breaking loop.")
                             print(f"Error: Generated Ansible-YAML did not pass quality gate 'ansiblelint' after defined maximum of {max_iterations_ansiblelint} iterations!")
                             print(f"\nGeneration of playbook '{yaml_path}' failed at stage 'ansiblelint'")
