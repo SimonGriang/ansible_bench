@@ -113,8 +113,8 @@ def create_missing_dataset(unprocessed_files: list[str], dataset_name: str, mode
 
 if __name__ == "__main__":
     # Configuration
-    model = "gemma3:27b" 
-    prompt_model = "gemma3:27b"
+    model = "gpt-oss:20b" 
+    prompt_model = "phi4:14b"
     create_missing_dataset_flag = True
     dataset_name = "benchmark100"
 

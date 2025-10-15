@@ -41,7 +41,7 @@ From the selected models, 64 possible model constellations arise with respect to
 
 **✓** = combination run  <br>
 **(✓)** = ran but with wrong passed_ansiblelint_at_first_iteration and 8000 tokens for all models  <br>
-**✓\*** = run without modified ansible-role-ansible, ansible-role-bootstrap-JonasPammer and ansible-role-docker, ansiblelint was not passable for these yaml files  --> run these roles again for all models (takes only few hours) 
+**✓\*** = run without modified ansible-role-ansible, ansible-role-bootstrap-JonasPammer and ansible-role-docker, ansiblelint was not passable for these yaml files  --> run these roles again for all models (takes only few hours)  <br>
 **–** = combination did not run yet  <br>
 
 ## Configuration Files
