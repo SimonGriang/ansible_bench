@@ -9,6 +9,7 @@ from typing import Tuple
 from dotenv import load_dotenv
 import time
 import argparse
+from ollama import ResponseError
 from tqdm import tqdm
 from pathlib import Path
 from quality_assurance import check_yamllint, check_playbook_syntax, check_ansible_lint, check_molecule
@@ -456,13 +457,19 @@ class BenchmarkOperationManager(BaseOperationManager):
         failed_at_stage_molecule_test = []
         passed_all_stages = []
         failed_initial_molecule_test = []
+        failed_with_exception = []
         yamllint_runs = 0
         yamllint_passed_without_iteration = 0
         yamllint_passed_at_first_attempt = 0
         ansiblelint_runs = 0
         ansiblelint_passed_at_first_attempt = 0
 
-        for f in tqdm(self.prompt_files):  
+        for f in tqdm(self.prompt_files):
+            f_yamllint_runs = 0
+            f_yamllint_passed_without_iteration = 0
+            f_yamllint_passed_at_first_attempt = 0
+            f_ansiblelint_runs = 0
+            f_ansiblelint_passed_at_first_attempt = 0
             logger.info(f"Processing prompt file: {f}") 
             self.reports(start_time, 
                         failed_initial_molecule_test,
@@ -476,7 +483,8 @@ class BenchmarkOperationManager(BaseOperationManager):
                         yamllint_passed_without_iteration,
                         yamllint_passed_at_first_attempt,
                         ansiblelint_runs,
-                        ansiblelint_passed_at_first_attempt)
+                        ansiblelint_passed_at_first_attempt,
+                        failed_with_exception)
             logger.info("Intermediate report generated.")
             prompt_file = self.prompt_dir / f
             if not prompt_file.name.endswith("_prompt.txt"):
@@ -553,6 +561,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                         print(f"________________________________________Yamllint Run: {i}________________________________________\n")
                         yamllint_check_results: Tuple[bool, str] = check_yamllint(yaml_path)
                         yamllint_runs += 1
+                        f_yamllint_runs += 1
                         if yamllint_check_results[0]:
                             logger.info(f"Yamllint passed at iteration {i}")
                             status_flag_yamllint=True
@@ -587,9 +596,11 @@ class BenchmarkOperationManager(BaseOperationManager):
                     if i < 2:
                         logger.info("Yamllint passed without iteration")
                         yamllint_passed_without_iteration += 1
+                        f_yamllint_passed_without_iteration += 1
                         print(f"yamllint_passed_without_iteration increased to {yamllint_passed_without_iteration}")
                         if errors_ansiblelint == 0:
                             yamllint_passed_at_first_attempt += 1
+                            f_yamllint_passed_at_first_attempt += 1
                             print(f"yamllint_passed_at_first_attempt increased to {yamllint_passed_at_first_attempt}")
 
 
@@ -642,6 +653,7 @@ class BenchmarkOperationManager(BaseOperationManager):
 
                     ansiblelint_check: Tuple[bool, str] = check_ansible_lint(yaml_path)
                     ansiblelint_runs += 1
+                    f_ansiblelint_runs += 1
                     if not ansiblelint_check[0]:
                         errors_ansiblelint += 1
                         logger.info(f"Ansiblelint failed at iteration {errors_ansiblelint} with message: {ansiblelint_check[1]}")
@@ -679,6 +691,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                         continue
                     if errors_ansiblelint < 1:
                         ansiblelint_passed_at_first_attempt += 1
+                        f_ansiblelint_passed_at_first_attempt += 1
                         logger.info(f"Ansiblelint passed at first attempt, total so far: {ansiblelint_passed_at_first_attempt}")
                         print(f"ansiblelint_passed_at_first_attempt increased to {ansiblelint_passed_at_first_attempt}")
                     print("################################# Quality Gate 'ansiblelint' passed! ################################")
@@ -702,6 +715,20 @@ class BenchmarkOperationManager(BaseOperationManager):
                 logger.error(f"Exception occurred: {e}")
                 print(e)
                 continue
+            except (ResponseError, Exception) as e:
+                logger.error(f"LLM Exception occurred: {e}")
+                print(f"LLM Exception: {e}")
+                failed_with_exception.append(yaml_path)
+                # correct stats:
+                yamllint_rungs -= f_yamllint_runs
+                yamllint_passed_without_iteration -= f_yamllint_passed_without_iteration
+                yamllint_passed_at_first_attempt -= f_yamllint_passed_at_first_attempt
+                ansiblelint_runs -= f_ansiblelint_runs
+                ansiblelint_passed_at_first_attempt -= f_ansiblelint_passed_at_first_attempt
+                logger.info("Corrected statistics after exception")
+                print(f"{yaml_path} was added to failed_with_exception list")
+                logger.info(f"added {yaml_path} to failed_with_exception list")
+                continue
             if tmp_copy.exists():  
                 logger.info(f"Restoring original YAML file from temporary location {tmp_copy} to {yaml_path}")
                 shutil.copy2(tmp_copy, yaml_path) 
@@ -720,7 +747,8 @@ class BenchmarkOperationManager(BaseOperationManager):
                      yamllint_passed_without_iteration,
                      yamllint_passed_at_first_attempt,
                      ansiblelint_runs,
-                     ansiblelint_passed_at_first_attempt)
+                     ansiblelint_passed_at_first_attempt,
+                     failed_with_exception)
 
 
     def reports(
@@ -738,6 +766,7 @@ class BenchmarkOperationManager(BaseOperationManager):
         yamllint_passed_at_first_attempt,
         ansiblelint_runs,
         ansiblelint_passed_at_first_attempt,
+        failed_with_exception=[],
     ) -> None:
         """
         Creates a report file with start/end time, duration, stage counts,
@@ -759,6 +788,8 @@ class BenchmarkOperationManager(BaseOperationManager):
             f.write("====== Stage Counts ======\n")
             if len(failed_initial_molecule_test) > 0:
                 f.write(f"Initial molecule failures: {len(failed_initial_molecule_test)}\n")
+            if len(failed_with_exception) > 0:
+                f.write(f"Failed with exception   : {len(failed_with_exception)}\n")
             f.write(f"yamllint failures   : {len(failed_at_stage_yamllint)}\n")
 #            f.write(f"syntax failures     : {len(failed_at_stage_syntax)}\n")
             f.write(f"ansiblelint failures: {len(failed_at_stage_ansiblelint)}\n")
@@ -781,6 +812,11 @@ class BenchmarkOperationManager(BaseOperationManager):
                 f.write(f"Initial molecule failures: {len(failed_initial_molecule_test)}\n")
                 for entry in failed_initial_molecule_test:
                     f.write(f"Initial molecule failed: {entry}\n")
+            if len(failed_with_exception) > 0:
+                f.write("\nFailed with Exception Statistics: \n")
+                f.write(f"Failed with exception   : {len(failed_with_exception)}\n")
+                for entry in failed_with_exception:
+                    f.write(f"Failed with exception: {entry}\n")
             f.write("\nYAMLLINT Statistics: \n")
             f.write(f"Total yamllint runs: {yamllint_runs}\n")
             f.write(f"Yamllint passed without iteration: {yamllint_passed_without_iteration}\n")
