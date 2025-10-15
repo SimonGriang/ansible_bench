@@ -1,0 +1,69 @@
+====== Run Summary ======
+Start time : 2025-10-15 03:31:26.570300
+End time   : 2025-10-15 04:37:24.586819
+Duration   : 1:05:58.016519
+
+====== Stage Counts ======
+yamllint failures   : 2
+ansiblelint failures: 0
+molecule failures   : 12
+all passed          : 5
+TOTAL entries       : 19
+
+====== Detailed Entries ======
+
+YAMLLINT Statistics: 
+Total yamllint runs: 71
+Yamllint passed without iteration: 22
+Yamllint passed at first attempt: 5
+Failed at stage 'yamllint': 
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-vsftpd/tasks/main.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-docker/tasks/main.yml
+
+ANSIBLELINT Statistics: 
+Total ansiblelint runs: 36
+Ansiblelint passed at first attempt: 1
+Failed at stage 'ansiblelint':
+
+MOLECULE Statistics: 
+failed at stage 'molecule-test':
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-docker_compose/tasks/main.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-cadvisor/tasks/main.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-vault/tasks/hardening.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-vault/tasks/package.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-vault/tasks/main.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-dns/tasks/main.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-grub/tasks/main.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-grub/tasks/password.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-bootstrap-buluma/tasks/main.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-bootstrap-buluma/tasks/gather_facts.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-docker/tasks/setup-RedHat.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-selinux/tasks/main.yml
+
+Successfully passed all stages:
+passed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-epel-buluma/tasks/main.yml
+passed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-service/tasks/main.yml
+passed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-docker/tasks/setup-Debian.yml
+passed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-docker/tasks/docker-compose.yml
+passed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-docker/tasks/docker-users.yml
+
+====== All run roles ======
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-vsftpd/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-docker/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-docker_compose/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-cadvisor/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-vault/tasks/hardening.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-vault/tasks/package.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-vault/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-dns/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-grub/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-grub/tasks/password.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-bootstrap-buluma/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-bootstrap-buluma/tasks/gather_facts.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-docker/tasks/setup-RedHat.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-selinux/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-epel-buluma/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-service/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-docker/tasks/setup-Debian.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-docker/tasks/docker-compose.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-docker/tasks/docker-users.yml
