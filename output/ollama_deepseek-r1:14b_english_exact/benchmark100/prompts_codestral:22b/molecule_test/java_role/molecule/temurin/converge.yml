@@ -1,6 +1,0 @@
----
-
-- name: Converge
-  hosts: openjdk
-  roles:
-    - idealista.java_role

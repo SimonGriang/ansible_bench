@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install dependecies to support the Ansible core modules.
-  homepage: https://buluma.github.io/
-  topics: coredependencies, system, ansible, molecule, tox, playbook

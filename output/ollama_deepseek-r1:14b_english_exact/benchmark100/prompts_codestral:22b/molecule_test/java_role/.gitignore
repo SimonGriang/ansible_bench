@@ -1,7 +1,0 @@
-.molecule
-.cache
-.python-version
-.project
-**/*.retry
-
-/dockerhub/Dockerfile
