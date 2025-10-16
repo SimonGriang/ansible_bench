@@ -1,9 +1,0 @@
----
-
-- name: assert | Test apt_autostart_state
-  ansible.builtin.assert:
-    that:
-      - apt_autostart_state is defined
-      - apt_autostart_state is string
-      - apt_autostart_state in [ "disabled", "enabled" ]
-    quiet: true
