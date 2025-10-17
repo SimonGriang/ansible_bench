@@ -7,6 +7,8 @@ Code:
 - [ ] add max_iterations parameter
 - [ ] add LLM-as-a-Judge to Prompt Generation
 - [ ] add molecule testing pipeline to ensure all untouched roles have working molecule tests before benchmark runs --> otherwise stop benchmark
+- [ ] include check_missing_entries into ansible_generator
+- [ ] include Score-Calculation into ansible_generator report creation
 - [ ] Check if RAM memory can be reduced
 
 Model Evaluation:

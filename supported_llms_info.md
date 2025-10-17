@@ -36,8 +36,8 @@ From the selected models, 64 possible model constellations arise with respect to
 | **granite-code:20b** (IBM)|    ✓\*    |     ✓\*     |    ✓\*     |   ✓\*    |  ✓\*   |     ✓\*     |    ✓\*    |   ✓\*    |
 | **llama3.1:8b** (Meta)|    ✓\*    |     ✓\*     |    ✓\*     |   ✓\*    |  ✓\*   |     ✓\*     |    ✓\*    |   ✓\*    |
 | **phi4:14b** (Microsoft)|    ✓\*    |     ✓     |    ✓     |   ✓    |  ✓   |     ✓     |    ✓    |   ✓    |
-| **codestral:22b** (Mistral)|    ✓    |     ✓     |    –     |   –    |  –   |     –     |    –    |   –    |
-| **gpt-oss:20b** (OpenAI)|    –    |     –     |    –     |   –    |  –   |     –     |    –    |   –    |
+| **codestral:22b** (Mistral)|    ✓    |     ✓     |    ✓     |   ✓    |  ✓   |     ✓     |    ✓    |   ✓    |
+| **gpt-oss:20b** (OpenAI)|    ✓    |     ✓     |    -     |   ✓    |  ✓   |     –     |    –    |   –    |
 
 **✓** = combination run  <br>
 **(✓)** = ran but with wrong passed_ansiblelint_at_first_iteration and 8000 tokens for all models  <br>
