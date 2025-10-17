@@ -720,7 +720,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                 print(f"LLM Exception: {e}")
                 failed_with_exception.append(yaml_path)
                 # correct stats:
-                yamllint_rungs -= f_yamllint_runs
+                yamllint_runs -= f_yamllint_runs
                 yamllint_passed_without_iteration -= f_yamllint_passed_without_iteration
                 yamllint_passed_at_first_attempt -= f_yamllint_passed_at_first_attempt
                 ansiblelint_runs -= f_ansiblelint_runs
