@@ -34,7 +34,7 @@ def scan_tasks(file_extension, directory):
 def load_processed_files(path):
     config = load_config()
     processed_dir = Path(config.output_dir) / path
-    report_path = Path(processed_dir) / "report.txt"
+    report_path = Path(processed_dir) / "report_1.txt"
     if not report_path.exists():
         raise FileNotFoundError(f"File not found: {report_path}")
 
@@ -113,8 +113,8 @@ def create_missing_dataset(unprocessed_files: list[str], dataset_name: str, mode
 
 if __name__ == "__main__":
     # Configuration
-    model = "gpt-oss:20b" 
-    prompt_model = "phi4:14b"
+    model = "gemma3:27b" 
+    prompt_model = "gpt-oss:20b"
     create_missing_dataset_flag = True
     dataset_name = "benchmark100"
 
