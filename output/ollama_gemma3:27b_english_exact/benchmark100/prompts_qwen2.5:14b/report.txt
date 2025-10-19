@@ -4,22 +4,16 @@ End time   : 2025-10-18 18:49:54.515945
 Duration   : 4:42:37.390335
 
 ====== Stage Counts ======
-Failed with exception   : 1
 yamllint failures   : 57
 ansiblelint failures: 9
-molecule failures   : 25
+molecule failures   : 26
 all passed          : 8
-TOTAL entries       : 99
+TOTAL entries       : 100
 
 ====== Detailed Entries ======
-
-Failed with Exception Statistics: 
-Failed with exception   : 1
-Failed with exception: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml
-
 YAMLLINT Statistics: 
-Total yamllint runs: 444
-Yamllint passed without iteration: 99
+Total yamllint runs: 447
+Yamllint passed without iteration: 102
 Yamllint passed at first attempt: 26
 Failed at stage 'yamllint': 
 yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-docker_compose/tasks/main.yml
@@ -81,7 +75,7 @@ yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemm
 yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-selinux-robertdebock/tasks/main.yml
 
 ANSIBLELINT Statistics: 
-Total ansiblelint runs: 120
+Total ansiblelint runs: 124
 Ansiblelint passed at first attempt: 0
 Failed at stage 'ansiblelint':
 ansiblelint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/hardening.yml
@@ -121,6 +115,7 @@ molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemm
 molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-nginx/tasks/main.yml
 molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-ansible/tasks/main.yml
 molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-fail2ban/tasks/main.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml
 
 Successfully passed all stages:
 passed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-docker/tasks/docker-users.yml
@@ -232,3 +227,4 @@ passed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_en
 /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-ansible/tasks/setup-RedHat.yml
 /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-ansible/tasks/setup-pip.yml
 /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-ansible/tasks/setup-Fedora.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml
