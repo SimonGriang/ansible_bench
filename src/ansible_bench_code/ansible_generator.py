@@ -666,7 +666,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                             failed_at_stage_ansiblelint.append(yaml_path)
                             logger.info(f"added {yaml_path} to failed_at_stage_ansiblelint list")
                             break
-                        print(f"{errors_ansiblelint+1}. Iteration: Generated Ansible-YAML did not pass quality gate 'ansiblelint'")
+                        print(f"{errors_ansiblelint}. Iteration: Generated Ansible-YAML did not pass quality gate 'ansiblelint'")
                         logger.info("Creating recursive prompt for ansiblelint")
                         template, p_str, recursive_str, error_str, error_msg = self.create_recursive_prompt_validate_context(prompt_str, cleaned_outputs, ansiblelint_check[1], "recursive_ansiblelint")
                         if error_msg:

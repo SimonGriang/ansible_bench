@@ -8,9 +8,16 @@
             "name": "Python Debugger: Current File with Arguments",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/src/ansible_bench_code/extract_kpi.py",
+            "program": "${workspaceFolder}/src/ansible_bench_code/ansible_generator.py",
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}/src/ansible_bench_code",
+            "args": [                
+                "-m", "qwen2.5:32b",
+                "-e", "ollama", "benchmark",
+                "-d", "benchmark100",
+                "-tt", "exact",
+                "-p", "prompts/ollama_qwen2.5:32b_english_exact/benchmark100"
+            ]
         }
     ]
 }

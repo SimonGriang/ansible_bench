@@ -17,10 +17,6 @@ Total yamllint runs: 443
 Yamllint passed without iteration: 145
 Yamllint passed at first attempt: 39
 Failed at stage 'yamllint': 
-yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_granite-code:20b_english_exact/benchmark100/prompts_gemma3:27b/molecule_test/ansible-role-epel/tasks/main.yml
-yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_granite-code:20b_english_exact/benchmark100/prompts_gemma3:27b/molecule_test/ansible-role-selinux-robertdebock/tasks/main.yml
-yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_granite-code:20b_english_exact/benchmark100/prompts_gemma3:27b/molecule_test/ansible-role-java/tasks/main.yml
-yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_granite-code:20b_english_exact/benchmark100/prompts_gemma3:27b/molecule_test/ansible-role-hashicorp/tasks/main.yml
 yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_granite-code:20b_english_exact/benchmark100/prompts_gemma3:27b/molecule_test/ansible-role-epel-buluma/tasks/main.yml
 yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_granite-code:20b_english_exact/benchmark100/prompts_gemma3:27b/molecule_test/ansible-role-vault/tasks/binary.yml
 yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_granite-code:20b_english_exact/benchmark100/prompts_gemma3:27b/molecule_test/ansible-role-vault/tasks/hardening.yml
@@ -70,6 +66,10 @@ yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gran
 yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_granite-code:20b_english_exact/benchmark100/prompts_gemma3:27b/molecule_test/ansible-role-ansible/tasks/setup-Ubuntu.yml
 yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_granite-code:20b_english_exact/benchmark100/prompts_gemma3:27b/molecule_test/ansible-role-ansible/tasks/main.yml
 yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_granite-code:20b_english_exact/benchmark100/prompts_gemma3:27b/molecule_test/ansible-role-fail2ban/tasks/main.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_granite-code:20b_english_exact/benchmark100/prompts_gemma3:27b/molecule_test/ansible-role-hashicorp/tasks/main.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_granite-code:20b_english_exact/benchmark100/prompts_gemma3:27b/molecule_test/ansible-role-java/tasks/main.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_granite-code:20b_english_exact/benchmark100/prompts_gemma3:27b/molecule_test/ansible-role-selinux-robertdebock/tasks/main.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_granite-code:20b_english_exact/benchmark100/prompts_gemma3:27b/molecule_test/ansible-role-epel/tasks/main.yml
 
 ANSIBLELINT Statistics: 
 Total ansiblelint runs: 159
