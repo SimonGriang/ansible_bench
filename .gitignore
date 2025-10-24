@@ -165,3 +165,7 @@ cython_debug/
 # Log files
 ansible_bench.log
 auto_run.log
+
+# testfiles
+test_report/
+tests/

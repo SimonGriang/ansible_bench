@@ -12,8 +12,13 @@ Code:
 - [ ] Check if RAM memory can be reduced
 
 Model Evaluation:
-- [ ] Create score, e.g. yamllint_passed --> +1, yamllint_passed_without_iteration --> +2, ... sum up, average score or percentage of max points
-- [ ] run all combinations to prove prompt quality
+- [ X ] Create score, e.g. yamllint_passed --> +1, yamllint_passed_without_iteration --> +2, ... sum up, average score or percentage of max points
+- [ X ] run all combinations to prove prompt quality
+- [ ] EDA for 
+    - [ ] file sizes (Korrelation, size-score (yaml, ansible, bench))
+    - [ ] references in yamlfils (yes/no) (Korrelation, refs-score (yaml, ansible, bench))
+    - [ ] Ggf. durchschnittliche Generierungsfähigkeit über alle Prompt-Modelle hinweg
+    - [ ] Datensatz-Dateien in 
 - [ ] figure out best model combination Prompts/Generation and try serveral different changes in
     - [ ] Temperature (higher temperature --> better/worse?, lower temperature --> better/worse?) (2 more runs)
     - [ ] max_iterations (does it improve results to do more iterations? Do I get worse results with less iterations?) (2 more runs)
