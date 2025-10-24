@@ -1,7 +1,49 @@
 from collections import defaultdict
+import csv
 import os
 import re
 from typing import Dict
+from utils.config import Config, load_config
+
+
+def load_in_files():
+    config = load_config()
+    input_dir = config.dataset_dir / "benchmark100"
+    print("\nInput_Directory:", input_dir, "\n")
+
+    # finde alle relevanten YAML-Dateien
+    in_files = scan_tasks(('.yml', '.yaml'), input_dir)
+
+    # ignoriere assert.yml / assert.yaml
+    in_files = [
+        f for f in in_files
+        if os.path.basename(f) not in ("assert.yml", "assert.yaml")
+    ]
+
+    file_info = {}
+
+    print("\nInput-Files:")
+    for rel_path in in_files:
+        abs_path = os.path.join(input_dir, rel_path)
+        try:
+            with open(abs_path, "r", encoding="utf-8") as f:
+                content = f.read()
+                file_info[rel_path] = {"file_size": len(content)}
+        except Exception as e:
+            print(f"⚠️ Fehler beim Lesen von {abs_path}: {e}")
+            file_info[rel_path] = 0
+    return file_info
+
+
+def scan_tasks(file_extension, directory):
+    result = []
+    for root, _, files in os.walk(directory):
+        if os.path.basename(root) == "tasks":
+            yml_files = [f for f in files if f.endswith(file_extension)]
+            for f in yml_files:
+                rel_dir = os.path.relpath(root, directory)
+                result.append(os.path.join(rel_dir, f))
+    return result
 
 def process_report(file_content: str):
     content = file_content
@@ -124,8 +166,9 @@ def parse_report_content(content: str) -> Dict[str, Dict[str, int]]:
         "total_runs": 0
     })
 
-    path_pattern = re.compile(r"(/molecule_test/[^\s]*?\.ya?ml)", re.IGNORECASE)
-    all_paths = set(re.findall(path_pattern, content))
+    path_pattern = re.compile(r"/molecule_test/([^\s]*?\.ya?ml)", re.IGNORECASE)
+    all_paths = [m.group(1) for m in path_pattern.finditer(content)]
+
 
     stages = {
         "yamllint_failed": re.compile(r"Failed at stage 'yamllint':\s*(.*?)(?=\n[A-Z]+ Statistics:|\Z)", re.DOTALL | re.IGNORECASE),
@@ -180,11 +223,28 @@ def format_overall_report(aggregate: Dict[str, Dict[str, int]]) -> str:
         lines.append(f"  molecule failed: {stats['molecule_failed']}")
         lines.append(f"  molecule passed: {stats['molecule_passed']}")
         lines.append(f"  Total runs: {stats['total_runs']}\n")
+        lines.append(f"  File size (chars): {stats['file_size']}\n")
     return "\n".join(lines)
 
+def merge_file_dicts(dict_a, dict_b):
+    merged = {}
+
+    # alle keys aus beiden dicts
+    all_keys = set(dict_a.keys()) | set(dict_b.keys())
+
+    for key in all_keys:
+        merged[key] = {}
+        if key in dict_a:
+            merged[key].update(dict_a[key])
+        if key in dict_b:
+            merged[key].update(dict_b[key])
+
+    return merged
+
+
 if __name__ == "__main__":
-    base_dir = "test_kpi"
-    overall_report = {}
+    base_dir = "../../test_report"
+    combined_report = {}
     for root, dirs, files in os.walk(base_dir):
         if "report.txt" in files:
             file_path = os.path.join(root, "report.txt")
@@ -195,7 +255,10 @@ if __name__ == "__main__":
             
             new_content = process_report(content)
             report = parse_report_content(new_content)
-            overall_report = merge_report_dicts(overall_report, report)
+            combined_report = merge_report_dicts(combined_report, report)
+            file_sizes = load_in_files()
+            overall_report = merge_file_dicts(combined_report, file_sizes)
+
             
             with open(file_path, "w", encoding="utf-8") as f:
                 f.write(new_content)
@@ -205,3 +268,32 @@ if __name__ == "__main__":
     print("Overall Report:\n", overall_text)
     with open(os.path.join(base_dir, "overall_report.txt"), "w", encoding="utf-8") as f:
         f.write(overall_text)
+
+    csv_path = os.path.join(base_dir, "overall_report.csv")
+    with open(csv_path, "w", encoding="utf-8", newline="") as csvfile:
+        writer = csv.writer(csvfile, delimiter=";")
+
+        # Headerzeile
+        writer.writerow([
+            "Datei",
+            "Yamllint failed",
+            "Ansiblelint failed",
+            "Molecule failed",
+            "Molecule passed",
+            "Total runs",
+            "File size (chars)"
+        ])
+
+        # Datenzeilen
+        for path, stats in overall_report.items():
+            writer.writerow([
+                path,
+                stats["yamllint_failed"],
+                stats["ansiblelint_failed"],
+                stats["molecule_failed"],
+                stats["molecule_passed"],
+                stats["total_runs"],
+                stats["file_size"]
+            ])
+
+    print(f"✅ CSV-Datei erstellt: {csv_path}")
