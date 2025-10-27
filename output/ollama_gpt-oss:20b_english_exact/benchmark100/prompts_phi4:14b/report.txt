@@ -1,21 +1,21 @@
 ====== Run Summary ======
 Start time : 2025-10-15 
 End time   : 2025-10-15 
-Duration   : 1:05 + 2:40 + 1:49 = 5:34
+Duration   : 5:34
 
 ====== Stage Counts ======
-yamllint failures   : 2 + 7 + 5 = 14
-ansiblelint failures: 0 + 1 + 0 = 1
-molecule failures   : 12 + 30 + 18 = 60
-all passed          : 5 + 12 + 8 = 25
-TOTAL entries       : 19 + 50 + 31 = 100
+yamllint failures   : 14
+ansiblelint failures: 1
+molecule failures   : 60
+all passed          : 25
+TOTAL entries       : 100
 
 ====== Detailed Entries ======
 
 YAMLLINT Statistics: 
-Total yamllint runs: 71 + 177 + 128 = 376
-Yamllint passed without iteration: 22 + 54 + 28 = 104
-Yamllint passed at first attempt: 5 + 16 + 9 = 30
+Total yamllint runs: 376
+Yamllint passed without iteration: 104
+Yamllint passed at first attempt: 30
 Failed at stage 'yamllint': 
 yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-vsftpd/tasks/main.yml
 yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-docker/tasks/main.yml
@@ -33,8 +33,8 @@ yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-
 yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-rke2/tasks/rke2.yml
 
 ANSIBLELINT Statistics: 
-Total ansiblelint runs: 36 + 87 + 54 = 177
-Ansiblelint passed at first attempt: 1 + 7 + 2 = 10
+Total ansiblelint runs: 177
+Ansiblelint passed at first attempt: 10
 Failed at stage 'ansiblelint':
 ansiblelint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_phi4:14b/molecule_test/ansible-role-update/tasks/main.yml
 

@@ -8,7 +8,7 @@ yamllint failures   : 31
 ansiblelint failures: 7
 molecule failures   : 45
 all passed          : 17
-TOTAL entries       : 99
+TOTAL entries       : 100
 
 ====== Detailed Entries ======
 
