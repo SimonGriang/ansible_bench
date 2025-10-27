@@ -248,7 +248,7 @@ def merge_file_dicts(dict_a, dict_b):
 
 
 if __name__ == "__main__":
-    base_dir = "../../ouput"
+    base_dir = "../../output"
     combined_report = {}
     for root, dirs, files in os.walk(base_dir):
         if "report.txt" in files:
