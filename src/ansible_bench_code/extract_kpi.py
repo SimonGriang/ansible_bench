@@ -186,6 +186,11 @@ def parse_report_content(content: str) -> Dict[str, Dict[str, int]]:
                 results[path]["total_runs"] += 1
         else:
             continue
+
+    print("\n=== Total Runs pro Datei ===")
+    for path, stats in results.items():
+        print(f"{path}: total_runs = {stats['total_runs']}")
+
     return dict(results)
 
 
@@ -243,7 +248,7 @@ def merge_file_dicts(dict_a, dict_b):
 
 
 if __name__ == "__main__":
-    base_dir = "../../test_report"
+    base_dir = "../../ouput"
     combined_report = {}
     for root, dirs, files in os.walk(base_dir):
         if "report.txt" in files:
