@@ -106,7 +106,7 @@ Benchmark-Score = {benchmark_score:.4f}
 
     updated_content = re.sub(
         r"(=+\s*Run Summary\s*=+.*?\n)(?==+\s*Stage Counts\s*=+)",
-        rf"\1====== KPIs ======\n\n{stats_block}\n\n",
+        rf"\1====== KPIs ======\n{stats_block}\n\n",
         content,
         flags=re.DOTALL | re.IGNORECASE
     )
@@ -171,21 +171,20 @@ def parse_report_content(content: str) -> Dict[str, Dict[str, int]]:
 
 
     stages = {
-        "yamllint_failed": re.compile(r"Failed at stage 'yamllint':\s*(.*?)(?=\n[A-Z]+ Statistics:|\Z)", re.DOTALL | re.IGNORECASE),
-        "ansiblelint_failed": re.compile(r"Failed at stage 'ansiblelint':\s*(.*?)(?=\n[A-Z]+ Statistics:|\Z)", re.DOTALL | re.IGNORECASE),
-        "molecule_failed": re.compile(r"failed at stage 'molecule-test':\s*(.*?)(?=\nSuccessfully passed all stages:|\Z)", re.DOTALL | re.IGNORECASE),
-        "molecule_passed": re.compile(r"Successfully passed all stages:\s*(.*?)(?=\n======|\Z)", re.DOTALL | re.IGNORECASE),
+        "yamllint_failed": re.compile(r"Failed at stage 'yamllint':\s*(.*?)(?=ANSIBLELINT Statistics:|\Z)", re.DOTALL | re.IGNORECASE),
+        "ansiblelint_failed": re.compile(r"Failed at stage 'ansiblelint':\s*(.*?)(?=MOLECULE Statistics:|\Z)", re.DOTALL | re.IGNORECASE),
+        "molecule_failed": re.compile(r"failed at stage 'molecule-test':\s*(.*?)(?=Successfully passed all stages:|\Z)", re.DOTALL | re.IGNORECASE),
+        "molecule_passed": re.compile(r"Successfully passed all stages:\s*(.*?)(?======= All run roles ======|\Z)", re.DOTALL | re.IGNORECASE),
     }
 
     for key, pattern in stages.items():
         match = pattern.search(content)
         if match:
             failed_block = match.group(1)
-            for path in re.findall(path_pattern, failed_block):
+            paths = re.findall(path_pattern, failed_block)
+            for path in paths:
                 results[path][key] += 1
                 results[path]["total_runs"] += 1
-        else:
-            continue
 
     print("\n=== Total Runs pro Datei ===")
     for path, stats in results.items():
@@ -227,7 +226,7 @@ def format_overall_report(aggregate: Dict[str, Dict[str, int]]) -> str:
         lines.append(f"  AnsibleLint failed: {stats['ansiblelint_failed']}")
         lines.append(f"  molecule failed: {stats['molecule_failed']}")
         lines.append(f"  molecule passed: {stats['molecule_passed']}")
-        lines.append(f"  Total runs: {stats['total_runs']}\n")
+        lines.append(f"  Total runs: {stats['total_runs']}")
         lines.append(f"  File size (chars): {stats['file_size']}\n")
     return "\n".join(lines)
 
@@ -248,7 +247,7 @@ def merge_file_dicts(dict_a, dict_b):
 
 
 if __name__ == "__main__":
-    base_dir = "../../output"
+    base_dir = "../../test"
     combined_report = {}
     for root, dirs, files in os.walk(base_dir):
         if "report.txt" in files:
