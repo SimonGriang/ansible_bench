@@ -73,3 +73,90 @@ python ansible_generator.py -m qwen2.5:32b -e ollama benchmark -d benchmark100 -
 hf download google/gemma-3-270m tokenizer.json --local-dir ~/documents/tokenizer/gemma3/
 ```
 
+
+## EDA
+
+Sehr gut – das ist ein solider Datensatz, mit dem man eine Menge machen kann.
+Ich fasse zuerst strukturiert zusammen, welche Arten von Analysen und Visualisierungen hier sinnvoll sind und welche nicht, basierend auf den Abhängigkeiten, die du genannt hast (z. B. BenchmarkScore hängt teilweise von YamllintScore und AnsiblelintScore ab).
+
+### 1. Sinnvolle Analyse-Ebenen
+#### A. Modell-Kombinationsanalyse (Prompt-Modell × Benchmark-Modell)
+
+Hier geht’s um die 64 Kombinationen.
+Ziel: herausfinden, welche Modelle in welcher Rolle (Promptgenerator vs. Ausführungsmodell) am besten harmonieren.
+
+Aussagen / Grafiken:
+
+Heatmap des Benchmark100 Scores → sofort erkennbar, welche Kombinationen stark/schwach sind.
+
+Durchschnittlicher Score pro Prompt-Modell → welches Modell generiert die besten Prompts?
+
+Durchschnittlicher Score pro Benchmark-Modell → welches Modell reagiert am besten auf Prompts?
+
+Varianz pro Modell → Stabilität der Leistung (manche Modelle liefern gleichmäßig gut, andere stark schwankend).
+
+Korrelationsanalyse zwischen Laufzeit und Score → ist bessere Qualität teurer (zeitintensiver)?
+
+Achtung: keine Korrelation mit Yamllint/Ansiblelint, da Bestandteil der Benchmarks.
+
+#### B. Performance-Zeit-Beziehung
+
+Du hast für jede Kombination auch Run Duration.
+Fragen, die man beantworten kann:
+
+Gibt es ein Modell, das signifikant länger braucht, aber nicht besser abschneidet → Effizienzvergleich.
+
+Scatterplot: BenchmarkScore vs. Laufzeit → Trendanalyse (z. B. lohnt sich längere Laufzeit?).
+
+Heatmap der durchschnittlichen Laufzeit pro Modell-Kombination.
+
+#### C. YAML/Ansiblelint Scores separat
+
+Auch wenn sie nicht direkt in den Benchmark-Vergleich einfließen sollen, kann man sie für Qualitäts-Konsistenz prüfen:
+
+Wie konsistent sind Modelle im Linting (Varianz der Scores)?
+
+Korrelationsmatrix zwischen YamllintScore und AnsiblelintScore → ob Lint-Qualität generell zusammenhängt.
+
+Histogramme pro Modell: wie „streng“ oder „fehleranfällig“ ist das Modell im Linting?
+
+#### D. YAML-Datei-Analyse (Detaildaten)
+
+Das ist dein „Error Landscape“.
+Was du daraus ziehen kannst:
+
+Häufigkeit von Fehlern je Datei-Typ oder Datei-Größe → Komplexität vs. Fehlerrate.
+
+Korrelation zwischen Dateigröße (chars) und Molecule failed/passed.
+
+Dateien, die konsistent versagen → Kandidaten für Benchmark-Bias oder strukturelle Schwächen im YAML.
+
+Anteil „Molecule passed“ pro Datei → Erfolgsquote.
+
+Heatmap: (Fehlertyp vs. Anzahl) – zeigt, wo typischerweise Probleme liegen (Lint vs. Molecule).
+
+#### E. Cross-Dimensionale Insights
+
+Ein paar gezielte Hypothesen, die man prüfen kann:
+
+„Starke Promptgeneratoren = stärkere Benchmarkmodelle?“
+→ Korrelation zwischen Durchschnittsleistung als Promptgenerator und als Benchmarkmodell.
+
+„Laufzeit-Preis für Qualität?“
+→ Modelle mit hoher Benchmarkleistung, aber sehr langen Laufzeiten, sind ineffizient.
+
+„Einfluss der Modellgröße“
+→ Vergleich kleiner vs. großer Modelle (8B, 14B, 27B, 20B …).
+
+### 2. Konkrete Visualisierungen (empfohlen)
+| Art | Ziel | Empfehlung |
+|------|------|-------------|
+| **Heatmap (BenchmarkScore)** | Welche Kombinationen sind stark/schwach? | 8×8 Matrix |
+| **Bar Chart – Durchschnittlicher Score pro Prompt-Modell** | Promptqualität | Sortiert nach Mittelwert |
+| **Bar Chart – Durchschnittlicher Score pro Benchmark-Modell** | YAML-Verarbeitungsqualität | Sortiert nach Mittelwert |
+| **Scatterplot – BenchmarkScore vs. Run Duration** | Effizienz | Marker pro Kombination |
+| **Boxplot – Lint-Scores je Modell** | Streuung der Lint-Qualität | Yamllint / Ansiblelint getrennt |
+| **Histogramm – Molecule Passed pro Datei** | Erfolgsquote im Detail | ggf. nach Dateigröße gruppieren |
+| **Heatmap – Molecule Failed / Lint Failed vs. File Size** | Komplexitätseinfluss | visuell sehr aufschlussreich |
+| **Korrelationsmatrix (ohne BenchmarkScore)** | Unabhängige Beziehungen prüfen | zwischen RunTime, Yamllint, Ansiblelint |
+
