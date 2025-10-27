@@ -59,6 +59,7 @@ yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_llam
 yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_llama3.1:8b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-java/tasks/main.yml
 yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_llama3.1:8b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-selinux-robertdebock/tasks/main.yml
 yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_llama3.1:8b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-epel/tasks/main.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_llama3.1:8b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-promtail/tasks/install.yml
 
 ANSIBLELINT Statistics: 
 Total ansiblelint runs: 80
