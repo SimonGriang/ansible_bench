@@ -1,7 +1,16 @@
 ====== Run Summary ======
-Start time : 2025-10-16 09:37:53.024834
-End time   : 2025-10-16 12:36:41.837255
-Duration   : 2:58:48.812421
+Start time : 2025-10-16
+End time   : 2025-10-16
+Duration   : 4:47
+
+====== KPIs ======
+Computed Metrics:
+Yamllint passed = 90
+Ansible-lint passed = 79
+Molecule passed = 21
+YAMLLint Score = 1.2272
+Ansible-Lint Score = 1.0179
+Benchmark-Score = 0.3553
 
 ====== Stage Counts ======
 yamllint failures   : 10
@@ -229,39 +238,3 @@ passed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_e
 /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_codestral:22b/molecule_test/ansible-role-ansible/tasks/setup-Fedora.yml
 /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_codestral:22b/molecule_test/ansible-role-scl/tasks/main.yml
 /home/studgoetsi5301/documents/ansible_bench/output/ollama_gpt-oss:20b_english_exact/benchmark100/prompts_codestral:22b/molecule_test/ansible-role-cron-buluma/tasks/main.yml
-
-
-====== Run Summary ======
-Start time : 2025-10-16 14:02:00.675428
-End time   : 2025-10-16 16:01:40.500775
-Duration   : 1:59:39.825347
-
-====== Stage Counts ======
-yamllint failures   : 5
-ansiblelint failures: 5
-molecule failures   : 11
-all passed          : 12
-TOTAL entries       : 33
-
-====== Detailed Entries ======
-
-YAMLLINT Statistics: 
-Total yamllint runs: 147
-Yamllint passed without iteration: 46
-Yamllint passed at first attempt: 9
-Failed at stage 'yamllint': 
-
-
-ANSIBLELINT Statistics: 
-Total ansiblelint runs: 73
-Ansiblelint passed at first attempt: 0
-Failed at stage 'ansiblelint':
-
-
-MOLECULE Statistics: 
-failed at stage 'molecule-test':
-
-
-Successfully passed all stages:
-
-====== All run roles ======

@@ -1,0 +1,799 @@
+ansible-role-ansible/tasks/main.yml:
+  YAMLLint failed: 37
+  AnsibleLint failed: 3
+  molecule failed: 10
+  molecule passed: 14
+  Total runs: 64
+  File size (chars): 976
+
+ansible-role-ansible/tasks/setup-Debian.yml:
+  YAMLLint failed: 49
+  AnsibleLint failed: 1
+  molecule failed: 0
+  molecule passed: 14
+  Total runs: 64
+  File size (chars): 733
+
+ansible-role-ansible/tasks/setup-Fedora.yml:
+  YAMLLint failed: 9
+  AnsibleLint failed: 2
+  molecule failed: 0
+  molecule passed: 53
+  Total runs: 64
+  File size (chars): 115
+
+ansible-role-ansible/tasks/setup-RedHat.yml:
+  YAMLLint failed: 18
+  AnsibleLint failed: 11
+  molecule failed: 13
+  molecule passed: 22
+  Total runs: 64
+  File size (chars): 162
+
+ansible-role-ansible/tasks/setup-Ubuntu.yml:
+  YAMLLint failed: 17
+  AnsibleLint failed: 5
+  molecule failed: 0
+  molecule passed: 42
+  Total runs: 64
+  File size (chars): 350
+
+ansible-role-ansible/tasks/setup-pip.yml:
+  YAMLLint failed: 11
+  AnsibleLint failed: 7
+  molecule failed: 0
+  molecule passed: 46
+  Total runs: 64
+  File size (chars): 277
+
+ansible-role-apt_autostart/tasks/main.yml:
+  YAMLLint failed: 18
+  AnsibleLint failed: 8
+  molecule failed: 24
+  molecule passed: 14
+  Total runs: 64
+  File size (chars): 689
+
+ansible-role-bootstrap-JonasPammer/tasks/gather_facts.yml:
+  YAMLLint failed: 52
+  AnsibleLint failed: 0
+  molecule failed: 12
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 1248
+
+ansible-role-bootstrap-JonasPammer/tasks/main.yml:
+  YAMLLint failed: 40
+  AnsibleLint failed: 4
+  molecule failed: 12
+  molecule passed: 8
+  Total runs: 64
+  File size (chars): 2369
+
+ansible-role-bootstrap-buluma/tasks/gather_facts.yml:
+  YAMLLint failed: 45
+  AnsibleLint failed: 5
+  molecule failed: 14
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 1049
+
+ansible-role-bootstrap-buluma/tasks/main.yml:
+  YAMLLint failed: 36
+  AnsibleLint failed: 13
+  molecule failed: 15
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 2122
+
+ansible-role-bootstrap/tasks/gather_facts.yml:
+  YAMLLint failed: 46
+  AnsibleLint failed: 3
+  molecule failed: 15
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 1049
+
+ansible-role-bootstrap/tasks/main.yml:
+  YAMLLint failed: 40
+  AnsibleLint failed: 4
+  molecule failed: 20
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 1924
+
+ansible-role-buildtools-buluma/tasks/main.yml:
+  YAMLLint failed: 6
+  AnsibleLint failed: 7
+  molecule failed: 29
+  molecule passed: 22
+  Total runs: 64
+  File size (chars): 144
+
+ansible-role-buildtools/tasks/main.yml:
+  YAMLLint failed: 13
+  AnsibleLint failed: 4
+  molecule failed: 30
+  molecule passed: 17
+  Total runs: 64
+  File size (chars): 144
+
+ansible-role-ca_certificates/tasks/main.yml:
+  YAMLLint failed: 6
+  AnsibleLint failed: 2
+  molecule failed: 33
+  molecule passed: 23
+  Total runs: 64
+  File size (chars): 159
+
+ansible-role-cadvisor/tasks/main.yml:
+  YAMLLint failed: 41
+  AnsibleLint failed: 5
+  molecule failed: 17
+  molecule passed: 1
+  Total runs: 64
+  File size (chars): 1696
+
+ansible-role-core_dependencies-buluma/tasks/main.yml:
+  YAMLLint failed: 17
+  AnsibleLint failed: 9
+  molecule failed: 33
+  molecule passed: 5
+  Total runs: 64
+  File size (chars): 391
+
+ansible-role-core_dependencies/tasks/main.yml:
+  YAMLLint failed: 15
+  AnsibleLint failed: 9
+  molecule failed: 36
+  molecule passed: 4
+  Total runs: 64
+  File size (chars): 391
+
+ansible-role-cron-buluma/tasks/main.yml:
+  YAMLLint failed: 38
+  AnsibleLint failed: 5
+  molecule failed: 16
+  molecule passed: 5
+  Total runs: 64
+  File size (chars): 1670
+
+ansible-role-cron/tasks/main.yml:
+  YAMLLint failed: 35
+  AnsibleLint failed: 4
+  molecule failed: 19
+  molecule passed: 6
+  Total runs: 64
+  File size (chars): 1680
+
+ansible-role-dns/tasks/main.yml:
+  YAMLLint failed: 43
+  AnsibleLint failed: 8
+  molecule failed: 13
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 3001
+
+ansible-role-docker/tasks/docker-compose.yml:
+  YAMLLint failed: 51
+  AnsibleLint failed: 2
+  molecule failed: 0
+  molecule passed: 11
+  Total runs: 64
+  File size (chars): 1181
+
+ansible-role-docker/tasks/docker-users.yml:
+  YAMLLint failed: 19
+  AnsibleLint failed: 4
+  molecule failed: 1
+  molecule passed: 40
+  Total runs: 64
+  File size (chars): 275
+
+ansible-role-docker/tasks/main.yml:
+  YAMLLint failed: 51
+  AnsibleLint failed: 1
+  molecule failed: 11
+  molecule passed: 1
+  Total runs: 64
+  File size (chars): 3556
+
+ansible-role-docker/tasks/setup-Debian.yml:
+  YAMLLint failed: 49
+  AnsibleLint failed: 2
+  molecule failed: 1
+  molecule passed: 12
+  Total runs: 64
+  File size (chars): 1469
+
+ansible-role-docker/tasks/setup-RedHat.yml:
+  YAMLLint failed: 43
+  AnsibleLint failed: 7
+  molecule failed: 11
+  molecule passed: 3
+  Total runs: 64
+  File size (chars): 1666
+
+ansible-role-docker_compose/tasks/main.yml:
+  YAMLLint failed: 24
+  AnsibleLint failed: 10
+  molecule failed: 27
+  molecule passed: 3
+  Total runs: 64
+  File size (chars): 736
+
+ansible-role-epel-buluma/tasks/main.yml:
+  YAMLLint failed: 39
+  AnsibleLint failed: 4
+  molecule failed: 18
+  molecule passed: 3
+  Total runs: 64
+  File size (chars): 756
+
+ansible-role-epel/tasks/main.yml:
+  YAMLLint failed: 45
+  AnsibleLint failed: 7
+  molecule failed: 8
+  molecule passed: 4
+  Total runs: 64
+  File size (chars): 762
+
+ansible-role-fail2ban/tasks/main.yml:
+  YAMLLint failed: 36
+  AnsibleLint failed: 6
+  molecule failed: 22
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 1694
+
+ansible-role-git/tasks/main.yml:
+  YAMLLint failed: 35
+  AnsibleLint failed: 10
+  molecule failed: 13
+  molecule passed: 6
+  Total runs: 64
+  File size (chars): 1943
+
+ansible-role-grub/tasks/main.yml:
+  YAMLLint failed: 28
+  AnsibleLint failed: 5
+  molecule failed: 31
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 1312
+
+ansible-role-grub/tasks/password.yml:
+  YAMLLint failed: 26
+  AnsibleLint failed: 9
+  molecule failed: 19
+  molecule passed: 10
+  Total runs: 64
+  File size (chars): 1410
+
+ansible-role-hashicorp/tasks/main.yml:
+  YAMLLint failed: 47
+  AnsibleLint failed: 2
+  molecule failed: 15
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 2438
+
+ansible-role-helm/tasks/main.yml:
+  YAMLLint failed: 52
+  AnsibleLint failed: 1
+  molecule failed: 11
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 780
+
+ansible-role-httpd-buluma/tasks/directories.yml:
+  YAMLLint failed: 15
+  AnsibleLint failed: 10
+  molecule failed: 38
+  molecule passed: 1
+  Total runs: 64
+  File size (chars): 543
+
+ansible-role-httpd-buluma/tasks/locations.yml:
+  YAMLLint failed: 20
+  AnsibleLint failed: 7
+  molecule failed: 34
+  molecule passed: 3
+  Total runs: 64
+  File size (chars): 532
+
+ansible-role-httpd-buluma/tasks/main.yml:
+  YAMLLint failed: 38
+  AnsibleLint failed: 9
+  molecule failed: 17
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 2530
+
+ansible-role-httpd-buluma/tasks/ssl.yml:
+  YAMLLint failed: 12
+  AnsibleLint failed: 6
+  molecule failed: 35
+  molecule passed: 11
+  Total runs: 64
+  File size (chars): 608
+
+ansible-role-httpd-buluma/tasks/vhosts.yml:
+  YAMLLint failed: 29
+  AnsibleLint failed: 3
+  molecule failed: 22
+  molecule passed: 10
+  Total runs: 64
+  File size (chars): 668
+
+ansible-role-httpd/tasks/directories.yml:
+  YAMLLint failed: 26
+  AnsibleLint failed: 8
+  molecule failed: 29
+  molecule passed: 1
+  Total runs: 64
+  File size (chars): 543
+
+ansible-role-httpd/tasks/locations.yml:
+  YAMLLint failed: 14
+  AnsibleLint failed: 9
+  molecule failed: 40
+  molecule passed: 1
+  Total runs: 64
+  File size (chars): 532
+
+ansible-role-httpd/tasks/main.yml:
+  YAMLLint failed: 41
+  AnsibleLint failed: 9
+  molecule failed: 14
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 2530
+
+ansible-role-httpd/tasks/ssl.yml:
+  YAMLLint failed: 16
+  AnsibleLint failed: 6
+  molecule failed: 38
+  molecule passed: 4
+  Total runs: 64
+  File size (chars): 608
+
+ansible-role-httpd/tasks/vhosts.yml:
+  YAMLLint failed: 36
+  AnsibleLint failed: 7
+  molecule failed: 21
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 1024
+
+ansible-role-java/tasks/main.yml:
+  YAMLLint failed: 48
+  AnsibleLint failed: 4
+  molecule failed: 11
+  molecule passed: 1
+  Total runs: 64
+  File size (chars): 2872
+
+ansible-role-logrotate/tasks/main.yml:
+  YAMLLint failed: 25
+  AnsibleLint failed: 8
+  molecule failed: 31
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 1322
+
+ansible-role-mysql-robertdebock/tasks/main.yml:
+  YAMLLint failed: 45
+  AnsibleLint failed: 6
+  molecule failed: 13
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 3303
+
+ansible-role-mysql/tasks/main.yml:
+  YAMLLint failed: 38
+  AnsibleLint failed: 9
+  molecule failed: 17
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 2615
+
+ansible-role-nginx/tasks/main.yml:
+  YAMLLint failed: 29
+  AnsibleLint failed: 2
+  molecule failed: 32
+  molecule passed: 1
+  Total runs: 64
+  File size (chars): 831
+
+ansible-role-openssl-robertdebock/tasks/create.yml:
+  YAMLLint failed: 36
+  AnsibleLint failed: 6
+  molecule failed: 21
+  molecule passed: 1
+  Total runs: 64
+  File size (chars): 2072
+
+ansible-role-openssl-robertdebock/tasks/main.yml:
+  YAMLLint failed: 15
+  AnsibleLint failed: 7
+  molecule failed: 41
+  molecule passed: 1
+  Total runs: 64
+  File size (chars): 1256
+
+ansible-role-openssl/tasks/create.yml:
+  YAMLLint failed: 37
+  AnsibleLint failed: 7
+  molecule failed: 18
+  molecule passed: 2
+  Total runs: 64
+  File size (chars): 2072
+
+ansible-role-openssl/tasks/main.yml:
+  YAMLLint failed: 15
+  AnsibleLint failed: 10
+  molecule failed: 36
+  molecule passed: 3
+  Total runs: 64
+  File size (chars): 1856
+
+ansible-role-openvpn/tasks/client.yml:
+  YAMLLint failed: 16
+  AnsibleLint failed: 6
+  molecule failed: 39
+  molecule passed: 3
+  Total runs: 64
+  File size (chars): 445
+
+ansible-role-openvpn/tasks/main.yml:
+  YAMLLint failed: 25
+  AnsibleLint failed: 1
+  molecule failed: 37
+  molecule passed: 1
+  Total runs: 64
+  File size (chars): 506
+
+ansible-role-openvpn/tasks/server.yml:
+  YAMLLint failed: 31
+  AnsibleLint failed: 19
+  molecule failed: 14
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 2633
+
+ansible-role-php-robertdebock/tasks/main.yml:
+  YAMLLint failed: 17
+  AnsibleLint failed: 17
+  molecule failed: 30
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 653
+
+ansible-role-pip/tasks/debian12.yml:
+  YAMLLint failed: 24
+  AnsibleLint failed: 8
+  molecule failed: 14
+  molecule passed: 18
+  Total runs: 64
+  File size (chars): 528
+
+ansible-role-pip/tasks/main.yml:
+  YAMLLint failed: 29
+  AnsibleLint failed: 5
+  molecule failed: 26
+  molecule passed: 4
+  Total runs: 64
+  File size (chars): 880
+
+ansible-role-postfix/tasks/main.yml:
+  YAMLLint failed: 52
+  AnsibleLint failed: 1
+  molecule failed: 11
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 9006
+
+ansible-role-promtail/tasks/install.yml:
+  YAMLLint failed: 49
+  AnsibleLint failed: 1
+  molecule failed: 14
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 4413
+
+ansible-role-promtail/tasks/main.yml:
+  YAMLLint failed: 24
+  AnsibleLint failed: 3
+  molecule failed: 27
+  molecule passed: 10
+  Total runs: 64
+  File size (chars): 512
+
+ansible-role-promtail/tasks/preflight.yml:
+  YAMLLint failed: 55
+  AnsibleLint failed: 1
+  molecule failed: 8
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 2336
+
+ansible-role-python_pip-buluma/tasks/main.yml:
+  YAMLLint failed: 42
+  AnsibleLint failed: 6
+  molecule failed: 15
+  molecule passed: 1
+  Total runs: 64
+  File size (chars): 2445
+
+ansible-role-python_pip/tasks/main.yml:
+  YAMLLint failed: 40
+  AnsibleLint failed: 6
+  molecule failed: 18
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 1498
+
+ansible-role-redis/tasks/main.yml:
+  YAMLLint failed: 40
+  AnsibleLint failed: 1
+  molecule failed: 23
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 879
+
+ansible-role-rke2/tasks/change_config.yml:
+  YAMLLint failed: 48
+  AnsibleLint failed: 2
+  molecule failed: 7
+  molecule passed: 7
+  Total runs: 64
+  File size (chars): 1352
+
+ansible-role-rke2/tasks/cis.yml:
+  YAMLLint failed: 36
+  AnsibleLint failed: 6
+  molecule failed: 8
+  molecule passed: 14
+  Total runs: 64
+  File size (chars): 704
+
+ansible-role-rke2/tasks/download_kubeconfig.yaml:
+  YAMLLint failed: 50
+  AnsibleLint failed: 0
+  molecule failed: 0
+  molecule passed: 14
+  Total runs: 64
+  File size (chars): 831
+
+ansible-role-rke2/tasks/find_active_server.yml:
+  YAMLLint failed: 27
+  AnsibleLint failed: 1
+  molecule failed: 23
+  molecule passed: 13
+  Total runs: 64
+  File size (chars): 428
+
+ansible-role-rke2/tasks/first_server.yml:
+  YAMLLint failed: 61
+  AnsibleLint failed: 0
+  molecule failed: 3
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 7411
+
+ansible-role-rke2/tasks/first_server_restore.yml:
+  YAMLLint failed: 34
+  AnsibleLint failed: 13
+  molecule failed: 7
+  molecule passed: 10
+  Total runs: 64
+  File size (chars): 621
+
+ansible-role-rke2/tasks/ingress-nginx.yml:
+  YAMLLint failed: 16
+  AnsibleLint failed: 4
+  molecule failed: 10
+  molecule passed: 34
+  Total runs: 64
+  File size (chars): 449
+
+ansible-role-rke2/tasks/keepalived.yml:
+  YAMLLint failed: 33
+  AnsibleLint failed: 4
+  molecule failed: 9
+  molecule passed: 18
+  Total runs: 64
+  File size (chars): 2168
+
+ansible-role-rke2/tasks/kubevip.yml:
+  YAMLLint failed: 32
+  AnsibleLint failed: 6
+  molecule failed: 8
+  molecule passed: 18
+  Total runs: 64
+  File size (chars): 926
+
+ansible-role-rke2/tasks/main.yml:
+  YAMLLint failed: 47
+  AnsibleLint failed: 3
+  molecule failed: 14
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 3798
+
+ansible-role-rke2/tasks/remaining_nodes.yml:
+  YAMLLint failed: 55
+  AnsibleLint failed: 2
+  molecule failed: 7
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 3303
+
+ansible-role-rke2/tasks/rke2.yml:
+  YAMLLint failed: 60
+  AnsibleLint failed: 1
+  molecule failed: 3
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 11375
+
+ansible-role-rke2/tasks/rolling_restart.yml:
+  YAMLLint failed: 46
+  AnsibleLint failed: 5
+  molecule failed: 6
+  molecule passed: 7
+  Total runs: 64
+  File size (chars): 2817
+
+ansible-role-rke2/tasks/summary.yml:
+  YAMLLint failed: 29
+  AnsibleLint failed: 11
+  molecule failed: 21
+  molecule passed: 3
+  Total runs: 64
+  File size (chars): 494
+
+ansible-role-rsyslog/tasks/main.yml:
+  YAMLLint failed: 32
+  AnsibleLint failed: 3
+  molecule failed: 25
+  molecule passed: 4
+  Total runs: 64
+  File size (chars): 1807
+
+ansible-role-scl/tasks/main.yml:
+  YAMLLint failed: 8
+  AnsibleLint failed: 9
+  molecule failed: 21
+  molecule passed: 26
+  Total runs: 64
+  File size (chars): 183
+
+ansible-role-selinux-robertdebock/tasks/main.yml:
+  YAMLLint failed: 36
+  AnsibleLint failed: 3
+  molecule failed: 20
+  molecule passed: 5
+  Total runs: 64
+  File size (chars): 1030
+
+ansible-role-selinux/tasks/main.yml:
+  YAMLLint failed: 39
+  AnsibleLint failed: 4
+  molecule failed: 16
+  molecule passed: 5
+  Total runs: 64
+  File size (chars): 1030
+
+ansible-role-service/tasks/main.yml:
+  YAMLLint failed: 15
+  AnsibleLint failed: 10
+  molecule failed: 34
+  molecule passed: 5
+  Total runs: 64
+  File size (chars): 1286
+
+ansible-role-sysctl/tasks/main.yml:
+  YAMLLint failed: 28
+  AnsibleLint failed: 4
+  molecule failed: 31
+  molecule passed: 1
+  Total runs: 64
+  File size (chars): 714
+
+ansible-role-update/tasks/main.yml:
+  YAMLLint failed: 41
+  AnsibleLint failed: 13
+  molecule failed: 8
+  molecule passed: 2
+  Total runs: 64
+  File size (chars): 2750
+
+ansible-role-users/tasks/group.yml:
+  YAMLLint failed: 14
+  AnsibleLint failed: 8
+  molecule failed: 39
+  molecule passed: 3
+  Total runs: 64
+  File size (chars): 572
+
+ansible-role-users/tasks/main.yml:
+  YAMLLint failed: 22
+  AnsibleLint failed: 7
+  molecule failed: 34
+  molecule passed: 1
+  Total runs: 64
+  File size (chars): 1247
+
+ansible-role-users/tasks/user.yml:
+  YAMLLint failed: 53
+  AnsibleLint failed: 4
+  molecule failed: 7
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 5920
+
+ansible-role-vault/tasks/binary.yml:
+  YAMLLint failed: 43
+  AnsibleLint failed: 3
+  molecule failed: 17
+  molecule passed: 1
+  Total runs: 64
+  File size (chars): 3946
+
+ansible-role-vault/tasks/hardening.yml:
+  YAMLLint failed: 42
+  AnsibleLint failed: 8
+  molecule failed: 13
+  molecule passed: 1
+  Total runs: 64
+  File size (chars): 1853
+
+ansible-role-vault/tasks/main.yml:
+  YAMLLint failed: 43
+  AnsibleLint failed: 3
+  molecule failed: 18
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 1019
+
+ansible-role-vault/tasks/package.yml:
+  YAMLLint failed: 22
+  AnsibleLint failed: 10
+  molecule failed: 32
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 146
+
+ansible-role-vsftpd/tasks/main.yml:
+  YAMLLint failed: 23
+  AnsibleLint failed: 8
+  molecule failed: 28
+  molecule passed: 5
+  Total runs: 64
+  File size (chars): 566
+
+java_role/tasks/import_certs.yml:
+  YAMLLint failed: 34
+  AnsibleLint failed: 5
+  molecule failed: 20
+  molecule passed: 5
+  Total runs: 64
+  File size (chars): 1410
+
+java_role/tasks/install_openjdk.yml:
+  YAMLLint failed: 58
+  AnsibleLint failed: 0
+  molecule failed: 6
+  molecule passed: 0
+  Total runs: 64
+  File size (chars): 6332
+
+java_role/tasks/main.yml:
+  YAMLLint failed: 15
+  AnsibleLint failed: 8
+  molecule failed: 14
+  molecule passed: 27
+  Total runs: 64
+  File size (chars): 281

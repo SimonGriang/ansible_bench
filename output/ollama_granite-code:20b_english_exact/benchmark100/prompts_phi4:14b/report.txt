@@ -3,6 +3,15 @@ Start time : 2025-10-14 20:03:27.548205
 End time   : 2025-10-14 22:03:50.551895
 Duration   : 2:00:23.003690
 
+====== KPIs ======
+Computed Metrics:
+Yamllint passed = 47
+Ansible-lint passed = 28
+Molecule passed = 4
+YAMLLint Score = 1.2002
+Ansible-Lint Score = 1.0256
+Benchmark-Score = 0.1298
+
 ====== Stage Counts ======
 yamllint failures   : 53
 ansiblelint failures: 19
