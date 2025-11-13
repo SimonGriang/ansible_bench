@@ -15,6 +15,7 @@ from pathlib import Path
 from quality_assurance import check_yamllint, check_playbook_syntax, check_ansible_lint, check_molecule
 from llm_abstraction import LLMSettings, llm_wrapper
 import llm_chain
+import post_processing
 from utils.cli_abstraction import CLIArgumentsBase, CLIArgumentsPrompt, CLIArgumentsBenchmark, CLIArgumentsGeneration
 from utils.config import Config, load_config
 from utils.metadata import GenerationMetadata
@@ -241,39 +242,7 @@ class PromptOperationManager(BaseOperationManager):
                 continue
     
     def clean_text(self, raw_output: str) -> str:
-        """
-        Cleans text:
-        - removes everything in front of the first quotation mark
-        - removes everthing following the last quotation mark
-        - removes stamp </s>.
-        """
-        if isinstance(raw_output, AIMessage):
-            raw_output = raw_output.content
-            logger.info(f"Raw output is an AIMessage. Extracted content: {raw_output}")
-
-        if self.model_name == "deepseek-r1:14b":
-            raw_output = re.sub(r"<think>.*?</think>", "", raw_output, flags=re.DOTALL)
-            logger.info("Removed <think>...</think> tags for deepseek-r1:14b model.")
-            logger.info(f"Output after removing <think> tags: {raw_output}")
-            
-        if '"' in raw_output:
-            raw_output = raw_output.split('"', 1)[1]  
-            logger.info("Removed text before the first quotation mark.")
-            logger.info(f"Output after removing text before first quotation mark: {raw_output}")
-        raw_output = raw_output.lstrip()
-        logger.info(f"Output after left stripping whitespace: {raw_output}")
-
-        if '"' in raw_output:
-            raw_output = raw_output.rsplit('"', 1)[0]
-            logger.info("Removed text after the last quotation mark.")
-            logger.info(f"Output after removing text after last quotation mark: {raw_output}")
-
-
-        raw_output = re.sub(r'</s>', '', raw_output, flags=re.IGNORECASE)
-        logger.info("Removed </s> tags.")
-        logger.info(f"Output after removing </s> tags: {raw_output}")
-
-        return raw_output.strip()
+        return post_processing.clean_text_prompt(self, raw_output)
 
 
 class BenchmarkOperationManager(BaseOperationManager):
@@ -355,97 +324,7 @@ class BenchmarkOperationManager(BaseOperationManager):
         return f"prompts_{core}"
     
     def clean_text(self, raw_output: str) -> str:
-            """
-            Cleans text while preserving line content and line breaks:
-            - removes everything in front of '---'
-            - removes everything following '```'
-            - removes stamp </s>
-            - removes everything after two consecutive empty lines
-            - removes everything after a single empty line if the next line
-            does not contain ':' and is not indented
-            - checks output is not empty
-            """
-            
-            if isinstance(raw_output, AIMessage):
-                raw_output = raw_output.content
-                logger.info(f"Raw output is an AIMessage. Extracted content: {raw_output}")
-            
-            backup_input = raw_output
-            
-            if self.model_name == "deepseek-r1:14b":
-                raw_output = re.sub(r"<think>.*?</think>", "", raw_output, flags=re.DOTALL)
-                logger.info("Removed <think>...</think> tags for deepseek-r1:14b model.")
-                logger.info(f"Output after removing <think> tags: {raw_output}")
-
-            # remove everything before '---'
-            if '---' in raw_output:
-                raw_output = '---' + raw_output.split('---', 1)[1]
-                logger.info("Removed text before the first '---'.")
-                logger.info(f"Output after removing text before '---': {raw_output}")
-
-            # remove everything after '```'
-            if '```' in raw_output:
-                raw_output = raw_output.split('```', 1)[0]
-                logger.info("Removed text after the first '```'.")
-                logger.info(f"Output after removing text after '```': {raw_output}")
-
-            # remove everything after '...'
-            if '...' in raw_output:
-                raw_output = raw_output.split('...', 1)[0]
-                logger.info("Removed text after the first '...'.")
-                logger.info(f"Output after removing text after '...': {raw_output}")
-
-            # remove </s>
-            raw_output = raw_output.replace("</s>", "")
-            logger.info("Removed </s> tags.")
-            logger.info(f"Output after removing </s> tags: {raw_output}")
-
-            # remove everything after the last non-empty line
-            lines = raw_output.splitlines(keepends=True)
-            cleaned_lines = []
-            empty_count = 0
-
-            for i, line in enumerate(lines):
-                is_empty = line.strip() == ''
-
-                if is_empty:
-                    empty_count += 1
-
-                    # check for single empty line
-                    if empty_count == 1 and i + 1 < len(lines):
-                        next_line = lines[i + 1]
-                        stripped_next = next_line.lstrip()
-                        # delete rest if ':' not in AND not indented
-                        if ':' not in next_line and len(next_line) == len(stripped_next):
-                            break
-
-                    # two consecutive empty lines → break
-                    if empty_count >= 2:
-                        if cleaned_lines and cleaned_lines[-1].strip() == '':
-                            cleaned_lines.pop()
-                        break
-                else:
-                    empty_count = 0
-                    cleaned_lines.append(line)
-
-                # keep empty lines
-                if is_empty:
-                    cleaned_lines.append(line)
-
-            # check if output is empty if so return uncleaned output
-            if not cleaned_lines:
-                logger.warning("Cleaned output is empty, returning uncleaned output.")
-                return backup_input.strip() + "\n"
-
-            if self.model_name in {"gpt-oss:20b",
-                                   "granite-code:20b",}:
-                logger.info("Appending newline to cleaned output for gpt-oss:20b model.")
-                return ''.join(cleaned_lines) + "\n"
-            logger.info("Returning cleaned output.")
-            logger.info(f"Cleaned output: {''.join(cleaned_lines)}")
-            return ''.join(cleaned_lines)
-
-
+        return post_processing.clean_text_yaml(self, raw_output)
 
     def run(self):
         molecule_works_flag = False
