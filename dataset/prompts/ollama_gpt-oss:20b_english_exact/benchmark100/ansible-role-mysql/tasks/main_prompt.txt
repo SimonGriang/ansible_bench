@@ -1,0 +1,36 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the task file `assert.yml` once for all hosts, delegating the import to the local machine.  
+
+Task 2: Install mysql  
+Description Task 2: Use the package module to ensure that all packages listed in the variable `mysql_packages` are present on the target system. Notify the handlers `Set root password` and `Systemctl daemon-reexec` when the installation occurs.  
+
+Task 3: Configure mysql server  
+Description Task 3: Loop over the list `mysql_configuration_options` and use the `community.general.ini_file` module to write each option into the file located at `{{ mysql_configuration_destination }}/{{ mysql_name }}-server.cnf`. For each loop iteration, set the section, option, and value from the current item, use mode `0644`, and label the loop with the option name. Notify the handler `Restart mysql server` whenever a change is made.  
+
+Task 4: Configure mysql client  
+Description Task 4: Use the `community.general.ini_file` module to add the `socket` option under the `client` section in the file `{{ mysql_configuration_destination }}/{{ mysql_name }}-client.cnf`, setting its value to `{{ mysql_socket }}` and mode `0644`.  
+
+Task 5: Initialize mysql  
+Description Task 5: Run the command stored in `{{ mysql_initialize_command }}` only if the file `/var/lib/mysql/mysql` does not exist, and only on distributions listed in the `ansible_distribution` variable (Alpine, Archlinux).  
+
+Task 6: Start and enable mysql  
+Description Task 6: Ensure the service named `{{ mysql_service }}` is started and enabled to start at boot using the service module.  
+
+Task 7: Flush handlers  
+Description Task 7: Flush all pending handlers to ensure any notifications from previous tasks are executed immediately.  
+
+Task 8: Place my.cnf  
+Description Task 8: Render the template `my.cnf.j2` to `/root/.my.cnf` with mode `0640` using the template module.  
+
+Task 9: Create databases  
+Description Task 9: Loop over `mysql_databases` to create or modify databases using `community.mysql.mysql_db`. For each item, set the database name, state (default `present`), target, encoding, and collation if provided. Use the root login via the Unix socket `{{ mysql_socket }}` and password `{{ mysql_root_password }}`. Do not log sensitive data (`no_log: true`). Execute this task only if `mysql_databases` is defined.  
+
+Task 10: Create users  
+Description Task 10: Loop over `mysql_users` to create or update MySQL users with `community.mysql.mysql_user`. For each item, set the user name, state `present`, optional password, privileges, host, host_all, and update_password if specified. Use the root login via the Unix socket `{{ mysql_socket }}` and password `{{ mysql_root_password }}`. Do not log sensitive data (`no_log: true`). Execute this task only if `mysql_users` is defined.  
+
+Task 11: Flush handlers again  
+Description Task 11: Flush all pending handlers again to ensure any remaining notifications are processed before the playbook ends.

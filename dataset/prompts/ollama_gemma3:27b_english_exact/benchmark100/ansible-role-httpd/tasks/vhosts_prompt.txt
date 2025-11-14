@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create document roots for virtual hosts.
+Description Task 1: Create directories for each virtual host's document root specified in the `httpd_vhosts` list. The directory path is determined by the `item.documentroot` variable. Set permissions to 0755. This task is conditional based on the existence and definition of `httpd_vhosts`, `item.documentroot`, and `item.create_docroot`.
+
+Task 2: Configure virtual hosts.
+Description Task 2: Create virtual host configuration files using a template. The template source is specified by the `vhost_conf_template` variable. The destination path is constructed using the `httpd_vhosts_directory` and `item.name` variables. Set file permissions to 0644. This task loops through the `httpd_vhosts` list and notifies the `Test httpd configuration validity` and `Restart httpd` handlers.
+
+Task 3: Enable virtual hosts.
+Description Task 3: Enable virtual hosts on Debian-based systems using the `a2ensite` command. The command is executed for each virtual host in the `httpd_vhosts` list. The task checks for the existence of the enabled configuration file to prevent redundant execution. This task notifies the `Test httpd configuration validity` and `Restart httpd` handlers. The task is conditional based on `ansible_os_family` being 'Debian'.

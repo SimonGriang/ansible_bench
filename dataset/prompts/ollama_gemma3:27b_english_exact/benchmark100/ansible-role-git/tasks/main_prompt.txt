@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import the assert.yml task file to perform initial checks. Run this task only once on localhost.
+
+Task 2: Install git
+Description Task 2: Install the git package using the package manager. The package name is defined by the `git_packages` variable.
+
+Task 3: See if the specified user exists
+Description Task 3: Check if the user specified by `git_username` exists using the `getent` module. Fail the task if the user does not exist, unless `fail_key` is set to false.
+
+Task 4: Create directory for git configuration
+Description Task 4: Create the home directory for the specified user (`git_username`) with appropriate ownership and permissions.
+
+Task 5: Place git configuration
+Description Task 5: Copy a git configuration file from a template (`gitconfig.j2`) to the user's home directory (`/home/{{ git_username }}/.gitconfig`) with appropriate permissions.
+
+Task 6: Create repository_destination
+Description Task 6: Create the destination directory for the git repositories with the correct ownership and permissions.
+
+Task 7: Clone all roles
+Description Task 7: Clone multiple git repositories defined in the `git_repositories` list into the specified destination directory (`git_repository_destination`). Use variables for repository URL, destination path, version, and force option. Run as the specified user and display the destination path in the loop label.

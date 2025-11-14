@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: create ssl key
+Description Task 1: Create an SSL private key using the `community.crypto.openssl_privatekey` module. The key should be stored in the `openssl_key_directory` with a `.key` extension, set permissions to 640, and assign ownership based on the `openssl_file_owner` and `openssl_file_group` variables.
+
+Task 2: create ssl csr
+Description Task 2: Create an SSL Certificate Signing Request (CSR) using the `community.crypto.openssl_csr` module. The CSR should be stored in the `openssl_csr_directory` with a `.csr` extension, use the previously created private key, set the common name based on `item.common_name`, set permissions to 644, and assign ownership based on the `openssl_file_owner` and `openssl_file_group` variables.
+
+Task 3: create ssl certificates
+Description Task 3: Create a self-signed SSL certificate using the `community.crypto.x509_certificate` module. The certificate should be stored in the `openssl_crt_directory` with a `.crt` extension, use the private key and CSR, set permissions to 644, and assign ownership based on the `openssl_file_owner` and `openssl_file_group` variables.
+
+Task 4: create PKCS#12 file
+Description Task 4: Create a PKCS#12 file (a container for the private key and certificate) using the `community.crypto.openssl_pkcs12` module. The PKCS#12 file should be stored in the `openssl_key_directory` with a `.p12` extension, set a friendly name based on `item.name`, use the private key and certificate, set permissions to 640, and assign ownership based on the `openssl_file_owner` and `openssl_file_group` variables.
+
+Task 5: read private key
+Description Task 5: Read the contents of the private key file using the `ansible.builtin.slurp` module. The private key file is located in the `openssl_key_directory` with a `.key` extension. Register the output to the variable `openssl_private_key`.
+
+Task 6: read certificate
+Description Task 6: Read the contents of the certificate file using the `ansible.builtin.slurp` module. The certificate file is located in the `openssl_crt_directory` with a `.crt` extension. Register the output to the variable `openssl_certifcate`.
+
+Task 7: create combined private_key and certificate file
+Description Task 7: Create a combined file containing the private key and certificate using the `ansible.builtin.copy` module. The combined file should be stored in the `openssl_key_directory` with a `.keycrt` extension, combine the content of the `openssl_private_key` and `openssl_certifcate` variables, set permissions to 640, and assign ownership based on the `openssl_file_owner` and `openssl_file_group` variables. Ensure the content is base64 decoded and trimmed.

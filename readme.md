@@ -61,7 +61,7 @@ options:
 
 Prompt for using PROMPT mode:
 ```bash
-python ansible_generator.py -m codestral -e llamafile prompt -d example -tt exact   
+python ansible_generator.py -m gpt-oss:20b -e ollama prompt -d benchmark100 -tt exact   
 ```
 
 **Ansible Generator Benchmark Mode**
@@ -85,3 +85,241 @@ Example for using BENCHMARK mode:
 ```bash
 python ansible_generator.py -m codestral -e llamafile benchmark -d example -tt exact -p prompts/llamafile_codestral_english_exact/example
 ```
+# 1. Extending the Repository with New Models
+
+This repository is designed to benchmark the ability of various local LLMs to reconstruct and generate Ansible automation code. To support a broad and evolving ecosystem of models, the system was built to be modular. Adding new models is straightforward, provided that the tokenizer and model directory structure follow the expected conventions.
+
+The project supports three execution backends:
+
+- **Ollama** (preferred and primary runtime)
+- **llamafile** (binary-distributable LLM runtime)
+- **PyTorch/HuggingFace** (mainly for experimentation)
+
+Local execution avoids cloud dependencies and enables reproducible, controlled experiments.
+
+## 1.1 Tokenizer Setup
+
+Many models—especially those executed via HuggingFace—require a tokenizer that is not included by default.  
+Because this repository performs strict prompt-length validation before inference, the tokenizer must be available locally and must match the model's internal naming.
+
+Instructions for downloading and placing tokenizers are described here:
+
+➡️ **[tokenizer_info.md](./tokenizer_info.md)**
+
+After obtaining a tokenizer:
+
+1. Put the tokenizer folder into the directory defined in  
+   `ansible_generator_config.py` → `TOKENIZER_MODELS_PATH`.
+
+2. The tokenizer directory name must match exactly the identifier returned by  
+   `llm_chain.py` → `hf_modelfiles_path_for()`.
+
+This ensures that prompt size estimation uses the correct tokenization scheme.  
+Since context windows often appear large on paper (32k, 64k, 128k), but real-world VRAM limitations reduce the feasible limit drastically, exact token counting is mandatory for stable execution.
+
+---
+
+# 2. Supported Models
+
+The repository includes a curated set of open-source language models well-suited for local execution on hardware with:
+
+- **≥ 32 GB system RAM**
+- **≈ 20 GB VRAM**
+
+These constraints significantly reduce the number of models that can be evaluated in practice.  
+Large context windows cause rapid VRAM growth due to the quadratic cost of attention mechanisms.  
+Therefore, this repository focuses on models that are:
+
+- available via Ollama,  
+- quantized efficiently (Q4 or MXFP4), and  
+- small enough to run inference reliably.
+
+The following table lists all supported models currently integrated into the benchmark:
+
+| Company       | Selected Model | Size | #Parameters | Context Window | Quantization |
+| ------------- | -------------- | ---- | ----------- | -------------- | ------------ |
+| **Alibaba**   | [qwen2.5:14b](https://ollama.com/library/qwen2.5:14b) | 9GB | 14b | 32k | Q4_K_M |
+| **Deepseek**  | [deepseek-r1:14b](https://ollama.com/library/deepseek-r1:14b) | 9GB | 14b | 128k | Q4_K_M |
+| **Google**    | [gemma3:27b](https://ollama.com/library/gemma3:27b) | 17GB | 27b | 128k | Q4_K_M |
+| **IBM**       | [granite-code:20b](https://ollama.com/library/granite-code:20b) | 12GB | 20b | 8k | Q4_0 |
+| **Meta**      | [llama3.1:8b](https://ollama.com/library/llama3.1:8b) | 4.9GB | 8b | 128k | Q4_K_M |
+| **Microsoft** | [phi4:14b](https://ollama.com/library/phi4:14b) | 9.1GB | 14b | 16k | Q4_K_M |
+| **Mistral**   | [codestral:22b](https://ollama.com/library/codestral:22b) | 13GB | 22b | 32k | Q4_0 |
+| **OpenAI**    | [gpt-oss:20b](https://ollama.com/library/gpt-oss:20b) | 14GB | 20b | 128k | MXFP4 |
+
+Because the benchmark evaluates two model-driven steps (prompt reconstruction + YAML generation), these eight models produce **64 possible model combinations**.
+
+This enables analysis of:
+
+- cross-model robustness,  
+- consistency between reconstruction and generation,  
+- sensitivity of different architectures to structured input,  
+- performance variations caused by quantization schemes,  
+- differences in code reliability across vendors.
+
+---
+
+# 3. Configuration System
+
+This repository is the result of merging and restructuring the configuration logic from the original work of:
+
+**Vera Kowalczuk — LLM Code Translation**  
+https://github.com/ast-fortiss-tum/llm-code-translation
+
+The original project required maintaining two independent Python projects, each containing their own configuration files:
+
+- `codetransbenchmark/config/config.yaml`
+- `codetrans/src/codetrans/codetrans_config.py`
+
+To simplify extension and improve maintainability, this benchmark consolidates both into a single structure:
+
+- `src/ansible_bench_code/config/config.yaml`  
+- `src/ansible_bench_code/utils/config.py`
+
+This improves:
+
+- portability,  
+- reproducibility,  
+- clarity of model/runtime selection,  
+- and reduces duplication significantly.
+
+These configuration files define:
+
+- model names  
+- prompt styles
+- evaluation settings  
+- enabled test stages  
+- context window limits  
+- runtime parameters  
+- paths for dataset input and report output  
+- toggles for each benchmark phase  
+
+Supported execution engines:
+
+- **ollama** — primary, stable, large model support  
+- **llamafile** — lightweight, single-file runtime  
+
+Additional documentation:
+
+➡️ **[ollama_user_guide.md](./ollama_user_guide.md)**  
+➡️ **[llamafile_user_guide.md](./llamafile_user_guide.md)**  
+➡️ **[llm_operation.md](./llm_operation.md)**
+
+---
+
+# 4. Hardware Constraints, Context Windows & Execution Notes
+
+The effective context window depends heavily on VRAM.  
+Even if a model advertises:
+
+- 128k tokens  
+- 100k+ context  
+- or extended RAG windows
+
+…these values cannot simply be used on a 20-GB GPU.
+
+The reason is straightforward:
+
+- The attention mechanism scales with **O(n²)** in memory.
+- Doubling the context can require **4× more VRAM**.
+- Quantization reduces model size, but not attention memory footprint.
+
+Therefore, this repository separates:
+
+- **theoretical model maximum**  
+- **practical benchmark configuration**
+
+Users can configure a smaller, safe effective window in the config file.
+
+Further explanations behind these runtime constraints can be found in:
+
+➡️ **[llm_operation.md](./llm_operation.md)**
+
+---
+
+# 5. Benchmark Workflow
+
+The benchmark follows a strict two-phase evaluation pipeline.  
+This ensures consistent, reproducible measurements for all supported models.
+
+## 5.1 Phase 1 — Prompt Reconstruction
+
+For each role in the `dataset/` directory:
+
+1. The tool locates the role’s `tasks/` directory.  
+2. All task YAML files are processed except **`assert.yml`**, since this file does not describe task logic but validation.  
+3. Each YAML file is parsed and transformed into a structured prompt.  
+   This includes:
+   - extracting task semantics  
+   - capturing module usage  
+   - translating task arguments into prompt instructions  
+4. All reconstructed prompts are saved.  
+   These prompts form a standardized intermediate representation of each task.
+
+The main idea:  
+**Every model should receive identical, controlled prompt input.**  
+This avoids noise and ensures that models are evaluated fairly and consistently.
+
+## 5.2 Phase 2 — Benchmark Execution
+
+1. For every reconstructed prompt, the chosen model generates a new Ansible task YAML file.  
+2. The generated file replaces the corresponding original task in the role.  
+3. The benchmark executes a rigorous validation pipeline:
+
+   - **YAML-Lint**  
+     Checks syntactic correctness and structure.
+   - **Ansible-Lint**  
+     Detects semantic and style errors, especially cross-file issues.
+   - **Molecule**  
+     Executes functional and semantic integration tests.
+
+4. A detailed report is generated for each model combination.  
+   Reports include:
+   - stage results  
+   - failure reasons  
+   - runtime statistics  
+   - model metadata  
+   - summary tables  
+
+This creates a reproducible mechanism to test how reliably LLMs can regenerate valid, functional Ansible code.
+
+---
+
+# 6. Dataset Creation
+
+The benchmark is intentionally extensible.  
+Any additional role placed under:
+
+```
+dataset/
+```
+
+will be automatically included once it fulfills the minimum requirements.
+
+To ensure meaningful evaluations, new roles must satisfy:
+
+### 1. Molecule Tests Must Be Present
+The role must include correct Molecule tests.  
+The benchmark relies on Molecule to validate functional correctness, not just syntax.
+
+### 2. Tests Must Execute Without Manual Fixes  
+Roles must work **as-is**, without human intervention.
+
+### 3. Semantic Validation Is Required  
+Tests must include a `verify.yml` that checks real behaviour, not only syntax.
+
+### 4. No Ansible-Lint Issues Caused by Cross-File Dependencies  
+Roles with intrinsic lint issues distort benchmark results.
+
+### 5. Tasks Must Be Valid YAML  
+Invalid files cannot be converted into prompts.
+
+### 6. Roles Should Be Representative Automation Use Cases  
+Roles should contain actual task logic, not placeholders or minimal stubs.
+
+This approach guarantees a clean dataset where errors during the benchmark are attributable to LLM output—not to flawed source data.
+
+---
+
+
+

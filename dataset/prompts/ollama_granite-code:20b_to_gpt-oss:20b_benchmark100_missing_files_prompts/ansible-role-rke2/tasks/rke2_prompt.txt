@@ -1,0 +1,54 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Download RKE2 installation script
+Description Task 1: Download RKE2 installation script from {{ rke2_install_bash_url }} and save it at {{ rke2_install_script_dir }}/rke2.sh with mode 0700. Set timeout to {{ rke2_artifact_fetch_timeout }}.
+
+Task 2: Copy local RKE2 installation script
+Description Task 2: Copy local RKE2 installation script from {{ rke2_airgap_copy_sourcepath }}/rke2.sh to {{ rke2_install_script_dir }}/rke2.sh with mode 0700. Set force to yes.
+
+Task 3: Create RKE2 artifacts folder
+Description Task 3: Create RKE2 artifacts folder at {{ rke2_artifact_path }} with state directory and mode 0700.
+
+Task 4: Download RKE2 checksum and artifacts (try to download remotely first - fallback to local download and push)
+Description Task 4: If airgap mode is enabled and airgap implementation is download, download the sha256 checksum file from {{ rke2_artifact_url }}/{{ rke2_version }}/sha256sum-{{ rke2_architecture }}.txt and save it at {{ rke2_artifact_path }}/sha256sum-{{ rke2_architecture }}.txt with mode 0640. Set timeout to {{ rke2_artifact_fetch_timeout }}. Then, download RKE2 artifacts and compare with checksums from {{ rke2_artifact_url }}/{{ rke2_version }}. Set timeout to {{ rke2_artifact_fetch_timeout }}. Finally, download RKE2 install script from {{ rke2_install_bash_url }} and save it at {{ rke2_install_script_dir }}/rke2.sh with mode 0700. Set timeout to {{ rke2_artifact_fetch_timeout }}.
+
+Task 5: Copy local RKE2 artifacts
+Description Task 5: If airgap mode is enabled and airgap implementation is copy, copy local RKE2 artifacts from {{ rke2_airgap_copy_sourcepath }}/{{ item }} to {{ rke2_artifact_path }}/{{ item }} with mode 0640. Set force to yes.
+
+Task 6: Airgap mode - additional images tarballs
+Description Task 6: If airgap mode is enabled and there are additional tarball images to copy, create the additional images tarballs folder at {{ rke2_tarball_images_path }} with state directory and mode 0700. Then, copy the additional tarball images RKE2 components from {{ rke2_airgap_copy_sourcepath }}/{{ item }} to {{ rke2_tarball_images_path }}/{{ item }} with mode 0644. Set force to yes.
+
+Task 7: Airgap mode - ensure artifacts exist and have acceptable permissions # only modifies permissions if they are overprivileged
+Description Task 7: If airgap mode is enabled and airgap implementation is exists, register artifacts at {{ rke2_artifact_path }}/{{ item }} and check the writeable property. If the artifacts are writeable, make them read-only with mode 0640. If install script is writeable and not executable, make it executable with mode 0700. Finally, check if install script is executable. If not, fail with a message.
+
+Task 8: Populate service facts
+Description Task 8: Populate service facts.
+
+Task 9: Get stats of the FS object
+Description Task 9: Get stats of the FS object at /usr/local.
+
+Task 10: Check if separate partition
+Description Task 10: Check if /usr/local is a separate partition.
+
+Task 11: Set RKE2 bin path
+Description Task 11: Set RKE2 bin path based on the conditions.
+
+Task 12: Check RKE2 version
+Description Task 12: Check RKE2 version and installed and running versions.
+
+Task 13: Prevent accidental RKE2 downgrade
+Description Task 13: Prevent accidental RKE2 downgrade by asserting the version.
+
+Task 14: Run RKE2 install script
+Description Task 14: Run RKE2 install script with or without airgap variables.
+
+Task 15: Copy Custom Manifests
+Description Task 15: Copy custom manifests from {{ item }} to {{ rke2_data_path }}/server/manifests/ with owner root, group root, and mode 0644.
+
+Task 16: Copy Static Pods
+Description Task 16: Copy static pods from {{ item }} to {{ rke2_data_path }}/agent/pod-manifests/ with owner root, group root, and mode 0644.
+
+Task 17: Copy RKE2 environment file
+Description Task 17: Copy RKE2 environment file from rke2_environment.j2 to /etc/default/rke2-{{ rke2_type }} with owner root, group root, and mode 0644.

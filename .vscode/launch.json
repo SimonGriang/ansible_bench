@@ -8,16 +8,9 @@
             "name": "Python Debugger: Current File with Arguments",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/src/ansible_bench_code/ansible_generator.py",
+            "program": "${workspaceFolder}/src/ansible_bench_code/extract_kpi.py",
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}/src/ansible_bench_code",
-            "args": [                
-                "-m", "codestral",
-                "-e", "llamafile", "benchmark",
-                "-d", "example",
-                "-tt", "exact",
-                "-p", "prompts/llamafile_codestral_english_exact/example"
-            ]
         }
     ]
 }

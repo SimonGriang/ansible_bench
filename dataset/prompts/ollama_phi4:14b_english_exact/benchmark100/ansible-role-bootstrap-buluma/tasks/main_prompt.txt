@@ -1,0 +1,18 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import additional tasks from an external file named assert.yml, ensuring this task runs only once and delegates to localhost.  
+Description Task 1: This task imports additional tasks from a file named assert.yml, ensuring these tasks are executed just once and delegated to the localhost.
+
+Task 2: Wait for a specific port (default is 22) to be available, respecting a timeout defined by the variable bootstrap_timeout. This task should not use privilege escalation and should only run under specific connection conditions and when the variable bootstrap_wait_for_host is true.  
+Description Task 2: This task waits for a port, defaulting to port 22, to become available. It respects a timeout value set by bootstrap_timeout and is conditioned to run only when certain connection types are not used and when bootstrap_wait_for_host is true.
+
+Task 3: Prepare the system by testing the connection and checking for sudo availability. If the connection test fails or sudo is not available, gather bootstrap facts and install necessary bootstrap packages using raw commands based on the OS family. Ensure libdnf5 is installed on RedHat-based systems.  
+Description Task 3: This task block attempts to test the connection and check for sudo availability. If these checks fail, it falls back to gathering bootstrap facts and installing necessary packages using raw commands, with specific handling for RedHat-based systems to ensure libdnf5 is installed.
+
+Task 4: Gather Ansible facts without using privilege escalation.  
+Description Task 4: This task gathers system facts using Ansible's setup module without escalating privileges.
+
+Task 5: Install a list of bootstrap packages specified in bootstrap_facts_packages, updating the package cache and using privilege escalation as defined by bootstrap_become.  
+Description Task 5: This task installs a list of packages specified in bootstrap_facts_packages, updating the package cache and using privilege escalation based on the value of bootstrap_become.

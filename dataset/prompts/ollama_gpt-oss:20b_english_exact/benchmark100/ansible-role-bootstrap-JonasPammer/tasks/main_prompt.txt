@@ -1,0 +1,26 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: check if all variables have been set correctly  
+Description Task 1: Import the `assert.yml` task file to validate that all required variables are defined, running this check only once and delegating the execution to localhost.  
+
+Task 2: wait for host (when configured)  
+Description Task 2: Use `wait_for` to pause until the target host is reachable on the configured SSH port (default 22) within the timeout specified by `bootstrap_timeout`. This action is performed locally, may be privileged based on `bootstrap_become`, and only runs when the connection type is not a container or Docker and when `bootstrap_wait_for_host` is true.  
+
+Task 3: prepare system  
+Description Task 3:  
+- **Block**: Test the connection to the host using `wait_for_connection` with the specified timeout; register the result and mark the task as unchanged.  
+- **Rescue**: If the connection test fails, output a debug message showing the timeout value and mark the task as changed.  
+- **Always**:  
+  - Include the `gather_facts.yml` task file to collect raw bootstrap facts.  
+  - Execute raw shell commands defined in `bootstrap_install.raw` (executed via `/bin/sh`), registering the output and determining change status based on regex matching and OS family. This raw command runs with the bootstrap user and optional privilege escalation.  
+
+Task 4: ensure system is prepared by issuing ansible modules.  
+Description Task 4:  
+- Run with optional privilege escalation (`bootstrap_become` and `bootstrap_become_user`).  
+- **Block**:  
+  - Gather Ansible facts using the `setup` module.  
+  - Install bootstrap packages listed in `bootstrap__facts_packages` using the `package` module, updating the package cache and ensuring each package is present.  
+
+---

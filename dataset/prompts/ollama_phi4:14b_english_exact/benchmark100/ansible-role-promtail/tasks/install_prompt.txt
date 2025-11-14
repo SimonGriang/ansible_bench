@@ -1,0 +1,48 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Ensure the unzip package is installed.  
+Description Task 1: Install the unzip package on the target system, ensuring the package cache is updated based on the `promtail_apt_update_cache` variable.
+
+Task 2: Create a group for Promtail.  
+Description Task 2: Create a system group for Promtail using the name specified in the `promtail_system_group` variable, unless the group is "root".
+
+Task 3: Create a user for Promtail.  
+Description Task 3: Create a system user for Promtail with the name specified in `promtail_system_user`, associating it with the group from `promtail_system_group` and additional groups from `promtail_user_additional_groups`. The user should have a shell of `/usr/sbin/nologin` and not have a home directory unless `promtail_system_user` is "root".
+
+Task 4: Ensure the /usr/local/bin directory exists.  
+Description Task 4: Create the directory `/usr/local/bin` with mode 0755 if it does not already exist.
+
+Task 5: Create necessary configuration directories for Promtail.  
+Description Task 5: Create directories for Promtail's configuration files, including the main config directory, file SD directory, and positions directory, owned by root and the Promtail system group with mode 0770.
+
+Task 6: Create application directories for Promtail.  
+Description Task 6: Create directories for Promtail's installation, owned by the Promtail system user and group with mode 0755.
+
+Task 7: Check if the Promtail binary exists.  
+Description Task 7: Check if the Promtail binary file exists in the specified installation directory and version, storing the result in `promtail_binary`.
+
+Task 8: Download Promtail binaries if not present locally.  
+Description Task 8: Download the Promtail binaries from the URL specified in `promtail_dist_url` to a temporary directory if the binary does not exist locally, using a checksum specified by `promtail_custom_checksum` or a default one.
+
+Task 9: Propagate a locally distributed Promtail archive.  
+Description Task 9: Copy a locally available Promtail archive to the temporary directory if the binary does not exist locally and the local directory is specified.
+
+Task 10: Download Promtail binaries to the controller node.  
+Description Task 10: On the controller node, download the Promtail binaries to a temporary directory if the `promtail_binary_propagate` condition is met.
+
+Task 11: Propagate Promtail binaries across nodes.  
+Description Task 11: Copy the downloaded Promtail binaries to the temporary directory if the `promtail_binary_propagate` condition is met.
+
+Task 12: Unpack the Promtail binaries.  
+Description Task 12: Unpack the downloaded Promtail binaries into the specified installation directory, creating a symbolic link if the binary does not already exist.
+
+Task 13: Create a symlink to the latest version of Promtail.  
+Description Task 13: Create a symbolic link to the latest version of the Promtail binary in `/usr/local/bin/promtail`, triggering a handler to restart Promtail.
+
+Task 14: Write the Promtail configuration file.  
+Description Task 14: Use a template to generate the Promtail configuration file, validating it with the Promtail binary, and trigger a handler to restart Promtail.
+
+Task 15: Create a systemd service unit for Promtail.  
+Description Task 15: Use a template to create a systemd service unit file for Promtail, setting the appropriate permissions and triggering a handler to restart Promtail.

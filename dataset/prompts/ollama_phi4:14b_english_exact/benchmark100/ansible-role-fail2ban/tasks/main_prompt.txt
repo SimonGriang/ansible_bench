@@ -1,0 +1,27 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the assert.yml task file once, executing it on the localhost. This setup is typically used to ensure that certain assertions or validations are performed before proceeding with the rest of the playbook.
+
+Task 2: Install fail2ban  
+Description Task 2: Install the fail2ban package using the specified package names found in the variable `fail2ban_packages`. This task ensures that fail2ban is installed and ready for configuration on the target system.
+
+Task 3: Copy filters in filter.d  
+Description Task 3: Copy the fail2ban filters from the source directory specified by `fail2ban_filterd_path` to the destination `/etc/fail2ban/filter.d/`. This task ensures that the filters are properly placed with root ownership and 0640 permissions. It only runs if `fail2ban_filterd_path` is defined and triggers the handler to restart fail2ban.
+
+Task 4: Configure fail2ban.local  
+Description Task 4: Update the configuration file `/etc/fail2ban/fail2ban.local` with settings from the combined lists `fail2ban_base_configuration` and `fail2ban_configuration`. Each configuration entry is applied using the `community.general.ini_file` module, with permissions set to 0640. Changes trigger a restart of the fail2ban service.
+
+Task 5: Configure jail.local  
+Description Task 5: Update the fail2ban jail settings in `/etc/fail2ban/jail.local` using the combined lists `fail2ban_base_jail_configuration` and `fail2ban_jail_configuration`. Each setting is applied with the `community.general.ini_file` module, ensuring permissions are set to 0640. Changes trigger a restart of the fail2ban service.
+
+Task 6: Stat auth log file  
+Description Task 6: Check the status of the `/var/log/auth.log` file using the `stat` module and register the result in `fail2ban_auth`. This step is used to determine whether the auth log file exists.
+
+Task 7: Touch auth log file  
+Description Task 7: Create the `/var/log/auth.log` file with mode 0640 if it does not already exist. This ensures that the file is present and accessible for fail2ban to monitor.
+
+Task 8: Start and enable fail2ban  
+Description Task 8: Ensure the fail2ban service, specified by `fail2ban_service`, is started and enabled to start on boot. This step finalizes the setup by making sure fail2ban is actively running and will persist across reboots.

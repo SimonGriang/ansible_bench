@@ -1,0 +1,10 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Enable specific Apache2 modules
+Description Task 1: Enable the 'proxy' and 'proxy_http' Apache2 modules on Debian and Suse systems, making them available for use in the configuration.
+
+Task 2: Configure Apache2 locations
+Description Task 2: Configure Apache2 locations by copying a template file and configuring the location directories. Use the 'httpd_locations' list to populate the locations. The configuration files should be named after the location names and have permissions of 0644. The template to use is 'location.conf.j2'. Notify the 'Test httpd configuration validity' and 'Restart httpd' handlers after the configuration is changed.

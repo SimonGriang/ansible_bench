@@ -1,0 +1,15 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+   Task 1: Install epel
+   Description Task 1: Install the Extra Packages for Enterprise Linux (EPEL) repository. This is done by installing the EPEL GPG key and then the epel-release package. If epel_next is set to true, the epel-next-release package should be installed as well. Both the epel-release and epel-next-release package installations should notify the handler to update the package cache.
+
+   Task 2: Install epel gpg key
+   Description Task 2: Install the GPG key for the EPEL repository. This key is required to authenticate the EPEL packages. The key is provided as a variable named epel_gpg_key.
+
+   Task 3: Install epel-release
+   Description Task 3: Install the epel-release package from the EPEL repository. The package URL is provided as a variable named epel_url. If the package installation is successful, the handler to update the package cache should be notified.
+
+   Task 4: Install epel-next-release
+   Description Task 4: Install the epel-next-release package from the EPEL repository. This package is installed only when the variable epel_next is set to true. The package URL is provided as a variable named epel_next_url. If the package installation is successful, the handler to update the package cache should be notified.

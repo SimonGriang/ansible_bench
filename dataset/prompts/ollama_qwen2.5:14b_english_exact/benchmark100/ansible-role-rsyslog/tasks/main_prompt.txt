@@ -1,0 +1,30 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import assert.yml to perform checks and ensure that the playbook runs smoothly.
+
+Task 2: Uninstall conflicting systemd-logger
+Description Task 2: Remove the systemd-logger package to avoid conflicts with rsyslog.
+
+Task 3: Install rsyslog
+Description Task 3: Install the rsyslog package using the specified package name and state.
+
+Task 4: Install additional rsyslog packages
+Description Task 4: Install a list of additional rsyslog packages as defined in the variable rsyslog_features.
+
+Task 5: Configuring default rsyslog
+Description Task 5: Render and deploy the default rsyslog configuration file when rsyslog_deploy_default_config is true.
+
+Task 6: Make configuration directory
+Description Task 6: Ensure the /etc/rsyslog.d/ directory exists and is set to the correct permissions.
+
+Task 7: Configuring rsyslog forward rule
+Description Task 7: Render and deploy a forward rule configuration file for rsyslog when rsyslog_deploy_default_config is false.
+
+Task 8: Configuring additional config files
+Description Task 8: Copy additional rsyslog configuration files to /etc/rsyslog.d/ and set their permissions and ownership.
+
+Task 9: Start and enable rsyslog
+Description Task 9: Start the rsyslog service and ensure it is enabled to start at boot.

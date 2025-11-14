@@ -1,0 +1,39 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Check if python is installed  
+Description Task 1: Use ansible.builtin.command to run 'which python', register the result in python_executable, ignore errors, and set changed_when: false.  
+
+Task 2: Check if python3 is installed  
+Description Task 2: Use ansible.builtin.command to run 'which python3', register the result in python3_executable, ignore errors, and set changed_when: false.  
+
+Task 3: Debug Python executable path  
+Description Task 3: Output the stdout of python_executable using ansible.builtin.debug.  
+
+Task 4: Debug Python3 executable path  
+Description Task 4: Output the stdout of python3_executable using ansible.builtin.debug.  
+
+Task 5: Import assert.yml  
+Description Task 5: Import tasks from assert.yml, run_once true, delegate_to localhost.  
+
+Task 6: Install requirements  
+Description Task 6: Install packages listed in openssl_requirements variable using ansible.builtin.package.  
+
+Task 7: Ensure packaging is available via dnf  
+Description Task 7: Install python3-packaging package using ansible.builtin.package.  
+
+Task 8: Install pip packages  
+Description Task 8: Install pip packages listed in openssl_pip_packages variable using ansible.builtin.pip.  
+
+Task 9: Create key directory  
+Description Task 9: Create directory at path openssl_key_directory with mode 750, owner openssl_file_owner, group openssl_file_group using ansible.builtin.file.  
+
+Task 10: Create csr directory  
+Description Task 10: Create directory at path openssl_csr_directory with mode 755, owner openssl_file_owner, group openssl_file_group using ansible.builtin.file.  
+
+Task 11: Create crt directory  
+Description Task 11: Create directory at path openssl_crt_directory with mode 755, owner openssl_file_owner, group openssl_file_group using ansible.builtin.file.  
+
+Task 12: Include create.yml  
+Description Task 12: Include tasks from create.yml with loop over openssl_items, label each iteration as item.name, only when openssl_items defined and length > 0.

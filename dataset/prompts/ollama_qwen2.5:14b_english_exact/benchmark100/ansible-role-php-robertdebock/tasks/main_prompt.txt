@@ -1,0 +1,15 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import the assert.yml file which is used for assertions. This task should only run once and on the localhost.
+
+Task 2: Install php
+Description Task 2: Install PHP using the list of packages defined in the variable php_packages.
+
+Task 3: Find used php.ini
+Description Task 3: Execute a shell command to find the location of the PHP configuration file (php.ini). The result is registered to the variable php_found_ini_location. This task will run only if the variable php_ini_location is not already defined.
+
+Task 4: Configure php
+Description Task 4: Use a template named php.ini.j2 to configure PHP settings and save it to the location specified by php_ini_location or the location found by the shell command if php_ini_location is not defined. Notify the handler to restart httpd after the configuration is updated.

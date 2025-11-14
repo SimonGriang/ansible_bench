@@ -1,0 +1,133 @@
+====== Run Summary ======
+Start time : 2025-10-10 08:04:32.578176
+End time   : 2025-10-10 10:23:49.518888
+Duration   : 2:19:16.940712
+
+====== Stage Counts ======
+yamllint failures   : 21
+ansiblelint failures: 3
+molecule failures   : 20
+all passed          : 7
+TOTAL entries       : 51
+
+====== Detailed Entries ======
+
+YAMLLINT Statistics: 
+Total yamllint runs: 203
+Yamllint passed without iteration: 64
+Yamllint passed at first attempt: 24
+Failed at stage 'yamllint': 
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-redis/tasks/main.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-openssl/tasks/create.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-users/tasks/main.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-users/tasks/user.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-httpd-buluma/tasks/main.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/java_role/tasks/install_openjdk.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/java_role/tasks/import_certs.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-postfix/tasks/main.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-git/tasks/main.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-php-robertdebock/tasks/main.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/rke2.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/first_server.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/cis.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/first_server_restore.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/keepalived.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-ansible/tasks/setup-Debian.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rsyslog/tasks/main.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-cron-buluma/tasks/main.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-hashicorp/tasks/main.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-java/tasks/main.yml
+yamllint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-selinux-robertdebock/tasks/main.yml
+
+ANSIBLELINT Statistics: 
+Total ansiblelint runs: 76
+Ansiblelint passed at first attempt: 19
+Failed at stage 'ansiblelint':
+ansiblelint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-httpd-buluma/tasks/vhosts.yml
+ansiblelint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/change_config.yml
+ansiblelint failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-ansible/tasks/main.yml
+
+MOLECULE Statistics: 
+failed at stage 'molecule-test':
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-openssl/tasks/main.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-users/tasks/group.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-ca_certificates/tasks/main.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-httpd-buluma/tasks/locations.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-httpd-buluma/tasks/directories.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-httpd-buluma/tasks/ssl.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-apt_autostart/tasks/main.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-core_dependencies/tasks/main.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/find_active_server.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/remaining_nodes.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/main.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/summary.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-buildtools/tasks/main.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-mysql/tasks/main.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-cron/tasks/main.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-nginx/tasks/main.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-ansible/tasks/setup-RedHat.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-fail2ban/tasks/main.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-scl/tasks/main.yml
+molecule failed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-epel/tasks/main.yml
+
+Successfully passed all stages:
+passed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/java_role/tasks/main.yml
+passed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/rolling_restart.yml
+passed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/ingress-nginx.yml
+passed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/kubevip.yml
+passed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-ansible/tasks/setup-Ubuntu.yml
+passed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-ansible/tasks/setup-pip.yml
+passed: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-ansible/tasks/setup-Fedora.yml
+
+====== All run roles ======
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-redis/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-openssl/tasks/create.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-users/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-users/tasks/user.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-httpd-buluma/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/java_role/tasks/install_openjdk.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/java_role/tasks/import_certs.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-postfix/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-git/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-php-robertdebock/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/rke2.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/first_server.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/cis.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/first_server_restore.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/keepalived.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-ansible/tasks/setup-Debian.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rsyslog/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-cron-buluma/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-hashicorp/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-java/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-selinux-robertdebock/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-httpd-buluma/tasks/vhosts.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/change_config.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-ansible/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-openssl/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-users/tasks/group.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-ca_certificates/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-httpd-buluma/tasks/locations.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-httpd-buluma/tasks/directories.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-httpd-buluma/tasks/ssl.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-apt_autostart/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-core_dependencies/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/find_active_server.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/remaining_nodes.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/summary.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-buildtools/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-mysql/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-cron/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-nginx/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-ansible/tasks/setup-RedHat.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-fail2ban/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-scl/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-epel/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/java_role/tasks/main.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/rolling_restart.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/ingress-nginx.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-rke2/tasks/kubevip.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-ansible/tasks/setup-Ubuntu.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-ansible/tasks/setup-pip.yml
+/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_deepseek-r1:14b/molecule_test/ansible-role-ansible/tasks/setup-Fedora.yml

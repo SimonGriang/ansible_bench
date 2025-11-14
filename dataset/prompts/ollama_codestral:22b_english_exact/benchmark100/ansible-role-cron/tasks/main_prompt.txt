@@ -1,0 +1,24 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml
+Description Task 1: This task is used to import another playbook file named assert.yml. It runs once and delegates the task to the localhost.
+
+Task 2: Install cron
+Description Task 2: This task is used to install the cron packages specified in the variable cron_packages.
+
+Task 3: Configure shell
+Description Task 3: This task is used to configure the shell in the cron configuration file specified by the variable cron_configuration. It sets the shell to the value of the variable cron_shell. If the line "^SHELL" already exists, it will be replaced. If the file does not exist, it will be created with mode 0600. The handler "Restart cron" will be notified to restart the cron service.
+
+Task 4: Configure path
+Description Task 4: This task is used to configure the path in the cron configuration file specified by the variable cron_configuration. It sets the path to the value of the variable cron_path. If the line "^PATH" already exists, it will be replaced. If the file does not exist, it will be created with mode 0600. The handler "Restart cron" will be notified to restart the cron service.
+
+Task 5: Configure mailto
+Description Task 5: This task is used to configure the mailto setting in the cron configuration file specified by the variable cron_configuration. It sets the mailto to the value of the variable cron_mailto. If the line "^MAILTO" already exists, it will be replaced. If the file does not exist, it will be created with mode 0600. The handler "Restart cron" will be notified to restart the cron service.
+
+Task 6: Start and enable cron
+Description Task 6: This task is used to start and enable the cron service specified by the variable cron_service. This action will only be performed if the variable cron_service is defined and has a non-zero length.
+
+Task 7: Schedule requested cron jobs
+Description Task 7: This task is used to schedule cron jobs based on the items in the variable cron_jobs. Each item in the variable cron_jobs is a dictionary that contains the name, minute, hour, day, month, weekday, special_time, job, state, and user for each cron job. This task will loop through each item in the variable cron_jobs and schedule the corresponding cron job. The default state for each cron job is present. This action will only be performed if the variable cron_jobs is defined.

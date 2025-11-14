@@ -1,0 +1,48 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Ensure unzip package is installed
+Description Task 1: This task will make sure that the unzip package is available on the system. The package state should be present and update_cache will be set to a variable promtail_apt_update_cache.
+
+Task 2: Create promtail group
+Description Task 2: This task will create a new group named promtail_system_group on the system. The group state should be present and it should be a system group. However, this task should only run when the promtail_system_group variable is not set to "root".
+
+Task 3: Create promtail user
+Description Task 3: This task will create a new user named promtail_system_user on the system. The user should be part of the promtail_system_group and any additional groups listed in the promtail_user_additional_groups variable. The user's shell should be set to /usr/sbin/nologin and it should be a system user. The user's home directory should not be created. However, this task should only run when the promtail_system_user variable is not set to "root".
+
+Task 4: Ensure /usr/local/bin directory exists
+Description Task 4: This task will make sure that the directory /usr/local/bin exists on the system. The directory state should be directory and its mode should be 0755.
+
+Task 5: Create configuration directories
+Description Task 5: This task will create multiple directories for promtail configuration. The directories to be created are promtail_config_dir, promtail_config_file_sd_dir, and promtail_positions_directory. These directories should be owned by root and the promtail_system_group. Their mode should be 0770.
+
+Task 6: Create application directories
+Description Task 6: This task will create multiple directories for the promtail application. The directories to be created are promtail_install_dir and promtail_install_dir/promtail_version. These directories should be owned by promtail_system_user and the promtail_system_group. Their mode should be 0755.
+
+Task 7: Check promtail binary
+Description Task 7: This task will check if the promtail binary file exists at the path promtail_install_dir/promtail_version/promtail-linux-go_arch. The result of this check will be stored in the promtail_binary variable.
+
+Task 8: Download promtail binaries
+Description Task 8: This task will download the promtail binaries from the URL specified in the promtail_dist_url variable. The downloaded file will be saved to promtail_tmp_dir/promtail_version_promtail-linux-go_arch.zip. The checksum of the downloaded file will be verified using the promtail_custom_checksum variable or the __promtail_checksum variable. This task should only run if the promtail binary does not exist and if promtail_binary_local_dir is empty and if promtail_binary_propagate is false.
+
+Task 9: Propagate locally distributed promtail archive
+Description Task 9: This task will copy the locally distributed promtail archive from promtail_binary_local_dir/promtail_version_promtail-linux-go_arch.zip to promtail_tmp_dir/promtail_version_promtail-linux-go_arch.zip. This task should only run if the promtail binary does not exist and if promtail_binary_local_dir is not empty and if promtail_binary_propagate is false.
+
+Task 10: Download promtail binaries to controller node
+Description Task 10: This task will download the promtail binaries from the URL specified in the promtail_dist_url variable to the controller node. The downloaded file will be saved to promtail_tmp_dir/promtail_version_promtail-linux-go_arch.zip. The checksum of the downloaded file will be verified using the promtail_custom_checksum variable or the __promtail_checksum variable. This task should only run if promtail_binary_propagate is true.
+
+Task 11: Propagate promtail binaries
+Description Task 11: This task will copy the promtail binaries from promtail_tmp_dir/promtail_version_promtail-linux-go_arch.zip to promtail_tmp_dir/promtail_version_promtail-linux-go_arch.zip. This task should only run if promtail_binary_propagate is true.
+
+Task 12: Unpack promtail binaries
+Description Task 12: This task will unpack the promtail binaries from the archive promtail_tmp_dir/promtail_version_promtail-linux-go_arch.zip to the directory promtail_install_dir/promtail_version. The task will create the directory if it does not exist. The mode of the unpacked files should be 0755.
+
+Task 13: Create symlink to latest version
+Description Task 13: This task will create a symbolic link from promtail_install_dir/promtail_version/promtail-linux-go_arch to /usr/local/bin/promtail. The mode of the symbolic link should be 0755. This task will notify the handler "Restart promtail" if the symbolic link has been changed.
+
+Task 14: Write config
+Description Task 14: This task will write the promtail configuration to the file promtail_config_file. The configuration will be generated from the template config.j2. The file will be owned by root and the promtail_system_group. The mode of the file should be 0644. The configuration will be validated using the command /usr/local/bin/promtail -config.file %s -check-syntax. This task will notify the handler "Restart promtail" if the configuration has been changed.
+
+Task 15: Create systemd service unit
+Description Task 15: This task will create the systemd service unit for promtail. The service unit will be generated from the template promtail_systemd_service_template_file. The file will be saved to /etc/systemd/system/promtail_systemd_service.service. The mode of the file should be 0644. This task will notify the handler "Restart promtail" if the service unit has been changed.

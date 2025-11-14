@@ -1,0 +1,54 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Create Vault group
+Description Task 1: Create a system group named {{ vault_group }}.
+
+Task 2: Create Vault user
+Description Task 2: Create a system user named {{ vault_user }} with home directory disabled and shell set to {{ vault_user_shell }}, and assign the user to the {{ vault_group }} group.
+
+Task 3: Create Vault download directory
+Description Task 3: Create a directory at {{ vault_download_path }} with permissions set to 0755 and owned by the {{ vault_user }} user and {{ vault_group }} group.
+
+Task 4: Download Vault binary
+Description Task 4: Download the Vault binary from the specified URL and unarchive it to {{ vault_download_path }}. Ensure the file is owned by root.
+
+Task 5: Check if vault_path exists
+Description Task 5: Check if the directory at {{ vault_path }} exists.
+
+Task 6: Create vault_path if it does not exist
+Description Task 6: If the directory at {{ vault_path }} does not exist and is specified, create it with permissions set to 0755 and owned by the {{ vault_user }} user and {{ vault_group }} group.
+
+Task 7: Create directory in vault_path
+Description Task 7: Create directories specified in the vault_directories list with permissions set to 0755 and owned by the specified owner and group.
+
+Task 8: Create data directory
+Description Task 8: Create directories specified in the vault_data_directories list with permissions set to 0755 and owned by the specified owner and group.
+
+Task 9: Generate TLS key and certificate
+Description Task 9: Generate a TLS key and certificate in the directory specified by {{ vault_data_directory }}/tls/ with a validity period of 1095 days and notify the handler 'Restart vault' after completion.
+
+Task 10: Set ownership of tls material
+Description Task 10: Set the ownership of TLS files specified in the vault_tls_files list to the specified owner and group.
+
+Task 11: Copy Vault binary
+Description Task 11: Copy the Vault binary from {{ vault_download_path }}/vault to {{ vault_path }}/usr/bin/vault with permissions set to 0755 and notify the handler 'Restart vault' after completion.
+
+Task 12: Set cap_ipc_lock=ep on /usr/bin/vault
+Description Task 12: Set the capability cap_ipc_lock=ep on the Vault binary and do not mark the task as changed.
+
+Task 13: Touch vault.env
+Description Task 13: Create the file {{ vault_path }}/etc/vault.d/vault.env with permissions set to 0644 and owned by {{ vault_user }} and {{ vault_group }} and notify the handler 'Restart vault' after completion.
+
+Task 14: Create /usr/lib/systemd/system
+Description Task 14: Create the directory /usr/lib/systemd/system with permissions set to 0755.
+
+Task 15: Copy Vault service file
+Description Task 15: Copy the Vault service file template vault.service.j2 to /usr/lib/systemd/system/vault.service with permissions set to 0644 and notify the handler 'Daemon reload' after completion only if the service manager is systemd.
+
+Task 16: Copy vault configuration
+Description Task 16: Copy the vault configuration file vault.hcl to {{ vault_path }}/etc/vault.d/vault.hcl with permissions set to 0644 and notify the handler 'Restart vault' after completion.
+
+Task 17: Flush handlers
+Description Task 17: Flush all the handlers in the playbook.

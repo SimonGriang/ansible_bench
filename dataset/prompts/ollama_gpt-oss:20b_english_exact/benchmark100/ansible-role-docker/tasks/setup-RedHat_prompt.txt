@@ -1,0 +1,21 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Ensure old versions of Docker are not installed.  
+Description Task 1: Remove any packages listed in the variable `docker_obsolete_packages` to avoid conflicts with newer Docker releases.
+
+Task 2: Add Docker GPG key.  
+Description Task 2: Import the GPG key specified by `docker_yum_gpg_key` into the system's RPM keyring, but only when `docker_add_repo` evaluates to true.
+
+Task 3: Add Docker repository.  
+Description Task 3: Download the Docker repository file from the URL defined in `docker_yum_repo_url` and place it at `/etc/yum.repos.d/docker-{{ docker_edition }}.repo` with root ownership and 0644 permissions, conditioned on `docker_add_repo` being true.
+
+Task 4: Configure Docker Nightly repo.  
+Description Task 4: In the Docker repository file, enable or disable the nightly repository section (`docker-{{ docker_edition }}-nightly`) by setting the `enabled` option to the value of `docker_yum_repo_enable_nightly`, with 0644 permissions and no extra spaces, only when `docker_add_repo` is true.
+
+Task 5: Configure Docker Test repo.  
+Description Task 5: In the Docker repository file, enable or disable the test repository section (`docker-{{ docker_edition }}-test`) by setting the `enabled` option to the value of `docker_yum_repo_enable_test`, with 0644 permissions and no extra spaces, only when `docker_add_repo` is true.
+
+Task 6: Configure containerd on RHEL 8.  
+Description Task 6: Execute a block of tasks that (a) removes the `runc` package, (b) installs the `container-selinux` package, and (c) installs the `containerd.io` package, but only on hosts where `ansible_facts.distribution_major_version | int == 8`.

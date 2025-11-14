@@ -1,0 +1,13 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Check if the Helm binary exists at the specified path.
+Description Task 1: This task checks if the Helm binary exists at the path stored in the variable `helm_bin_path`. The result will be stored in the `helm_check` variable.
+
+Task 2: Check the current version of Helm installed on the system.
+Description Task 2: This task runs the `version` command for Helm, which is located at the path stored in the variable `helm_bin_path`. The result will be stored in the `helm_existing_version` variable. The `failed_when` and `changed_when` parameters are set to `false` to avoid unexpected changes or failures.
+
+Task 3: Download the Helm binary from the specified repository.
+Description Task 3: This task downloads the Helm binary from the repository specified in `helm_repo_path`. The version, platform, and architecture of the Helm binary will be determined by the values of the variables `helm_version`, `helm_platform`, and `helm_arch`. The download will be stored in the `/tmp` directory. This task will only run if the Helm binary does not exist at the specified path or if the version does not match the existing version.
+
+Task 4: Copy the downloaded Helm binary into place at the specified path.
+Description Task 4: This task copies the Helm binary from the `/tmp` directory to the specified path stored in the variable `helm_bin_path`. The `become` parameter is set to `true` to ensure that the copy operation has the necessary privileges. This task will only run if the Helm binary has been changed since the last run.

@@ -1,0 +1,32 @@
+ Task 1: Import assert.yml
+   Description Task 1: This task imports an assert.yml file to ensure that the required variables are defined and have acceptable values. The file is imported from the localhost and is executed only once.
+
+   Task 2: Install mysql
+   Description Task 2: This task installs the MySQL server using the package manager. The package names are defined in the variable 'mysql_packages'. After the installation, it notifies the handlers 'Set root password' and 'Systemctl daemon-reexec'.
+
+   Task 3: Configure mysql server
+   Description Task 3: This task configures the MySQL server by modifying the configuration file at 'mysql_configuration_destination/mysql-server.cnf'. The configuration options are defined in the 'mysql_configuration_options' variable. After each modification, it notifies the handler 'Restart mysql server'.
+
+   Task 4: Configure mysql client
+   Description Task 4: This task configures the MySQL client by modifying the configuration file at 'mysql_configuration_destination/mysql-client.cnf'. It sets the 'socket' option to the value of 'mysql_socket'.
+
+   Task 5: Initialize mysql
+   Description Task 5: This task initializes the MySQL server using the command defined in 'mysql_initialize_command'. This task is only executed if the distribution is Alpine or Archlinux.
+
+   Task 6: Start and enable mysql
+   Description Task 6: This task starts the MySQL service and enables it to start automatically at boot. The service name is defined in the 'mysql_service' variable.
+
+   Task 7: Flush handlers
+   Description Task 7: This task runs any notified handlers immediately.
+
+   Task 8: Place my.cnf
+   Description Task 8: This task creates a 'my.cnf' file in the root directory with mode '0640' using a template.
+
+   Task 9: Create databases
+   Description Task 9: This task creates MySQL databases as defined in the 'mysql_databases' variable. It uses the 'mysql_socket' and 'mysql_root_password' for authentication. This task is only executed if 'mysql_databases' is defined.
+
+   Task 10: Create users
+   Description Task 10: This task creates MySQL users as defined in the 'mysql_users' variable. It uses the 'mysql_socket' and 'mysql_root_password' for authentication. This task is only executed if 'mysql_users' is defined.
+
+   Task 11: Flush handlers again
+   Description Task 11: This task runs any notified handlers immediately. This is done again to ensure that any changes made by the previous tasks are applied.

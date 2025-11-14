@@ -1,0 +1,31 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Remove the Docker GPG key file from trusted.gpg.d  
+Description Task 1: Use the `ansible.builtin.file` module to ensure that the file `/etc/apt/trusted.gpg.d/docker.asc` is absent, effectively removing the Docker GPG key from the system.
+
+Task 2: Remove the old Docker APT source list file  
+Description Task 2: Use the `ansible.builtin.file` module to ensure that the file `/etc/apt/sources.list.d/download_docker_com_linux_{{ docker_apt_ansible_distribution | lower }}.list` is absent, preventing the old Docker source from being used.
+
+Task 3: Uninstall obsolete Docker packages  
+Description Task 3: Use the `ansible.builtin.package` module to ensure that all packages listed in the `docker_obsolete_packages` variable are absent, removing any old Docker versions that might conflict with the new installation.
+
+Task 4: Remove the legacy Docker repository file  
+Description Task 4: Use the `ansible.builtin.file` module to ensure that the file `/etc/apt/sources.list.d/docker.list` is absent, eliminating the legacy repository configuration.
+
+Task 5: Install required dependencies for Docker installation  
+Description Task 5: Use the `ansible.builtin.apt` module to install the packages `apt-transport-https`, `ca-certificates`, and `python3-debian`, ensuring that the system has the necessary tools to add and verify the Docker repository.
+
+Task 6: Add or remove the Docker APT repository  
+Description Task 6: Use the `ansible.builtin.deb822_repository` module to add or remove the Docker repository based on the `docker_add_repo` boolean variable. The repository is defined with:
+- `name`: `{{ docker_apt_filename }}`
+- `types`: `deb`
+- `uris`: `{{ docker_repo_url }}/{{ ansible_facts.distribution | lower }}`
+- `suites`: `{{ ansible_facts.distribution_release }}`
+- `components`: `{{ docker_apt_release_channel }}`
+- `signed_by`: `{{ docker_apt_gpg_key }}`
+The `state` is set to `'present'` if `docker_add_repo` is true, otherwise `'absent'`. This task notifies the `apt update` handler to refresh the package cache.
+
+Task 7: Flush handlers to trigger immediate cache update  
+Description Task 7: Use the `ansible.builtin.meta` module with `flush_handlers` to ensure that any notified handlers, such as `apt update`, run immediately after this task so that the package cache is up to date before subsequent tasks execute.

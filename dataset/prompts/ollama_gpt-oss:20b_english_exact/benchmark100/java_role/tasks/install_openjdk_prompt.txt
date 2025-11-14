@@ -1,0 +1,66 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Java | Migrate adoptopenjdk to temurin (if selected)  
+Description Task 1: Set the fact `java_jdk_vendor` to `"temurin"` when the current vendor is `"adoptopenjdk"`.  
+
+Task 2: Java | Gather OS specific variables  
+Description Task 2: Include the OS‑specific variable file located at `{{ java_jdk_vendor }}/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml` using `with_first_found`.  
+
+Task 3: Java | Gather architecture specific variables  
+Description Task 3: Include the architecture‑specific variable file `architecture.yml` using `with_first_found`.  
+
+Task 4: Java | Setting OS specific variables (I)  
+Description Task 4: Use `set_fact` to override OS‑specific variables (`java_open_jdk_version_major`, `java_required_repositories_openjdk`, `java_required_key_repositories_openjdk`, `java_required_libs_openjdk`, `java_deprecated_repositories_adoptopenjdk`) with either the already‑defined value or the default `__` prefixed variable.  
+
+Task 5: Java | Setting OS and architecture specific variables (II)  
+Description Task 5: Use `set_fact` to override `java_open_jdk_home_dir` and `java_open_jdk_package` with either the already‑defined value or the default `__` prefixed variable.  
+
+Task 6: Java | Setting specific variables  
+Description Task 6: Set the fact `java_home` to the value of `java_open_jdk_home`.  
+
+Task 7: Java | Debian pre-requisites  
+Description Task 7: Execute a block of tasks only on Debian systems (`ansible_os_family == 'Debian'`) that includes removing deprecated repositories, installing extra apt tools, adding required key repositories, and adding required repositories.  
+
+Task 8: Java | Remove deprecated repositories  
+Description Task 8: Within the Debian pre‑requisites block, use `apt_repository` to remove each repository listed in `java_deprecated_repositories_adoptopenjdk` when the list has items.  
+
+Task 9: Java | Install extra apt tools  
+Description Task 9: Within the Debian pre‑requisites block, install the packages in `java_open_jdk_apt_extra_packages` using `package`, retrying until `apt_tools_installed` succeeds, when the package list is not empty.  
+
+Task 10: Java | add required key repositories, Debian  
+Description Task 10: Within the Debian pre‑requisites block, add each key repository URL from `java_required_key_repositories_openjdk` using `apt_key`.  
+
+Task 11: Java | Add required repositories, Debian  
+Description Task 11: Within the Debian pre‑requisites block, add each repository from `java_required_repositories_openjdk` using `apt_repository` with cache update enabled.  
+
+Task 12: Java | RedHat pre-requisites  
+Description Task 12: Execute a block of tasks only on RedHat systems (`ansible_os_family == 'RedHat'`) that includes adding required key repositories and adding required repositories.  
+
+Task 13: Java | Add required key repositories, RedHat  
+Description Task 13: Within the RedHat pre‑requisites block, add each key from `java_required_key_repositories_openjdk` using `rpm_key`.  
+
+Task 14: Java | Add required repositories, RedHat  
+Description Task 14: Within the RedHat pre‑requisites block, add each repository from `java_required_repositories_openjdk` using `yum_repository`, configuring name, description, file, baseurl, and gpgcheck.  
+
+Task 15: Java | Install required libs  
+Description Task 15: Install the packages listed in `java_required_libs_openjdk` using `package`, retrying until `java_required_libs_installed` succeeds.  
+
+Task 16: Java | Install Java, Debian  
+Description Task 16: On Debian systems, install the OpenJDK package using `apt`, specifying the exact version if `java_open_jdk_version` is defined, with cache update and a 3600‑second validity, retrying until `java_package_installed` succeeds.  
+
+Task 17: Java | Install Java, RedHat  
+Description Task 17: On RedHat systems, install the OpenJDK package using `yum`, specifying the exact version if `java_open_jdk_version` is defined, with cache update, retrying until `java_package_installed` succeeds.  
+
+Task 18: Java | Export environment variables  
+Description Task 18: Deploy the JDK environment script from the template `jdk.sh.j2` to `/etc/profile.d/jdk.sh` with mode `0755`, owned by `root`.  
+
+Task 19: Java | Source environment variables  
+Description Task 19: Source `/etc/profile` in a shell to apply the newly created environment variables, marked to skip ansible‑lint.  
+
+Task 20: Java | Correct java version selected /usr/lib/jvm/{{ java_open_jdk_home_dir }}/jre/bin/java in java < 11  
+Description Task 20: On Debian systems with Java version major < 11, use the `alternatives` module to set the `java` alternative to the path `/usr/lib/jvm/{{ java_open_jdk_home_dir }}/jre/bin/java`.  
+
+Task 21: Java | Correct java version selected /usr/lib/jvm/{{ java_open_jdk_home_dir }}/bin/java in java >= 11  
+Description Task 21: On Debian systems with Java version major ≥ 11, use the `alternatives` module to set the `java` alternative to the path `/usr/lib/jvm/{{ java_open_jdk_home_dir }}/bin/java`.

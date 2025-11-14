@@ -1,0 +1,63 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import an additional task file to assert conditions.  
+Description Task 1: Import a predefined tasks file named `assert.yml` and ensure it runs only once, delegating execution to the localhost.
+
+Task 2: Pre-configure Debian systems for Postfix.  
+Description Task 2: On Debian systems, set the `postfix/main_mailer_type` to "No configuration" using the debconf tool.
+
+Task 3: Install Postfix.  
+Description Task 3: Install the Postfix package on the target system.
+
+Task 4: Conditionally install postfix-mysql.  
+Description Task 4: Install the postfix-mysql package if any of the variables `postfix_virtual_mailbox_maps`, `postfix_virtual_mailbox_domains`, or `postix_virtual_alias_maps` are defined and contain 'mysql'.
+
+Task 5: Configure Postfix transport maps.  
+Description Task 5: Use a template to configure `/etc/postfix/transport` if `postfix_transport_maps_template` is defined, and notify to validate configuration and rebuild the transport maps database.
+
+Task 6: Configure Postfix header checks.  
+Description Task 6: Use a template to configure `/etc/postfix/header_checks` if `postfix_header_checks_template` is defined, and notify to validate configuration and reload Postfix.
+
+Task 7: Set values for Postfix main.cf (part 1).  
+Description Task 7: Define fact variables for recipient and sender restrictions in Postfix main.cf based on the presence of `postfix_recipient_access` and `postfix_sender_access`.
+
+Task 8: Set values for Postfix main.cf (part 2).  
+Description Task 8: Define fact variables for Postfix main.cf settings such as `mynetworks`, `mydestination`, `relay_domains`, `smtpd_recipient_restrictions`, `smtpd_sender_restrictions`, `virtual_mailbox_domains`, and `virtual_alias_domains` based on their definitions and types.
+
+Task 9: Configure Postfix main.cf.  
+Description Task 9: Use a template to configure `/etc/postfix/main.cf`, validate the configuration, and notify to validate and restart Postfix.
+
+Task 10: Configure Postfix master.cf.  
+Description Task 10: Use a template to configure `/etc/postfix/master.cf`, validate the configuration, and notify to validate and restart Postfix.
+
+Task 11: Create directories for TLS certificates and keys.  
+Description Task 11: Create directories for storing Postfix TLS certificates and keys if the relevant variables and sources are defined.
+
+Task 12: Deploy Postfix TLS server certificate.  
+Description Task 12: Copy the Postfix TLS server certificate to the specified location if the source is defined, and notify to reload Postfix.
+
+Task 13: Deploy Postfix TLS server key.  
+Description Task 13: Copy the Postfix TLS server key to the specified location if the source is defined, and notify to reload Postfix.
+
+Task 14: Flush Postfix handlers.  
+Description Task 14: Flush any pending handlers to ensure all notifications are processed.
+
+Task 15: Configure Postfix aliases.  
+Description Task 15: Use lineinfile to configure aliases in the specified path if `postfix_aliases` is defined, and notify to rebuild the alias database and reload Postfix.
+
+Task 16: Configure Postfix sender access.  
+Description Task 16: Use lineinfile to configure sender access in the specified path if `postfix_sender_access` is defined, and notify to rebuild the sender access database and reload Postfix.
+
+Task 17: Configure Postfix recipient access.  
+Description Task 17: Use lineinfile to configure recipient access in the specified path if `postfix_recipient_access` is defined, and notify to validate configuration, rebuild the recipient access database, and reload Postfix.
+
+Task 18: Place SASL password map.  
+Description Task 18: Copy the SASL password map content to the specified location if `postfix_smtp_sasl_password_map` is defined and not empty, and notify to rebuild the sasl_password_map database.
+
+Task 19: Flush Postfix handlers again.  
+Description Task 19: Flush any pending handlers again to ensure all notifications are processed.
+
+Task 20: Start and enable Postfix service.  
+Description Task 20: Ensure the Postfix service is started and enabled on the system.

@@ -1,0 +1,54 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create Vault group
+Description Task 1: Create a system group for the Vault user. Uses the variable `vault_group`.
+
+Task 2: Create Vault user
+Description Task 2: Create a system user for Vault. Sets the user’s shell to `vault_user_shell`, assigns it to the `vault_group`, and prevents home directory creation.
+
+Task 3: Create Vault download directory
+Description Task 3: Create a directory where the Vault binary will be downloaded. Sets ownership to the `vault_user` and `vault_group`, and permissions to 0755. Uses `vault_download_path`.
+
+Task 4: Download Vault binary
+Description Task 4: Download the Vault binary from HashiCorp releases.  The version and architecture are pulled from variables `vault_version` and `vault_architecture` respectively. Extracts the archive to `vault_download_path`.
+
+Task 5: Check if vault_path exists
+Description Task 5: Stat the `vault_path` to check if it exists. Registers the result to the variable `vault_check_path`.
+
+Task 6: Create vault_path if it does not exists
+Description Task 6: Create the `vault_path` directory if it doesn’t exist, setting the owner to `vault_user`, the group to `vault_group`, and permissions to 0755. Only executes if `vault_check_path.stat.exists` is false and if `vault_path` is not empty.
+
+Task 7: Create directory in vault_path
+Description Task 7: Create multiple directories inside `vault_path` using a loop. The directories and their permissions are defined in the `vault_directories` variable.
+
+Task 8: Create data directory
+Description Task 8: Create multiple data directories inside `vault_path` using a loop. The directories and their permissions are defined in the `vault_data_directories` variable.
+
+Task 9: Generate TLS key and certificate
+Description Task 9: Generate a self-signed TLS key and certificate using openssl.  The command is executed in the `vault_data_directory/tls/` directory. Creates the key file `tls.key`. Notifies the `Restart vault` handler.
+
+Task 10: Set ownership of tls material
+Description Task 10: Set the ownership and permissions of the TLS key and certificate files in `vault_data_directory/tls/` based on the items in the `vault_tls_files` variable.
+
+Task 11: Copy Vault binary
+Description Task 11: Copy the Vault binary from the download directory to `/usr/bin/vault`. Sets ownership to root, group to root, and permissions to 0755. Notifies the `Restart vault` handler.
+
+Task 12: Set cap_ipc_lock=ep on /usr/bin/vault
+Description Task 12: Set the `cap_ipc_lock=ep` capability on the Vault binary.  The task is idempotent and does not change the status.
+
+Task 13: Touch vault.env
+Description Task 13: Create or touch the `vault.env` file in `vault_path/etc/vault.d/`. Sets ownership to `vault_user` and `vault_group`, permissions to 0644 and preserves modification and access times. Notifies the `Restart vault` handler.
+
+Task 14: Create /usr/lib/systemd/system
+Description Task 14: Create the `/usr/lib/systemd/system` directory with root ownership and 0755 permissions.
+
+Task 15: Copy Vault service file
+Description Task 15: Copy the Vault systemd service file from `vault.service.j2` to `/usr/lib/systemd/system/vault.service`. Sets ownership to root, group to root, and permissions to 0644. Notifies the `Daemon reload` handler. Only executes if the service manager is systemd.
+
+Task 16: Copy vault configuration
+Description Task 16: Copy the Vault configuration file from `vault.hcl` to `vault_path/etc/vault.d/vault.hcl`. Sets ownership to root, group to root, and permissions to 0644. Notifies the `Restart vault` handler.
+
+Task 17: Flush handlers
+Description Task 17: Flush all registered handlers.

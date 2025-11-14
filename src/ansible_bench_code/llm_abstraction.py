@@ -10,7 +10,7 @@ from ansible_generator_config import (
     LLAMAFILE_OUTPUT_LOG,
     LLAMAFILE_PATH,
     LLAMAFILE_VERSION,
-    TORCH_MODELS_PATH,
+    TOKENIZER_MODELS_PATH,
 )
 from langchain_core.language_models.llms import LLM
 from langchain_ollama import ChatOllama
@@ -24,47 +24,30 @@ from pathlib import Path
 import requests
 
 
-MAX_CTX_SIZE = 100000
+MAX_CTX_SIZE = 200000
 """Max size of the prompt context."""
 LLAMAFILE_PORTS = {
-    "mistral": 8090,
-    "mixtral": 8091,
-    "codellama": 8092,
-    "dolphin-2.6-mistral": 8093,
-    "dolphin-2.7-mixtral": 8094,
-    "dolphincoder-starcoder2-15b": 8095,
-    "dolphin-2.6-phi-2": 8096,
-    "llama3": 8097,
-    "phi3": 8098,
+    "llama3.2": 8097,
     "codestral": 8099,
     "llama-3.2-1b": 8100,
 }
 """Mapping of the LLM names and the port numbers the respective llamafile servers run on."""
 LLAMAFILE_CTX_SIZE = {
-    "mistral": 8192,
-    "mixtral": 8192,
-    "codellama": 100000,
-    "dolphin-2.6-mistral": 16000,
-    "dolphin-2.7-mixtral": 16000,
-    "dolphincoder-starcoder2-15b": 4000,
-    "dolphin-2.6-phi-2": 2048,
-    "llama3": 8000,
-    "phi3": 4000,
+    "deepseek-r1:14b": 8000,
+    "llama3.2": 8000,
     "codestral": 32000,
-    "llama-3.2-1b": 131072,
+    "llama-3.2-1b": 8100,
 }
 
 OLLAMA_CTX_SIZE = {
-    "deepseek-r1:14b": 128000,
-    "mistral": 8192,
-    "mixtral:8x7b": 8192,
-    "codellama:70b": 100000,
-    "dolphin-mistral": 16000,
-    "dolphin-mixtral": 16000,
-    "llama3": 8000,
-    "phi3": 4000,
-    "codestral": 32000,
-    "gemma-3": 131000
+    "granite-code:20b": 8000,
+    "gemma3:27b": 12000,
+    "qwen2.5:14b": 12000,
+    "deepseek-r1:14b": 12000,
+    "gpt-oss:20b": 12000,
+    "llama3.1:8b": 12000,
+    "codestral:22b": 12000,
+    "phi4:14b": 12000,
 }
 
 
@@ -77,6 +60,8 @@ class LLMSettings:
     top_p: float
     temperature: float
     repeat_penalty: float
+
+
 
 def hardware_for_os(hardware_mode: str):
     if hardware_mode.lower() == "gpu":
@@ -121,7 +106,7 @@ def llm_wrapper(
             time.sleep(5)
             # wait until the llamafile server is ready
             while (
-                LLAMAFILE_VERSION == "0.6"
+                LLAMAFILE_VERSION == "0.8.17"
                 and not llamafile_server_for_model_exists(model_name)
                 and not simple_llamafile_server_ready(model_name)
             ):
@@ -129,7 +114,7 @@ def llm_wrapper(
                 time.sleep(2)
             # wait until the server status is "running and ok"
             status = check_llamafile_status(lf_process, model_name)
-            while LLAMAFILE_VERSION == "0.6.2" and status != "running and ok":
+            while LLAMAFILE_VERSION == "0.8.17" and status != "running and ok":
                 print("llamafile status:", status)
                 if "error" in status:
                     # kill and restart
@@ -166,7 +151,7 @@ def llm_wrapper(
         print("Serving model via Llamafile:", model_name)
     elif abstraction_framework == "torch":
         torch.set_default_device(hardware_for_os(hardware_mode)[0])
-        # Load the model and tokenizer
+               # Load the model and tokenizer
         model = AutoModelForCausalLM.from_pretrained(
             model_name,
             torch_dtype="auto",
@@ -183,6 +168,7 @@ def llm_wrapper(
             max_new_tokens=max_output_tokens,
             pad_token_id=tokenizer.eos_token_id,
         )
+
         llm = HuggingFacePipeline(pipeline=pipe)
     else:
         raise ValueError("Invalid abstraction mode for the OS.")
@@ -224,14 +210,15 @@ def start_llamafile(model_name: str, ctx_size: int = 512) -> tuple[subprocess.Po
         "dolphin-2.6-phi-2": f"{str(LLAMAFILE_PATH)} --server --nobrowser -m "
         + str(Path.joinpath(GGUF_PATH, "dolphin-2_6-phi-2.Q6_K.gguf"))
         + " -ngl 9999",
-        "llama3": f"{str(LLAMAFILE_PATH)} --server --nobrowser -m "
-        + str(Path.joinpath(GGUF_PATH, "Meta-Llama-3-8B-Instruct.Q5_K_M.gguf"))
+        "llama3.2": f"{str(LLAMAFILE_PATH)} --server --nobrowser -m "
+        + str(Path.joinpath(GGUF_PATH, "Llama-3.2-1B-Instruct.IQ1_M.gguf"))
         + " -ngl 9999",
         "phi3": f"{str(LLAMAFILE_PATH)} --server --nobrowser -m "
         + str(Path.joinpath(GGUF_PATH, "Phi-3-mini-4k-instruct-Q5_K_M.gguf"))
         + " -ngl 9999",
         "codestral": f"{str(LLAMAFILE_PATH)} --server --nobrowser -m "
-        + str(Path.joinpath(GGUF_PATH, "Codestral-22B-v0.1-Q5_K_M.gguf")),
+        + str(Path.joinpath(GGUF_PATH, "Codestral-22B-v0.1-Q5_K_M.gguf"))
+        + " -ngl 999",
     }
 
     if model_name_l not in llamafile_commands.keys():

@@ -1,0 +1,52 @@
+ Below are the task descriptions that could have been used to generate the provided Ansible Playbook.
+
+Task 1: Create Vault group
+Description Task 1: Create a new system group called 'vault_group' using the ansible.builtin.group module.
+
+Task 2: Create Vault user
+Description Task 2: Create a new system user called 'vault_user' and add it to the 'vault_group'. Do not create a home directory for this user.
+
+Task 3: Create Vault download directory
+Description Task 3: Create a directory at 'vault_download_path' with specific permissions. The directory should be owned by 'vault_user' and 'vault_group'.
+
+Task 4: Download Vault binary
+Description Task 4: Download the Vault binary from a specific URL, unarchive it to 'vault_download_path', and ensure that the file is owned by root with specific permissions.
+
+Task 5: Check if vault_path exists
+Description Task 5: Check if a directory or file at 'vault_path' exists.
+
+Task 6: Create vault_path if it does not exist
+Description Task 6: If 'vault_path' does not exist and its length is greater than 0, create a directory at that path with specific permissions. The directory should be owned by 'vault_user' and 'vault_group'.
+
+Task 7: Create directories in vault_path
+Description Task 7: For each item in 'vault_directories', create a directory with the name, owner, group, and mode specified in the item.
+
+Task 8: Create data directories
+Description Task 8: For each item in 'vault_data_directories', create a directory with the name, owner, group, and mode specified in the item.
+
+Task 9: Generate TLS key and certificate
+Description Task 9: Run a command to generate a TLS key and certificate in 'vault_data_directory/tls/'. Notify the 'Restart vault' handler if the command changes the system state.
+
+Task 10: Set ownership of tls material
+Description Task 10: For each item in 'vault_tls_files', set the ownership and permissions of the file specified in the item.
+
+Task 11: Copy Vault binary
+Description Task 11: Copy the Vault binary from 'vault_download_path' to 'vault_path/usr/bin/vault'. Notify the 'Restart vault' handler if the file changes on the system.
+
+Task 12: Set capabilities on /usr/bin/vault
+Description Task 12: Set the capability 'cap_ipc_lock=ep' on '/usr/bin/vault' using the community.general.capabilities module.
+
+Task 13: Touch vault.env
+Description Task 13: Create a file at 'vault_path/etc/vault.d/vault.env' with specific permissions. Notify the 'Restart vault' handler if the file is modified or accessed.
+
+Task 14: Create /usr/lib/systemd/system
+Description Task 14: Create a directory at '/usr/lib/systemd/system' with specific permissions.
+
+Task 15: Copy Vault service file
+Description Task 15: Copy a template file 'vault.service.j2' to '/usr/lib/systemd/system/vault.service' with specific permissions. Notify the 'Daemon reload' handler if the file changes on the system.
+
+Task 16: Copy vault configuration
+Description Task 16: Copy a file 'vault.hcl' to 'vault_path/etc/vault.d/vault.hcl' with specific permissions. Notify the 'Restart vault' handler if the file changes on the system.
+
+Task 17: Flush handlers
+Description Task 17: Run any handlers that have been notified during the play.

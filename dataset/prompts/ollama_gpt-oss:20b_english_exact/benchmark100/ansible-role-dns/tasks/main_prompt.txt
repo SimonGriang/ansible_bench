@@ -1,0 +1,45 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the task file `assert.yml` to validate required variables, run only once, and delegate the import to the local machine.
+
+Task 2: Install dns  
+Description Task 2: Install the DNS packages specified in the `dns_packages` variable using the package module, ensuring they are present.
+
+Task 3: Create directories  
+Description Task 3: Create the DNS data and configuration directories. Loop over two items:  
+- `{{ dns_datadir }}` with mode `1770`, owner `{{ dns_owner }}`, group `{{ dns_group }}`  
+- `{{ dns_confdir }}` with mode `0755`, owner `root`, group `root`  
+Use the loop_control label `{{ item.path }}`.
+
+Task 4: Create group  
+Description Task 4: Ensure the group named `{{ dns_group }}` exists and is present.
+
+Task 5: Create user  
+Description Task 5: Ensure the system user named `{{ dns_owner }}` exists, is present, and is marked as a system account.
+
+Task 6: Generate rndc key  
+Description Task 6: Generate an rndc key file at `{{ dns_confdir }}/rndc.key` using `rndc-confgen -a -c ...`, only if the file does not already exist (creates `{{ dns_confdir }}/rndc.key`).
+
+Task 7: Set permissions on rndc key file  
+Description Task 7: Set the ownership to `{{ dns_owner }}:{{ dns_group }}` and mode `0640` on the file `{{ dns_confdir }}/rndc.key`.
+
+Task 8: Get the hints/root file  
+Description Task 8: Download the root hints file from `https://www.internic.net/domain/named.root` to `{{ dns_datadir }}/named.root`. Use `validate_certs: {{ dns_validate_certs }}`, set mode `0640`, owner `{{ dns_owner }}`, group `{{ dns_group }}`. This task runs only when `dns_caching_dns` is true and notifies the handler `Rndc reload`.
+
+Task 9: Create zone file  
+Description Task 9: For each zone in `{{ dns_zones }}` that is either undefined in type or has type `primary`, render a zone database file from `zone.j2` to `{{ dns_datadir }}/{{ item.name }}.db`. Validate each file with `named-checkzone {{ item.name }} %s`, set mode `0640`, owner `{{ dns_owner }}`, group `{{ dns_group }}`. Loop control label is `{{ item.name }}`. This task notifies the handler `Rndc reload`.
+
+Task 10: Add zones to configuration  
+Description Task 10: Render the DNS configuration file from `named.conf.j2` to `{{ dns_confdir }}/named.conf`. Validate with `named-checkconf -zj %s`, set mode `0640`, owner `{{ dns_owner }}`, group `{{ dns_group }}`, and enable backup of the existing file. This task notifies the handler `Restart dns`.
+
+Task 11: Place systemd override  
+Description Task 11: If the service manager is systemd (`ansible_service_mgr == "systemd"`), perform the following block:  
+- Create the directory `/etc/systemd/system/{{ dns_service }}.service.d` with mode `0755`.  
+- Copy `override.conf` to `/etc/systemd/system/{{ dns_service }}.service.d/override.conf` with owner `root`, group `root`, mode `0644`.  
+- Reload the systemd daemon with `daemon_reload: true` (changed_when: false).
+
+Task 12: Start and enable dns  
+Description Task 12: Ensure the service named `{{ dns_service }}` is started and enabled to start at boot.

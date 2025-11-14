@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import a task file for assertions.  
+Description Task 1: Import the assert.yml file and ensure it runs only once, delegating execution to the localhost.
+
+Task 2: Install necessary prerequisites for Vault.  
+Description Task 2: Use the package module to install packages specified in the vault_prerequisites variable.
+
+Task 3: Include tasks specific to the installation method.  
+Description Task 3: Dynamically include a task file based on the vault_installation_method variable, which determines the method used for Vault's installation.
+
+Task 4: Add environment variables for Vault.  
+Description Task 4: Use lineinfile to add environment variables to /etc/vault.d/vault.env, creating the file if it does not exist, and notify the handler to restart Vault when changes occur.
+
+Task 5: Include additional hardening tasks.  
+Description Task 5: Include the hardening.yml file to apply any additional security hardening measures.
+
+Task 6: Start and enable Vault service for Open Source Software (OSS).  
+Description Task 6: Use the service module to start and enable the Vault service, but only when the vault_type variable is set to "oss".
+
+Task 7: Enable Vault service for non-OSS versions.  
+Description Task 7: Use the service module to ensure the Vault service is enabled, but only when the vault_type variable is not set to "oss".

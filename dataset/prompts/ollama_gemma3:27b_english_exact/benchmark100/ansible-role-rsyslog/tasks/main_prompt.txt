@@ -1,0 +1,30 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert tasks file.
+Description Task 1: Import the 'assert.yml' file to perform initial assertions. Run this task only once and delegate it to localhost.
+
+Task 2: Uninstall conflicting systemd-logger package.
+Description Task 2: Remove the 'systemd-logger' package if it is installed, to avoid conflicts with rsyslog.
+
+Task 3: Install rsyslog packages.
+Description Task 3: Install the core rsyslog packages using the variable 'rsyslog_packages' and the state defined in 'rsyslog_package_state'.
+
+Task 4: Install additional rsyslog features.
+Description Task 4: Install additional rsyslog features specified in the 'rsyslog_features' list as separate packages. Use the variable 'rsyslog_package_state' for the package state.
+
+Task 5: Configure default rsyslog configuration.
+Description Task 5: Deploy the default rsyslog configuration file using a Jinja2 template. The source template is determined by 'rsyslog_config_file_format', the destination is 'rsyslog_dest_conf_file', and the mode is 0644.  This task is conditional based on 'rsyslog_deploy_default_config' and notifies the 'Restart rsyslog' handler.
+
+Task 6: Create the rsyslog.d directory.
+Description Task 6: Ensure the '/etc/rsyslog.d/' directory exists with the correct permissions (0755).
+
+Task 7: Configure rsyslog forward rule.
+Description Task 7: Deploy a forward rule configuration file using a Jinja2 template. The source template is 'forward_rule.conf.j2', the destination is '/etc/rsyslog.d/{{ rsyslog_forward_rule_name }}.conf', and the mode is 0644. This task is conditional based on 'rsyslog_deploy_default_config' and notifies the 'Restart rsyslog' handler.
+
+Task 8: Configure additional rsyslog config files.
+Description Task 8: Copy additional configuration files to '/etc/rsyslog.d/' using the contents defined in the 'rsyslog_rsyslog_d_files' dictionary. Validate the config file using rsyslogd or a simple truth test. Set owner, group, and mode. This task is conditional based on the 'state' attribute of each item in the dictionary and notifies the 'Restart rsyslog' handler.
+
+Task 9: Start and enable rsyslog service.
+Description Task 9: Ensure the rsyslog service is started and enabled to start on boot. The service name is defined by the 'rsyslog_service' variable.

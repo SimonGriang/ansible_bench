@@ -1,0 +1,30 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the assert.yml task file using ansible.builtin.import_tasks, run once on localhost.  
+
+Task 2: Wait for port to be available  
+Description Task 2: Use ansible.builtin.wait_for to wait for the SSH port (default 22) to become available, with timeout bootstrap_timeout, only when ansible_connection is defined and not a container and bootstrap_wait_for_host is true.  
+
+Task 3: Test connection  
+Description Task 3: In the prepare system block, run ansible.builtin.wait_for_connection with timeout bootstrap_timeout, register result as bootstrap_connect, never mark as changed.  
+
+Task 4: Test sudo  
+Description Task 4: In the prepare system block, run ansible.builtin.command to execute 'sudo --version', never mark as changed.  
+
+Task 5: Gather bootstrap facts  
+Description Task 5: In the rescue section of the prepare system block, include tasks from gather_facts.yml using ansible.builtin.include_tasks.  
+
+Task 6: Install bootstrap packages (raw)  
+Description Task 6: In the rescue section, run ansible.builtin.raw with command bootstrap_install.raw, executable /bin/sh, register result as bootstrap_install_packages, and set changed_when based on regex and OS family conditions.  
+
+Task 7: Ensure libdnf5 is present on Fedora/RedHat  
+Description Task 7: In the rescue section, run ansible.builtin.raw to execute 'dnf install -y python3-libdnf5' on RedHat family systems, using /bin/sh.  
+
+Task 8: Gather ansible facts  
+Description Task 8: Run ansible.builtin.setup to gather facts, not using become.  
+
+Task 9: Install bootstrap packages (package)  
+Description Task 9: Install packages listed in bootstrap_facts_packages.split() using ansible.builtin.package with state present, update_cache true, and become set to bootstrap_become.

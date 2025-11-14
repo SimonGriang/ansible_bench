@@ -1,0 +1,21 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import the assert.yml file to check conditions and validate the state before proceeding with the playbook execution.
+
+Task 2: Install required packages
+Description Task 2: Install the packages listed in the variable `selinux_requirements` using the package module, ensuring they are present and notifying the handler to gather facts.
+
+Task 3: Flush handlers
+Description Task 3: Flush any pending handlers to ensure they are processed and no longer pending before proceeding with the rest of the playbook tasks.
+
+Task 4: Configure selinux
+Description Task 4: Conditionally configure SELinux settings based on the status of SELinux and the type of connection to the host. If conditions are met, perform the following actions:
+
+Task 4.1: Manage selinux
+Description Task 4.1: Set the state and policy of SELinux using the `selinux` module and notify the handler to reboot the system after changes.
+
+Task 4.2: Manage selinux booleans
+Description Task 4.2: Iterate over the `selinux_booleans` variable to manage the state and persistence of SELinux booleans using the `seboolean` module, with the loop iterating over each item and using the item's name as the label.

@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: create | Create ssl key
+Description Task 1: Create a private SSL key for each item in the inventory, ensuring it is stored in the specified directory with correct permissions and ownership.
+
+Task 2: create | Create ssl csr
+Description Task 2: Generate a Certificate Signing Request (CSR) for each item in the inventory, using the corresponding private key and common name, and save it with the appropriate permissions and ownership.
+
+Task 3: create | Create ssl certificates
+Description Task 3: Create self-signed SSL certificates for each item in the inventory, using the CSR and private key, and store them with the correct permissions and ownership.
+
+Task 4: create | Create PKCS#12 file
+Description Task 4: Export the private key and certificate for each item in the inventory into a PKCS#12 file format, ensuring it is stored securely with correct permissions and ownership.
+
+Task 5: create | Read private key
+Description Task 5: Read and register the contents of the private key file for each item in the inventory using base64 encoding.
+
+Task 6: create | Read certificate
+Description Task 6: Read and register the contents of the certificate file for each item in the inventory using base64 encoding.
+
+Task 7: create | Create combined private_key and certificate file
+Description Task 7: Combine the private key and certificate contents into a single file for each item in the inventory, ensuring it is stored with the correct permissions and ownership.

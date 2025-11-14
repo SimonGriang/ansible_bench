@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Install and configure Promtail
+Description Task 1: Use the assert module to check if the target system uses systemd as an init system. If not, display a message indicating that the module only works with systemd.
+
+Task 2: Retrieve the latest release of Promtail
+Description Task 2: Use the uri module to make a GET request to the GitHub API to retrieve the latest release of Promtail. If the status code of the response is 200, set the promtail_version variable to the tag name of the latest release.
+
+Task 3: Set the Promtail version to the latest release
+Description Task 3: Use the set_fact module to set the promtail_version variable to the tag name of the latest release.

@@ -1,0 +1,7 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Enable specific Apache2 modules
+Description Task 1: Enable the proxy and proxy_http modules in Apache2, but only on Debian and Suse systems, by using the community.general.apache2_module module.
+
+Task 2: Configure Apache2 locations
+Description Task 2: Configure Apache2 locations by templating a location.conf.j2 file and copying it to the httpd config directory, and set its permissions to 0644. The template should be looped over the httpd_locations list and the label should be set to the location name. Also, notify the handlers to test and restart httpd.

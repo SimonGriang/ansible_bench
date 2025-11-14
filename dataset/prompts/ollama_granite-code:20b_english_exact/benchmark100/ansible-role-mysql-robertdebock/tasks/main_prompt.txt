@@ -1,0 +1,39 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Install mysql
+Description Task 1: Install mysql
+
+Task 2: Configure mysql server
+Description Task 2: Configure mysql server
+
+Task 3: Configure mysql client
+Description Task 3: Configure mysql client
+
+Task 4: Initialize mysql
+Description Task 4: Initialize mysql
+
+Task 5: Start and enable mysql
+Description Task 5: Start and enable mysql
+
+Task 6: Flush handlers
+Description Task 6: Flush handlers
+
+Task 7: Place my.cnf
+Description Task 7: Place my.cnf
+
+Task 8: Create databases
+Description Task 8: Create databases
+
+Task 9: List databases
+Description Task 9: List databases
+
+Task 10: Import database
+Description Task 10: Import database
+
+Task 11: Create users
+Description Task 11: Create users
+
+Task 12: Flush handlers again
+Description Task 12: Flush handlers again

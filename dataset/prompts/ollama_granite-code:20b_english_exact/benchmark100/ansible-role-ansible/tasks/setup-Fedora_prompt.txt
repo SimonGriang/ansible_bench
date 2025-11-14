@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: name=Install Ansible. action=package name=ansible state= "{{ ansible_package_state }}"
+Description Task 1: Install the Ansible package.
+
+Task 2: name=Include Anaconda3. action=include_role name=anaconda
+Description Task 2: Include the Anaconda3 role.
+
+Task 3: name=Start MongoDB service. action=service name=mongodb state=started enabled=yes
+Description Task 3: Start the MongoDB service and enable it to start at boot time.

@@ -1,0 +1,9 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Retrieve all node names from an etcd cluster  
+Description Task 1: Use a shell command to retrieve all node names from the etcd cluster using kubectl with a specified kubeconfig file. Register the output for further processing.
+
+Task 2: Delete old nodes from the etcd cluster  
+Description Task 2: Remove nodes that are no longer part of the cluster by comparing the retrieved node names against a current list of nodes in the cluster group. Use a shell command to delete each old node, ensuring the process continues even if some deletions fail.

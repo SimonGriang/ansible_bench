@@ -1,0 +1,33 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Pre-configure debian systems
+
+Task 2: Install postfix
+Description Task 2: Install postfix-mysql
+
+Task 3: Configure postfix (transport_maps)
+Description Task 3: Configure postfix (header_checks)
+
+Task 4: "Setting values for main.cf (1/2)"
+Description Task 4: "Setting values for main.cf (2/2)"
+
+Task 5: Configure postfix (main.cf)
+Description Task 5: Configure postfix (master.cf)
+
+Task 6: Creates cert/key directory
+Description Task 6: Deploy Postfix TLS server certificate
+
+Task 7: Deploy Postfix TLS server key
+Description Task 7: Flush handlers
+
+Task 8: Configure aliases
+Description Task 8: Configure sender_access
+
+Task 9: Configure recipient_access
+Description Task 9: Place sasl_password_map
+
+Task 10: Flush handlers again
+Description Task 10: Start and enable postfix

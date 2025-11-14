@@ -1,0 +1,33 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Update the package manager cache.  
+Description Task 1: Ensure the package manager cache is updated for both APT and DNF package managers based on the system's package manager type.
+
+Task 2: Install the keepalived package.  
+Description Task 2: Install the keepalived package on the target system to manage the virtual IP and provide high availability.
+
+Task 3: Create a directory for keepalived configuration files.  
+Description Task 3: Create the directory `/etc/keepalived` with appropriate permissions, ownership, and ensure it is accessible by root.
+
+Task 4: Create a Kubernetes API health check script for Debian systems.  
+Description Task 4: Deploy the Kubernetes API health check script from a template to `/etc/keepalived/check_apiserver.sh` on Debian-based systems, ensuring the script has the correct permissions and ownership. Notify the handler to restart keepalived upon changes.
+
+Task 5: Create a Kubernetes API health check script for RedHat systems.  
+Description Task 5: Deploy the Kubernetes API health check script from a template to `/usr/libexec/keepalived/check_apiserver.sh` on RedHat-based systems, ensuring the script has the correct permissions and ownership. Notify the handler to restart keepalived upon changes.
+
+Task 6: Create an RKE2 Server health check script for Debian systems.  
+Description Task 6: Deploy the RKE2 Server health check script from a template to `/etc/keepalived/check_rke2server.sh` on Debian-based systems, ensuring the script has the correct permissions and ownership. Notify the handler to restart keepalived upon changes.
+
+Task 7: Create an RKE2 Server health check script for RedHat systems.  
+Description Task 7: Deploy the RKE2 Server health check script from a template to `/usr/libexec/keepalived/check_rke2server.sh` on RedHat-based systems, ensuring the script has the correct permissions and ownership. Notify the handler to restart keepalived upon changes.
+
+Task 8: Create the keepalived configuration file.  
+Description Task 8: Deploy the keepalived configuration from a template to `/etc/keepalived/keepalived.conf`, setting appropriate permissions and ownership. Notify the handler to restart keepalived upon changes.
+
+Task 9: Enable keepalived service and ensure it is not masked.  
+Description Task 9: Ensure the keepalived service is enabled and not masked in the systemd service manager, notifying the handler to restart keepalived upon changes.
+
+Task 10: Flush handlers to apply changes.  
+Description Task 10: Execute a meta task to flush any pending handlers, ensuring all changes are applied and services are restarted as needed.

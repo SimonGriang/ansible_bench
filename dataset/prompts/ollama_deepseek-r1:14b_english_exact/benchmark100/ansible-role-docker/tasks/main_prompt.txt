@@ -1,0 +1,45 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Include OS-specific variables
+Description Task 1: Load OS-specific variables from files matching the distribution and OS family, searching in the vars directory.
+
+Task 2: Include OS family specific tasks
+Description Task 2: Include setup tasks for either RedHat or Debian based on the OS family detected.
+
+Task 3: Install Docker packages
+Description Task 3: Install Docker packages using variables defined in docker_packages and state from docker_packages_state. Notify the restart docker handler and ignore errors if in check mode. Only execute when using Ansible versions older than 2.12 or when not on RedHat/Debian systems.
+
+Task 4: Install Docker packages with downgrade option
+Description Task 4: Install Docker packages with the option to downgrade, using the same variables as Task 3. Notify the restart docker handler and ignore errors if in check mode. Only execute when using Ansible versions 2.12 or newer and on RedHat/Debian systems.
+
+Task 5: Install docker-compose plugin
+Description Task 5: Install the docker-compose plugin package using variables defined in docker_compose_package and state from docker_compose_package_state. Notify the restart docker handler and ignore errors if in check mode. Only execute when docker_install_compose_plugin is true and when using Ansible versions older than 2.12 or not on RedHat/Debian systems.
+
+Task 6: Install docker-compose-plugin with downgrade option
+Description Task 6: Install the docker-compose plugin with the option to downgrade, using the same variables as Task 5. Notify the restart docker handler and ignore errors if in check mode. Only execute when docker_install_compose_plugin is true and when using Ansible versions 2.12 or newer on RedHat/Debian systems.
+
+Task 7: Ensure /etc/docker directory exists
+Description Task 7: Create the /etc/docker directory if it does not exist, setting mode to 0755. Only execute when there are Docker daemon options to configure.
+
+Task 8: Configure Docker daemon options
+Description Task 8: Copy Docker daemon options to /etc/docker/daemon.json in JSON format. Only execute when there are Docker daemon options to configure. Notify the restart docker handler.
+
+Task 9: Ensure Docker service is started and enabled
+Description Task 9: Start the Docker service and enable it at boot using service state and enabled variables. Ignore errors if in check mode. Only execute when docker_service_manage is true.
+
+Task 10: Flush handlers to avoid firewall conflicts
+Description Task 10: Flush all handlers immediately to prevent potential conflicts with other tasks, particularly those related to firewalls.
+
+Task 11: Include docker-compose.yml tasks
+Description Task 11: Include tasks from docker-compose.yml if docker_install_compose is true.
+
+Task 12: Get docker group information
+Description Task 12: Retrieve group information for the docker group using getent. Only execute when there are users to add to the docker group.
+
+Task 13: Set fact for user modification
+Description Task 13: Set a fact indicating that at least one user needs to be added to the docker group. Only execute when there are users to add and they are not already in the docker group.
+
+Task 14: Include docker-users.yml tasks
+Description Task 14: Include tasks from docker-users.yml if there are users to modify in the docker group.

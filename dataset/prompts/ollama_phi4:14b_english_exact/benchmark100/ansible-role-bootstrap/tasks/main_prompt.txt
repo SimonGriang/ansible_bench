@@ -1,0 +1,18 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import additional tasks from a file named `assert.yml` to be executed once and delegated to localhost.  
+Description Task 1: Import the `assert.yml` file to run additional tasks once and delegate the execution to localhost using Ansible's `import_tasks` module.
+
+Task 2: Wait for a specified port to be available, with a timeout defined by `bootstrap_timeout`.  
+Description Task 2: Use the `wait_for` module to check if the specified port (default is 22) is available, using a timeout defined by `bootstrap_timeout`. This task should only run if the connection is not a container or Docker connection, and if `bootstrap_wait_for_host` is true.
+
+Task 3: Prepare the system by testing the connection and verifying sudo access.  
+Description Task 3: Execute a block of tasks to test the connection using `wait_for_connection` and verify sudo access with `command`. If any task fails, gather bootstrap facts and install bootstrap packages using raw commands. This block should not use `become` as it assumes root access is required.
+
+Task 4: Gather Ansible facts about the system.  
+Description Task 4: Use the `setup` module to gather facts about the system without using `become`.
+
+Task 5: Install necessary packages based on the gathered facts.  
+Description Task 5: Use the `package` module to install a list of packages specified in `bootstrap_facts_packages`, ensuring the package cache is updated. The installation should use `become` based on the `bootstrap_become` variable.

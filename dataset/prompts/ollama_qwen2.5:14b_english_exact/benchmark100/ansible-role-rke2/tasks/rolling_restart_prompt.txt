@@ -1,0 +1,21 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Cordon and Drain the node {{ rke2_node_name }}
+Description Task 1: Cordons and drains the specified node using kubectl commands. The task uses the rke2_data_path and rke2_drain_additional_args variables, and runs the command until the node is successfully drained, checking every 15 seconds for up to 100 retries.
+
+Task 2: Restart RKE2 service on {{ rke2_node_name }}
+Description Task 2: Restarts the RKE2 service on the specified node. This task notifies a handler named "Service (re)started".
+
+Task 3: Wait for all nodes to be ready again
+Description Task 3: Waits until all nodes in the cluster are reported as "Ready" by kubectl. The task retries every 15 seconds for up to 100 attempts.
+
+Task 4: Uncordon the node {{ rke2_node_name }}
+Description Task 4: Uncordons the previously cordoned node using kubectl. The task runs only if the condition rke2_drain_node_during_upgrade is true.
+
+Task 5: Wait for all pods to be ready again
+Description Task 5: Waits until all pods across the cluster are in a Running or Succeeded state. The task retries every 15 seconds for up to 100 attempts, and runs only if the condition rke2_wait_for_all_pods_to_be_ready is true.
+
+Task 6: Wait for all pods to pass readiness checks
+Description Task 6: Waits until all pods pass their readiness checks using the kubectl wait command. The task retries every 15 seconds for up to 100 attempts, and runs only if the condition rke2_wait_for_all_pods_to_be_healthy is true.

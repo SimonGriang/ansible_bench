@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Disable swap
+Description Task 1: Disable swap
+
+Task 2: Disable core dumps
+Description Task 2: Disable core dumps
+
+Task 3: Disable Shell Command History
+Description Task 3: Disable Shell Command History

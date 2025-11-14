@@ -1,0 +1,50 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Load OS-specific variables based on the detected operating system.
+Description Task 1: This task loads variables from OS-specific files (e.g., RedHat.yml, Debian.yml) that contain platform-specific configurations.
+
+Task 2: Include setup tasks for RedHat-based systems.
+Description Task 2: This task includes setup tasks specific to RedHat-based systems.
+
+Task 3: Include setup tasks for Debian-based systems.
+Description Task 3: This task includes setup tasks specific to Debian-based systems.
+
+Task 4: Install Docker packages on systems with Ansible version less than 2.12 or non-RedHat/Debian systems.
+Description Task 4: This task installs Docker packages on systems that do not meet the criteria for the next task, which requires Ansible version 2.12 or higher and RedHat/Debian systems.
+
+Task 5: Install Docker packages (with downgrade option) on systems with Ansible version 2.12 or higher and RedHat/Debian systems.
+Description Task 5: This task installs Docker packages on systems with Ansible version 2.12 or higher and RedHat/Debian systems, allowing for package downgrades.
+
+Task 6: Install the docker-compose plugin on systems where the plugin is enabled and the system meets the criteria for task 4 or 5.
+Description Task 6: This task installs the docker-compose plugin on systems where the plugin is enabled and the system meets the criteria for task 4 or 5.
+
+Task 7: Install the docker-compose-plugin (with downgrade option) on systems where the plugin is enabled and the system meets the criteria for task 5.
+Description Task 7: This task installs the docker-compose-plugin on systems where the plugin is enabled and the system meets the criteria for task 5, allowing for package downgrades.
+
+Task 8: Ensure the /etc/docker/ directory exists and has the correct permissions.
+Description Task 8: This task creates the /etc/docker/ directory if it does not exist and sets the correct permissions.
+
+Task 9: Configure the Docker daemon options by copying the options to the daemon.json file.
+Description Task 9: This task copies the Docker daemon options to the daemon.json file in the /etc/docker/ directory.
+
+Task 10: Ensure Docker is started and enabled at boot, if configured to do so.
+Description Task 10: This task enables and starts the Docker service if it is configured to do so.
+
+Task 11: Notify handlers to ensure firewall rules are updated.
+Description Task 11: This task notifies handlers to ensure firewall rules are updated.
+
+Task 12: Include tasks for managing docker-compose, if enabled.
+Description Task 12: This task includes tasks for managing docker-compose if it is enabled.
+
+Task 13: Get information about the docker group using getent.
+Description Task 13: This task retrieves information about the docker group using the getent command.
+
+Task 14: Check if there are any users to add to the docker group.
+Description Task 14: This task checks if there are any users that need to be added to the docker group.
+
+Task 15: Include tasks for managing docker users, if necessary.
+Description Task 15: This task includes tasks for managing docker users if there are users that need to be added to the docker group.

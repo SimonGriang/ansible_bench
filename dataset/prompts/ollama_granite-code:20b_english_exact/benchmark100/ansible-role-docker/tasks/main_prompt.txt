@@ -1,0 +1,30 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Load OS-specific vars.
+Description Task 1: Load OS-specific vars.
+
+Task 2: Install Docker packages.
+Description Task 2: Install Docker packages.
+
+Task 3: Install docker-compose plugin.
+Description Task 3: Install docker-compose plugin.
+
+Task 4: Ensure /etc/docker/ directory exists.
+Description Task 4: Ensure /etc/docker/ directory exists.
+
+Task 5: Configure Docker daemon options.
+Description Task 5: Configure Docker daemon options.
+
+Task 6: Ensure Docker is started and enabled at boot.
+Description Task 6: Ensure Docker is started and enabled at boot.
+
+Task 7: Ensure handlers are notified now to avoid firewall conflicts.
+Description Task 7: Ensure handlers are notified now to avoid firewall conflicts.
+
+Task 8: Ensure docker-compose is installed.
+Description Task 8: Ensure docker-compose is installed.
+
+Task 9: Ensure docker group users are in the docker group.
+Description Task 9: Ensure docker group users are in the docker group.

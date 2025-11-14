@@ -1,0 +1,13 @@
+"Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Remove EXTERNALLY-MANAGED file if we're on Debian12
+Description Task 1: This task removes the EXTERNALLY-MANAGED file if the python3 version installed is 3.11 on Debian12. This is related to a specific issue that can be found at https://github.com/geerlingguy/ansible-role-pip/issues/57
+
+Task 2: debian12 | Get python3 version installed
+Description Task 2: This task gets the python3 version installed on the system.
+
+Task 3: debian12 | Remove EXTERNALLY-MANAGED
+Description Task 3: This task removes the EXTERNALLY-MANAGED file from the system if the python3 version installed is 3.11 on Debian12.
+..."

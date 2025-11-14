@@ -1,0 +1,48 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Install unzip package  
+Description Task 1: Ensure the unzip package is installed on the system to handle binary extraction.  
+
+Task 2: Create system group for promtail  
+Description Task 2: Create a system group for promtail with the specified name, ensuring it is not root.  
+
+Task 3: Create system user for promtail  
+Description Task 3: Create a system user for promtail, assign it to the specified group, and configure additional groups and permissions.  
+
+Task 4: Ensure /usr/local/bin directory exists  
+Description Task 4: Create the /usr/local/bin directory if it does not exist, ensuring proper permissions.  
+
+Task 5: Create config directories  
+Description Task 5: Create configuration directories with specified ownership and permissions.  
+
+Task 6: Create application directories  
+Description Task 6: Create application directories with specified ownership and permissions.  
+
+Task 7: Check promtail binary existence  
+Description Task 7: Check if the promtail binary exists in the target directory.  
+
+Task 8: Download promtail binaries  
+Description Task 8: Download promtail binaries from the distribution URL, verifying checksums.  
+
+Task 9: Propagate local promtail binaries  
+Description Task 9: Copy locally distributed promtail binaries to the temporary directory.  
+
+Task 10: Download promtail binaries for controller node  
+Description Task 10: Download promtail binaries on the controller node for distribution.  
+
+Task 11: Propagate promtail binaries  
+Description Task 11: Copy promtail binaries to the temporary directory for further distribution.  
+
+Task 12: Unpack promtail binaries  
+Description Task 12: Unpack the promtail binaries from the downloaded zip file.  
+
+Task 13: Create symlink to latest promtail version  
+Description Task 13: Create a symbolic link to the latest promtail version and notify restart.  
+
+Task 14: Write promtail config file  
+Description Task 14: Generate and write the promtail configuration file using a template.  
+
+Task 15: Create systemd service unit  
+Description Task 15: Create a systemd service unit file from a template and notify restart.

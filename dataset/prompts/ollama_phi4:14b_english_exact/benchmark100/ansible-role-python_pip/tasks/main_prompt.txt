@@ -1,0 +1,21 @@
+"Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml only once and delegate to localhost.  
+Description Task 1: Import a set of tasks from the file assert.yml and ensure it is executed only once, delegating the task to the localhost.
+
+Task 2: Install Python pip using the specified package name.  
+Description Task 2: Install Python pip by specifying the package name through the variable `python_pip_packages`.
+
+Task 3: Configure pip proxy settings if the proxy is defined.  
+Description Task 3: Set the pip proxy configuration in the `/etc/pip.conf` file under the global section using the `index-url` option, only if `python_pip_proxy` is defined.
+
+Task 4: Set trusted hosts for pip if specified.  
+Description Task 4: Configure trusted hosts for pip in the `/etc/pip.conf` file under the global section using the `trusted-host` option, only if `python_pip_trusted_host` is defined.
+
+Task 5: Update pip to the latest version under specific conditions.  
+Description Task 5: Update pip to the latest version using the package specified by `python_pip_pip_package`, only if `python_pip_update` is true and the distribution release is not "bookworm" or "noble", and the OS family is not "Alpine".
+
+Task 6: Install requested Python pip modules based on conditions.  
+Description Task 6: Install Python pip modules specified in `python_pip_modules`, ensuring each module's name and state are correctly set, and execute only if the distribution release is not "bookworm" or "noble", and the OS family is not "Alpine"."

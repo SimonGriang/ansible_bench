@@ -1,0 +1,36 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Update apt cache
+Description Task 1: Update the apt package cache for Debian-based systems.
+
+Task 2: Update dnf cache
+Description Task 2: Update the dnf package cache for RedHat-based systems.
+
+Task 3: Install packages
+Description Task 3: Install the keepalived package using the default package manager.
+
+Task 4: Create directory for keepalived
+Description Task 4: Create the keepalived configuration directory with proper permissions.
+
+Task 5: Create Kubernetes API health check script for Debian OS family
+Description Task 5: Create a health check script for Kubernetes API server on Debian-based systems and notify keepalived to restart.
+
+Task 6: Create Kubernetes API health check script for RedHat OS famliy
+Description Task 6: Create a health check script for Kubernetes API server on RedHat-based systems and notify keepalived to restart.
+
+Task 7: Create RKE2 Server health check script for Debian OS family
+Description Task 7: Create a health check script for RKE2 server on Debian-based systems and notify keepalived to restart.
+
+Task 8: Create RKE2 Server health check script for RedHat OS family
+Description Task 8: Create a health check script for RKE2 server on RedHat-based systems and notify keepalived to restart.
+
+Task 9: Create keepalived config file
+Description Task 9: Create the keepalived configuration file from a template and notify keepalived to restart.
+
+Task 10: Enable keepalived and make sure it is not masked
+Description Task 10: Enable the keepalived service and ensure it is not masked, notifying keepalived to restart.
+
+Task 11: Flush handlers
+Description Task 11: Flush all handlers to ensure pending tasks are executed.

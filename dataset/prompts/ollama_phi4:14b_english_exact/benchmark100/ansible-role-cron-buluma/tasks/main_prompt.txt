@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import the assert.yml file from the localhost and ensure it runs only once.
+Description Task 1: Import additional tasks from assert.yml, executing them on the localhost only once to ensure necessary assertions are performed before proceeding with other tasks.
+
+Task 2: Install the necessary cron packages.
+Description Task 2: Use the package module to install the packages listed in the `cron_packages` variable, ensuring they are present on the system.
+
+Task 3: Configure the shell environment for cron.
+Description Task 3: Modify the cron configuration file specified by `cron_configuration` to set the shell environment using the `cron_shell` variable, ensuring proper permissions are applied with mode "0600". This task triggers a handler to restart the cron service.
+
+Task 4: Configure the PATH environment variable for cron.
+Description Task 4: Update the cron configuration file to set the PATH environment variable using the `cron_path` variable, ensuring the line is added with mode "0600". This task also triggers a handler to restart the cron service.
+
+Task 5: Configure the MAILTO environment variable for cron.
+Description Task 5: Set the MAILTO environment variable in the cron configuration file using the `cron_mailto` variable, ensuring the line is added with mode "0600". This task triggers a handler to restart the cron service.
+
+Task 6: Ensure the cron service is started and enabled.
+Description Task 6: Use the service module to start and enable the service specified by `cron_service`, but only if it is defined and has a non-empty name.
+
+Task 7: Schedule the specified cron jobs.
+Description Task 7: Use the cron module to schedule jobs defined in the `cron_jobs` variable, iterating over each job and configuring its schedule and execution details. This task only runs if `cron_jobs` is defined.

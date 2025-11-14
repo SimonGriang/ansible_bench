@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import the assert.yml tasks file.  
+Description Task 1: Import the assert.yml file to ensure the necessary assertions are performed during the setup process. This task should run only once and delegate to localhost.
+
+Task 2: Install required GRUB packages.  
+Description Task 2: Install the packages necessary for GRUB configuration, as specified by the `grub_packages` variable, ensuring they are present on the system.
+
+Task 3: Set the GRUB_TIMEOUT value.  
+Description Task 3: Configure the GRUB_TIMEOUT in the /etc/default/grub file by adding or modifying the line to the value specified by the `grub_timeout` variable. Ensure the file is created if it does not exist and set permissions to 0664. Notify the handler to update GRUB.
+
+Task 4: Set the GRUB_RECORDFAIL_TIMEOUT value.  
+Description Task 4: Configure the GRUB_RECORDFAIL_TIMEOUT in the /etc/default/grub file by adding or modifying the line to the value specified by the `grub_recordfail_timeout` variable. Ensure the file is created if it does not exist and set permissions to 0664. Notify the handler to update GRUB.
+
+Task 5: Add options to GRUB_CMDLINE_LINUX.  
+Description Task 5: Add specific options to the GRUB_CMDLINE_LINUX variable in the /etc/default/grub file. Use a regular expression to ensure each option from the `grub_options` list is added only if it does not already exist. Validate the changes with /bin/sh and set file permissions to 0664. Notify the handler to update GRUB. This task should only run if `grub_options` is defined and has elements.
+
+Task 6: Import the password.yml tasks file if password setting is required.  
+Description Task 6: Import the password.yml file to configure GRUB password settings, but only if the `grub_set_password` variable is true.
+
+Task 7: Flush any pending handlers.  
+Description Task 7: Ensure all pending handlers are executed immediately by flushing them, which is necessary for applying configuration changes like updating GRUB.

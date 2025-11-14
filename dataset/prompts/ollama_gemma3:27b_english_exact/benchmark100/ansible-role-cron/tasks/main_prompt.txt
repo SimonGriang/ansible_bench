@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import the tasks defined in the `assert.yml` file, running it only once and delegating the execution to localhost.
+
+Task 2: Install cron
+Description Task 2: Install the cron package using the package manager, ensuring it's present. The package name is defined by the variable `cron_packages`.
+
+Task 3: Configure shell
+Description Task 3: Configure the `SHELL` variable in the cron configuration file (`cron_configuration`). It ensures the line exists or is updated with the value of `cron_shell`, using a regular expression to match existing lines. The file is created if it doesn't exist and its permissions are set to 0600. It notifies the `Restart cron` handler.
+
+Task 4: Configure path
+Description Task 4: Configure the `PATH` variable in the cron configuration file (`cron_configuration`). It ensures the line exists or is updated with the value of `cron_path`, using a regular expression to match existing lines. The file is created if it doesn't exist and its permissions are set to 0600. It notifies the `Restart cron` handler.
+
+Task 5: Configure mailto
+Description Task 5: Configure the `MAILTO` variable in the cron configuration file (`cron_configuration`). It ensures the line exists or is updated with the value of `cron_mailto`, using a regular expression to match existing lines. The file is created if it doesn't exist and its permissions are set to 0600. It notifies the `Restart cron` handler.
+
+Task 6: Start and enable cron
+Description Task 6: Start and enable the cron service, using the service name defined by the variable `cron_service`. This task is conditional and only runs if the `cron_service` variable is defined and has a length greater than zero.
+
+Task 7: Schedule requested cron jobs
+Description Task 7: Schedule cron jobs based on the list of jobs defined in the `cron_jobs` variable. It uses the `cron` module to create, update, or delete cron jobs, specifying minute, hour, day, month, weekday, special_time, and job details. The loop control includes a label based on the job name. This task is conditional and only runs if the `cron_jobs` variable is defined.

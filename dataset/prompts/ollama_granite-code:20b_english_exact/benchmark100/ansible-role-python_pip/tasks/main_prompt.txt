@@ -1,0 +1,21 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml
+Description Task 1: Import the assert.yml file
+
+Task 2: Install python pip
+Description Task 2: Install python pip using the package module
+
+Task 3: Configure pip proxy
+Description Task 3: Configure the pip proxy using the ini_file module
+
+Task 4: Trust hosts
+Description Task 4: Trust hosts using the ini_file module
+
+Task 5: Update pip.
+Description Task 5: Update pip using the pip module
+
+Task 6: Install requested modules
+Description Task 6: Install requested modules using the pip module

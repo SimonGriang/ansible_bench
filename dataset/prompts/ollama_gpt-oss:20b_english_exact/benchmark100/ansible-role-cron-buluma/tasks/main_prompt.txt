@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the assertion tasks file `assert.yml` once and delegate the execution to the local machine to validate role variables before proceeding.  
+
+Task 2: Install cron  
+Description Task 2: Ensure all packages listed in the variable `cron_packages` are installed on the target host using the package module, guaranteeing that the cron service is present.  
+
+Task 3: Configure shell  
+Description Task 3: Add or update the `SHELL` line in the file defined by `cron_configuration` with the value from `cron_shell`. Create the file if it does not exist, set permissions to `0600`, and notify the handler `Restart cron`.  
+
+Task 4: Configure path  
+Description Task 4: Add or update the `PATH` line in the file defined by `cron_configuration` with the value from `cron_path`. Create the file if it does not exist, set permissions to `0600`, and notify the handler `Restart cron`.  
+
+Task 5: Configure mailto  
+Description Task 5: Add or update the `MAILTO` line in the file defined by `cron_configuration` with the value from `cron_mailto`. Create the file if it does not exist, set permissions to `0600`, and notify the handler `Restart cron`.  
+
+Task 6: Start and enable cron  
+Description Task 6: Start and enable the service specified by `cron_service` using the service module, but only when `cron_service` is defined and non-empty.  
+
+Task 7: Schedule requested cron jobs  
+Description Task 7: Iterate over the list `cron_jobs` and create or manage cron entries using the cron module. For each item, set attributes such as `name`, `minute`, `hour`, `day`, `month`, `weekday`, `special_time`, `job`, `state`, and `user` based on the item's fields, omitting any that are not provided. Label each loop iteration with the job's name and perform the task only when `cron_jobs` is defined.

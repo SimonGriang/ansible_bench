@@ -1,0 +1,30 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: create directories
+Description Task 1: Create the necessary directories for cadvisor, specifically /opt/cadvisor, with permissions 0755.
+
+Task 2: download cadvisor
+Description Task 2: Download the cadvisor binary from the URL specified by the `cadvisor_download` variable, verifying the SHA256 checksum against `cadvisor_checksum`. Store the downloaded file as `/opt/cadvisor/cadvisor-{{ cadvisor_version }}` with user/group/other permissions set to rwx/rx/rx. Only perform this download if the `cadvisor_binary_local_dir` variable is empty.
+
+Task 3: propagate locally distributed cadvisor binary
+Description Task 3: Copy a locally available cadvisor binary from `cadvisor_binary_local_dir/cadvisor-{{ cadvisor_version }}` to `/opt/cadvisor/cadvisor-{{ cadvisor_version }}` with permissions 0755, owner root, and group root. Notify the `restart cadvisor` handler after copying. Only perform this copy if the `cadvisor_binary_local_dir` variable is not empty.
+
+Task 4: symlink cadvisor
+Description Task 4: Create a symbolic link from `/opt/cadvisor/cadvisor-{{ cadvisor_version }}` to `/opt/cadvisor/cadvisor`, forcing the link to be created if it already exists.
+
+Task 5: server systemd service
+Description Task 5: Create the cadvisor systemd service file at `/etc/systemd/system/cadvisor.service` using the template `systemd-system-cadvisor-service.j2` with permissions 0644. Notify the `restart cadvisor` handler after creating the service file.
+
+Task 6: test_task
+Description Task 6: Execute a shell command to check if the cadvisor systemd service is active. Register the output to the `service_active` variable. The task should not fail if the command fails and should not report as changed.
+
+Task 7: debug
+Description Task 7: Print the value of the `service_active` variable for debugging purposes.
+
+Task 8: cadvisor | enable server systemd
+Description Task 8: Enable the cadvisor systemd service named `cadvisor.service`.
+
+Task 9: cadvisor | start server systemd
+Description Task 9: Start the cadvisor systemd service named `cadvisor.service`, reload the systemd daemon before starting, and ensure the service is in the started state.

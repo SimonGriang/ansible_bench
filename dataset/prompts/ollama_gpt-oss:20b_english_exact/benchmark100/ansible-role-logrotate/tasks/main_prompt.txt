@@ -1,0 +1,21 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the assert.yml file using ansible.builtin.import_tasks. This task should run only once and be delegated to localhost.  
+
+Task 2: Install logrotate  
+Description Task 2: Install the logrotate package(s) specified by the variable `logrotate_packages` using the ansible.builtin.package module, ensuring the state is present.  
+
+Task 3: Configure logrotate  
+Description Task 3: Render the logrotate configuration template located at `{{ logrotate_config_file }}.j2` and place it in `{{ logrotate_config_directory }}` with the filename `{{ logrotate_config_file }}`. Set file mode to "0644".  
+
+Task 4: Generate logrotate.d files  
+Description Task 4: For each entry in the `logrotate_entries` list, render the `entry.j2` template and write it to `{{ logrotate_confd_directory }}/{{ item.name }}` with mode "0644". Only process entries that are defined and either have no `state` or have a `state` not equal to "absent". Use `loop_control.label` to label the loop with `{{ item.name }}`.  
+
+Task 5: Remove logrotate.d files  
+Description Task 5: For each entry in the `logrotate_entries` list where the entry is defined, has a `state` attribute, and `state` equals "absent", delete the file at `{{ logrotate_confd_directory }}/{{ item.name }}` using the ansible.builtin.file module with `state: absent`. Use `loop_control.label` to label the loop with `{{ item.name }}`.  
+
+Task 6: Start logrotate  
+Description Task 6: Manage the logrotate service using the ansible.builtin.service module. Set the service name to `{{ logrotate_service }}`, the state to `{{ logrotate_service_state }}`, and the enabled flag to `{{ logrotate_service_enabled }}`. Only perform this task if `{{ logrotate_service }}` is not an empty string.

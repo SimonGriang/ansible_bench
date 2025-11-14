@@ -1,0 +1,21 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml
+Description Task 1: Import the assert.yml file to define assertions for the playbook. This step should only run once and delegate to localhost.
+
+Task 2: Install python pip
+Description Task 2: Install the Python package 'python-pip' using the name variable defined in the playbook's variables.
+
+Task 3: Configure pip proxy
+Description Task 3: Set up the pip configuration to use a proxy if the variable python_pip_proxy is defined. This updates the /etc/pip.conf file.
+
+Task 4: Trust hosts
+Description Task 4: Add trusted hosts to the pip configuration if the variable python_pip_trusted_host is defined. This updates the /etc/pip.conf file.
+
+Task 5: Update pip
+Description Task 5: Update pip to the latest version if the variable python_pip_update is true, and the distribution release is not bookworm or noble, and the os family is not Alpine.
+
+Task 6: Install requested modules
+Description Task 6: Install Python modules specified in the python_pip_modules variable. This task uses a loop to iterate over the list of modules and installs them based on the state and version defined for each module. This task runs only if the distribution release is not bookworm or noble, and the os family is not Alpine.

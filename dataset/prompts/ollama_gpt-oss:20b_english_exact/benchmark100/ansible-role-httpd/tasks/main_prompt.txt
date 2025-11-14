@@ -1,0 +1,44 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the `assert.yml` file once with `ansible.builtin.import_tasks`, set `run_once: true`, and `delegate_to: localhost`.  
+
+Task 2: Install apache httpd  
+Description Task 2: Install the packages defined in the `httpd_packages` variable using `ansible.builtin.package`, ensuring the packages are present.  
+
+Task 3: Configure selinux  
+Description Task 3: When SELinux is enabled (`ansible_selinux.status == "enabled"`), perform two sub‑tasks:  
+- Modify SELinux boolean settings for each item in `httpd_sebooleans` using `ansible.posix.seboolean`, setting `state: true` and `persistent: true`.  
+- Allow connections to custom ports by adding entries for each port in `httpd_port` and `httpd_ssl_port` (if defined) using `community.general.seport` with `proto: tcp`, `setype: http_port_t`, and `state: present`.  
+
+Task 4: Configure httpd  
+Description Task 4: Render the HTTPD configuration template from `httpd_config_src` to `httpd_config_dest` with mode `0644` using `ansible.builtin.template`. Notify the handlers `Test httpd configuration validity` and `Restart httpd`.  
+
+Task 5: Activate httpd module | Debian  
+Description Task 5: On Debian systems (`ansible_os_family == 'Debian'`), enable each module listed in `httpd_modules_to_activate_with_command` by running the command `a2enmod {{ item }}` with `changed_when: false`. Notify the handler `Test httpd configuration validity`.  
+
+Task 6: Import ssl.yml  
+Description Task 6: Import the `ssl.yml` file using `ansible.builtin.import_tasks` when the variable `https_ssl_enable` is true.  
+
+Task 7: Import locations.yml  
+Description Task 7: Import the `locations.yml` file using `ansible.builtin.import_tasks` when the variable `httpd_locations` is defined.  
+
+Task 8: Import vhosts.yml  
+Description Task 8: Import the `vhosts.yml` file using `ansible.builtin.import_tasks` when the variable `httpd_vhosts` is defined.  
+
+Task 9: Configure ports  
+Description Task 9: On Debian or Suse families (`ansible_os_family in [ "Debian", "Suse" ]`), render the ports configuration template `{{ httpd_ports_conf }}.j2` to `{{ httpd_server_root }}/{{ httpd_ports_conf }}` with mode `0644` using `ansible.builtin.template`. Notify the handlers `Test httpd configuration validity` and `Restart httpd`.  
+
+Task 10: Import directories.yml  
+Description Task 10: Import the `directories.yml` file using `ansible.builtin.import_tasks` when the variable `httpd_directories` is defined.  
+
+Task 11: Flush handlers  
+Description Task 11: Flush all pending handlers using `ansible.builtin.meta: flush_handlers`.  
+
+Task 12: Removing default html  
+Description Task 12: Remove the default `index.html` file located at `{{ httpd_data_directory }}/index.html` by setting `state: absent` with `ansible.builtin.file` when `httpd_remove_example` is true.  
+
+Task 13: Start and enable httpd  
+Description Task 13: Ensure the service named by `httpd_service` is started and enabled using `ansible.builtin.service`.

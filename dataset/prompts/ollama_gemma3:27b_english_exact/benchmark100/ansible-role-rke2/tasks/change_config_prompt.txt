@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Restart the RKE2 service
+Description Task 1: Restart the RKE2 service on the target node using the `service` module. Notify the `Service (re)started` handler when the service is restarted. The service name is defined by the `rke2_service_name` variable and the node name by `rke2_node_name`.
+
+Task 2: Wait for all nodes to be ready
+Description Task 2: Wait for all nodes in the RKE2 cluster to be in a `Ready` state. Use a `shell` module to execute a `kubectl` command and check the number of ready nodes. The command uses the `rke2_data_path` variable for the kubectl binary location and `/etc/rancher/rke2/rke2.yaml` as the kubeconfig file. The task retries up to 100 times with a 15-second delay until the number of ready nodes matches the size of the `rke2_cluster_group_name` group. The task is delegated to the `active_server` or the first server in the `rke2_servers_group_name` group, and runs only once.
+
+Task 3: Wait for all pods to be ready
+Description Task 3: Wait for all pods in all namespaces to reach a running or succeeded state. Use a `shell` module to execute a `kubectl` command and count the number of pods that are not in a running or succeeded state. The command uses the `rke2_data_path` variable for the kubectl binary location and `/etc/rancher/rke2/rke2.yaml` as the kubeconfig file. The task retries up to 100 times with a 15-second delay until the number of such pods is zero. The task is delegated to the `active_server` or the first server in the `rke2_servers_group_name` group, and runs only once. The task is conditional and only runs if the `rke2_wait_for_all_pods_to_be_ready` variable is set to true, and when not in check mode.

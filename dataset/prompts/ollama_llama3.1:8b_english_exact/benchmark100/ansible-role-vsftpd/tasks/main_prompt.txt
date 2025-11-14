@@ -1,0 +1,13 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Import a task list from another file to the Ansible control machine for validation.
+Description Task 1: The playbook should import a task list from a file named 'assert.yml' to the Ansible control machine for validation and execution of the imported tasks, but only run once.
+
+Task 2: Install the vsftpd package on the target machine.
+Description Task 2: The playbook should install the vsftpd package on the target machine using the Ansible package module.
+
+Task 3: Configure the vsftpd service by creating a configuration file.
+Description Task 3: The playbook should configure the vsftpd service by creating a configuration file named 'vsftpd.conf' at the specified destination, with the correct file mode, owner, and group, and notify the restart of the vsftpd service.
+
+Task 4: Start the vsftpd service and enable it to start at boot time.
+Description Task 4: The playbook should start the vsftpd service and enable it to start at boot time using the Ansible service module.

@@ -1,0 +1,36 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Ensure /etc/openvpn/easy-rsa exists  
+Description Task 1: Creates the directory `/etc/openvpn/easy-rsa` with permissions `0755` if it does not already exist.  
+
+Task 2: Easyrsa init-pki  
+Description Task 2: Runs the command `{{ openvpn_easyrsa_path }}/easyrsa init-pki` in `/etc/openvpn/easy-rsa`, creating the `pki` directory if it is missing.  
+
+Task 3: Easyrsa build-ca  
+Description Task 3: Builds the CA certificate without a password using easyrsa (`{{ openvpn_easyrsa_path }}/easyrsa build-ca nopass`), sets the environment variable `EASYRSA_BATCH: "yes"`, and creates `/etc/openvpn/easy-rsa/pki/ca.crt`.  
+
+Task 4: Easyrsa gen-dh  
+Description Task 4: Generates Diffie-Hellman parameters using easyrsa (`{{ openvpn_easyrsa_path }}/easyrsa gen-dh`) and creates `/etc/openvpn/easy-rsa/pki/dh.pem`.  
+
+Task 5: Easyrsa build-server-full server nopass  
+Description Task 5: Builds a server certificate and key for the server without a password (`{{ openvpn_easyrsa_path }}/easyrsa build-server-full server nopass`), sets `EASYRSA_BATCH: "yes"`, and creates `/etc/openvpn/easy-rsa/pki/issued/server.crt`.  
+
+Task 6: Easyrsa build-client-full client nopass  
+Description Task 6: Builds a client certificate and key for the client without a password (`{{ openvpn_easyrsa_path }}/easyrsa build-client-full client nopass`), sets `EASYRSA_BATCH: "yes"`, and creates `/etc/openvpn/easy-rsa/pki/issued/client.crt`.  
+
+Task 7: Easyrsa gen-crl  
+Description Task 7: Generates a certificate revocation list using easyrsa (`{{ openvpn_easyrsa_path }}/easyrsa gen-crl`) and creates `/etc/openvpn/easy-rsa/pki/crl.pem`.  
+
+Task 8: Openvpn --genkey --secret /etc/openvpn/easy-rsa/pki/ta.key  
+Description Task 8: Generates a TLS authentication key file `ta.key` using the OpenVPN command `openvpn --genkey --secret /etc/openvpn/easy-rsa/pki/ta.key` and creates the file if it does not exist.  
+
+Task 9: Copy files to /etc/openvpn/server  
+Description Task 9: Copies a set of PKI files from `/etc/openvpn/easy-rsa/pki` to `/etc/openvpn/server` using a loop over the items `ca.crt`, `dh.pem`, `ta.key`, `issued/client.crt`, `issued/server.crt`, `private/ca.key`, `private/client.key`, and `private/server.key`; sets permissions to `0640` and uses `remote_src: true`.  
+
+Task 10: Copy files to /etc/openvpn  
+Description Task 10: Copies `ca.crt` and `ta.key` from `/etc/openvpn/easy-rsa/pki` to `/etc/openvpn` using a loop over the items `ca.crt` and `ta.key`; sets permissions to `0640` and uses `remote_src: true`.  
+
+Task 11: Place server.conf  
+Description Task 11: Deploys the `server.conf.j2` template to the configured OpenVPN configuration directory (`{{ openvpn_configuration_directory }}/server.conf`), sets the file owner to `root`, the group to `{{ openvpn_group }}`, permissions to `0640`, and notifies the handler `Restart openvpn`.

@@ -1,0 +1,48 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create ssh_key_directory for user.
+Description Task 1: Create a local directory to store SSH keys for a given user, setting the appropriate permissions. This task runs on localhost and is conditional on user.manage_ssh_key being defined and true.
+
+Task 2: Manage user account.
+Description Task 2: Manage a user account with the `user` module, setting various attributes like state, comment, home directory creation, password, UID, group, shell, and expiry. Registers the result for later use.
+
+Task 3: Set sudo options for user.
+Description Task 3: Create a sudoers file for the user using a Jinja2 template, validating the template before applying it. Loops through users and labels the loop iteration.
+
+Task 4: Remove sudo options for user.
+Description Task 4: Remove the sudoers file for a user if sudo options are not defined. Loops through users and labels the loop iteration.
+
+Task 5: Generate private ssh key for user.
+Description Task 5: Generate a private SSH key for the user using the `command` module. The task only runs on localhost and is conditional on user.manage_ssh_key being defined and true.
+
+Task 6: Generate public ssh key for user.
+Description Task 6: Generate a public SSH key from the private key and save it to the specified directory. Runs on localhost, conditional on user.manage_ssh_key.
+
+Task 7: Convert ssh key to ppk for user.
+Description Task 7: Convert the SSH private key to PPK format using ssh-keygen. Runs on localhost, conditional on user.manage_ssh_key.
+
+Task 8: Get or set the home directory for user.
+Description Task 8: Determine the user's home directory, first by querying the system's passwd database and then setting a fact for the base directory. If the user is not found, it defaults to /home.
+
+Task 9: Create .ssh directory for user.
+Description Task 9: Create the .ssh directory within the user's home directory, setting the appropriate permissions. The task runs as the user and is conditional on user.manage_ssh_key or private_keys being defined.
+
+Task 10: Deploy authorized keys for user.
+Description Task 10: Deploy authorized SSH keys for the user using the `authorized_key` module. Loops through the user's authorized_keys list.
+
+Task 11: Remove unauthorized keys for user.
+Description Task 11: Remove unauthorized SSH keys from the user's authorized_keys file using the `authorized_key` module. Loops through the user's unauthorized_keys list.
+
+Task 12: Copy generated private ssh key for user.
+Description Task 12: Copy the generated private SSH key to the user's .ssh directory, setting the appropriate permissions and ownership. Conditional on user.copy_private_key being defined.
+
+Task 13: Check users password valid time.
+Description Task 13: Get the password valid time for the user by parsing /etc/shadow.
+
+Task 14: Set users password valid time.
+Description Task 14: Set the password valid time for the user.
+
+Task 15: Place private key file for user.
+Description Task 15: Copy a private key file (content provided) to the user's .ssh directory, setting permissions and ownership. Conditional on user.private_keys being defined.

@@ -1,0 +1,33 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create the RKE2 config directory
+Description Task 1: Creates the `/etc/rancher/rke2` directory with appropriate permissions.
+
+Task 2: Set server taints
+Description Task 2: Sets the `combined_node_taints` fact based on the `rke2_server_node_taints` variable if `rke2_type` is 'server'.
+
+Task 3: Set agent taints
+Description Task 3: Sets the `combined_node_taints` fact based on the `rke2_agent_node_taints` variable if `rke2_type` is 'agent'.
+
+Task 4: Copy RKE2 config
+Description Task 4: Copies the RKE2 configuration file from the source template to the destination path with specified permissions, and notifies a handler if the file changes.
+
+Task 5: Copy kubelet config
+Description Task 5: Copies the kubelet configuration file from the source template to the destination path with specified permissions, only if `rke2_kubelet_config` has length greater than 0, and notifies a handler if the file changes.
+
+Task 6: Copy Containerd Registry Configuration file
+Description Task 6: Copies the container registry configuration file from the source template to the destination path with specified permissions, only if `rke2_custom_registry_mirrors` or `rke2_custom_registry_configs` have length greater than 0, and notifies a handler if the file changes.
+
+Task 7: Start RKE2 service on the rest of the nodes
+Description Task 7: Starts and enables the RKE2 systemd service with retries, delays, and an environment variable for the RKE2 token. Registers the result and notifies a handler if the service is restarted.
+
+Task 8: Mask other RKE2 service on the rest of the nodes
+Description Task 8: Masks and disables other RKE2 services based on the current `rke2_type`, ensuring only the correct service is running.
+
+Task 9: Wait for remaining nodes to be ready - no CNI
+Description Task 9: Waits for nodes to be ready using kubectl, checking for specific conditions (memory, disk, PID, CNI initialization) using a shell command, retries, and delays. This task runs only when CNI is set to 'none' and on the active server or first server.
+
+Task 10: Wait for remaining nodes to be ready - with CNI
+Description Task 10: Waits for all nodes to be ready using kubectl and grep, checking the number of ready nodes. This task runs when CNI is not 'none' and on the active server or first server.

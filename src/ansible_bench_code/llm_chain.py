@@ -1,4 +1,4 @@
-from ansible_generator_config import TORCH_MODELS_PATH
+from ansible_generator_config import TOKENIZER_MODELS_PATH
 from langchain.prompts import PromptTemplate
 #from langchain.chains import LLMChain, SequentialChain
 #from langchain.schema import RunnableSequence
@@ -18,30 +18,28 @@ from prompt_templates import (
     benchmark_exact_english_first_yamllint_template,
     benchmark_precise_english_first_yamllint_template,
     benchmark_approximate_english_first_yamllint_template,
+    benchmark_exact_english_recursive_yamllint_template,
+    benchmark_precise_english_recursive_yamllint_template,
+    benchmark_approximate_english_recursive_yamllint_template,
+    benchmark_exact_english_recursive_syntax_template,
+    benchmark_precise_english_recursive_syntax_template,
+    benchmark_approximate_english_recursive_syntax_template,
+    benchmark_exact_english_recursive_ansiblelint_template,
+    benchmark_precise_english_recursive_ansiblelint_template,
+    benchmark_approximate_english_recursive_ansiblelint_template,
 )
 
-
-def  hf_modelfiles_path_for(model_name: str) -> Path:
+def hf_modelfiles_path_for(model_name: str) -> Path:
     model_name = model_name.lower()
     hf_model_paths = {
-        "mistral": Path.joinpath(TORCH_MODELS_PATH, "Mistral-7B-Instruct-v0.1"),
-        "mixtral": Path.joinpath(TORCH_MODELS_PATH, "Mixtral-8x7B-Instruct-v0.1"),
-        "codellama": Path.joinpath(TORCH_MODELS_PATH, "CodeLlama-70b-hf"),
-        "dolphin-2.6-mistral": Path.joinpath(
-            TORCH_MODELS_PATH, "dolphin-2.6-mistral-7b"
-        ),
-        "dolphin-2.7-mixtral": Path.joinpath(
-            TORCH_MODELS_PATH, "dolphin-2.7-mixtral-8x7b"
-        ),
-        "dolphincoder-starcoder2-15b": Path.joinpath(
-            TORCH_MODELS_PATH, "dolphincoder-starcoder2-15b"
-        ),
-        "dolphin-2.6-phi-2": Path.joinpath(TORCH_MODELS_PATH, "dolphin-2_6-phi-2"),
-        "llama3": Path.joinpath(TORCH_MODELS_PATH, "Meta-Llama-3-8B-Instruct"),
-        "phi3": Path.joinpath(TORCH_MODELS_PATH, "Phi-3-mini-4k-instruct"),
-        "codestral": Path.joinpath(TORCH_MODELS_PATH, "Codestral-22B-v0.1"),
-        "gemma-3": Path.joinpath(TORCH_MODELS_PATH, "gemma-3-27b-it"),
-        "gemma-3": Path.joinpath(TORCH_MODELS_PATH, "gemma-3-27b-it"),
+        "deepseek-r1:14b": Path.joinpath(TOKENIZER_MODELS_PATH, "deepseek-r1"),
+        "llama3.1:8b": Path.joinpath(TOKENIZER_MODELS_PATH, "llama3.1"),
+        "codestral:22b": Path.joinpath(TOKENIZER_MODELS_PATH, "codestral"),
+        "gpt-oss:20b": Path.joinpath(TOKENIZER_MODELS_PATH, "gpt-oss"),
+        "qwen2.5:14b": Path.joinpath(TOKENIZER_MODELS_PATH, "qwen2.5"),
+        "gemma3:27b": Path.joinpath(TOKENIZER_MODELS_PATH, "gemma3"),
+        "granite-code:20b": Path.joinpath(TOKENIZER_MODELS_PATH, "granite-code"),
+        "phi4:14b": Path.joinpath(TOKENIZER_MODELS_PATH, "phi4"),
     }
 
     if model_name not in hf_model_paths.keys():
@@ -55,22 +53,20 @@ def  hf_modelfiles_path_for(model_name: str) -> Path:
 def apply_chat_template_to_text(text: str, model_name: str) -> str:
     if "codestral" in model_name:
         # The codestral tokenizer does not define a chat template. Codestral uses the same chat template as Mistral. Use that instead.
-        tokenizer = AutoTokenizer.from_pretrained(hf_modelfiles_path_for("mistral"))
-    elif "deepseek-r1:14b" in model_name:
-        # ollama applies the template automatically
+        tokenizer = AutoTokenizer.from_pretrained(hf_modelfiles_path_for("codestral:22b"))
+    elif any(m in model_name for m in [
+        "deepseek-r1:14b",
+        "qwen2.5:14b",
+        "gemma3:27b",
+        "granite-code:20b",
+        "llama3.1:8b",
+        "phi4:14b",
+        "gpt-oss:20b",
+    ]):        # ollama applies the template automatically
         return text
     else:
         tokenizer = AutoTokenizer.from_pretrained(hf_modelfiles_path_for(model_name))
-    if "dolphin" in model_name:
-        # has no chat template in tokenizer
-        tokenizer.chat_template = "{% if not add_generation_prompt is defined %}{% set add_generation_prompt = false %}{% endif %}{% for message in messages %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant\n' }}{% endif %}"
-        system_prompt = "You are a skilled developer proficient in ansible specific playbook creation."
-        chat = [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": text.removeprefix(system_prompt + " ")},
-        ]
-
-    elif "llama3" in model_name:
+    if "llama3" in model_name:
         return text
     else:
         chat = [
@@ -94,7 +90,6 @@ def check_context_size(text: str, model_name: str) -> int:
         raise NotImplementedError(
             f"The model {model_name} has no defined context length. Please add it to the LLAMAFILE_CTX_SIZE or OLLAMA_CTX_SIZE dictionary."
         )
-    model_max_length = LLAMAFILE_CTX_SIZE[model_name]
     if total_input_tokens >= model_max_length:
         return model_max_length - total_input_tokens
     max_new_tokens = model_max_length - total_input_tokens
@@ -184,27 +179,21 @@ def create_prompt_template(operation_mode: str, language:str, template_type: str
             "english": {
                 "exact": {
                     "first_yamllint": benchmark_exact_english_first_yamllint_template,
-                    #"recursive_yamllint": ,
-                    #"first_syntaxcheck": ,
-                    #"recursive_syntaxcheck": ,
-                    #"first_ansiblelint": ,
-                    #"recursive_ansiblelint": ,
+                    "recursive_yamllint": benchmark_exact_english_recursive_yamllint_template,
+                    "recursive_syntaxcheck": benchmark_exact_english_recursive_syntax_template,
+                    "recursive_ansiblelint": benchmark_exact_english_recursive_ansiblelint_template,
                 },
                 "precise": {
                     "first_yamllint": benchmark_precise_english_first_yamllint_template,
-                    #"recursive_yamllint": ,
-                    #"first_syntaxcheck": ,
-                    #"recursive_syntaxcheck": ,
-                    #"first_ansiblelint": ,
-                    #"recursive_ansiblelint": ,
+                    "recursive_yamllint": benchmark_precise_english_recursive_yamllint_template,
+                    "recursive_syntaxcheck": benchmark_precise_english_recursive_syntax_template,
+                    "recursive_ansiblelint": benchmark_precise_english_recursive_ansiblelint_template,
                 },
                 "approximate": {
                     "first_yamllint": benchmark_approximate_english_first_yamllint_template,
-                    #"recursive_yamllint": ,
-                    #"first_syntaxcheck": ,
-                    #"recursive_syntaxcheck": ,
-                    #"first_ansiblelint": ,
-                    #"recursive_ansiblelint": ,
+                    "recursive_yamllint": benchmark_approximate_english_recursive_yamllint_template,
+                    "recursive_syntaxcheck": benchmark_approximate_english_recursive_syntax_template,
+                    "recursive_ansiblelint": benchmark_approximate_english_recursive_ansiblelint_template,
                 },
             },
             "german": {
@@ -255,13 +244,13 @@ def create_prompt_template(operation_mode: str, language:str, template_type: str
     }
 
     if operation_mode not in templates:
-        raise ValueError(f"Unbekannter operation_mode: {operation_mode}")
+        raise ValueError(f"Unknown operation_mode: {operation_mode}")
     if language not in templates[operation_mode]:
-        raise ValueError(f"Unbekannte Sprache '{language}' für {operation_mode}")
+        raise ValueError(f"Unknown language '{language}' for {operation_mode}")
     if template_type not in templates[operation_mode][language]:
-        raise ValueError(f"Unbekannter template_type '{template_type}' für {operation_mode}")
+        raise ValueError(f"Unknown template_type '{template_type}' for {operation_mode}")
     if stage not in templates[operation_mode][language][template_type]:
-        raise ValueError(f"Stage '{stage}' nicht definiert für {operation_mode}")
+        raise ValueError(f"Stage '{stage}' not defined for {operation_mode}")
 
     try:
         template = templates[operation_mode][language][template_type][stage]
@@ -287,12 +276,9 @@ def fillin_prompt_template(
     Args:
         prompt (PromptTemplate): A prompt template that will be used to generate the LLM chain.
         reference_playbook (str): The reference Playbook from the dataset.
-        playbook_prompt (str): The prompt generated to a specific ansible yaml file.
-
-        #llm_response (str): The current translation of the source code in the target language. #stop
-        #stderr (str): The error information of standard error of the latest execution.
-        #test_data (dict): The data from the latest test execution (input, expected output, and generated output).
-
+        input_str (str): The playbook for which a prompt is needed or a prompt according to the generation of a playbook.
+        recursive_str: Last generated faulty playbook
+        error_str: stdout + stderr of last run of yamllint, ansible-playbook --syntax-check or ansiblelint
     Returns:
         The filled in prompt template of the chain as a string.
     """
@@ -314,16 +300,16 @@ def create_and_invoke_prompt_chain(
     Args:
         prompt (PromptTemplate): A prompt template that will be used to generate the LLM chain.
         llm (LLM): An LLM model that will be used in the LLM chain.
-        playbook (str): The playbook for which a prompt is needed.
+        input_str (str): The playbook for which a prompt is needed or a prompt according to the generation of a playbook.
 
     Returns:
-        A dictionary containing the translated source code and its corresponding source code in the specified languages.
+        A dictionary either a generated prompt according to a playbook or a playbook according to a prompt.
     """
 
     # create prompt template > LLM sequence
     chain = prompt | llm 
 
-    # Invoke the chain (identisch wie vorher)
+    # Invoke the chain
     return chain.invoke(
         {
             "input_str": input_str,
@@ -334,7 +320,8 @@ def create_and_invoke_recursive_chain(
     prompt: PromptTemplate,
     llm: LLM,
     input_str: str,
-    recursive
+    recursive_str: str,
+    error_str: str,
 ) -> dict[str, str]:
     """
     Creates an LLMChain using a given prompt template and LLM object.
@@ -342,7 +329,9 @@ def create_and_invoke_recursive_chain(
     Args:
         prompt (PromptTemplate): A prompt template that will be used to generate the LLM chain.
         llm (LLM): An LLM model that will be used in the LLM chain.
-        playbook (str): The playbook for which a prompt is needed.
+        input_str (str): The original prompt.
+        recursive_str: Last generated faulty playbook
+        error_str: stdout + stderr of last run of yamllint, ansible-playbook --syntax-check or ansiblelint
 
     Returns:
         A dictionary containing the translated source code and its corresponding source code in the specified languages.
@@ -355,6 +344,8 @@ def create_and_invoke_recursive_chain(
     return chain.invoke(
         {
             "input_str": input_str,
+            "recursive_str": recursive_str,
+            "error_str": error_str,
         }
     )
 

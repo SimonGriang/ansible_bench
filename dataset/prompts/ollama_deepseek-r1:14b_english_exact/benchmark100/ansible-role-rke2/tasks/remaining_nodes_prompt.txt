@@ -1,0 +1,33 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create the RKE2 configuration directory
+Description Task 1: Ensure the RKE2 configuration directory exists with proper permissions.
+
+Task 2: Set server taints
+Description Task 2: Configure server node taints when the node type is set to 'server'.
+
+Task 3: Set agent taints
+Description Task 3: Configure agent node taints when the node type is set to 'agent'.
+
+Task 4: Copy RKE2 configuration file
+Description Task 4: Copy the RKE2 configuration file from a template to the appropriate location with specific permissions and notify a handler.
+
+Task 5: Copy Kubelet configuration file
+Description Task 5: Copy the Kubelet configuration file from a template when the Kubelet configuration is provided, with specific permissions and notify a handler.
+
+Task 6: Copy Containerd Registry Configuration file
+Description Task 6: Copy the Containerd Registry Configuration file from a specified path when custom registry settings are provided, with specific permissions and notify a handler.
+
+Task 7: Start RKE2 service on other nodes
+Description Task 7: Start the RKE2 service on all nodes except the current one, ensuring it is enabled and notify a handler upon changes.
+
+Task 8: Mask other RKE2 services on nodes
+Description Task 8: Mask other RKE2 services (agent or server) on nodes based on the current node type.
+
+Task 9: Wait for remaining nodes to be ready - no CNI
+Description Task 9: Poll each node to check if it is ready when CNI is not configured, until all nodes report as ready.
+
+Task 10: Wait for remaining nodes to be ready - with CNI
+Description Task 10: Poll each node to check if it is ready when CNI is configured, until all nodes report as ready.

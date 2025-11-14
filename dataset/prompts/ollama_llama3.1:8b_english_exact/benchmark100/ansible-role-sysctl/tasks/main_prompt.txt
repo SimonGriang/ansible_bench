@@ -1,0 +1,10 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Import the tasks from assert.yml into the playbook.
+Description Task 1: This task imports the tasks from an external YAML file named assert.yml. The tasks from this file will be executed only once during the playbook run, and the execution will be delegated to the local machine.
+
+Task 2: Install the requirements for sysctl.
+Description Task 2: This task installs the required packages for sysctl based on the variable sysctl_requirements. The installed packages will be in the present state, indicating that they are installed if not already present.
+
+Task 3: Set the sysctl settings based on the items provided in the sysctl_items variable.
+Description Task 3: This task sets the sysctl settings based on the items provided in the sysctl_items variable. For each item, the task sets the sysctl setting name and value. The task only executes if the sysctl_items variable is defined, the item name and value are defined, and the connection type is not container, docker, or community.docker.docker. The task reloads the sysctl settings if the sysctl_reload variable is true. The loop is controlled by the item label, which is set to the item name.

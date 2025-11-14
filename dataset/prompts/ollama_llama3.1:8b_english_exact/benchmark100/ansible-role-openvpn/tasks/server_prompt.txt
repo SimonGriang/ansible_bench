@@ -1,0 +1,38 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Ensure /etc/openvpn/easy-rsa exists and set permissions.
+Description Task 1: Create the /etc/openvpn/easy-rsa directory with mode 0755.
+
+Task 2: Initialize the EasyRSA PKI directory.
+Description Task 2: Run the EasyRSA init-pki command and create the /etc/openvpn/easy-rsa/pki directory.
+
+Task 3: Build the CA certificate using EasyRSA.
+Description Task 3: Run the EasyRSA build-ca command with nopass option and create the /etc/openvpn/easy-rsa/pki/ca.crt file.
+
+Task 4: Generate the Diffie-Hellman (DH) parameters using EasyRSA.
+Description Task 4: Run the EasyRSA gen-dh command and create the /etc/openvpn/easy-rsa/pki/dh.pem file.
+
+Task 5: Build the server certificate using EasyRSA.
+Description Task 5: Run the EasyRSA build-server-full command with nopass option and create the /etc/openvpn/easy-rsa/pki/issued/server.crt file.
+
+Task 6: Build the client certificate using EasyRSA.
+Description Task 6: Run the EasyRSA build-client-full command with nopass option and create the /etc/openvpn/easy-rsa/pki/issued/client.crt file.
+
+Task 7: Generate the Certificate Revocation List (CRL) using EasyRSA.
+Description Task 7: Run the EasyRSA gen-crl command and create the /etc/openvpn/easy-rsa/pki/crl.pem file.
+
+Task 8: Generate the Diffie-Hellman (DH) key using OpenVPN.
+Description Task 8: Run the OpenVPN --genkey --secret command to create the /etc/openvpn/easy-rsa/pki/ta.key file.
+
+Task 9: Copy files to the /etc/openvpn/server directory.
+Description Task 9: Copy the CA certificate, DH parameters, TA key, client and server certificates, and private keys to the /etc/openvpn/server directory.
+
+Task 10: Copy files to the /etc/openvpn directory.
+Description Task 10: Copy the CA certificate and TA key to the /etc/openvpn directory.
+
+Task 11: Place the server.conf file.
+Description Task 11: Use the server.conf.j2 template to create the /etc/openvpn/server.conf file with the specified owner, group, and mode.

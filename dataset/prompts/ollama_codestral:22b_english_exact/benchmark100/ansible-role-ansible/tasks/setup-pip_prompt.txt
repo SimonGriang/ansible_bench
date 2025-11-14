@@ -1,0 +1,2 @@
+ Task 1: Install Ansible
+   Description Task 1: Install the Ansible package using Pip, which is a package installer for Python. The task specifies the name of the package, the executable to use for Pip (defaulting to the system's default if not specified), the version of Ansible to install (defaulting to the latest version if not specified), and any extra arguments to pass to Pip (defaulting to none if not specified). This is done to ensure that the system has the necessary tools to run Ansible playbooks.

@@ -1,0 +1,42 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import the assert.yml file to include tasks for validation and assertions. This is done once and delegated to localhost.
+
+Task 2: Install apache httpd
+Description Task 2: Install the Apache HTTP server package using the packages specified in the httpd_packages variable.
+
+Task 3: Configure selinux
+Description Task 3: Configure SELinux settings if it is enabled. Modify SELinux boolean settings and allow connections to specified ports.
+
+Task 4: Configure httpd
+Description Task 4: Configure the Apache HTTP server by templating the configuration file from the specified source to the destination with mode 0644. Notify handlers for configuration testing and service restart.
+
+Task 5: Activate httpd module | Debian
+Description Task 5: Activate specific Apache modules on Debian-based systems using the a2enmod command. This task does not change the task state.
+
+Task 6: Import ssl.yml
+Description Task 6: Import the ssl.yml file to include tasks related to SSL configuration when SSL is enabled.
+
+Task 7: Import locations.yml
+Description Task 7: Import the locations.yml file to include tasks related to Apache locations configuration when locations are defined.
+
+Task 8: Import vhosts.yml
+Description Task 8: Import the vhosts.yml file to include tasks related to Apache virtual hosts configuration when virtual hosts are defined.
+
+Task 9: Configure ports
+Description Task 9: Configure Apache ports by templating the ports configuration file. Notify handlers for configuration testing and service restart. This task is only executed on Debian and Suse systems.
+
+Task 10: Import directories.yml
+Description Task 10: Import the directories.yml file to include tasks related to Apache directories configuration when directories are defined.
+
+Task 11: Flush handlers
+Description Task 11: Flush all handlers to ensure they are executed at the appropriate time.
+
+Task 12: Removing default html
+Description Task 12: Remove the default Apache HTML file if the httpd_remove_example variable is set.
+
+Task 13: Start and enable httpd
+Description Task 13: Start and enable the Apache HTTP service to ensure it is running and starts at boot.

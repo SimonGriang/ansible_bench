@@ -1,0 +1,30 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: cadvisor | create directories  
+Description Task 1: Create necessary directories for cadvisor installation with proper permissions.  
+
+Task 2: cadvisor | download  
+Description Task 2: Download cadvisor binary from a remote URL with checksum verification.  
+
+Task 3: cadvisor | propagate locally distributed cadvisor binary  
+Description Task 3: Copy cadvisor binary from a local directory to the installation directory and notify restart handler.  
+
+Task 4: cadvisor | symlink  
+Description Task 4: Create a symbolic link to the cadvisor binary for easy access.  
+
+Task 5: cadvisor | server systemd service  
+Description Task 5: Create a systemd service file for cadvisor from a template.  
+
+Task 6: test_task  
+Description Task 6: Check if cadvisor service is active and register the result.  
+
+Task 7: debug: var=service_active  
+Description Task 7: Debug the service_active variable to verify cadvisor status.  
+
+Task 8: cadvisor | enable server systemd  
+Description Task 8: Enable the cadvisor systemd service for boot.  
+
+Task 9: cadvisor | start server systemd  
+Description Task 9: Start the cadvisor systemd service and ensure it runs.

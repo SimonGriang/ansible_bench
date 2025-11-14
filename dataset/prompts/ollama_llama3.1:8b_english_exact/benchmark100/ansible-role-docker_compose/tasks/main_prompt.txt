@@ -1,0 +1,10 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Import a task file named assert.yml
+Description Task 1: The playbook should import a separate task file named assert.yml using the ansible.builtin.import_tasks module, and this task should only run once on the localhost.
+
+Task 2: Install the docker-compose package
+Description Task 2: The playbook should install the docker-compose package using the ansible.builtin.package module. However, this task should only run if the variable docker_compose_installation_type is set to "package".
+
+Task 3: Install docker-compose as a binary
+Description Task 3: The playbook should install docker-compose as a binary using the ansible.builtin.get_url module. This task should only run if the variable docker_compose_installation_type is set to "binary". In this case, the playbook should also install any required packages for the binary installation. The required packages should be determined by the variable docker_compose_binary_required_packages, and the binary should be downloaded from the URL specified by the variable docker_compose_url.

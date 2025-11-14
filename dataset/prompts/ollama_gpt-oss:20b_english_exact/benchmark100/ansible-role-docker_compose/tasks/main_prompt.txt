@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the assert.yml task file once, delegating to localhost, using ansible.builtin.import_tasks with file: assert.yml, run_once: true, and delegate_to: localhost.  
+
+Task 2: Install docker-compose package  
+Description Task 2: Install the docker-compose package using ansible.builtin.package with name: docker-compose and state: present, but only when the variable docker_compose_installation_type equals "package".  
+
+Task 3: Install docker-compose as a binary  
+Description Task 3: When docker_compose_installation_type equals "binary", execute a block that first installs the required packages listed in the variable docker_compose_binary_required_packages using ansible.builtin.package, then downloads the docker-compose binary from the URL specified in docker_compose_url to /usr/local/bin/docker-compose with executable permissions (mode "0755") using ansible.builtin.get_url.

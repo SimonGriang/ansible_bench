@@ -1,0 +1,16 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Hardening | Disable Swap
+Description Task 1: Disable swap on the system, including disabling it temporarily and permanently, when swap is enabled and the vault_hardening_disable_swap variable is set to true.
+
+Task 2: Hardening | Disable Core Dumps
+Description Task 2: Disable core dumps for both hard and soft limits, using the community.general.pam_limits module, when the vault_hardening_disable_core_dumps variable is set to true. This involves looping over two items that set the limit to 0.
+
+Task 3: Hardening | Disable Shell Command History
+Description Task 3: Disable shell command history by copying the vault.sh file to /etc/profile.d/, when the vault_hardening_disable_shell_command_history variable is set to true. The file includes an export command to ignore certain history entries.
+
+Task 4: Hardening | Configure SELinux / AppArmor
+Description Task 4: Configure SELinux and AppArmor, including enabling SELinux when it's already enabled, and enforcing AppArmor. This involves installing the selinux-policy package, setting the SELinux policy to targeted and state to enforcing, and enforcing AppArmor by running the aa-enforce command.

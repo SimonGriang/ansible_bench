@@ -1,0 +1,9 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Get python3 version installed
+Description Task 1: Use the `command` module to retrieve the version of python3 and register the output to the `py3ver` variable. The task should not report as changed, and should be tagged with `molecule-notest`.
+
+Task 2: Remove EXTERNALLY-MANAGED
+Description Task 2: Use the `file` module to remove the file `/usr/lib/python3.11/EXTERNALLY-MANAGED` if the `py3ver` variable is defined and the output of the python3 version check contains '3.11'. This task should be tagged with `molecule-notest`.

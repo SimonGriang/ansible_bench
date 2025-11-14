@@ -1,0 +1,36 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create /etc/openvpn/easy-rsa directory with correct permissions  
+Description Task 1: Ensure the directory exists with mode 0755 for OpenVPN easy-rsa  
+
+Task 2: Initialize OpenVPN PKI structure  
+Description Task 2: Run easyrsa init-pki to initialize the PKI structure in /etc/openvpn/easy-rsa  
+
+Task 3: Generate OpenVPN CA certificate  
+Description Task 3: Use easyrsa build-ca with nopass option to create CA certificate and set EASYRSA_BATCH to yes  
+
+Task 4: Generate Diffie-Hellman parameters  
+Description Task 4: Use easyrsa gen-dh to generate DH parameters for OpenVPN  
+
+Task 5: Generate server certificate  
+Description Task 5: Use easyrsa build-server-full with nopass option and set EASYRSA_BATCH to yes  
+
+Task 6: Generate client certificate  
+Description Task 6: Use easyrsa build-client-full with nopass option and set EASYRSA_BATCH to yes  
+
+Task 7: Generate Certificate Revocation List  
+Description Task 7: Use easyrsa gen-crl to generate CRL for OpenVPN  
+
+Task 8: Generate OpenVPN TA key  
+Description Task 8: Use openvpn command to generate the TA key and save it to /etc/openvpn/easy-rsa/pki/ta.key  
+
+Task 9: Copy PKI files to /etc/openvpn/server directory  
+Description Task 9: Copy multiple PKI files to server directory with mode 0640  
+
+Task 10: Copy additional PKI files to /etc/openvpn directory  
+Description Task 10: Copy specific PKI files to /etc/openvpn directory with mode 0640  
+
+Task 11: Place OpenVPN server configuration file  
+Description Task 11: Template server.conf.j2 to /etc/openvpn/server.conf with correct ownership and mode, and notify restart handler

@@ -1,0 +1,6 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Install buildtools packages  
+Description Task 1: Install a collection of build tools packages using the package module with the specified packages from the buildtools_packages variable and set their state to present.

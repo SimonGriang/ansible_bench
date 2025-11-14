@@ -1,0 +1,25 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import necessary tasks for package manager assert
+Description Task 1: Import the assert.yml file to ensure the package manager is correctly identified and its specific tasks are executed.
+
+Task 2: Configure package management for package manager apk
+Description Task 2: Update the cache and install all available packages when the package manager is apk.
+
+Task 3: Configure package management for package manager apt
+Description Task 3: Prevent certain packages from being upgraded, update all software, and autoremove unnecessary packages when the package manager is apt.
+
+Task 4: Update all software for package manager dnf
+Description Task 4: Update all packages to the latest version, excluding certain packages, when the package manager is dnf.
+
+Task 5: Update all software for package manager pacman
+Description Task 5: Update the package cache and upgrade all packages when the package manager is pacman.
+
+Task 6: Configure package management for package manager yum
+Description Task 6: Update all software using dnf for specific yum versions and ensure yum-utils is installed for non-6 yum versions.
+
+Task 7: Update all software for package manager zypper
+Description Task 7: Update all packages to the latest version when the package manager is zypper.

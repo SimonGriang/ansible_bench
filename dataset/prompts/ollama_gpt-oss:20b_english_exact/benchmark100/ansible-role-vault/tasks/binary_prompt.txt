@@ -1,0 +1,54 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create Vault group  
+Description Task 1: Use the ansible.builtin.group module to create a system group named by the variable {{ vault_group }} (system: true).  
+
+Task 2: Create Vault user  
+Description Task 2: Use the ansible.builtin.user module to create a system user named by {{ vault_user }} with no home directory, shell {{ vault_user_shell }}, primary group {{ vault_group }} (create_home: false, system: true).  
+
+Task 3: Create Vault download directory  
+Description Task 3: Use the ansible.builtin.file module to create the directory at {{ vault_download_path }}, owned by {{ vault_user }}:{{ vault_group }}, mode 0755, state directory.  
+
+Task 4: Download Vault binary  
+Description Task 4: Use the ansible.builtin.unarchive module to download and extract the Vault binary from the URL constructed with {{ vault_version }} and {{ vault_architecture }}, placing it in {{ vault_download_path }}, ensuring the file {{ vault_download_path }}/vault exists, owned by root:root, mode 0644, remote_src true.  
+
+Task 5: Check if vault_path exists  
+Description Task 5: Use the ansible.builtin.stat module to check the existence of {{ vault_path }} and register the result as vault_check_path.  
+
+Task 6: Create vault_path if it does not exist  
+Description Task 6: Use the ansible.builtin.file module to create the directory {{ vault_path }} owned by {{ vault_user }}:{{ vault_group }}, mode 0755, only when vault_check_path.stat.exists is false and vault_path has length greater than 0.  
+
+Task 7: Create directory in vault_path  
+Description Task 7: Use the ansible.builtin.file module with a loop over {{ vault_directories }} to create each directory specified by item.name, item.owner, item.group, item.mode.  
+
+Task 8: Create data directory  
+Description Task 8: Use the ansible.builtin.file module with a loop over {{ vault_data_directories }} to create each directory specified by item.name, item.owner, item.group, item.mode.  
+
+Task 9: Generate TLS key and certificate  
+Description Task 9: Use the ansible.builtin.command module to run an openssl command that generates tls.crt and tls.key under {{ vault_data_directory }}/tls/, creating them only if tls.key does not exist, and notify the handler "Restart vault".  
+
+Task 10: Set ownership of tls material  
+Description Task 10: Use the ansible.builtin.file module with a loop over {{ vault_tls_files }} to set owner, group, and mode for each TLS file.  
+
+Task 11: Copy Vault binary  
+Description Task 11: Use the ansible.builtin.copy module to copy the extracted binary from {{ vault_download_path }}/vault to {{ vault_path }}/usr/bin/vault, owned by root:root, mode 0755, remote_src true, and notify "Restart vault".  
+
+Task 12: Set cap_ipc_lock=ep on /usr/bin/vault  
+Description Task 12: Use the community.general.capabilities module to set the capability cap_ipc_lock+ep on {{ vault_path }}/usr/bin/vault, with changed_when set to false.  
+
+Task 13: Touch vault.env  
+Description Task 13: Use the ansible.builtin.file module to touch {{ vault_path }}/etc/vault.d/vault.env, owned by {{ vault_user }}:{{ vault_group }}, mode 0644, preserving modification and access times, and notify "Restart vault".  
+
+Task 14: Create /usr/lib/systemd/system  
+Description Task 14: Use the ansible.builtin.file module to create the directory /usr/lib/systemd/system, owned by root:root, mode 0755.  
+
+Task 15: Copy Vault service file  
+Description Task 15: Use the ansible.builtin.template module to copy vault.service.j2 to /usr/lib/systemd/system/vault.service, owned by root:root, mode 0644, notify "Daemon reload", only when ansible_service_mgr == "systemd".  
+
+Task 16: Copy vault configuration  
+Description Task 16: Use the ansible.builtin.copy module to copy vault.hcl to {{ vault_path }}/etc/vault.d/vault.hcl, owned by root:root, mode 0644, force set to false, and notify "Restart vault".  
+
+Task 17: Flush handlers  
+Description Task 17: Use the ansible.builtin.meta module to flush all handlers.

@@ -1,0 +1,26 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import cron configuration from assert.yml file.
+Description Task 1: The playbook should import a list of tasks from the assert.yml file, which is expected to be already present in the playbook directory. This task is only executed once, on the localhost, and does not delegate further tasks.
+
+Task 2: Install required packages for cron service.
+Description Task 2: This task should install the necessary packages for the cron service. The package name should be determined by the variable "cron_packages".
+
+Task 3: Configure shell environment for cron service.
+Description Task 3: This task should configure the shell environment for the cron service. The configuration should be stored in the file specified by the variable "cron_configuration". The "SHELL" parameter should be set to the value stored in the variable "cron_shell".
+
+Task 4: Configure system path for cron service.
+Description Task 4: This task should configure the system path for the cron service. The configuration should be stored in the file specified by the variable "cron_configuration". The "PATH" parameter should be set to the value stored in the variable "cron_path".
+
+Task 5: Configure mailto parameter for cron service.
+Description Task 5: This task should configure the mailto parameter for the cron service. The configuration should be stored in the file specified by the variable "cron_configuration". The "MAILTO" parameter should be set to the value stored in the variable "cron_mailto".
+
+Task 6: Start and enable the cron service.
+Description Task 6: This task should start and enable the cron service. The service name should be determined by the variable "cron_service". This task is only executed when the "cron_service" variable is defined and not empty.
+
+Task 7: Schedule the requested cron jobs.
+Description Task 7: This task should schedule the requested cron jobs. The cron jobs should be defined in the variable "cron_jobs", which is expected to be a list of dictionaries. Each dictionary should contain the necessary parameters for the cron job, such as the job name, minute, hour, day, month, weekday, special time, and state.

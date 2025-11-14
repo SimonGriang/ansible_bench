@@ -1,0 +1,4 @@
+oss".
+
+Task 7: Enable vault (Non-OSS)
+Description Task 7: Enable the Vault service if `vault_type` is not equal to "oss

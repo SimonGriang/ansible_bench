@@ -1,0 +1,21 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml file
+Description Task 1: Import tasks from assert.yml file to run once on localhost with the delegate_to parameter set to localhost.
+
+Task 2: Wait for port to be available
+Description Task 2: Wait for the port to become available, with a timeout of the value of the bootstrap_timeout variable. This task is only executed when the ansible_connection is defined and not in one of the following states: "container", "docker", "community.docker.docker". It also requires the ansible_connection to not be none and the bootstrap_wait_for_host variable to be true.
+
+Task 3: Prepare system
+Description Task 3: Prepare the system by running as root. This task includes two sub-tasks, a connection test and a sudo test. If the connection test fails, the system will gather bootstrap facts.
+
+If the sudo test fails, the task will install bootstrap packages (raw) and ensure libdnf5 is present on Fedora/RedHat.
+
+Task 4: Gather ansible facts
+Description Task 4: Gather Ansible facts using the setup module without becoming the superuser.
+
+Task 5: Install bootstrap packages (package)
+Description Task 5: Install packages from the bootstrap_facts_packages variable, one by one. The become parameter is set to the value of the bootstrap_become variable.

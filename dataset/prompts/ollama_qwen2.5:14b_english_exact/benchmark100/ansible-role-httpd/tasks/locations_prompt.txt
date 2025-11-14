@@ -1,0 +1,9 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Enable proxy and proxy_http modules on Debian and Suse systems
+Description Task 1: Enable the proxy and proxy_http modules for Apache on Debian and Suse systems to support reverse proxy functionality.
+
+Task 2: Configure locations using a template
+Description Task 2: Use the location.conf.j2 template to configure Apache location blocks, setting the destination file and mode for each location defined in the httpd_locations variable. Notify the httpd configuration test and restart handler after configuration.

@@ -1,0 +1,9 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Get python3 version installed on Debian12  
+Description Task 1: Use the `ansible.builtin.command` module to run `python3 --version`, register the output as the variable `py3ver`, set `changed_when: false`, and tag the task with `molecule-notest`.  
+
+Task 2: Remove EXTERNALLY-MANAGED file on Debian12  
+Description Task 2: Use the `ansible.builtin.file` module to delete `/usr/lib/python3.11/EXTERNALLY-MANAGED` only when the variable `py3ver` is defined and its `stdout` contains the string `3.11`. Tag this task with `molecule-notest`.

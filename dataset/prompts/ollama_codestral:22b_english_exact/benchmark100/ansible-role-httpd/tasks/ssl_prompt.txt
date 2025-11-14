@@ -1,0 +1,12 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Install ssl packages
+Description Task 1: Using the Ansible package module, install the SSL packages listed in the variable "httpd_ssl_packages". These packages are required for the HTTPD server to support SSL.
+
+Task 2: Place ssl configuration
+Description Task 2: Use the Ansible template module to place the SSL configuration file at the destination specified by the "httpd_config_directory" variable and the file "ssl.conf.j2". The file should have the permissions set to "0644". After this task, notify the handlers to test the HTTPD configuration validity and restart the HTTPD service.
+
+Task 3: Configure redirect from http to https
+Description Task 3: Use the Ansible template module to place the default virtual host configuration file at the destination specified by the "httpd_config_directory" variable, the variable "default_vhost_conf", and the file "default_vhost.conf.j2". The file should have the permissions set to "0644". This configuration is responsible for redirecting all HTTP requests to HTTPS. After this task, notify the handlers to test the HTTPD configuration validity and restart the HTTPD service.

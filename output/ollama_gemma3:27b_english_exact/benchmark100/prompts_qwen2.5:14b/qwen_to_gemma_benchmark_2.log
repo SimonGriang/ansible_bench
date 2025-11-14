@@ -1,0 +1,1653 @@
+Loaded config from file config/config.yaml: config: {'base_dir': '/home/studgoetsi5301/documents/ansible_bench', 'output_dir': 'output', 'dataset_dir': 'dataset', 'config_dir': 'config', 'logs_dir': 'logs', 'testresults_dir': 'testresults', 'postprocessing_reports_dir': 'postprocessing_reports', 'temp_exec_dir': 'temp'}
+Name for the ollama model: gemma3:27b
+
+Input_Directory: /home/studgoetsi5301/documents/ansible_bench/dataset/benchmark100
+
+Prompts_Directory: /home/studgoetsi5301/documents/ansible_bench/dataset/prompts/ollama_qwen2.5:14b_to_gemma3:27b_benchmark100_missing_files_prompts
+
+Copied ansible-role-docker_compose to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-docker_compose.
+Copied ansible-role-cadvisor to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-cadvisor.
+Copied ansible-role-vsftpd to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vsftpd.
+Copied ansible-role-epel-buluma to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-epel-buluma.
+Copied ansible-role-vault to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault.
+Copied ansible-role-dns to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-dns.
+Copied ansible-role-grub to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-grub.
+Copied ansible-role-service to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-service.
+Copied ansible-role-bootstrap-buluma to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-bootstrap-buluma.
+Copied ansible-role-docker to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-docker.
+Copied ansible-role-selinux to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-selinux.
+Copied ansible-role-mysql-robertdebock to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-mysql-robertdebock.
+Copied ansible-role-sysctl to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-sysctl.
+Copied ansible-role-bootstrap-JonasPammer to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-bootstrap-JonasPammer.
+Copied ansible-role-update to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-update.
+Copied ansible-role-python_pip-buluma to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-python_pip-buluma.
+Copied ansible-role-buildtools-buluma to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-buildtools-buluma.
+Copied ansible-role-pip to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-pip.
+Copied ansible-role-helm to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-helm.
+Copied ansible-role-bootstrap to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-bootstrap.
+Copied ansible-role-openvpn to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-openvpn.
+Copied ansible-role-core_dependencies-buluma to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-core_dependencies-buluma.
+Copied ansible-role-openssl-robertdebock to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-openssl-robertdebock.
+Copied ansible-role-logrotate to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-logrotate.
+Copied ansible-role-promtail to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-promtail.
+Copied ansible-role-python_pip to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-python_pip.
+Copied .ansible to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/.ansible.
+Copied ansible-role-httpd to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-httpd.
+Copied ansible-role-redis to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-redis.
+Copied ansible-role-openssl to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-openssl.
+Copied ansible-role-users to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-users.
+Copied ansible-role-ca_certificates to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-ca_certificates.
+Copied ansible-role-httpd-buluma to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-httpd-buluma.
+Copied ansible-role-apt_autostart to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-apt_autostart.
+Copied java_role to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/java_role.
+Copied ansible-role-core_dependencies to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-core_dependencies.
+Copied ansible-role-postfix to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-postfix.
+Copied ansible-role-git to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-git.
+Copied ansible-role-php-robertdebock to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-php-robertdebock.
+Copied ansible-role-rke2 to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-rke2.
+Copied ansible-role-buildtools to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-buildtools.
+Copied ansible-role-mysql to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-mysql.
+Copied ansible-role-cron to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-cron.
+Copied ansible-role-nginx to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-nginx.
+Copied ansible-role-ansible to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-ansible.
+Copied ansible-role-rsyslog to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-rsyslog.
+Copied ansible-role-fail2ban to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-fail2ban.
+Copied ansible-role-scl to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-scl.
+Copied ansible-role-cron-buluma to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-cron-buluma.
+Copied ansible-role-hashicorp to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-hashicorp.
+Copied ansible-role-java to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-java.
+Copied ansible-role-selinux-robertdebock to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-selinux-robertdebock.
+Copied ansible-role-epel to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-epel.
+
+Temporary directory for benchmark run created: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/tmp
+
+Output_Directory: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b
+
+Input-Files:
+ansible-role-vault/tasks/binary_prompt.txt
+found 1 inputs
+Serving model via Ollama
+  0%|          | 0/1 [00:00<?, ?it/s]Report written to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/report.txt
+
+
+Prompt: You are a professional developer. Your task is to generate an Ansible Playbook that strictly adheres to the given instructions.  
+The playbook must: 
+- Begin with '---' on the very first line.  
+- Be a valid Ansbile Playbook YAML file, conforming to yamllint and ansible-lint standards.  
+- Be structured so it can be directly included in an Ansible Role.  
+- Contain the tasks exactly as described, with the precise names and order provided.  
+
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Create Vault group
+Description Task 1: Create a system group named {{ vault_group }}.
+
+Task 2: Create Vault user
+Description Task 2: Create a system user named {{ vault_user }} with home directory disabled and shell set to {{ vault_user_shell }}, and assign the user to the {{ vault_group }} group.
+
+Task 3: Create Vault download directory
+Description Task 3: Create a directory at {{ vault_download_path }} with permissions set to 0755 and owned by the {{ vault_user }} user and {{ vault_group }} group.
+
+Task 4: Download Vault binary
+Description Task 4: Download the Vault binary from the specified URL and unarchive it to {{ vault_download_path }}. Ensure the file is owned by root.
+
+Task 5: Check if vault_path exists
+Description Task 5: Check if the directory at {{ vault_path }} exists.
+
+Task 6: Create vault_path if it does not exist
+Description Task 6: If the directory at {{ vault_path }} does not exist and is specified, create it with permissions set to 0755 and owned by the {{ vault_user }} user and {{ vault_group }} group.
+
+Task 7: Create directory in vault_path
+Description Task 7: Create directories specified in the vault_directories list with permissions set to 0755 and owned by the specified owner and group.
+
+Task 8: Create data directory
+Description Task 8: Create directories specified in the vault_data_directories list with permissions set to 0755 and owned by the specified owner and group.
+
+Task 9: Generate TLS key and certificate
+Description Task 9: Generate a TLS key and certificate in the directory specified by {{ vault_data_directory }}/tls/ with a validity period of 1095 days and notify the handler 'Restart vault' after completion.
+
+Task 10: Set ownership of tls material
+Description Task 10: Set the ownership of TLS files specified in the vault_tls_files list to the specified owner and group.
+
+Task 11: Copy Vault binary
+Description Task 11: Copy the Vault binary from {{ vault_download_path }}/vault to {{ vault_path }}/usr/bin/vault with permissions set to 0755 and notify the handler 'Restart vault' after completion.
+
+Task 12: Set cap_ipc_lock=ep on /usr/bin/vault
+Description Task 12: Set the capability cap_ipc_lock=ep on the Vault binary and do not mark the task as changed.
+
+Task 13: Touch vault.env
+Description Task 13: Create the file {{ vault_path }}/etc/vault.d/vault.env with permissions set to 0644 and owned by {{ vault_user }} and {{ vault_group }} and notify the handler 'Restart vault' after completion.
+
+Task 14: Create /usr/lib/systemd/system
+Description Task 14: Create the directory /usr/lib/systemd/system with permissions set to 0755.
+
+Task 15: Copy Vault service file
+Description Task 15: Copy the Vault service file template vault.service.j2 to /usr/lib/systemd/system/vault.service with permissions set to 0644 and notify the handler 'Daemon reload' after completion only if the service manager is systemd.
+
+Task 16: Copy vault configuration
+Description Task 16: Copy the vault configuration file vault.hcl to {{ vault_path }}/etc/vault.d/vault.hcl with permissions set to 0644 and notify the handler 'Restart vault' after completion.
+
+Task 17: Flush handlers
+Description Task 17: Flush all the handlers in the playbook.
+
+
+Important:  
+- Use the exact task names and module calls as specified.  
+- Do not add, omit, or modify tasks.  
+- The output must consist only of the complete YAML playbook, without explanations, comments, or formatting outside of YAML.
+- The playbook must start with '---' and a linebreak
+
+Total input tokens: 1081
+___________________________________________LLM Output:___________________________________________ 
+content='```yaml\n---\n- name: Create Vault group\n  group:\n    name: "{{ vault_group }}"\n    state: present\n\n- name: Create Vault user\n  user:\n    name: "{{ vault_user }}"\n    home: false\n    shell: "{{ vault_user_shell }}"\n    groups: "{{ vault_group }}"\n    state: present\n\n- name: Create Vault download directory\n  file:\n    path: "{{ vault_download_path }}"\n    state: directory\n    mode: \'0755\'\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n\n- name: Download Vault binary\n  get_url:\n    url: "{{ vault_binary_url }}"\n    dest: "{{ vault_download_path }}/vault"\n    owner: root\n    group: root\n    mode: \'0755\'\n\n- name: Check if vault_path exists\n  stat:\n    path: "{{ vault_path }}"\n  register: vault_path_exists\n\n- name: Create vault_path if it does not exist\n  file:\n    path: "{{ vault_path }}"\n    state: directory\n    mode: \'0755\'\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n  when: not vault_path_exists.stat.exists and vault_path is defined\n\n- name: Create directory in vault_path\n  file:\n    path: "{{ item }}"\n    state: directory\n    mode: \'0755\'\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n  loop: "{{ vault_directories }}"\n\n- name: Create data directory\n  file:\n    path: "{{ item }}"\n    state: directory\n    mode: \'0755\'\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n  loop: "{{ vault_data_directories }}"\n\n- name: Generate TLS key and certificate\n  openssl_certificate:\n    path: "{{ vault_data_directory }}/tls/vault.pem"\n    key_path: "{{ vault_data_directory }}/tls/vault.key"\n    days: 1095\n  notify: Restart vault\n\n- name: Set ownership of tls material\n  file:\n    path: "{{ item }}"\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n  loop: "{{ vault_tls_files }}"\n\n- name: Copy Vault binary\n  copy:\n    src: "{{ vault_download_path }}/vault"\n    dest: "{{ vault_path }}/usr/bin/vault"\n    mode: \'0755\'\n  notify: Restart vault\n\n- name: Set cap_ipc_lock=ep on /usr/bin/vault\n  setcap:\n    cap: cap_ipc_lock=ep\n    path: /usr/bin/vault\n  changed_when: false\n\n- name: Touch vault.env\n  file:\n    path: "{{ vault_path }}/etc/vault.d/vault.env"\n    state: touch\n    mode: \'0644\'\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n  notify: Restart vault\n\n- name: Create /usr/lib/systemd/system\n  file:\n    path: /usr/lib/systemd/system\n    state: directory\n    mode: \'0755\'\n\n- name: Copy Vault service file\n  copy:\n    src: vault.service.j2\n    dest: /usr/lib/systemd/system/vault.service\n    mode: \'0644\'\n  notify: Daemon reload\n  when: ansible_service_manager == "systemd"\n\n- name: Copy vault configuration\n  copy:\n    src: vault.hcl\n    dest: "{{ vault_path }}/etc/vault.d/vault.hcl"\n    mode: \'0644\'\n  notify: Restart vault\n\n- name: Flush handlers\n  meta: flush_handlers\n```' additional_kwargs={} response_metadata={'model': 'gemma3:27b', 'created_at': '2025-10-19T08:33:14.808913334Z', 'done': True, 'done_reason': 'stop', 'total_duration': 63453041418, 'load_duration': 10227248084, 'prompt_eval_count': 1089, 'prompt_eval_duration': 3409547546, 'eval_count': 914, 'eval_duration': 49815466749, 'model_name': 'gemma3:27b'} id='run--3665c9ff-1ff3-46c6-bccb-53f6f8014c3a-0' usage_metadata={'input_tokens': 1089, 'output_tokens': 914, 'total_tokens': 2003}
+_______________________________________Cleaned LLM Output:_______________________________________ 
+---
+- name: Create Vault group
+  group:
+    name: "{{ vault_group }}"
+    state: present
+
+- name: Create Vault user
+  user:
+    name: "{{ vault_user }}"
+    home: false
+    shell: "{{ vault_user_shell }}"
+    groups: "{{ vault_group }}"
+    state: present
+
+- name: Create Vault download directory
+  file:
+    path: "{{ vault_download_path }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+
+- name: Download Vault binary
+  get_url:
+    url: "{{ vault_binary_url }}"
+    dest: "{{ vault_download_path }}/vault"
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Check if vault_path exists
+  stat:
+    path: "{{ vault_path }}"
+  register: vault_path_exists
+
+- name: Create vault_path if it does not exist
+  file:
+    path: "{{ vault_path }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  when: not vault_path_exists.stat.exists and vault_path is defined
+
+- name: Create directory in vault_path
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  loop: "{{ vault_directories }}"
+
+- name: Create data directory
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  loop: "{{ vault_data_directories }}"
+
+- name: Generate TLS key and certificate
+  openssl_certificate:
+    path: "{{ vault_data_directory }}/tls/vault.pem"
+    key_path: "{{ vault_data_directory }}/tls/vault.key"
+    days: 1095
+  notify: Restart vault
+
+- name: Set ownership of tls material
+  file:
+    path: "{{ item }}"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  loop: "{{ vault_tls_files }}"
+
+- name: Copy Vault binary
+  copy:
+    src: "{{ vault_download_path }}/vault"
+    dest: "{{ vault_path }}/usr/bin/vault"
+    mode: '0755'
+  notify: Restart vault
+
+- name: Set cap_ipc_lock=ep on /usr/bin/vault
+  setcap:
+    cap: cap_ipc_lock=ep
+    path: /usr/bin/vault
+  changed_when: false
+
+- name: Touch vault.env
+  file:
+    path: "{{ vault_path }}/etc/vault.d/vault.env"
+    state: touch
+    mode: '0644'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  notify: Restart vault
+
+- name: Create /usr/lib/systemd/system
+  file:
+    path: /usr/lib/systemd/system
+    state: directory
+    mode: '0755'
+
+- name: Copy Vault service file
+  copy:
+    src: vault.service.j2
+    dest: /usr/lib/systemd/system/vault.service
+    mode: '0644'
+  notify: Daemon reload
+  when: ansible_service_manager == "systemd"
+
+- name: Copy vault configuration
+  copy:
+    src: vault.hcl
+    dest: "{{ vault_path }}/etc/vault.d/vault.hcl"
+    mode: '0644'
+  notify: Restart vault
+
+- name: Flush handlers
+  meta: flush_handlers
+
+
+Sun Oct 19 10:33:14 2025: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml Total generation time: 65.09494391898625
+________________________________________Yamllint Run: 1________________________________________
+
+yamllint_passed_without_iteration increased to 1
+yamllint_passed_at_first_attempt increased to 1
+################################# Quality Gate 'yamllint' passed! ################################
+2. Iteration: Generated Ansible-YAML did not pass quality gate 'ansiblelint'
+Prompt: You are a professional developer. The Ansible Playbook generated from the prompt below did not pass ansible-lint.  
+Your task is to automatically correct the playbook while strictly adhering to the original instructions.
+
+Requirements:
+- Generate a valid YAML playbook that passes ansible-lint.
+- Follow the original task names and order exactly.
+- Only fix linting issues reported; do not alter the functional intent or add/remove tasks.
+- Output must consist solely of the corrected YAML playbook.
+
+Inputs:
+- Original generation prompt:
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Create Vault group
+Description Task 1: Create a system group named {{ vault_group }}.
+
+Task 2: Create Vault user
+Description Task 2: Create a system user named {{ vault_user }} with home directory disabled and shell set to {{ vault_user_shell }}, and assign the user to the {{ vault_group }} group.
+
+Task 3: Create Vault download directory
+Description Task 3: Create a directory at {{ vault_download_path }} with permissions set to 0755 and owned by the {{ vault_user }} user and {{ vault_group }} group.
+
+Task 4: Download Vault binary
+Description Task 4: Download the Vault binary from the specified URL and unarchive it to {{ vault_download_path }}. Ensure the file is owned by root.
+
+Task 5: Check if vault_path exists
+Description Task 5: Check if the directory at {{ vault_path }} exists.
+
+Task 6: Create vault_path if it does not exist
+Description Task 6: If the directory at {{ vault_path }} does not exist and is specified, create it with permissions set to 0755 and owned by the {{ vault_user }} user and {{ vault_group }} group.
+
+Task 7: Create directory in vault_path
+Description Task 7: Create directories specified in the vault_directories list with permissions set to 0755 and owned by the specified owner and group.
+
+Task 8: Create data directory
+Description Task 8: Create directories specified in the vault_data_directories list with permissions set to 0755 and owned by the specified owner and group.
+
+Task 9: Generate TLS key and certificate
+Description Task 9: Generate a TLS key and certificate in the directory specified by {{ vault_data_directory }}/tls/ with a validity period of 1095 days and notify the handler 'Restart vault' after completion.
+
+Task 10: Set ownership of tls material
+Description Task 10: Set the ownership of TLS files specified in the vault_tls_files list to the specified owner and group.
+
+Task 11: Copy Vault binary
+Description Task 11: Copy the Vault binary from {{ vault_download_path }}/vault to {{ vault_path }}/usr/bin/vault with permissions set to 0755 and notify the handler 'Restart vault' after completion.
+
+Task 12: Set cap_ipc_lock=ep on /usr/bin/vault
+Description Task 12: Set the capability cap_ipc_lock=ep on the Vault binary and do not mark the task as changed.
+
+Task 13: Touch vault.env
+Description Task 13: Create the file {{ vault_path }}/etc/vault.d/vault.env with permissions set to 0644 and owned by {{ vault_user }} and {{ vault_group }} and notify the handler 'Restart vault' after completion.
+
+Task 14: Create /usr/lib/systemd/system
+Description Task 14: Create the directory /usr/lib/systemd/system with permissions set to 0755.
+
+Task 15: Copy Vault service file
+Description Task 15: Copy the Vault service file template vault.service.j2 to /usr/lib/systemd/system/vault.service with permissions set to 0644 and notify the handler 'Daemon reload' after completion only if the service manager is systemd.
+
+Task 16: Copy vault configuration
+Description Task 16: Copy the vault configuration file vault.hcl to {{ vault_path }}/etc/vault.d/vault.hcl with permissions set to 0644 and notify the handler 'Restart vault' after completion.
+
+Task 17: Flush handlers
+Description Task 17: Flush all the handlers in the playbook.
+
+
+- Last generated (faulty) playbook:
+---
+- name: Create Vault group
+  group:
+    name: "{{ vault_group }}"
+    state: present
+
+- name: Create Vault user
+  user:
+    name: "{{ vault_user }}"
+    home: false
+    shell: "{{ vault_user_shell }}"
+    groups: "{{ vault_group }}"
+    state: present
+
+- name: Create Vault download directory
+  file:
+    path: "{{ vault_download_path }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+
+- name: Download Vault binary
+  get_url:
+    url: "{{ vault_binary_url }}"
+    dest: "{{ vault_download_path }}/vault"
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Check if vault_path exists
+  stat:
+    path: "{{ vault_path }}"
+  register: vault_path_exists
+
+- name: Create vault_path if it does not exist
+  file:
+    path: "{{ vault_path }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  when: not vault_path_exists.stat.exists and vault_path is defined
+
+- name: Create directory in vault_path
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  loop: "{{ vault_directories }}"
+
+- name: Create data directory
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  loop: "{{ vault_data_directories }}"
+
+- name: Generate TLS key and certificate
+  openssl_certificate:
+    path: "{{ vault_data_directory }}/tls/vault.pem"
+    key_path: "{{ vault_data_directory }}/tls/vault.key"
+    days: 1095
+  notify: Restart vault
+
+- name: Set ownership of tls material
+  file:
+    path: "{{ item }}"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  loop: "{{ vault_tls_files }}"
+
+- name: Copy Vault binary
+  copy:
+    src: "{{ vault_download_path }}/vault"
+    dest: "{{ vault_path }}/usr/bin/vault"
+    mode: '0755'
+  notify: Restart vault
+
+- name: Set cap_ipc_lock=ep on /usr/bin/vault
+  setcap:
+    cap: cap_ipc_lock=ep
+    path: /usr/bin/vault
+  changed_when: false
+
+- name: Touch vault.env
+  file:
+    path: "{{ vault_path }}/etc/vault.d/vault.env"
+    state: touch
+    mode: '0644'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  notify: Restart vault
+
+- name: Create /usr/lib/systemd/system
+  file:
+    path: /usr/lib/systemd/system
+    state: directory
+    mode: '0755'
+
+- name: Copy Vault service file
+  copy:
+    src: vault.service.j2
+    dest: /usr/lib/systemd/system/vault.service
+    mode: '0644'
+  notify: Daemon reload
+  when: ansible_service_manager == "systemd"
+
+- name: Copy vault configuration
+  copy:
+    src: vault.hcl
+    dest: "{{ vault_path }}/etc/vault.d/vault.hcl"
+    mode: '0644'
+  notify: Restart vault
+
+- name: Flush handlers
+  meta: flush_handlers
+
+
+- Error messages from ansible-lint:
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (group).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:3:3 [2mUse `ansible.builtin.group` or `ansible.legacy.group` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (user).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:8:3 [2mUse `ansible.builtin.user` or `ansible.legacy.user` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (file).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:16:3 [2mUse `ansible.builtin.file` or `ansible.legacy.file` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (get_url).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:24:3 [2mUse `ansible.builtin.get_url` or `ansible.legacy.get_url` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (stat).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:32:3 [2mUse `ansible.builtin.stat` or `ansible.legacy.stat` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (file).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:37:3 [2mUse `ansible.builtin.file` or `ansible.legacy.file` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (file).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:46:3 [2mUse `ansible.builtin.file` or `ansible.legacy.file` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (file).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:55:3 [2mUse `ansible.builtin.file` or `ansible.legacy.file` instead.[0m
+[0m
+[33m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/args/\args[module]]8;;\[0m[2m:[0m [33mstate is present but all of the following are missing: provider[0m [2m[33m(warning)[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:63 [2mTask/Handler: Generate TLS key and certificate[0m
+[0m[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action]]8;;\[0m[2m:[0m [31mUse FQCN for module actions, such `community.crypto.x509_certificate`.[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:64:3 [2mAction `openssl_certificate` is not FQCN.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (file).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:71:3 [2mUse `ansible.builtin.file` or `ansible.legacy.file` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (copy).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:78:3 [2mUse `ansible.builtin.copy` or `ansible.legacy.copy` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (file).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:91:3 [2mUse `ansible.builtin.file` or `ansible.legacy.file` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (file).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:100:3 [2mUse `ansible.builtin.file` or `ansible.legacy.file` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (copy).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:106:3 [2mUse `ansible.builtin.copy` or `ansible.legacy.copy` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (copy).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:114:3 [2mUse `ansible.builtin.copy` or `ansible.legacy.copy` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (meta).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:121:3 [2mUse `ansible.builtin.meta` or `ansible.legacy.meta` instead.[0m
+[0m
+[2mWARNING  Another version of 'community.docker' 4.7.0 was found installed in /home/studgoetsi5301/documents/ansible_bench/.venv/lib/python3.12/site-packages/ansible_collections, only the first one will be used, 4.7.0 (/home/studgoetsi5301/.ansible/collections/ansible_collections).[0m
+[2mWARNING  Another version of 'community.general' 10.7.3 was found installed in /home/studgoetsi5301/documents/ansible_bench/.venv/lib/python3.12/site-packages/ansible_collections, only the first one will be used, 2.5.9 (/home/studgoetsi5301/.ansible/collections/ansible_collections).[0m
+[2mWARNING  Unable to load module setcap at ~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml:84 for options validation[0m
+[2mWARNING  Invalid value (None)for resolved_fqcn attribute of setcap module.[0m
+[2mWARNING  Listing 17 violation(s) that are fatal[0m
+Read [34m]8;;https://ansible.readthedocs.io/projects/lint/configuring/#ignoring-rules-for-entire-files\documentation]8;;\[0m for instructions on how to ignore specific rule violations.
+
+# Rule Violation Summary
+
+ 15 [34m]8;;https://ansible.readthedocs.io/projects/lint/rules/\fqcn]8;;\[0m [2mprofile:production tags:formatting[0m
+  1 [34m]8;;https://ansible.readthedocs.io/projects/lint/rules/\fqcn]8;;\[0m [2mprofile:production tags:formatting[0m
+  1 [34m]8;;https://ansible.readthedocs.io/projects/lint/rules/\args]8;;\[0m [2mprofile:production tags:syntax,experimental[0m
+
+[31m[1mFailed[0m[0m: 16 failure(s), 1 warning(s) in 1 files processed of 1 encountered. Last profile that met the validation criteria was 'shared'. Rating: 4/5 star
+[33mA new release of ansible-lint is available: [33m25.9.0[0m → [32m[34m]8;;https://github.com/ansible/ansible-lint/releases/tag/v25.9.2\25.9.2]8;;\[0m[/][0m Upgrade by running: [34mpip install --upgrade ansible-lint[0m[0m
+
+Important:  
+- Keep all task names, variables, and custom identifiers exactly as in the faulty playbook unless necessary to fix ansiblelint errors.
+- Use the exact task names and module calls as specified.  
+- Do not add, omit, or modify tasks.  
+- The output must consist only of the complete YAML playbook, without explanations, comments, or formatting outside of YAML.
+- The playbook must start with '---' and a linebreak
+
+Total input tokens: 5797
+___________________________________________LLM Output:___________________________________________ 
+content='```yaml\n---\n- name: Create Vault group\n  group:\n    name: "{{ vault_group }}"\n    state: present\n\n- name: Create Vault user\n  user:\n    name: "{{ vault_user }}"\n    home: false\n    shell: "{{ vault_user_shell }}"\n    groups: "{{ vault_group }}"\n    state: present\n\n- name: Create Vault download directory\n  file:\n    path: "{{ vault_download_path }}"\n    state: directory\n    mode: \'0755\'\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n\n- name: Download Vault binary\n  get_url:\n    url: "{{ vault_binary_url }}"\n    dest: "{{ vault_download_path }}/vault"\n    owner: root\n    group: root\n    mode: \'0755\'\n\n- name: Check if vault_path exists\n  stat:\n    path: "{{ vault_path }}"\n  register: vault_path_exists\n\n- name: Create vault_path if it does not exist\n  file:\n    path: "{{ vault_path }}"\n    state: directory\n    mode: \'0755\'\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n  when: not vault_path_exists.stat.exists and vault_path is defined\n\n- name: Create directory in vault_path\n  file:\n    path: "{{ item }}"\n    state: directory\n    mode: \'0755\'\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n  loop: "{{ vault_directories }}"\n\n- name: Create data directory\n  file:\n    path: "{{ item }}"\n    state: directory\n    mode: \'0755\'\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n  loop: "{{ vault_data_directories }}"\n\n- name: Generate TLS key and certificate\n  openssl_certificate:\n    path: "{{ vault_data_directory }}/tls/vault.pem"\n    key_path: "{{ vault_data_directory }}/tls/vault.key"\n    days: 1095\n  notify: Restart vault\n\n- name: Set ownership of tls material\n  file:\n    path: "{{ item }}"\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n  loop: "{{ vault_tls_files }}"\n\n- name: Copy Vault binary\n  copy:\n    src: "{{ vault_download_path }}/vault"\n    dest: "{{ vault_path }}/usr/bin/vault"\n    mode: \'0755\'\n  notify: Restart vault\n\n- name: Set cap_ipc_lock=ep on /usr/bin/vault\n  setcap:\n    cap: cap_ipc_lock=ep\n    path: /usr/bin/vault\n  changed_when: false\n\n- name: Touch vault.env\n  file:\n    path: "{{ vault_path }}/etc/vault.d/vault.env"\n    state: touch\n    mode: \'0644\'\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n  notify: Restart vault\n\n- name: Create /usr/lib/systemd/system\n  file:\n    path: /usr/lib/systemd/system\n    state: directory\n    mode: \'0755\'\n\n- name: Copy Vault service file\n  copy:\n    src: vault.service.j2\n    dest: /usr/lib/systemd/system/vault.service\n    mode: \'0644\'\n  notify: Daemon reload\n  when: ansible_service_manager == "systemd"\n\n- name: Copy vault configuration\n  copy:\n    src: vault.hcl\n    dest: "{{ vault_path }}/etc/vault.d/vault.hcl"\n    mode: \'0644\'\n  notify: Restart vault\n\n- name: Flush handlers\n  meta: flush_handlers\n```' additional_kwargs={} response_metadata={'model': 'gemma3:27b', 'created_at': '2025-10-19T08:34:31.476856286Z', 'done': True, 'done_reason': 'stop', 'total_duration': 72596662002, 'load_duration': 211970059, 'prompt_eval_count': 5805, 'prompt_eval_duration': 18996747675, 'eval_count': 914, 'eval_duration': 53385953420, 'model_name': 'gemma3:27b'} id='run--12b19163-adde-4787-ab68-7ba2377f9dd1-0' usage_metadata={'input_tokens': 5805, 'output_tokens': 914, 'total_tokens': 6719}
+_______________________________________Cleaned LLM Output:_______________________________________ 
+---
+- name: Create Vault group
+  group:
+    name: "{{ vault_group }}"
+    state: present
+
+- name: Create Vault user
+  user:
+    name: "{{ vault_user }}"
+    home: false
+    shell: "{{ vault_user_shell }}"
+    groups: "{{ vault_group }}"
+    state: present
+
+- name: Create Vault download directory
+  file:
+    path: "{{ vault_download_path }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+
+- name: Download Vault binary
+  get_url:
+    url: "{{ vault_binary_url }}"
+    dest: "{{ vault_download_path }}/vault"
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Check if vault_path exists
+  stat:
+    path: "{{ vault_path }}"
+  register: vault_path_exists
+
+- name: Create vault_path if it does not exist
+  file:
+    path: "{{ vault_path }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  when: not vault_path_exists.stat.exists and vault_path is defined
+
+- name: Create directory in vault_path
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  loop: "{{ vault_directories }}"
+
+- name: Create data directory
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  loop: "{{ vault_data_directories }}"
+
+- name: Generate TLS key and certificate
+  openssl_certificate:
+    path: "{{ vault_data_directory }}/tls/vault.pem"
+    key_path: "{{ vault_data_directory }}/tls/vault.key"
+    days: 1095
+  notify: Restart vault
+
+- name: Set ownership of tls material
+  file:
+    path: "{{ item }}"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  loop: "{{ vault_tls_files }}"
+
+- name: Copy Vault binary
+  copy:
+    src: "{{ vault_download_path }}/vault"
+    dest: "{{ vault_path }}/usr/bin/vault"
+    mode: '0755'
+  notify: Restart vault
+
+- name: Set cap_ipc_lock=ep on /usr/bin/vault
+  setcap:
+    cap: cap_ipc_lock=ep
+    path: /usr/bin/vault
+  changed_when: false
+
+- name: Touch vault.env
+  file:
+    path: "{{ vault_path }}/etc/vault.d/vault.env"
+    state: touch
+    mode: '0644'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  notify: Restart vault
+
+- name: Create /usr/lib/systemd/system
+  file:
+    path: /usr/lib/systemd/system
+    state: directory
+    mode: '0755'
+
+- name: Copy Vault service file
+  copy:
+    src: vault.service.j2
+    dest: /usr/lib/systemd/system/vault.service
+    mode: '0644'
+  notify: Daemon reload
+  when: ansible_service_manager == "systemd"
+
+- name: Copy vault configuration
+  copy:
+    src: vault.hcl
+    dest: "{{ vault_path }}/etc/vault.d/vault.hcl"
+    mode: '0644'
+  notify: Restart vault
+
+- name: Flush handlers
+  meta: flush_handlers
+
+
+Sun Oct 19 10:34:31 2025: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml Total generation time: 141.76265894901007
+________________________________________Yamllint Run: 1________________________________________
+
+yamllint_passed_without_iteration increased to 2
+################################# Quality Gate 'yamllint' passed! ################################
+3. Iteration: Generated Ansible-YAML did not pass quality gate 'ansiblelint'
+Prompt: You are a professional developer. The Ansible Playbook generated from the prompt below did not pass ansible-lint.  
+Your task is to automatically correct the playbook while strictly adhering to the original instructions.
+
+Requirements:
+- Generate a valid YAML playbook that passes ansible-lint.
+- Follow the original task names and order exactly.
+- Only fix linting issues reported; do not alter the functional intent or add/remove tasks.
+- Output must consist solely of the corrected YAML playbook.
+
+Inputs:
+- Original generation prompt:
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Create Vault group
+Description Task 1: Create a system group named {{ vault_group }}.
+
+Task 2: Create Vault user
+Description Task 2: Create a system user named {{ vault_user }} with home directory disabled and shell set to {{ vault_user_shell }}, and assign the user to the {{ vault_group }} group.
+
+Task 3: Create Vault download directory
+Description Task 3: Create a directory at {{ vault_download_path }} with permissions set to 0755 and owned by the {{ vault_user }} user and {{ vault_group }} group.
+
+Task 4: Download Vault binary
+Description Task 4: Download the Vault binary from the specified URL and unarchive it to {{ vault_download_path }}. Ensure the file is owned by root.
+
+Task 5: Check if vault_path exists
+Description Task 5: Check if the directory at {{ vault_path }} exists.
+
+Task 6: Create vault_path if it does not exist
+Description Task 6: If the directory at {{ vault_path }} does not exist and is specified, create it with permissions set to 0755 and owned by the {{ vault_user }} user and {{ vault_group }} group.
+
+Task 7: Create directory in vault_path
+Description Task 7: Create directories specified in the vault_directories list with permissions set to 0755 and owned by the specified owner and group.
+
+Task 8: Create data directory
+Description Task 8: Create directories specified in the vault_data_directories list with permissions set to 0755 and owned by the specified owner and group.
+
+Task 9: Generate TLS key and certificate
+Description Task 9: Generate a TLS key and certificate in the directory specified by {{ vault_data_directory }}/tls/ with a validity period of 1095 days and notify the handler 'Restart vault' after completion.
+
+Task 10: Set ownership of tls material
+Description Task 10: Set the ownership of TLS files specified in the vault_tls_files list to the specified owner and group.
+
+Task 11: Copy Vault binary
+Description Task 11: Copy the Vault binary from {{ vault_download_path }}/vault to {{ vault_path }}/usr/bin/vault with permissions set to 0755 and notify the handler 'Restart vault' after completion.
+
+Task 12: Set cap_ipc_lock=ep on /usr/bin/vault
+Description Task 12: Set the capability cap_ipc_lock=ep on the Vault binary and do not mark the task as changed.
+
+Task 13: Touch vault.env
+Description Task 13: Create the file {{ vault_path }}/etc/vault.d/vault.env with permissions set to 0644 and owned by {{ vault_user }} and {{ vault_group }} and notify the handler 'Restart vault' after completion.
+
+Task 14: Create /usr/lib/systemd/system
+Description Task 14: Create the directory /usr/lib/systemd/system with permissions set to 0755.
+
+Task 15: Copy Vault service file
+Description Task 15: Copy the Vault service file template vault.service.j2 to /usr/lib/systemd/system/vault.service with permissions set to 0644 and notify the handler 'Daemon reload' after completion only if the service manager is systemd.
+
+Task 16: Copy vault configuration
+Description Task 16: Copy the vault configuration file vault.hcl to {{ vault_path }}/etc/vault.d/vault.hcl with permissions set to 0644 and notify the handler 'Restart vault' after completion.
+
+Task 17: Flush handlers
+Description Task 17: Flush all the handlers in the playbook.
+
+
+- Last generated (faulty) playbook:
+---
+- name: Create Vault group
+  group:
+    name: "{{ vault_group }}"
+    state: present
+
+- name: Create Vault user
+  user:
+    name: "{{ vault_user }}"
+    home: false
+    shell: "{{ vault_user_shell }}"
+    groups: "{{ vault_group }}"
+    state: present
+
+- name: Create Vault download directory
+  file:
+    path: "{{ vault_download_path }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+
+- name: Download Vault binary
+  get_url:
+    url: "{{ vault_binary_url }}"
+    dest: "{{ vault_download_path }}/vault"
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Check if vault_path exists
+  stat:
+    path: "{{ vault_path }}"
+  register: vault_path_exists
+
+- name: Create vault_path if it does not exist
+  file:
+    path: "{{ vault_path }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  when: not vault_path_exists.stat.exists and vault_path is defined
+
+- name: Create directory in vault_path
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  loop: "{{ vault_directories }}"
+
+- name: Create data directory
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  loop: "{{ vault_data_directories }}"
+
+- name: Generate TLS key and certificate
+  openssl_certificate:
+    path: "{{ vault_data_directory }}/tls/vault.pem"
+    key_path: "{{ vault_data_directory }}/tls/vault.key"
+    days: 1095
+  notify: Restart vault
+
+- name: Set ownership of tls material
+  file:
+    path: "{{ item }}"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  loop: "{{ vault_tls_files }}"
+
+- name: Copy Vault binary
+  copy:
+    src: "{{ vault_download_path }}/vault"
+    dest: "{{ vault_path }}/usr/bin/vault"
+    mode: '0755'
+  notify: Restart vault
+
+- name: Set cap_ipc_lock=ep on /usr/bin/vault
+  setcap:
+    cap: cap_ipc_lock=ep
+    path: /usr/bin/vault
+  changed_when: false
+
+- name: Touch vault.env
+  file:
+    path: "{{ vault_path }}/etc/vault.d/vault.env"
+    state: touch
+    mode: '0644'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  notify: Restart vault
+
+- name: Create /usr/lib/systemd/system
+  file:
+    path: /usr/lib/systemd/system
+    state: directory
+    mode: '0755'
+
+- name: Copy Vault service file
+  copy:
+    src: vault.service.j2
+    dest: /usr/lib/systemd/system/vault.service
+    mode: '0644'
+  notify: Daemon reload
+  when: ansible_service_manager == "systemd"
+
+- name: Copy vault configuration
+  copy:
+    src: vault.hcl
+    dest: "{{ vault_path }}/etc/vault.d/vault.hcl"
+    mode: '0644'
+  notify: Restart vault
+
+- name: Flush handlers
+  meta: flush_handlers
+
+
+- Error messages from ansible-lint:
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (group).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:3:3 [2mUse `ansible.builtin.group` or `ansible.legacy.group` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (user).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:8:3 [2mUse `ansible.builtin.user` or `ansible.legacy.user` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (file).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:16:3 [2mUse `ansible.builtin.file` or `ansible.legacy.file` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (get_url).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:24:3 [2mUse `ansible.builtin.get_url` or `ansible.legacy.get_url` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (stat).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:32:3 [2mUse `ansible.builtin.stat` or `ansible.legacy.stat` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (file).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:37:3 [2mUse `ansible.builtin.file` or `ansible.legacy.file` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (file).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:46:3 [2mUse `ansible.builtin.file` or `ansible.legacy.file` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (file).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:55:3 [2mUse `ansible.builtin.file` or `ansible.legacy.file` instead.[0m
+[0m
+[33m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/args/\args[module]]8;;\[0m[2m:[0m [33mstate is present but all of the following are missing: provider[0m [2m[33m(warning)[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:63 [2mTask/Handler: Generate TLS key and certificate[0m
+[0m[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action]]8;;\[0m[2m:[0m [31mUse FQCN for module actions, such `community.crypto.x509_certificate`.[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:64:3 [2mAction `openssl_certificate` is not FQCN.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (file).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:71:3 [2mUse `ansible.builtin.file` or `ansible.legacy.file` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (copy).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:78:3 [2mUse `ansible.builtin.copy` or `ansible.legacy.copy` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (file).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:91:3 [2mUse `ansible.builtin.file` or `ansible.legacy.file` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (file).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:100:3 [2mUse `ansible.builtin.file` or `ansible.legacy.file` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (copy).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:106:3 [2mUse `ansible.builtin.copy` or `ansible.legacy.copy` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (copy).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:114:3 [2mUse `ansible.builtin.copy` or `ansible.legacy.copy` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (meta).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:121:3 [2mUse `ansible.builtin.meta` or `ansible.legacy.meta` instead.[0m
+[0m
+[2mWARNING  Another version of 'community.docker' 4.7.0 was found installed in /home/studgoetsi5301/documents/ansible_bench/.venv/lib/python3.12/site-packages/ansible_collections, only the first one will be used, 4.7.0 (/home/studgoetsi5301/.ansible/collections/ansible_collections).[0m
+[2mWARNING  Another version of 'community.general' 10.7.3 was found installed in /home/studgoetsi5301/documents/ansible_bench/.venv/lib/python3.12/site-packages/ansible_collections, only the first one will be used, 2.5.9 (/home/studgoetsi5301/.ansible/collections/ansible_collections).[0m
+[2mWARNING  Unable to load module setcap at ~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml:84 for options validation[0m
+[2mWARNING  Invalid value (None)for resolved_fqcn attribute of setcap module.[0m
+[2mWARNING  Listing 17 violation(s) that are fatal[0m
+Read [34m]8;;https://ansible.readthedocs.io/projects/lint/configuring/#ignoring-rules-for-entire-files\documentation]8;;\[0m for instructions on how to ignore specific rule violations.
+
+# Rule Violation Summary
+
+ 15 [34m]8;;https://ansible.readthedocs.io/projects/lint/rules/\fqcn]8;;\[0m [2mprofile:production tags:formatting[0m
+  1 [34m]8;;https://ansible.readthedocs.io/projects/lint/rules/\fqcn]8;;\[0m [2mprofile:production tags:formatting[0m
+  1 [34m]8;;https://ansible.readthedocs.io/projects/lint/rules/\args]8;;\[0m [2mprofile:production tags:syntax,experimental[0m
+
+[31m[1mFailed[0m[0m: 16 failure(s), 1 warning(s) in 1 files processed of 1 encountered. Last profile that met the validation criteria was 'shared'. Rating: 4/5 star
+[33mA new release of ansible-lint is available: [33m25.9.0[0m → [32m[34m]8;;https://github.com/ansible/ansible-lint/releases/tag/v25.9.2\25.9.2]8;;\[0m[/][0m Upgrade by running: [34mpip install --upgrade ansible-lint[0m[0m
+
+Important:  
+- Keep all task names, variables, and custom identifiers exactly as in the faulty playbook unless necessary to fix ansiblelint errors.
+- Use the exact task names and module calls as specified.  
+- Do not add, omit, or modify tasks.  
+- The output must consist only of the complete YAML playbook, without explanations, comments, or formatting outside of YAML.
+- The playbook must start with '---' and a linebreak
+
+Total input tokens: 5797
+___________________________________________LLM Output:___________________________________________ 
+content='```yaml\n---\n- name: Create Vault group\n  group:\n    name: "{{ vault_group }}"\n    state: present\n\n- name: Create Vault user\n  user:\n    name: "{{ vault_user }}"\n    home: false\n    shell: "{{ vault_user_shell }}"\n    groups: "{{ vault_group }}"\n    state: present\n\n- name: Create Vault download directory\n  file:\n    path: "{{ vault_download_path }}"\n    state: directory\n    mode: \'0755\'\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n\n- name: Download Vault binary\n  get_url:\n    url: "{{ vault_binary_url }}"\n    dest: "{{ vault_download_path }}/vault"\n    owner: root\n    group: root\n    mode: \'0755\'\n\n- name: Check if vault_path exists\n  stat:\n    path: "{{ vault_path }}"\n  register: vault_path_exists\n\n- name: Create vault_path if it does not exist\n  file:\n    path: "{{ vault_path }}"\n    state: directory\n    mode: \'0755\'\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n  when: not vault_path_exists.stat.exists and vault_path is defined\n\n- name: Create directory in vault_path\n  file:\n    path: "{{ item }}"\n    state: directory\n    mode: \'0755\'\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n  loop: "{{ vault_directories }}"\n\n- name: Create data directory\n  file:\n    path: "{{ item }}"\n    state: directory\n    mode: \'0755\'\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n  loop: "{{ vault_data_directories }}"\n\n- name: Generate TLS key and certificate\n  community.crypto.x509_certificate:\n    path: "{{ vault_data_directory }}/tls/vault.pem"\n    key_path: "{{ vault_data_directory }}/tls/vault.key"\n    days: 1095\n  notify: Restart vault\n\n- name: Set ownership of tls material\n  file:\n    path: "{{ item }}"\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n  loop: "{{ vault_tls_files }}"\n\n- name: Copy Vault binary\n  copy:\n    src: "{{ vault_download_path }}/vault"\n    dest: "{{ vault_path }}/usr/bin/vault"\n    mode: \'0755\'\n  notify: Restart vault\n\n- name: Set cap_ipc_lock=ep on /usr/bin/vault\n  setcap:\n    cap: cap_ipc_lock=ep\n    path: /usr/bin/vault\n  changed_when: false\n\n- name: Touch vault.env\n  file:\n    path: "{{ vault_path }}/etc/vault.d/vault.env"\n    state: touch\n    mode: \'0644\'\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n  notify: Restart vault\n\n- name: Create /usr/lib/systemd/system\n  file:\n    path: /usr/lib/systemd/system\n    state: directory\n    mode: \'0755\'\n\n- name: Copy Vault service file\n  copy:\n    src: vault.service.j2\n    dest: /usr/lib/systemd/system/vault.service\n    mode: \'0644\'\n  notify: Daemon reload\n  when: ansible_service_manager == "systemd"\n\n- name: Copy vault configuration\n  copy:\n    src: vault.hcl\n    dest: "{{ vault_path }}/etc/vault.d/vault.hcl"\n    mode: \'0644\'\n  notify: Restart vault\n\n- name: Flush handlers\n  meta: flush_handlers\n```' additional_kwargs={} response_metadata={'model': 'gemma3:27b', 'created_at': '2025-10-19T08:35:47.603027564Z', 'done': True, 'done_reason': 'stop', 'total_duration': 72348254002, 'load_duration': 194609401, 'prompt_eval_count': 5805, 'prompt_eval_duration': 17865334113, 'eval_count': 920, 'eval_duration': 54286220783, 'model_name': 'gemma3:27b'} id='run--4fcb1bb4-d70e-423e-b22e-d32c8b81442f-0' usage_metadata={'input_tokens': 5805, 'output_tokens': 920, 'total_tokens': 6725}
+_______________________________________Cleaned LLM Output:_______________________________________ 
+---
+- name: Create Vault group
+  group:
+    name: "{{ vault_group }}"
+    state: present
+
+- name: Create Vault user
+  user:
+    name: "{{ vault_user }}"
+    home: false
+    shell: "{{ vault_user_shell }}"
+    groups: "{{ vault_group }}"
+    state: present
+
+- name: Create Vault download directory
+  file:
+    path: "{{ vault_download_path }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+
+- name: Download Vault binary
+  get_url:
+    url: "{{ vault_binary_url }}"
+    dest: "{{ vault_download_path }}/vault"
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Check if vault_path exists
+  stat:
+    path: "{{ vault_path }}"
+  register: vault_path_exists
+
+- name: Create vault_path if it does not exist
+  file:
+    path: "{{ vault_path }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  when: not vault_path_exists.stat.exists and vault_path is defined
+
+- name: Create directory in vault_path
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  loop: "{{ vault_directories }}"
+
+- name: Create data directory
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  loop: "{{ vault_data_directories }}"
+
+- name: Generate TLS key and certificate
+  community.crypto.x509_certificate:
+    path: "{{ vault_data_directory }}/tls/vault.pem"
+    key_path: "{{ vault_data_directory }}/tls/vault.key"
+    days: 1095
+  notify: Restart vault
+
+- name: Set ownership of tls material
+  file:
+    path: "{{ item }}"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  loop: "{{ vault_tls_files }}"
+
+- name: Copy Vault binary
+  copy:
+    src: "{{ vault_download_path }}/vault"
+    dest: "{{ vault_path }}/usr/bin/vault"
+    mode: '0755'
+  notify: Restart vault
+
+- name: Set cap_ipc_lock=ep on /usr/bin/vault
+  setcap:
+    cap: cap_ipc_lock=ep
+    path: /usr/bin/vault
+  changed_when: false
+
+- name: Touch vault.env
+  file:
+    path: "{{ vault_path }}/etc/vault.d/vault.env"
+    state: touch
+    mode: '0644'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  notify: Restart vault
+
+- name: Create /usr/lib/systemd/system
+  file:
+    path: /usr/lib/systemd/system
+    state: directory
+    mode: '0755'
+
+- name: Copy Vault service file
+  copy:
+    src: vault.service.j2
+    dest: /usr/lib/systemd/system/vault.service
+    mode: '0644'
+  notify: Daemon reload
+  when: ansible_service_manager == "systemd"
+
+- name: Copy vault configuration
+  copy:
+    src: vault.hcl
+    dest: "{{ vault_path }}/etc/vault.d/vault.hcl"
+    mode: '0644'
+  notify: Restart vault
+
+- name: Flush handlers
+  meta: flush_handlers
+
+
+Sun Oct 19 10:35:47 2025: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml Total generation time: 217.88902645208873
+________________________________________Yamllint Run: 1________________________________________
+
+yamllint_passed_without_iteration increased to 3
+################################# Quality Gate 'yamllint' passed! ################################
+4. Iteration: Generated Ansible-YAML did not pass quality gate 'ansiblelint'
+Prompt: You are a professional developer. The Ansible Playbook generated from the prompt below did not pass ansible-lint.  
+Your task is to automatically correct the playbook while strictly adhering to the original instructions.
+
+Requirements:
+- Generate a valid YAML playbook that passes ansible-lint.
+- Follow the original task names and order exactly.
+- Only fix linting issues reported; do not alter the functional intent or add/remove tasks.
+- Output must consist solely of the corrected YAML playbook.
+
+Inputs:
+- Original generation prompt:
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Create Vault group
+Description Task 1: Create a system group named {{ vault_group }}.
+
+Task 2: Create Vault user
+Description Task 2: Create a system user named {{ vault_user }} with home directory disabled and shell set to {{ vault_user_shell }}, and assign the user to the {{ vault_group }} group.
+
+Task 3: Create Vault download directory
+Description Task 3: Create a directory at {{ vault_download_path }} with permissions set to 0755 and owned by the {{ vault_user }} user and {{ vault_group }} group.
+
+Task 4: Download Vault binary
+Description Task 4: Download the Vault binary from the specified URL and unarchive it to {{ vault_download_path }}. Ensure the file is owned by root.
+
+Task 5: Check if vault_path exists
+Description Task 5: Check if the directory at {{ vault_path }} exists.
+
+Task 6: Create vault_path if it does not exist
+Description Task 6: If the directory at {{ vault_path }} does not exist and is specified, create it with permissions set to 0755 and owned by the {{ vault_user }} user and {{ vault_group }} group.
+
+Task 7: Create directory in vault_path
+Description Task 7: Create directories specified in the vault_directories list with permissions set to 0755 and owned by the specified owner and group.
+
+Task 8: Create data directory
+Description Task 8: Create directories specified in the vault_data_directories list with permissions set to 0755 and owned by the specified owner and group.
+
+Task 9: Generate TLS key and certificate
+Description Task 9: Generate a TLS key and certificate in the directory specified by {{ vault_data_directory }}/tls/ with a validity period of 1095 days and notify the handler 'Restart vault' after completion.
+
+Task 10: Set ownership of tls material
+Description Task 10: Set the ownership of TLS files specified in the vault_tls_files list to the specified owner and group.
+
+Task 11: Copy Vault binary
+Description Task 11: Copy the Vault binary from {{ vault_download_path }}/vault to {{ vault_path }}/usr/bin/vault with permissions set to 0755 and notify the handler 'Restart vault' after completion.
+
+Task 12: Set cap_ipc_lock=ep on /usr/bin/vault
+Description Task 12: Set the capability cap_ipc_lock=ep on the Vault binary and do not mark the task as changed.
+
+Task 13: Touch vault.env
+Description Task 13: Create the file {{ vault_path }}/etc/vault.d/vault.env with permissions set to 0644 and owned by {{ vault_user }} and {{ vault_group }} and notify the handler 'Restart vault' after completion.
+
+Task 14: Create /usr/lib/systemd/system
+Description Task 14: Create the directory /usr/lib/systemd/system with permissions set to 0755.
+
+Task 15: Copy Vault service file
+Description Task 15: Copy the Vault service file template vault.service.j2 to /usr/lib/systemd/system/vault.service with permissions set to 0644 and notify the handler 'Daemon reload' after completion only if the service manager is systemd.
+
+Task 16: Copy vault configuration
+Description Task 16: Copy the vault configuration file vault.hcl to {{ vault_path }}/etc/vault.d/vault.hcl with permissions set to 0644 and notify the handler 'Restart vault' after completion.
+
+Task 17: Flush handlers
+Description Task 17: Flush all the handlers in the playbook.
+
+
+- Last generated (faulty) playbook:
+---
+- name: Create Vault group
+  group:
+    name: "{{ vault_group }}"
+    state: present
+
+- name: Create Vault user
+  user:
+    name: "{{ vault_user }}"
+    home: false
+    shell: "{{ vault_user_shell }}"
+    groups: "{{ vault_group }}"
+    state: present
+
+- name: Create Vault download directory
+  file:
+    path: "{{ vault_download_path }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+
+- name: Download Vault binary
+  get_url:
+    url: "{{ vault_binary_url }}"
+    dest: "{{ vault_download_path }}/vault"
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Check if vault_path exists
+  stat:
+    path: "{{ vault_path }}"
+  register: vault_path_exists
+
+- name: Create vault_path if it does not exist
+  file:
+    path: "{{ vault_path }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  when: not vault_path_exists.stat.exists and vault_path is defined
+
+- name: Create directory in vault_path
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  loop: "{{ vault_directories }}"
+
+- name: Create data directory
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  loop: "{{ vault_data_directories }}"
+
+- name: Generate TLS key and certificate
+  community.crypto.x509_certificate:
+    path: "{{ vault_data_directory }}/tls/vault.pem"
+    key_path: "{{ vault_data_directory }}/tls/vault.key"
+    days: 1095
+  notify: Restart vault
+
+- name: Set ownership of tls material
+  file:
+    path: "{{ item }}"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  loop: "{{ vault_tls_files }}"
+
+- name: Copy Vault binary
+  copy:
+    src: "{{ vault_download_path }}/vault"
+    dest: "{{ vault_path }}/usr/bin/vault"
+    mode: '0755'
+  notify: Restart vault
+
+- name: Set cap_ipc_lock=ep on /usr/bin/vault
+  setcap:
+    cap: cap_ipc_lock=ep
+    path: /usr/bin/vault
+  changed_when: false
+
+- name: Touch vault.env
+  file:
+    path: "{{ vault_path }}/etc/vault.d/vault.env"
+    state: touch
+    mode: '0644'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  notify: Restart vault
+
+- name: Create /usr/lib/systemd/system
+  file:
+    path: /usr/lib/systemd/system
+    state: directory
+    mode: '0755'
+
+- name: Copy Vault service file
+  copy:
+    src: vault.service.j2
+    dest: /usr/lib/systemd/system/vault.service
+    mode: '0644'
+  notify: Daemon reload
+  when: ansible_service_manager == "systemd"
+
+- name: Copy vault configuration
+  copy:
+    src: vault.hcl
+    dest: "{{ vault_path }}/etc/vault.d/vault.hcl"
+    mode: '0644'
+  notify: Restart vault
+
+- name: Flush handlers
+  meta: flush_handlers
+
+
+- Error messages from ansible-lint:
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (group).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:3:3 [2mUse `ansible.builtin.group` or `ansible.legacy.group` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (user).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:8:3 [2mUse `ansible.builtin.user` or `ansible.legacy.user` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (file).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:16:3 [2mUse `ansible.builtin.file` or `ansible.legacy.file` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (get_url).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:24:3 [2mUse `ansible.builtin.get_url` or `ansible.legacy.get_url` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (stat).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:32:3 [2mUse `ansible.builtin.stat` or `ansible.legacy.stat` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (file).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:37:3 [2mUse `ansible.builtin.file` or `ansible.legacy.file` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (file).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:46:3 [2mUse `ansible.builtin.file` or `ansible.legacy.file` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (file).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:55:3 [2mUse `ansible.builtin.file` or `ansible.legacy.file` instead.[0m
+[0m
+[33m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/args/\args[module]]8;;\[0m[2m:[0m [33mstate is present but all of the following are missing: provider[0m [2m[33m(warning)[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:63 [2mTask/Handler: Generate TLS key and certificate[0m
+[0m[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (file).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:71:3 [2mUse `ansible.builtin.file` or `ansible.legacy.file` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (copy).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:78:3 [2mUse `ansible.builtin.copy` or `ansible.legacy.copy` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (file).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:91:3 [2mUse `ansible.builtin.file` or `ansible.legacy.file` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (file).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:100:3 [2mUse `ansible.builtin.file` or `ansible.legacy.file` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (copy).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:106:3 [2mUse `ansible.builtin.copy` or `ansible.legacy.copy` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (copy).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:114:3 [2mUse `ansible.builtin.copy` or `ansible.legacy.copy` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (meta).[0m
+[35m~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml[0m:121:3 [2mUse `ansible.builtin.meta` or `ansible.legacy.meta` instead.[0m
+[0m
+[2mWARNING  Another version of 'community.docker' 4.7.0 was found installed in /home/studgoetsi5301/documents/ansible_bench/.venv/lib/python3.12/site-packages/ansible_collections, only the first one will be used, 4.7.0 (/home/studgoetsi5301/.ansible/collections/ansible_collections).[0m
+[2mWARNING  Another version of 'community.general' 10.7.3 was found installed in /home/studgoetsi5301/documents/ansible_bench/.venv/lib/python3.12/site-packages/ansible_collections, only the first one will be used, 2.5.9 (/home/studgoetsi5301/.ansible/collections/ansible_collections).[0m
+[2mWARNING  Unable to load module setcap at ~/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml:84 for options validation[0m
+[2mWARNING  Invalid value (None)for resolved_fqcn attribute of setcap module.[0m
+[2mWARNING  Listing 16 violation(s) that are fatal[0m
+Read [34m]8;;https://ansible.readthedocs.io/projects/lint/configuring/#ignoring-rules-for-entire-files\documentation]8;;\[0m for instructions on how to ignore specific rule violations.
+
+# Rule Violation Summary
+
+ 15 [34m]8;;https://ansible.readthedocs.io/projects/lint/rules/\fqcn]8;;\[0m [2mprofile:production tags:formatting[0m
+  1 [34m]8;;https://ansible.readthedocs.io/projects/lint/rules/\args]8;;\[0m [2mprofile:production tags:syntax,experimental[0m
+
+[31m[1mFailed[0m[0m: 15 failure(s), 1 warning(s) in 1 files processed of 1 encountered. Last profile that met the validation criteria was 'shared'. Rating: 4/5 star
+[33mA new release of ansible-lint is available: [33m25.9.0[0m → [32m[34m]8;;https://github.com/ansible/ansible-lint/releases/tag/v25.9.2\25.9.2]8;;\[0m[/][0m Upgrade by running: [34mpip install --upgrade ansible-lint[0m[0m
+
+Important:  
+- Keep all task names, variables, and custom identifiers exactly as in the faulty playbook unless necessary to fix ansiblelint errors.
+- Use the exact task names and module calls as specified.  
+- Do not add, omit, or modify tasks.  
+- The output must consist only of the complete YAML playbook, without explanations, comments, or formatting outside of YAML.
+- The playbook must start with '---' and a linebreak
+
+Total input tokens: 5571
+___________________________________________LLM Output:___________________________________________ 
+content='```yaml\n---\n- name: Create Vault group\n  ansible.builtin.group:\n    name: "{{ vault_group }}"\n    state: present\n\n- name: Create Vault user\n  ansible.builtin.user:\n    name: "{{ vault_user }}"\n    home: false\n    shell: "{{ vault_user_shell }}"\n    groups: "{{ vault_group }}"\n    state: present\n\n- name: Create Vault download directory\n  ansible.builtin.file:\n    path: "{{ vault_download_path }}"\n    state: directory\n    mode: \'0755\'\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n\n- name: Download Vault binary\n  ansible.builtin.get_url:\n    url: "{{ vault_binary_url }}"\n    dest: "{{ vault_download_path }}/vault"\n    owner: root\n    group: root\n    mode: \'0755\'\n\n- name: Check if vault_path exists\n  ansible.builtin.stat:\n    path: "{{ vault_path }}"\n  register: vault_path_exists\n\n- name: Create vault_path if it does not exist\n  ansible.builtin.file:\n    path: "{{ vault_path }}"\n    state: directory\n    mode: \'0755\'\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n  when: not vault_path_exists.stat.exists and vault_path is defined\n\n- name: Create directory in vault_path\n  ansible.builtin.file:\n    path: "{{ item }}"\n    state: directory\n    mode: \'0755\'\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n  loop: "{{ vault_directories }}"\n\n- name: Create data directory\n  ansible.builtin.file:\n    path: "{{ item }}"\n    state: directory\n    mode: \'0755\'\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n  loop: "{{ vault_data_directories }}"\n\n- name: Generate TLS key and certificate\n  community.crypto.x509_certificate:\n    path: "{{ vault_data_directory }}/tls/vault.pem"\n    key_path: "{{ vault_data_directory }}/tls/vault.key"\n    days: 1095\n  notify: Restart vault\n\n- name: Set ownership of tls material\n  ansible.builtin.file:\n    path: "{{ item }}"\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n  loop: "{{ vault_tls_files }}"\n\n- name: Copy Vault binary\n  ansible.builtin.copy:\n    src: "{{ vault_download_path }}/vault"\n    dest: "{{ vault_path }}/usr/bin/vault"\n    mode: \'0755\'\n  notify: Restart vault\n\n- name: Set cap_ipc_lock=ep on /usr/bin/vault\n  ansible.posix.setcap:\n    cap: cap_ipc_lock=ep\n    path: /usr/bin/vault\n  changed_when: false\n\n- name: Touch vault.env\n  ansible.builtin.file:\n    path: "{{ vault_path }}/etc/vault.d/vault.env"\n    state: touch\n    mode: \'0644\'\n    owner: "{{ vault_user }}"\n    group: "{{ vault_group }}"\n  notify: Restart vault\n\n- name: Create /usr/lib/systemd/system\n  ansible.builtin.file:\n    path: /usr/lib/systemd/system\n    state: directory\n    mode: \'0755\'\n\n- name: Copy Vault service file\n  ansible.builtin.copy:\n    src: vault.service.j2\n    dest: /usr/lib/systemd/system/vault.service\n    mode: \'0644\'\n  notify: Daemon reload\n  when: ansible_service_manager == "systemd"\n\n- name: Copy vault configuration\n  ansible.builtin.copy:\n    src: vault.hcl\n    dest: "{{ vault_path }}/etc/vault.d/vault.hcl"\n    mode: \'0644\'\n  notify: Restart vault\n\n- name: Flush handlers\n  ansible.builtin.meta:\n    flush_handlers: true\n```' additional_kwargs={} response_metadata={'model': 'gemma3:27b', 'created_at': '2025-10-19T08:37:09.959495162Z', 'done': True, 'done_reason': 'stop', 'total_duration': 78520635561, 'load_duration': 206108161, 'prompt_eval_count': 5579, 'prompt_eval_duration': 18090487848, 'eval_count': 1005, 'eval_duration': 60222798164, 'model_name': 'gemma3:27b'} id='run--6f2c4718-b03c-4af3-9941-64e506f91729-0' usage_metadata={'input_tokens': 5579, 'output_tokens': 1005, 'total_tokens': 6584}
+_______________________________________Cleaned LLM Output:_______________________________________ 
+---
+- name: Create Vault group
+  ansible.builtin.group:
+    name: "{{ vault_group }}"
+    state: present
+
+- name: Create Vault user
+  ansible.builtin.user:
+    name: "{{ vault_user }}"
+    home: false
+    shell: "{{ vault_user_shell }}"
+    groups: "{{ vault_group }}"
+    state: present
+
+- name: Create Vault download directory
+  ansible.builtin.file:
+    path: "{{ vault_download_path }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+
+- name: Download Vault binary
+  ansible.builtin.get_url:
+    url: "{{ vault_binary_url }}"
+    dest: "{{ vault_download_path }}/vault"
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Check if vault_path exists
+  ansible.builtin.stat:
+    path: "{{ vault_path }}"
+  register: vault_path_exists
+
+- name: Create vault_path if it does not exist
+  ansible.builtin.file:
+    path: "{{ vault_path }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  when: not vault_path_exists.stat.exists and vault_path is defined
+
+- name: Create directory in vault_path
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  loop: "{{ vault_directories }}"
+
+- name: Create data directory
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  loop: "{{ vault_data_directories }}"
+
+- name: Generate TLS key and certificate
+  community.crypto.x509_certificate:
+    path: "{{ vault_data_directory }}/tls/vault.pem"
+    key_path: "{{ vault_data_directory }}/tls/vault.key"
+    days: 1095
+  notify: Restart vault
+
+- name: Set ownership of tls material
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  loop: "{{ vault_tls_files }}"
+
+- name: Copy Vault binary
+  ansible.builtin.copy:
+    src: "{{ vault_download_path }}/vault"
+    dest: "{{ vault_path }}/usr/bin/vault"
+    mode: '0755'
+  notify: Restart vault
+
+- name: Set cap_ipc_lock=ep on /usr/bin/vault
+  ansible.posix.setcap:
+    cap: cap_ipc_lock=ep
+    path: /usr/bin/vault
+  changed_when: false
+
+- name: Touch vault.env
+  ansible.builtin.file:
+    path: "{{ vault_path }}/etc/vault.d/vault.env"
+    state: touch
+    mode: '0644'
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  notify: Restart vault
+
+- name: Create /usr/lib/systemd/system
+  ansible.builtin.file:
+    path: /usr/lib/systemd/system
+    state: directory
+    mode: '0755'
+
+- name: Copy Vault service file
+  ansible.builtin.copy:
+    src: vault.service.j2
+    dest: /usr/lib/systemd/system/vault.service
+    mode: '0644'
+  notify: Daemon reload
+  when: ansible_service_manager == "systemd"
+
+- name: Copy vault configuration
+  ansible.builtin.copy:
+    src: vault.hcl
+    dest: "{{ vault_path }}/etc/vault.d/vault.hcl"
+    mode: '0644'
+  notify: Restart vault
+
+- name: Flush handlers
+  ansible.builtin.meta:
+    flush_handlers: true
+
+
+Sun Oct 19 10:37:09 2025: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml Total generation time: 300.2452566549182
+________________________________________Yamllint Run: 1________________________________________
+
+yamllint_passed_without_iteration increased to 4
+################################# Quality Gate 'yamllint' passed! ################################
+################################# Quality Gate 'ansiblelint' passed! ################################
+Molecule test role 'ansible-role-vault' for Scenario 'default':____________________________
+
+Starting galaxy collection install process
+Nothing to do. All requested collections are already installed. If you want to reinstall them, consider using `--force`.
+Starting galaxy collection install process
+Nothing to do. All requested collections are already installed. If you want to reinstall them, consider using `--force`.
+
+PLAY [Destroy] *****************************************************************
+
+TASK [Set async_dir for HOME env] **********************************************
+[32mok: [localhost][0m
+
+TASK [Destroy molecule instance(s)] ********************************************
+[33mchanged: [localhost] => (item=vault-fedora-latest)[0m
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+[32mok: [localhost] => (item=vault-fedora-latest)[0m
+
+TASK [Delete docker networks(s)] ***********************************************
+[36mskipping: [localhost][0m
+
+PLAY RECAP *********************************************************************
+[33mlocalhost[0m                  : [32mok=3   [0m [33mchanged=1   [0m unreachable=0    failed=0    [36mskipped=1   [0m rescued=0    ignored=0
+
+
+playbook: /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/molecule/default/converge.yml
+
+PLAY [Create] ******************************************************************
+
+TASK [Set async_dir for HOME env] **********************************************
+[32mok: [localhost][0m
+
+TASK [Log into a Docker registry] **********************************************
+[36mskipping: [localhost] => (item=None) [0m
+[36mskipping: [localhost][0m
+
+TASK [Check presence of custom Dockerfiles] ************************************
+[32mok: [localhost] => (item=vault-fedora-latest)[0m
+
+TASK [Create Dockerfiles from image names] *************************************
+[36mskipping: [localhost] => (item=vault-fedora-latest)[0m
+[36mskipping: [localhost][0m
+
+TASK [Synchronization the context] *********************************************
+[36mskipping: [localhost] => (item=vault-fedora-latest)[0m
+[36mskipping: [localhost][0m
+
+TASK [Discover local Docker images] ********************************************
+[32mok: [localhost] => (item=unix://var/run/docker.sock)[0m
+
+TASK [Create docker network(s)] ************************************************
+[36mskipping: [localhost][0m
+
+TASK [Build an Ansible compatible image (new)] *********************************
+[36mskipping: [localhost] => (item=molecule_local/robertdebock/fedora:latest)[0m
+[36mskipping: [localhost][0m
+
+TASK [Determine the CMD directives] ********************************************
+[32mok: [localhost] => (item=vault-fedora-latest)[0m
+
+TASK [Create molecule instance(s)] *********************************************
+[33mchanged: [localhost] => (item=vault-fedora-latest)[0m
+
+TASK [Wait for instance(s) creation to complete] *******************************
+[1;30mFAILED - RETRYING: [localhost]: Wait for instance(s) creation to complete (300 retries left).[0m
+[33mchanged: [localhost] => (item=vault-fedora-latest)[0m
+
+PLAY RECAP *********************************************************************
+[33mlocalhost[0m                  : [32mok=6   [0m [33mchanged=2   [0m unreachable=0    failed=0    [36mskipped=5   [0m rescued=0    ignored=0
+
+[31mERROR! the role 'robertdebock.bootstrap' was not found in /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/molecule/default/roles:/home/studgoetsi5301/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles:/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/molecule/default[0m
+
+[31mThe error appears to be in '/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/molecule/default/prepare.yml': line 8, column 7, but may[0m
+[31mbe elsewhere in the file depending on the exact syntax problem.[0m
+
+[31mThe offending line appears to be:[0m
+
+[31m  roles:[0m
+[31m    - role: robertdebock.bootstrap[0m
+[31m      ^ here[0m
+
+PLAY [Destroy] *****************************************************************
+
+TASK [Set async_dir for HOME env] **********************************************
+[32mok: [localhost][0m
+
+TASK [Destroy molecule instance(s)] ********************************************
+[33mchanged: [localhost] => (item=vault-fedora-latest)[0m
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+[1;30mFAILED - RETRYING: [localhost]: Wait for instance(s) deletion to complete (300 retries left).[0m
+[33mchanged: [localhost] => (item=vault-fedora-latest)[0m
+
+TASK [Delete docker networks(s)] ***********************************************
+[36mskipping: [localhost][0m
+
+PLAY RECAP *********************************************************************
+[33mlocalhost[0m                  : [32mok=3   [0m [33mchanged=2   [0m unreachable=0    failed=0    [36mskipped=1   [0m rescued=0    ignored=0
+
+
+[35m[1mWARNING [0m Driver docker does not provide a schema.
+[35m[1mWARNING [0m Driver docker does not provide a schema.
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mdiscovery[0m: scenario test matrix: dependency, cleanup, destroy, syntax, create, prepare, converge, idempotence, side_effect, verify, cleanup, destroy
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mprerun[0m: Performing prerun with role_name_check=0...
+[35m[1mWARNING [0m Another version of 'community.docker' 4.7.0 was found installed in /home/studgoetsi5301/documents/ansible_bench/.venv/lib/python3.12/site-packages/ansible_collections, only the first one will be used, 4.7.0 (/home/studgoetsi5301/.ansible/collections/ansible_collections).
+[35m[1mWARNING [0m Another version of 'community.general' 10.7.3 was found installed in /home/studgoetsi5301/documents/ansible_bench/.venv/lib/python3.12/site-packages/ansible_collections, only the first one will be used, 2.5.9 (/home/studgoetsi5301/.ansible/collections/ansible_collections).
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mdependency[0m: [96mStarting[0m
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mdependency[0m: Dependency completed successfully.
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mdependency[0m: Dependency completed successfully.
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mdependency[0m: [96mCompleted[0m
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mcleanup[0m: [96mStarting[0m
+[35m[1mWARNING [0m [32mdefault[0m ➜ [33mcleanup[0m: Skipping, cleanup playbook not configured.
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mcleanup[0m: [96mCompleted[0m
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mdestroy[0m: [96mStarting[0m
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mdestroy[0m: ansible-playbook version: ansible-playbook 
+  config file = None
+  configured module search path = ['/home/studgoetsi5301/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /home/studgoetsi5301/documents/ansible_bench/.venv/lib/python3.12/site-packages/ansible
+  ansible collection location = /home/studgoetsi5301/.ansible/collections:/usr/share/ansible/collections
+  executable location = /home/studgoetsi5301/documents/ansible_bench/.venv/bin/ansible-playbook
+  python version = 3.12.11 (main, Jun  4 2025, 08:56:18)  (/home/studgoetsi5301/documents/ansible_bench/.venv/bin/python3.12)
+  jinja version = 3.1.6
+  libyaml = True
+[36m[2mINFO    [0m Sanity checks: 'docker'
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mdestroy[0m: [96mCompleted[0m
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33msyntax[0m: [96mStarting[0m
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33msyntax[0m: ansible-playbook version: ansible-playbook 
+  config file = None
+  configured module search path = ['/home/studgoetsi5301/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /home/studgoetsi5301/documents/ansible_bench/.venv/lib/python3.12/site-packages/ansible
+  ansible collection location = /home/studgoetsi5301/.ansible/collections:/usr/share/ansible/collections
+  executable location = /home/studgoetsi5301/documents/ansible_bench/.venv/bin/ansible-playbook
+  python version = 3.12.11 (main, Jun  4 2025, 08:56:18)  (/home/studgoetsi5301/documents/ansible_bench/.venv/bin/python3.12)
+  jinja version = 3.1.6
+  libyaml = True
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33msyntax[0m: [96mCompleted[0m
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mcreate[0m: [96mStarting[0m
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mcreate[0m: ansible-playbook version: ansible-playbook 
+  config file = None
+  configured module search path = ['/home/studgoetsi5301/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /home/studgoetsi5301/documents/ansible_bench/.venv/lib/python3.12/site-packages/ansible
+  ansible collection location = /home/studgoetsi5301/.ansible/collections:/usr/share/ansible/collections
+  executable location = /home/studgoetsi5301/documents/ansible_bench/.venv/bin/ansible-playbook
+  python version = 3.12.11 (main, Jun  4 2025, 08:56:18)  (/home/studgoetsi5301/documents/ansible_bench/.venv/bin/python3.12)
+  jinja version = 3.1.6
+  libyaml = True
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mcreate[0m: [96mCompleted[0m
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mprepare[0m: [96mStarting[0m
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mprepare[0m: ansible-playbook version: ansible-playbook 
+  config file = None
+  configured module search path = ['/home/studgoetsi5301/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /home/studgoetsi5301/documents/ansible_bench/.venv/lib/python3.12/site-packages/ansible
+  ansible collection location = /home/studgoetsi5301/.ansible/collections:/usr/share/ansible/collections
+  executable location = /home/studgoetsi5301/documents/ansible_bench/.venv/bin/ansible-playbook
+  python version = 3.12.11 (main, Jun  4 2025, 08:56:18)  (/home/studgoetsi5301/documents/ansible_bench/.venv/bin/python3.12)
+  jinja version = 3.1.6
+  libyaml = True
+[31m[1m[4mCRITICAL[0m Ansible return code was 1, command was: [2mansible-playbook --inventory /home/studgoetsi5301/.ansible/tmp/molecule.i9zG.default/inventory --skip-tags molecule-notest,notest /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/molecule/default/prepare.yml[/dim]
+[35m[1mWARNING [0m [32mdefault[0m ➜ [33mprepare[0m: An error occurred during the test sequence action: 'prepare'. Cleaning up.
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mcleanup[0m: [96mStarting[0m
+[35m[1mWARNING [0m [32mdefault[0m ➜ [33mcleanup[0m: Skipping, cleanup playbook not configured.
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mcleanup[0m: [96mCompleted[0m
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mdestroy[0m: [96mStarting[0m
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mdestroy[0m: ansible-playbook version: ansible-playbook 
+  config file = None
+  configured module search path = ['/home/studgoetsi5301/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /home/studgoetsi5301/documents/ansible_bench/.venv/lib/python3.12/site-packages/ansible
+  ansible collection location = /home/studgoetsi5301/.ansible/collections:/usr/share/ansible/collections
+  executable location = /home/studgoetsi5301/documents/ansible_bench/.venv/bin/ansible-playbook
+  python version = 3.12.11 (main, Jun  4 2025, 08:56:18)  (/home/studgoetsi5301/documents/ansible_bench/.venv/bin/python3.12)
+  jinja version = 3.1.6
+  libyaml = True
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mdestroy[0m: [96mCompleted[0m
+[36m[2mINFO    [0m [32mdefault[0m ➜ [33mscenario[0m: Pruning extra files from scenario ephemeral directory
+100%|██████████| 1/1 [05:24<00:00, 324.28s/it]100%|██████████| 1/1 [05:24<00:00, 324.28s/it]
+
+Molecule test role 'ansible-role-vault' for Scenario 'default' was False
+Scenario failed, stopping further tests. Overall result will be False.
+Overall Molecule test result for role 'ansible-role-vault': False
+Error: Generated Ansible-YAML did not pass quality gate 'molecule-test'!
+
+Generation of playbook '/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml' failed at stage 'molecule-test'
+Original YAML file '/home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/molecule_test/ansible-role-vault/tasks/binary.yml' was copied from temp into molecule_test directory.
+Report written to /home/studgoetsi5301/documents/ansible_bench/output/ollama_gemma3:27b_english_exact/benchmark100/prompts_qwen2.5:14b/report.txt

@@ -1,0 +1,11 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import the assert.yml file as a task, set run_once to true, and delegate to localhost.
+
+Task 2: Manage automatic service management
+Description Task 2: Manage automatic service management for services installed via apt. This task includes a conditional block that runs when the package manager is apt. Inside the block:
+- If apt_autostart_state is set to "disabled", copy a file to /usr/sbin/policy-rc.d with content "exit 101" and mode 755.
+- If apt_autostart_state is set to "enabled", remove the policy-rc.d file.

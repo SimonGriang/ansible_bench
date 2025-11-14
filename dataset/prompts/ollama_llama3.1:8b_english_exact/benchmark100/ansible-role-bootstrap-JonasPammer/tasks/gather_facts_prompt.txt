@@ -1,0 +1,14 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Lookup bootstrap facts by running the `cat /etc/os-release` command.
+Description Task 1: The first task will execute a raw command to retrieve the operating system release information and store it in a variable named `bootstrap_facts`.
+
+Task 2: Set bootstrap distribution and major version facts.
+Description Task 2: The second task will extract the distribution and major version from the `bootstrap_facts` variable. It will iterate over the `bootstrap__os_family_map` dictionary and set the corresponding facts for each matching distribution.
+
+Task 3: Set bootstrap OS family fact.
+Description Task 3: The third task will set the `bootstrap_os_family` fact by iterating over the `bootstrap__os_family_map` dictionary and checking if the distribution matches the key.

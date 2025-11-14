@@ -1,0 +1,48 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Migrate adoptopenjdk to temurin (if selected)  
+Description Task 1: Set the java_jdk_vendor fact to temurin if currently set to adoptopenjdk.
+
+Task 2: Gather OS specific variables  
+Description Task 2: Include variable files based on the java_jdk_vendor and the detected OS distribution and version.
+
+Task 3: Gather architecture specific variables  
+Description Task 3: Include variable files based on the detected architecture.
+
+Task 4: Set OS specific variables (I)  
+Description Task 4: Set several variables related to OpenJDK including version, repositories, and libs, allowing overrides from included variables.
+
+Task 5: Set OS and architecture specific variables (II)  
+Description Task 5: Set additional variables related to OpenJDK installation path and package name, allowing overrides from included variables.
+
+Task 6: Set specific variables  
+Description Task 6: Set the java_home fact to point to the OpenJDK installation directory.
+
+Task 7: Debian pre-requisites  
+Description Task 7: For Debian-based systems, remove deprecated repositories, install extra apt tools, add key repositories, and add required repositories.
+
+Task 8: RedHat pre-requisites  
+Description Task 8: For RedHat-based systems, add key repositories and required repositories.
+
+Task 9: Install required libs  
+Description Task 9: Install all required system libraries for OpenJDK.
+
+Task 10: Install Java, Debian  
+Description Task 10: Install OpenJDK on Debian-based systems using apt.
+
+Task 11: Install Java, RedHat  
+Description Task 11: Install OpenJDK on RedHat-based systems using yum.
+
+Task 12: Export environment variables  
+Description Task 12: Create a configuration file to set Java environment variables.
+
+Task 13: Source environment variables  
+Description Task 13: Source the newly created environment variables file to apply changes.
+
+Task 14: Correct java version selected for Java < 11  
+Description Task 14: Set the alternatives for java command to point to the JRE bin directory for Java versions less than 11.
+
+Task 15: Correct java version selected for Java >= 11  
+Description Task 15: Set the alternatives for java command to point to the bin directory for Java versions 11 and above.

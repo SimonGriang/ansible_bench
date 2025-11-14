@@ -1,0 +1,23 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import and run tasks from assert.yml playbook.
+Description Task 1: Import and run tasks from the assert.yml playbook on the localhost, running it only once, and delegating the task to the localhost.
+
+Task 2: Install required packages for the service.
+Description Task 2: Install the packages specified in the service_required_packages variable, ensuring they are present on the system.
+
+Task 3: Configure systemd service for each item in the service_list.
+Description Task 3: For each service in the service_list, configure the systemd service by copying the template "systemd.j2" to the destination "/etc/systemd/system/{{ item.name }}.service" with specific permissions, if the system uses systemd. After configuring, reload the daemon and notify the "Systemctl daemon-reload" handler.
+
+Task 4: Configure sysvinit service for each item in the service_list.
+Description Task 4: For each service in the service_list, configure the sysvinit service by copying the template "sysvinit.j2" to the destination "/etc/init.d/{{ item.name }}" with specific permissions, if the system uses sysvinit, upstart, or openrc. The "sysvinit" family of init systems handles service configuration in a different manner compared to systemd.
+
+Task 5: Manage each service in the service_list.
+Description Task 5: Manage the services listed in the service_list by enabling or disabling them according to their state. The state and enabled status are determined from the service_list's items. If a service's state is defined, or if its enabled status is defined, it will be managed accordingly.
+
+Task 6: Flush handlers.
+Description Task 6: Manually flush all handlers that have been notified during the execution of the playbook.

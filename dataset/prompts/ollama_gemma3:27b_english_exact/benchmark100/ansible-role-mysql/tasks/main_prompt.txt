@@ -1,0 +1,36 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import the tasks defined in the assert.yml file, running it only once on localhost.
+
+Task 2: Install mysql
+Description Task 2: Install the mysql packages defined in the `mysql_packages` variable. Notify the `Set root password` and `Systemctl daemon-reexec` handlers upon completion.
+
+Task 3: Configure mysql server
+Description Task 3: Configure the mysql server by setting options in the `mysql_name`-server.cnf file, using the options defined in the `mysql_configuration_options` variable. Notify the `Restart mysql server` handler.
+
+Task 4: Configure mysql client
+Description Task 4: Configure the mysql client by setting the socket option in the `mysql_name`-client.cnf file, using the `mysql_socket` variable.
+
+Task 5: Initialize mysql
+Description Task 5: Initialize mysql using the command specified in `mysql_initialize_command`, only if the distribution is Alpine or Archlinux.
+
+Task 6: Start and enable mysql
+Description Task 6: Start and enable the mysql service defined by the `mysql_service` variable.
+
+Task 7: Flush handlers
+Description Task 7: Flush any pending handlers.
+
+Task 8: Place my.cnf
+Description Task 8: Copy the `my.cnf.j2` template to `/root/.my.cnf` with mode 0640.
+
+Task 9: Create databases
+Description Task 9: Create mysql databases defined in the `mysql_databases` variable, using the `mysql_root_password` and `mysql_socket` for authentication.
+
+Task 10: Create users
+Description Task 10: Create mysql users defined in the `mysql_users` variable, using the `mysql_root_password` and `mysql_socket` for authentication.
+
+Task 11: Flush handlers again
+Description Task 11: Flush any pending handlers.

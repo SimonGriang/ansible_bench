@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Assert usage of systemd as an init system  
+Description Task 1: Use the `assert` module to verify that `ansible_service_mgr` equals `'systemd'`; fail with the message `"This module only works with systemd"` if the condition is not met.  
+
+Task 2: Get latest release  
+Description Task 2: Use the `uri` module to query the GitHub API endpoint `https://api.github.com/repos/grafana/loki/releases/latest` for the latest Loki release. Include optional authentication with environment variables `GH_USER` and `GH_TOKEN`. Set `return_content` to `True`, `status_code` to `200`, `body_format` to `json`, and `validate_certs` to `False`. Do not log credentials unless `ANSIBLE_DEBUG` is set. Register the result as `_latest_release` and retry up to 5 times until the status is 200.  
+
+Task 3: Set promtail version to {{ _latest_release.json.tag_name[1:] }}  
+Description Task 3: Use `set_fact` to assign the variable `promtail_version` to the latest release tag name without its leading 'v' (i.e., `_latest_release.json.tag_name[1:]`). This task should run only when `promtail_version` is set to `"latest"` and should be delegated to `localhost` with `run_once: True`.  
+
+Task 4: Test if zip local archive exists  
+Description Task 4: Use the `stat` module to check for the presence of the local archive file at the path `{{ promtail_binary_local_dir }}/{{ promtail_version }}_promtail-linux-{{ go_arch }}.zip`. Register the result as `promtail_binary_local_archive`. This task should run only when `promtail_binary_local_dir` is non‑empty, delegated to `localhost`, and set to `run_once: True`.  
+
+Task 5: Assert local binary exists  
+Description Task 5: Use the `assert` module to verify that the local archive exists (`promtail_binary_local_archive.stat.exists`). If it does not, fail with the message `"When using 'promtail_binary_local_dir' please ensure that the binary exists"`. This assertion should run only when `promtail_binary_local_dir` is non‑empty.  
+
+Task 6: Get checksum list  
+Description Task 6: Use `set_fact` to assign `__promtail_checksums` to the list of lines returned from the URL `https://github.com/grafana/loki/releases/download/v{{ promtail_version }}/SHA256SUMS` via the `lookup('url', …, wantlist=True)` function, then convert to a list. Run this task once. It should execute only when `promtail_binary_local_dir` is empty.  
+
+Task 7: Get checksum for {{ go_arch }} architecture  
+Description Task 7: Iterate over `__promtail_checksums` with `with_items` and, for each line that contains `"promtail-linux-{{ go_arch }}.zip"`, use `set_fact` to set `__promtail_checksum` to the first token of that line (`item.split(' ')[0]`). This task should run only when `promtail_binary_local_dir` is empty.

@@ -1,0 +1,21 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Cordon and Drain the node
+Description Task 1: This task is responsible for marking the node as unschedulable and evacuating all its running pods. This is done using kubectl commands. It's performed when the variable 'rke2_drain_node_during_upgrade' is true. The kubectl commands are executed on the 'active_server' if it's defined, otherwise they are executed on the first server in the 'rke2_servers_group_name' group.
+
+Task 2: Restart RKE2 service
+Description Task 2: This task restarts the RKE2 service on the target node. This is necessary after performing an upgrade or a similar operation that requires a service restart. The service name is defined by the variable 'rke2_service_name'.
+
+Task 3: Wait for all nodes to be ready again
+Description Task 3: This task waits until all nodes in the cluster are marked as 'Ready' in the Kubernetes API. It uses a kubectl command to count the number of ready nodes and retries until it matches the total number of nodes in the cluster. The kubectl command is executed on the 'active_server' if it's defined, otherwise it's executed on the first server in the 'rke2_servers_group_name' group.
+
+Task 4: Uncordon the node
+Description Task 4: This task marks the node as schedulable again after it has been drained and upgraded. This is done using a kubectl command. It's performed when the variable 'rke2_drain_node_during_upgrade' is true. The kubectl command is executed on the 'active_server' if it's defined, otherwise it's executed on the first server in the 'rke2_servers_group_name' group.
+
+Task 5: Wait for all pods to be ready again
+Description Task 5: This task waits until all pods in the cluster are marked as 'Running' or 'Succeeded' in the Kubernetes API. It uses a kubectl command to count the number of pods that are not in these states and retries until this count is zero. It's performed when the variable 'rke2_wait_for_all_pods_to_be_ready' is true. The kubectl command is executed on the 'active_server' if it's defined, otherwise it's executed on the first server in the 'rke2_servers_group_name' group.
+
+Task 6: Wait for all pods to pass readiness checks
+Description Task 6: This task waits until all pods in the cluster are ready to serve traffic. It uses a kubectl command with the 'wait' subcommand and the arguments defined by the variable 'rke2_wait_for_all_pods_to_be_healthy_args'. It's performed when the variable 'rke2_wait_for_all_pods_to_be_healthy' is true. The kubectl command is executed on the 'active_server' if it's defined, otherwise it's executed on the first server in the 'rke2_servers_group_name' group.

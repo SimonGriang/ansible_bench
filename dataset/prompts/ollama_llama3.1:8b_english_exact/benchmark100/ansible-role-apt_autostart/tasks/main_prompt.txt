@@ -1,0 +1,13 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Import a separate task file called assert.yml into the playbook.
+Description Task 1: This task is used to import another task file called assert.yml, which will be executed once.
+
+Task 2: Manage automatic service management for the system.
+Description Task 2: This task is used to manage the automatic service management of the system based on the type of package manager used (in this case, apt).
+
+  Task 2.1: Disable automatic service management on installation when the apt_autostart_state variable is set to "disabled".
+  Description Task 2.1: This task is used to disable automatic service management on installation by copying the exit 101 command to the /usr/sbin/policy-rc.d file.
+
+  Task 2.2: Enable automatic service management on installation when the apt_autostart_state variable is set to "enabled".
+  Description Task 2.2: This task is used to enable automatic service management on installation by deleting the /usr/sbin/policy-rc.d file.

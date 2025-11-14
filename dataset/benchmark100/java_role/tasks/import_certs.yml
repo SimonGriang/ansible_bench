@@ -1,0 +1,40 @@
+---
+- name: Java | Check if certificates exist
+  ansible.builtin.stat:
+    path: "{{ item.java_cert_path }}"
+  loop: "{{ java_certs }}"
+  register: check_java_certs
+
+- name: Java | Fail if some certificate doesn't exist
+  ansible.builtin.fail:
+    msg: "Certificate {{ item.item.java_cert_path }} doesn't exist"
+  loop: "{{ check_java_certs.results }}"
+  when: not item.stat.exists
+
+- name: Java | Set keystore variables for Java < 11
+  ansible.builtin.set_fact:
+    java_keystore_dir: >-
+      {{ java_keystore_dir if (java_keystore_dir is defined and
+      java_keystore_dir is not sameas None and java_keystore_dir)
+      else java_keystore_dir_old }}
+  when:
+    - java_open_jdk_version_major | int < 11
+
+- name: Java | Set keystore variables for Java >= 11
+  ansible.builtin.set_fact:
+    java_keystore_dir: >-
+      {{ java_keystore_dir if (java_keystore_dir is defined and
+      java_keystore_dir is not sameas None and java_keystore_dir)
+      else java_keystore_dir_new }}
+  when:
+    - java_open_jdk_version_major | int >= 11
+
+- name: Java | Import SSL certificates into keystore
+  community.general.java_cert:
+    cert_path: "{{ item.java_cert_path }}"
+    keystore_path: "{{ java_open_jdk_home }}/{{ java_keystore_dir }}/cacerts"
+    keystore_pass: "{{ java_cert_keystore_pass }}"
+    state: present
+    cert_alias: "{{ item.java_cert_alias }}"
+    keystore_create: true
+  loop: "{{ java_certs }}"

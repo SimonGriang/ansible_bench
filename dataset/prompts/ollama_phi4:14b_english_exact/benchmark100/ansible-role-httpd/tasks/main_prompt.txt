@@ -1,0 +1,42 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import common assertions for the httpd role.  
+Description Task 1: Import tasks from assert.yml to ensure common assertions are met for the httpd role. This task runs once and is delegated to localhost.
+
+Task 2: Install the apache httpd package.  
+Description Task 2: Use the package module to install the apache httpd package based on the list of packages specified in the variable httpd_packages.
+
+Task 3: Configure SELinux settings for httpd if SELinux is enabled.  
+Description Task 3: Modify SELinux boolean settings and allow connections to custom ports if SELinux is enabled. Use the seboolean module to set specified booleans and the seport module to configure ports, based on the variables httpd_sebooleans, httpd_port, and httpd_ssl_port.
+
+Task 4: Configure the httpd main configuration file using a template.  
+Description Task 4: Apply a template to configure the httpd main configuration file. Notify handlers to test the configuration validity and restart httpd. Use variables httpd_config_src and httpd_config_dest for source and destination paths.
+
+Task 5: Activate httpd modules using a command on Debian systems.  
+Description Task 5: Activate specified httpd modules using a command on Debian systems. Use a loop to iterate over modules specified in httpd_modules_to_activate_with_command and notify handlers to test configuration validity.
+
+Task 6: Import SSL configuration tasks if HTTPS is enabled.  
+Description Task 6: Import tasks from ssl.yml to configure SSL settings if HTTPS is enabled, controlled by the variable https_ssl_enable.
+
+Task 7: Import location configuration tasks if locations are defined.  
+Description Task 7: Import tasks from locations.yml if the variable httpd_locations is defined, to configure location-specific settings.
+
+Task 8: Import virtual host configuration tasks if virtual hosts are defined.  
+Description Task 8: Import tasks from vhosts.yml if the variable httpd_vhosts is defined, to configure virtual host settings.
+
+Task 9: Configure ports using a template on Debian and Suse systems.  
+Description Task 9: Apply a template to configure ports on Debian and Suse systems. Use the variable httpd_ports_conf for the template source and notify handlers to test configuration validity and restart httpd.
+
+Task 10: Import directory configuration tasks if directories are defined.  
+Description Task 10: Import tasks from directories.yml if the variable httpd_directories is defined, to configure directory-specific settings.
+
+Task 11: Flush all pending handlers.  
+Description Task 11: Use the meta module to flush all pending handlers, ensuring that any previous notifications are executed.
+
+Task 12: Remove the default index.html file if specified.  
+Description Task 12: Remove the default index.html file located in the httpd data directory if the variable httpd_remove_example is set.
+
+Task 13: Start and enable the httpd service.  
+Description Task 13: Use the service module to start and enable the httpd service, ensuring it runs at boot. Use the variable httpd_service to specify the service name.

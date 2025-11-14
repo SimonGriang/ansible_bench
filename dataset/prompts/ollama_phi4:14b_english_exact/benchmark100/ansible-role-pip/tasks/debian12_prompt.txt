@@ -1,0 +1,9 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Obtain the installed version of Python 3 on Debian 12.  
+Description Task 1: This task runs a command to check the version of Python 3 installed on the system, registering the output in a variable for further use. It is specifically designed for Debian 12 and is tagged to be excluded from testing with Molecule.
+
+Task 2: Remove the EXTERNALLY-MANAGED file for Python 3.11 installations on Debian 12.  
+Description Task 2: This task deletes the EXTERNALLY-MANAGED file located at /usr/lib/python3.11/ if Python 3.11 is detected as the installed version. It uses a conditional statement to ensure the file is only removed when the specified version of Python 3 is installed. This task is also tagged to be excluded from testing with Molecule.

@@ -1,0 +1,21 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Remove obsolete Docker packages.  
+Description Task 1: Ensure that any old versions of Docker packages specified in the `docker_obsolete_packages` variable are not installed on the system.
+
+Task 2: Add Docker GPG key.  
+Description Task 2: Import the Docker GPG key specified in the `docker_yum_gpg_key` variable to verify package integrity, but only if `docker_add_repo` is true.
+
+Task 3: Add Docker repository.  
+Description Task 3: Add the Docker repository using the URL specified in `docker_yum_repo_url` and save it to a file named `docker-{{ docker_edition }}.repo` in the `/etc/yum.repos.d` directory, but only if `docker_add_repo` is true.
+
+Task 4: Configure Docker Nightly repo.  
+Description Task 4: Enable or disable the Docker Nightly repository section in the `docker-{{ docker_edition }}.repo` file based on the `docker_yum_repo_enable_nightly` variable value, without extra spaces, but only if `docker_add_repo` is true.
+
+Task 5: Configure Docker Test repo.  
+Description Task 5: Enable or disable the Docker Test repository section in the `docker-{{ docker_edition }}.repo` file based on the `docker_yum_repo_enable_test` variable value, without extra spaces, but only if `docker_add_repo` is true.
+
+Task 6: Configure containerd on RHEL 8.  
+Description Task 6: On RHEL 8, ensure that the `runc` package is not installed, `container-selinux` is installed, and `containerd.io` is installed.

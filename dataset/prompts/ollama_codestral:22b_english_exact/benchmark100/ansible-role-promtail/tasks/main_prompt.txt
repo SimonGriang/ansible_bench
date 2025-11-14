@@ -1,0 +1,12 @@
+ Below you will receive task descriptions from which you should generate an Ansible Playbook.
+   The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+   Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+   Task 1: Import preflight tasks
+   Description Task 1: This task will include and execute tasks defined in the preflight.yml file. These tasks are expected to perform necessary preparations or checks before the main installation.
+
+   Task 2: Import install tasks
+   Description Task 2: This task will include and execute tasks defined in the install.yml file. These tasks are expected to install the 'promtail' service. The 'become: True' setting indicates that these tasks should be executed with elevated privileges.
+
+   Task 3: Start and enable promtail service
+   Description Task 3: This task will ensure that the 'promtail' service is started and enabled. The 'systemd' module is used to control the service. The 'daemon_reload: True' setting indicates that the systemd daemon should be reloaded before starting the service. The 'name: "{{ promtail_systemd_service }}"' setting indicates that the name of the service is dynamically determined using the 'promtail_systemd_service' variable. The 'state: started' setting indicates that the service should be started. The 'enabled: True' setting indicates that the service should be enabled to start at boot time.

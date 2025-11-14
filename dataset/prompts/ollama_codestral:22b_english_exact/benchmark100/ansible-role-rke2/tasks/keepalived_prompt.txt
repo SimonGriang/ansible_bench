@@ -1,0 +1,29 @@
+ Task 1: Update package cache
+   Description Task 1: Update the system package cache before installing new packages. This is done separately for apt and dnf package managers, based on the system's package manager.
+
+   Task 2: Install keepalived package
+   Description Task 2: Install the keepalived package, which is necessary for the load balancing and high availability configuration.
+
+   Task 3: Create keepalived directory
+   Description Task 3: Create a directory for keepalived configuration files. The directory should be owned by root, have group ownership of root, and have permissions set to 0755.
+
+   Task 4: Create Kubernetes API health check script for Debian OS family
+   Description Task 4: Create a script for checking the health of the Kubernetes API server in the Debian OS family. The script should be templated from a source file, placed in the /etc/keepalived directory, owned by root, have group ownership of root, and have permissions set to 0755. Trigger the handler to restart keepalived upon completion.
+
+   Task 5: Create Kubernetes API health check script for RedHat OS family
+   Description Task 5: Similar to Task 4, but for the RedHat OS family. The script should be placed in the /usr/libexec/keepalived directory instead.
+
+   Task 6: Create RKE2 Server health check script for Debian OS family
+   Description Task 6: Create a script for checking the health of the RKE2 server in the Debian OS family. The script should be templated from a source file, placed in the /etc/keepalived directory, owned by root, have group ownership of root, and have permissions set to 0755. Trigger the handler to restart keepalived upon completion.
+
+   Task 7: Create RKE2 Server health check script for RedHat OS family
+   Description Task 7: Similar to Task 6, but for the RedHat OS family. The script should be placed in the /usr/libexec/keepalived directory instead.
+
+   Task 8: Create keepalived configuration file
+   Description Task 8: Create a configuration file for keepalived. The file should be templated from a source file, placed in the /etc/keepalived directory, owned by root, have group ownership of root, and have permissions set to 0644. Trigger the handler to restart keepalived upon completion.
+
+   Task 9: Enable and unmask keepalived service
+   Description Task 9: Enable the keepalived service to start on boot and ensure it is not masked. Trigger the handler to restart keepalived upon completion.
+
+   Task 10: Flush handlers
+   Description Task 10: Ensure all notified handlers are executed immediately.

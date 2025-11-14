@@ -1,0 +1,13 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Create the document root directory for each vhost
+Description Task 1: Create the directory for the document root of each vhost defined in the httpd_vhosts list, with the specified mode.
+
+Task 2: Configure the Apache vhost configuration files
+Description Task 2: Copy the vhost configuration template to the Apache configuration directory for each vhost, using the vhost_conf_template as the source and the vhost name as the destination file name.
+
+Task 3: Enable Apache vhosts on Debian systems
+Description Task 3: Enable each vhost on Debian systems by running the a2ensite command with the vhost name as an argument, creating the corresponding symbolic link in the Apache vhosts-enabled directory.

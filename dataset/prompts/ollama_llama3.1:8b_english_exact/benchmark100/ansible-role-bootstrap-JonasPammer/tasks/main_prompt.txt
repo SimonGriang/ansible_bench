@@ -1,0 +1,17 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Check all variables have been set correctly
+Description Task 1: Ensure all variables required for the bootstrap process have been defined and are in a consistent state. This task will execute a separate assertion task (assert.yml) on the localhost once.
+
+Task 2: Wait for host (when configured)
+Description Task 2: If the bootstrap process is configured to wait for the host, this task will use the wait_for module to wait for the host on the specified port. The port, host, and timeout are determined by variables such as ansible_port, ansible_ssh_host, inventory_hostname, and bootstrap_timeout. This task will only execute if the ansible_connection is not container, docker, or community.docker.docker.
+
+Task 3: Prepare the system
+Description Task 3: This task will prepare the system for the bootstrap process. It will execute a series of tasks in a block to ensure the system is ready. This includes checking the connection, registering the result, and including tasks to gather bootstrap facts. If the connection test fails, it will log a debug message and mark the task as changed. Regardless of the outcome, it will include tasks to gather bootstrap facts (gather_facts.yml) and install bootstrap packages (if applicable).
+
+Task 4: Ensure system is prepared by issuing ansible modules
+Description Task 4: Once the system has been prepared, this task will use ansible modules to ensure it is fully prepared. This will include gathering ansible facts and installing any required packages. The become and become_user parameters are used to determine if and how to escalate privileges for these tasks. The package module is used to install the packages, and the loop control structure is used to apply the installation to multiple packages specified in the bootstrap__facts_packages variable.

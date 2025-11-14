@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: create | Create ssl key
+Description Task 1: Create an OpenSSL private key.
+
+Task 2: create | Create ssl csr
+Description Task 2: Create an OpenSSL CSR (Certificate Signing Request) from a private key.
+
+Task 3: create | Create ssl certificates
+Description Task 3: Create a self-signed OpenSSL certificate from a CSR.
+
+Task 4: create | Create PKCS#12 file
+Description Task 4: Export a private key and certificate to a PKCS#12 file format.
+
+Task 5: create | Read private key
+Description Task 5: Read the private key file.
+
+Task 6: create | Read certificate
+Description Task 6: Read the certificate file.
+
+Task 7: create | Create combined private_key and certificate file
+Description Task 7: Create a combined file containing the private key and certificate.

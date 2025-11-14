@@ -1,0 +1,51 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Include tasks for installing Keepalived when HA mode is enabled  
+Description Task 1: Install Keepalived service when High Availability (HA) mode is enabled and specific conditions are met.  
+
+Task 2: Download and install RKE2  
+Description Task 2: Download and install RKE2 with the specified version.  
+
+Task 3: Include tasks for CIS hardening  
+Description Task 3: Perform CIS hardening when a CIS profile is defined.  
+
+Task 4: Include tasks to find active server  
+Description Task 4: Find and identify the active server in the cluster.  
+
+Task 5: Enable IPVS kernel module  
+Description Task 5: Enable the IPVS kernel module for load balancing when specific HA mode conditions are met.  
+
+Task 6: Include tasks to copy kube-vip manifests  
+Description Task 6: Copy kube-vip manifests to the master node when specific HA mode conditions are met.  
+
+Task 7: Include tasks to copy ingress-nginx manifests  
+Description Task 7: Copy ingress-nginx manifests to the master node when ingress-nginx values are defined.  
+
+Task 8: Include tasks to prepare the first server node  
+Description Task 8: Prepare the first server node in the cluster under specific conditions.  
+
+Task 9: Include tasks for etcd restore  
+Description Task 9: Perform etcd restore tasks when specific conditions are met.  
+
+Task 10: Include tasks to download kubeconfig  
+Description Task 10: Download the kubeconfig file to the Ansible localhost when enabled.  
+
+Task 11: Include tasks to join remaining nodes  
+Description Task 11: Prepare and join remaining cluster nodes when the active server is defined.  
+
+Task 12: Include tasks for rolling restart of servers  
+Description Task 12: Perform rolling restart of server nodes when version changes.  
+
+Task 13: Include tasks for rolling restart of agents  
+Description Task 13: Perform rolling restart of agent nodes when version changes.  
+
+Task 14: Flush handlers  
+Description Task 14: Flush all registered handlers.  
+
+Task 15: Include tasks for rolling restart when config changes  
+Description Task 15: Perform rolling restart when configuration files change.  
+
+Task 16: Include tasks for final steps  
+Description Task 16: Perform final steps including a summary.

@@ -1,0 +1,27 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml
+Description Task 1: Import the assert.yml file for assertions, to be executed once and delegated to localhost.
+
+Task 2: Wait for port to be available
+Description Task 2: Wait for a specified port to be available, using a timeout defined by bootstrap_timeout variable, under specific connection conditions.
+
+Task 3: Prepare system
+Description Task 3: Prepare the system by testing the connection and sudo, running as root without the ability to switch users.
+
+Task 4: Gather bootstrap facts
+Description Task 4: If preparation encounters issues, gather additional facts about the bootstrap environment.
+
+Task 5: Install bootstrap packages (raw)
+Description Task 5: Install necessary bootstrap packages using raw commands, adjusting for different operating system families.
+
+Task 6: Ensure libdnf5 is present on Fedora/RedHat
+Description Task 6: Ensure the libdnf5 package is installed on systems running Fedora or RedHat.
+
+Task 7: Gather ansible facts
+Description Task 7: Gather system facts using the setup module.
+
+Task 8: Install bootstrap packages (package)
+Description Task 8: Install bootstrap packages using the package module, updating the cache if necessary.

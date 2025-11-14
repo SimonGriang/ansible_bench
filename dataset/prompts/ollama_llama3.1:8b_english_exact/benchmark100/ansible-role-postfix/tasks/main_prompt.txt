@@ -1,0 +1,62 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml file for task execution and skip the rest of the tasks on the first run.
+Description Task 1: The playbook starts by importing the assert.yml file to ensure that the tasks in the playbook are properly executed. This task should run once and skip the rest of the tasks if it fails.
+
+Task 2: Pre-configure Debian systems for postfix installation.
+Description Task 2: This task configures Debian systems for postfix installation by setting the main mailer type to "No configuration" using the debconf module.
+
+Task 3: Install postfix package.
+Description Task 3: This task installs the postfix package using the package module.
+
+Task 4: Install postfix-mysql package if specific conditions are met.
+Description Task 4: This task installs the postfix-mysql package if the postfix_virtual_mailbox_maps, postfix_virtual_mailbox_domains, or postfix_virtual_alias_maps variables contain the string "mysql".
+
+Task 5: Configure postfix transport maps.
+Description Task 5: This task configures postfix transport maps by copying a template to the /etc/postfix/transport file and notifying handlers to validate the configuration and rebuild the transport maps database.
+
+Task 6: Configure postfix header checks.
+Description Task 6: This task configures postfix header checks by copying a template to the /etc/postfix/header_checks file and notifying handlers to validate the configuration and reload postfix.
+
+Task 7: Set values for the main.cf file.
+Description Task 7: This task sets values for the main.cf file by creating a list of recipient access and sender access rules based on the postfix_recipient_access, postfix_sender_access, postfix_mynetworks, postfix_mydestination, postfix_relay_domains, postfix_smtpd_recipient_restrictions, postfix_smtpd_sender_restrictions, postfix_virtual_mailbox_domains, and postfix_virtual_alias_domains variables.
+
+Task 8: Configure postfix main.cf.
+Description Task 8: This task configures postfix main.cf by copying a template to the /etc/postfix/main.cf file and notifying handlers to validate the configuration and restart postfix.
+
+Task 9: Configure postfix master.cf.
+Description Task 9: This task configures postfix master.cf by copying a template to the /etc/postfix/master.cf file and notifying handlers to validate the configuration and restart postfix.
+
+Task 10: Create a directory for TLS certificates and keys.
+Description Task 10: This task creates directories for the TLS certificates and keys using the file module.
+
+Task 11: Deploy Postfix TLS server certificate.
+Description Task 11: This task deploys the Postfix TLS server certificate by copying it to the destination file and notifying handlers to reload postfix.
+
+Task 12: Deploy Postfix TLS server key.
+Description Task 12: This task deploys the Postfix TLS server key by copying it to the destination file and notifying handlers to reload postfix.
+
+Task 13: Flush handlers.
+Description Task 13: This task flushes handlers to ensure that all notifications are executed.
+
+Task 14: Configure aliases.
+Description Task 14: This task configures aliases by copying the postfix_aliases variable to the postfix alias file and notifying handlers to rebuild the alias database and reload postfix.
+
+Task 15: Configure sender_access.
+Description Task 15: This task configures sender_access by copying the postfix_sender_access variable to the postfix sender access file and notifying handlers to rebuild the sender_access database and reload postfix.
+
+Task 16: Configure recipient_access.
+Description Task 16: This task configures recipient_access by copying the postfix_recipient_access variable to the postfix recipient access file and notifying handlers to validate the configuration, rebuild the recipient_access database, and reload postfix.
+
+Task 17: Place sasl_password_map.
+Description Task 17: This task places the sasl_password_map by copying the postfix_smtp_sasl_password_map_content variable to the postfix_smtp_sasl_password_map file and notifying handlers to rebuild the sasl_password_map database.
+
+Task 18: Flush handlers again.
+Description Task 18: This task flushes handlers again to ensure that all notifications are executed.
+
+Task 19: Start and enable postfix service.
+Description Task 19: This task starts and enables the postfix service using the service module.

@@ -1,0 +1,24 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import the `assert.yml` tasks file to perform initial assertions. Run this task only once and delegate it to localhost.
+
+Task 2: Install cron
+Description Task 2: Install the cron package using the package manager. The package name is defined by the `cron_packages` variable.
+
+Task 3: Configure shell
+Description Task 3: Configure the `SHELL` variable in the cron configuration file (`cron_configuration`).  Use `lineinfile` to ensure the line exists and matches the value of `cron_shell`. Create the file if it doesn't exist and set the permissions to 0600. Notify the `Restart cron` handler.
+
+Task 4: Configure path
+Description Task 4: Configure the `PATH` variable in the cron configuration file (`cron_configuration`). Use `lineinfile` to ensure the line exists and matches the value of `cron_path`. Create the file if it doesn't exist and set the permissions to 0600. Notify the `Restart cron` handler.
+
+Task 5: Configure mailto
+Description Task 5: Configure the `MAILTO` variable in the cron configuration file (`cron_configuration`). Use `lineinfile` to ensure the line exists and matches the value of `cron_mailto`. Create the file if it doesn't exist and set the permissions to 0600. Notify the `Restart cron` handler.
+
+Task 6: Start and enable cron
+Description Task 6: Start and enable the cron service. The service name is defined by the `cron_service` variable. This task should only run if the `cron_service` variable is defined and has a length greater than zero.
+
+Task 7: Schedule requested cron jobs
+Description Task 7: Schedule cron jobs based on the items in the `cron_jobs` list.  For each item, configure the minute, hour, day, month, weekday, special_time, job, state, and user. Use the `cron` module. The loop label should be the job's name. This task should only run if the `cron_jobs` variable is defined.

@@ -1,0 +1,33 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Create the RKE2 config dir
+Description Task 1: Create the RKE2 config dir for server or agent nodes
+
+Task 2: Set server taints
+Description Task 2: Set server taints if the node is a server
+
+Task 3: Set agent taints
+Description Task 3: Set agent taints if the node is an agent
+
+Task 4: Copy RKE2 config
+Description Task 4: Copy the RKE2 config file
+
+Task 5: Copy kubelet config
+Description Task 5: Copy the kubelet config file if it is present
+
+Task 6: Copy Containerd Registry Configuration file
+Description Task 6: Copy the Containerd Registry Configuration file if the custom registry is used
+
+Task 7: Start RKE2 service on the rest of the nodes
+Description Task 7: Start the RKE2 service on the remaining nodes
+
+Task 8: Mask other RKE2 service on the rest of the nodes
+Description Task 8: Mask other RKE2 services on the remaining nodes
+
+Task 9: Wait for remaining nodes to be ready - no CNI
+Description Task 9: Wait for the remaining nodes to be ready if no CNI is used
+
+Task 10: Wait for remaining nodes to be ready - with CNI
+Description Task 10: Wait for the remaining nodes to be ready if CNI is used

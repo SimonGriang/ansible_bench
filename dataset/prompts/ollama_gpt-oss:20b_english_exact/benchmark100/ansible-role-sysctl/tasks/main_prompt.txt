@@ -1,0 +1,12 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the `assert.yml` tasks file from the role using `ansible.builtin.import_tasks`, run this task only once (`run_once: true`), and delegate it to the local machine (`delegate_to: localhost`).  
+
+Task 2: Install requirements  
+Description Task 2: Install all packages listed in the variable `sysctl_requirements` using the `ansible.builtin.package` module, ensuring each package is in the `present` state.  
+
+Task 3: Set sysctl setting  
+Description Task 3: Iterate over the list `sysctl_items` and set each sysctl parameter using the `ansible.posix.sysctl` module. For each item, set the `name` to `{{ item.name }}`, the `value` to `{{ item.value }}`, use the value of `sysctl_set` for `sysctl_set`, keep the parameter `present` (`state: present`), and reload sysctl if `sysctl_reload` is true. This task should only run when `sysctl_items` is defined, each `item.name` and `item.value` are defined, and the connection is not a container or Docker (`ansible_connection not in [ "container", "docker", "community.docker.docker" ]`). Use `loop_control` to label each iteration with the parameter name (`label: "{{ item.name }}"`).

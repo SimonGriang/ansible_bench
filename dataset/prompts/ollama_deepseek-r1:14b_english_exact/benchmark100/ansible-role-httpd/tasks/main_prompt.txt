@@ -1,0 +1,42 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml
+Description Task 1: Import assertion tasks from assert.yml file for validation checks. Run once on localhost.
+
+Task 2: Install apache httpd
+Description Task 2: Install Apache HTTPD packages specified in httpd_packages variable.
+
+Task 3: Configure selinux
+Description Task 3: Configure SELinux settings if it is enabled. Modify SELinux boolean settings in httpd_sebooleans and allow connections on specified ports (httpd_port and httpd_ssl_port).
+
+Task 4: Configure httpd
+Description Task 4: Configure Apache HTTPD by templating configuration file from httpd_config_src to httpd_config_dest with mode 0644. Notify handlers for configuration test and service restart.
+
+Task 5: Activate httpd module | Debian
+Description Task 5: Activate Apache HTTPD modules using a2enmod command for Debian-based systems. Loop through httpd_modules_to_activate_with_command.
+
+Task 6: Import ssl.yml
+Description Task 6: Import SSL configuration tasks from ssl.yml when https_ssl_enable is true.
+
+Task 7: Import locations.yml
+Description Task 7: Import locations configuration tasks from locations.yml when httpd_locations is defined.
+
+Task 8: Import vhosts.yml
+Description Task 8: Import virtual hosts configuration tasks from vhosts.yml when httpd_vhosts is defined.
+
+Task 9: Configure ports
+Description Task 9: Configure Apache HTTPD ports by templating ports configuration file. Notify handlers for configuration test and service restart. Only for Debian and Suse systems.
+
+Task 10: Import directories.yml
+Description Task 10: Import directories configuration tasks from directories.yml when httpd_directories is defined.
+
+Task 11: Flush handlers
+Description Task 11: Flush all registered handlers to execute them immediately.
+
+Task 12: Removing default html
+Description Task 12: Remove default HTML file from httpd_data_directory if httpd_remove_example is true.
+
+Task 13: Start and enable httpd
+Description Task 13: Start and enable Apache HTTPD service named httpd_service.

@@ -1,0 +1,41 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).
+
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.
+
+Task 1: Import assert.yml and run it once on the localhost.
+Description Task 1: This task imports the assert.yml file and runs it once on the localhost. This is likely used for some kind of setup or initialization.
+
+Task 2: Install the apache httpd package using the httpd_packages variable.
+Description Task 2: This task installs the apache httpd package using the httpd_packages variable. This is likely the package name for the httpd service on the target system.
+
+Task 3: If selinux is enabled, configure it by modifying selinux settings and allowing connections to custom ports.
+Description Task 3: This task checks if selinux is enabled. If it is, it modifies the selinux settings using the httpd_sebooleans variable and allows connections to custom ports using the httpd_port and httpd_ssl_port variables.
+
+Task 4: Configure the httpd service by creating a configuration file using a template.
+Description Task 4: This task uses a template to create a configuration file for the httpd service. The source file is specified by the httpd_config_src variable and the destination file is specified by the httpd_config_dest variable.
+
+Task 5: Activate the httpd module on Debian systems using the a2enmod command.
+Description Task 5: This task activates the httpd module on Debian systems by running the a2enmod command with the module name specified by the httpd_modules_to_activate_with_command variable.
+
+Task 6: Import ssl.yml if the https_ssl_enable variable is true.
+Description Task 6: This task imports the ssl.yml file if the https_ssl_enable variable is true. This is likely used to configure SSL/TLS settings for the httpd service.
+
+Task 7: Import locations.yml if the httpd_locations variable is defined.
+Description Task 7: This task imports the locations.yml file if the httpd_locations variable is defined. This is likely used to configure virtual host settings for the httpd service.
+
+Task 8: Import vhosts.yml if the httpd_vhosts variable is defined.
+Description Task 8: This task imports the vhosts.yml file if the httpd_vhosts variable is defined. This is likely used to configure virtual host settings for the httpd service.
+
+Task 9: Configure ports by creating a configuration file using a template on Debian and Suse systems.
+Description Task 9: This task uses a template to create a configuration file for the httpd service on Debian and Suse systems. The source file is specified by the httpd_ports_conf.j2 variable and the destination file is specified by the httpd_server_root and httpd_ports_conf variables.
+
+Task 10: Import directories.yml if the httpd_directories variable is defined.
+Description Task 10: This task imports the directories.yml file if the httpd_directories variable is defined. This is likely used to configure directory settings for the httpd service.
+
+Task 11: Remove the default index.html file in the httpd data directory if the httpd_remove_example variable is true.
+Description Task 11: This task removes the default index.html file in the httpd data directory if the httpd_remove_example variable is true.
+
+Task 12: Start and enable the httpd service.
+Description Task 12: This task starts and enables the httpd service using the service module. The service name is specified by the httpd_service variable.

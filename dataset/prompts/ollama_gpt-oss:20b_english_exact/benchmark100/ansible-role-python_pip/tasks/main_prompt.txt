@@ -1,0 +1,21 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Import assert.yml  
+Description Task 1: Import the assertion tasks from the file `assert.yml` so that they are executed once on the localhost, ensuring all prerequisite conditions are validated before proceeding with the rest of the playbook.  
+
+Task 2: Install python pip  
+Description Task 2: Install the Python pip packages specified by the variable `python_pip_packages` using the `ansible.builtin.package` module, ensuring that all required pip packages are present on the target hosts.  
+
+Task 3: Configure pip proxy  
+Description Task 3: Configure the global pip proxy by editing the `/etc/pip.conf` file. Set the `index-url` option in the `global` section to the value of `python_pip_proxy` with file mode `0644`. This task runs only when the variable `python_pip_proxy` is defined.  
+
+Task 4: Trust hosts  
+Description Task 4: Add trusted hosts to the pip configuration by setting the `trusted-host` option in the `global` section of `/etc/pip.conf` to the value of `python_pip_trusted_host` with mode `0644`. This task runs only when the variable `python_pip_trusted_host` is defined.  
+
+Task 5: Update pip.  
+Description Task 5: Update the pip package specified by `python_pip_pip_package` to the desired state `python_pip_pip_state` using the `ansible.builtin.pip` module. The update is performed only if `python_pip_update` is true, the distribution release is not `bookworm` or `noble`, and the OS family is not `Alpine`. The executable path is taken from `python_pip_executable` if defined.  
+
+Task 6: Install requested modules  
+Description Task 6: Install the Python modules listed in the variable `python_pip_modules` using a loop. For each module, the `name`, optional `state` (defaulting to `present`), and optional `version` are applied. The pip executable path is taken from `python_pip_executable` if defined. This task runs only if the distribution release is not `bookworm` or `noble` and the OS family is not `Alpine`.

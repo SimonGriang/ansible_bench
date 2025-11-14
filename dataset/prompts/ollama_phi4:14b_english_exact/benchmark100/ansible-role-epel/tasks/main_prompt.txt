@@ -1,0 +1,15 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Install the EPEL repository package when the target system is Amazon Linux 2 or Red Hat-based systems with major versions 7, 8, 9, or 10.  
+Description Task 1: This task ensures that the EPEL repository is installed on supported systems. It checks if the system is Amazon Linux 2 or a Red Hat-based distribution with major versions 7, 8, 9, or 10. If the condition is met, it proceeds to install the EPEL repository by first adding the GPG key and then installing the EPEL-release package. The task uses the `ansible.builtin.rpm_key` module to add the EPEL GPG key using the variable `epel_gpg_key` and the `ansible.builtin.package` module to install the EPEL-release package using the `epel_url` variable. This installation step is followed by a handler notification to update the package cache.
+
+Task 2: Install the GPG key for the EPEL repository to ensure package authenticity.  
+Description Task 2: This task installs the GPG key necessary for the EPEL repository to ensure that packages are authentic and have not been tampered with. It uses the `ansible.builtin.rpm_key` module to add the key specified by the `epel_gpg_key` variable, ensuring the state is `present`.
+
+Task 3: Install the EPEL-release package and notify the handler to update the package cache.  
+Description Task 3: This task installs the `epel-release` package using the `ansible.builtin.package` module with the package name specified by the `epel_url` variable. The state is set to `present` to ensure the package is installed. Upon successful installation, it triggers the `Update package cache` handler to refresh the package list.
+
+Task 4: Optionally install the EPEL-next-release package if the `epel_next` variable is set, and notify the handler to update the package cache.  
+Description Task 4: This task conditionally installs the `epel-next-release` package if the `epel_next` variable is set to true. It uses the `ansible.builtin.package` module to install the package specified by the `epel_next_url` variable. If the package is installed, it triggers the `Update package cache` handler to ensure the package list is updated.

@@ -1,0 +1,7 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Manage group with specified name and state
+Description Task 1: Create or remove a group with the name specified by the `group.name` variable, and set its state to present by default. Optionally, set the group ID and system flag.
+
+Task 2: Configure sudo options for a group
+Description Task 2: Generate a sudoers file for a group with the name specified by the `group.name` variable. This is done by templating a file with the `sudo_group.j2` template, and setting the mode to 0640 to ensure permissions are correct. The template is validated using the `visudo` command. This task only runs if sudo options are defined for the group.

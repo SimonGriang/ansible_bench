@@ -1,0 +1,51 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.  
+The generated playbook must be valid inside an Ansible Role under the tasks/ directory (e.g., tasks/main.yml).  
+Do not include hosts:, vars:, or any playbook-level headers. Only output valid task entries or blocks as expected in a role.  
+
+Task 1: Install Keepalived when HA mode is enabled
+Description Task 1: Include the keepalived.yml tasks file if HA mode is enabled, the current host is part of the rke2_servers_group_name group, and the rke2_api_ip variable is defined.
+
+Task 2: Download and install RKE2
+Description Task 2: Include the rke2.yml tasks file to download and install RKE2 with the specified version (rke2_version).
+
+Task 3: CIS Hardening
+Description Task 3: Include the cis.yml tasks file if a CIS profile (rke2_cis_profile) is defined and has a length greater than 0.
+
+Task 4: Find Active Server
+Description Task 4: Include the find_active_server.yml tasks file to determine the active server in the cluster.
+
+Task 5: Enable IPVS kernel module
+Description Task 5: Enable and persist the ip_vs kernel module if IPVS load balancing is enabled (rke2_kubevip_ipvs_lb_enable), the host is in the rke2_servers_group_name group, HA mode is enabled, and Keepalived is not used.
+
+Task 6: Copy kube-vip manifests to the masternode
+Description Task 6: Include the kubevip.yml tasks file and copy the kube-vip manifests to the first node in the rke2_servers_group_name group if HA mode is enabled with kube-vip and Keepalived is not used.
+
+Task 7: Copy ingress-nginx manifests to the masternode
+Description Task 7: Include the ingress-nginx.yml tasks file and copy the ingress-nginx manifests to the first node in the rke2_servers_group_name group if ingress-nginx values (rke2_ingress_nginx_values) are defined and have a length greater than 0.
+
+Task 8: Prepare very first server node in the cluster
+Description Task 8: Include the first_server.yml tasks file if the current host is the first node in the rke2_servers_group_name group and either the active server is not defined or the length of the rke2_cluster_group_name group is 1.
+
+Task 9: Restore etcd specific tasks
+Description Task 9: Include the first_server_restore.yml tasks file if the active server is defined and the current host is either the active server or the first node in the rke2_servers_group_name group, and either do_etcd_restore or do_etcd_restore_from_s3 is defined.
+
+Task 10: Download kubeconfig to ansible localhost
+Description Task 10: Include the download_kubeconfig.yaml tasks file to download the kubeconfig file to the Ansible localhost if rke2_download_kubeconf is true and the current host is the first node in the rke2_servers_group_name group.
+
+Task 11: Prepare and join remaining nodes of the cluster
+Description Task 11: Include the remaining_nodes.yml tasks file if the active server is defined and the length of the rke2_cluster_group_name group is 2 or greater.
+
+Task 12: Rolling cordon and drain restart when version changes - servers
+Description Task 12: Perform a rolling cordon and drain restart on the rke2_servers_group_name group if the installed version is defined and different from the specified rke2_version.
+
+Task 13: Rolling cordon and drain restart when version changes - agents
+Description Task 13: Perform a rolling cordon and drain restart on the rke2_agents_group_name group if the installed version is defined and different from the specified rke2_version, and the host is not in the rke2_servers_group_name group.
+
+Task 14: Flush handlers
+Description Task 14: Flush any registered handlers to ensure they are executed.
+
+Task 15: Rolling restart when config files change
+Description Task 15: Perform a rolling restart on the rke2_cluster_group_name group if the rke2_restart_needed flag is set.
+
+Task 16: Final steps
+Description Task 16: Include the summary.yml tasks file to perform final steps and report the results.

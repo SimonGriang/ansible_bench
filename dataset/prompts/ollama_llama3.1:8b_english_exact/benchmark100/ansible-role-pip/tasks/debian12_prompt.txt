@@ -1,0 +1,7 @@
+Below you will receive task descriptions from which you should generate an Ansible Playbook.
+
+Task 1: Get Python 3 version installed on the system
+Description Task 1: Run the command `python3 --version` to determine the installed Python 3 version, and register its output in a variable named `py3ver`.
+
+Task 2: Remove the EXTERNALLY-MANAGED file on Debian 12
+Description Task 2: If the Python 3 version installed is 3.11, remove the `EXTERNALLY-MANAGED` file located at `/usr/lib/python3.11/EXTERNALLY-MANAGED` using the `file` module, and make sure to only run this task when the system is not being tested with `molecule-notest`.
