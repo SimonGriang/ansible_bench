@@ -27,6 +27,12 @@ class CLIArgumentsBenchmark(CLIArgumentsBase):
 
 @dataclass
 class CLIArgumentsGeneration(CLIArgumentsBase):
-    pass
+    output_path: str
+    max_ansiblelint_iterations: int
+    max_yamllint_iterations: int
+    max_syntaxcheck_iterations: int
+    language: str
+    template_type: str
+    inventory: str
 
 

@@ -67,82 +67,10 @@ def check_yamllint(yaml_file: Path) -> Tuple[bool, str]:
         return False, "Something with yamllint went wrong:\n" + str(e)
 
 
-    """
-    TODO: checks Ansible Playbook Syntax via `yamllint`.
-    """
-    raise NotImplementedError("Yamllint Check not implemented yet.")
-
-
-#def check_yamllint(yaml_file: Path) -> Tuple[bool, str]:
-#    """
-#    Führt yamllint auf der angegebenen YAML-Datei aus.
-#    Gibt (True, "passed") zurück, wenn keine Fehler/Warnings vorliegen,
-#    ansonsten (False, Ausgabe mit Fehler/Warning).
-#
-#
-#    :param yaml_file: Pfad zur YAML Datei
-#    :return: Tuple[bool, str]
-#    """
-#    try:
-#        result = subprocess.run(
-#            ["yamllint", str(yaml_file)],
-#            capture_output=True,
-#            text=True,
-#            check=False
-#        )
-#
-#
-#        stdout = result.stdout.strip()
-#        stderr = result.stderr.strip()
-#        output = (stdout + "\n" + stderr).strip()
-#
-#
-#        if result.returncode == 0 and not output:
-#            return True, "passed"
-#        else:
-#            return False, output
-#
-#
-#    except FileNotFoundError:
-#        return False, "yamllint command not found. Bitte sicherstellen, dass yamllint installiert ist."
-# -------------------------------
-# Alternative for check_yamllint
-# -------------------------------
-#from yamllint import linter
-#from yamllint.config import YamlLintConfig
-#
-#def check_yamllint(yaml_file: Path) -> Tuple[bool, str]:
-#    """
-#    Prüft eine YAML-Datei mit yamllint über die Python-API.
-#    Gibt (True, "passed") zurück, wenn keine Fehler/Warnings vorliegen,
-#    ansonsten (False, Ausgabe mit Fehler/Warning).
-#    """
-#    try:
-#        # Standard-Konfiguration von yamllint verwenden
-#        config = YamlLintConfig(fileconfig=None)
-#
-#        with open(yaml_file, 'r') as f:
-#            content = f.read()
-#
-#        # Linting ausführen
-#        problems = list(linter.run(content, config))
-#
-#        if not problems:
-#            return True, "passed"
-#        else:
-#            # Ausgabe als Text zusammenfassen
-#            output = "\n".join(str(p) for p in problems)
-#            return False, output
-#
-#    except FileNotFoundError:
-#        return False, f"{yaml_file} not found."
-#    except Exception as e:
-#        return False, str(e)
-
 # -------------------------------
 # ansible-playbook --syntax-check Checking
 # -------------------------------
-def check_playbook_syntax(playbook_path: Path) -> Tuple[bool, str]:
+def check_playbook_syntax(playbook_path: Path, inventory_path: Path) -> Tuple[bool, str]:
 #    return True, ""
 #    """
 #    TODO: Validate Ansible Playbook syntax via `ansible-playbook --syntax-check`.
@@ -159,7 +87,7 @@ def check_playbook_syntax(playbook_path: Path) -> Tuple[bool, str]:
     """
     try:
         result = subprocess.run(
-            ["ansible-playbook", str(playbook_path), "--syntax-check"],
+            ["ansible-playbook", "-i", str(inventory_path), str(playbook_path), "--syntax-check"],
             capture_output=True,
             text=True,
             check=False

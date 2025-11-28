@@ -21,8 +21,6 @@ def load_config(file_str: str | Path = Path("config/config.yaml")) -> Config:
     with open(file_path, "r") as f:
         config_dict = yaml.safe_load(f)
 
-    print(f"Loaded config from file {file_str}: config: {config_dict}")
-
     base_dir = Path(config_dict["base_dir"])
     if base_dir == "set the absolute path to codetransbenchmark":
         raise Exception(

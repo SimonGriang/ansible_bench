@@ -8,9 +8,16 @@
             "name": "Python Debugger: Current File with Arguments",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/src/ansible_bench_code/extract_kpi.py",
+            "program": "${workspaceFolder}/src/ansible_bench_code/ansible_generator.py",
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}/src/ansible_bench_code",
+            "args": [                
+                "-m", "gpt-oss:20b",
+                "-e", "ollama", "generation",
+                "-tt", "playbook",
+                "-i", "/home/studgoetsi5301/documents/ansible_bench/src/inventory/inventory.ini" ,
+                "-s", "1"
+            ]   
         }
     ]
 }

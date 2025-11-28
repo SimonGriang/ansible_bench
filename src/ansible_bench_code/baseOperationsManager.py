@@ -84,7 +84,6 @@ class BaseOperationManager:
             input_str,
         )
         logger.info(f"Created prompt: {prompt}")
-        print("\n\nPrompt: " + prompt)
         logger.info(f"Checking context size for model: {self.model_name}")
         max_output_tokens = llm_chain.check_context_size(prompt, self.model_name)
         if max_output_tokens <= 0:
@@ -104,7 +103,6 @@ class BaseOperationManager:
             error_str,
         )
         logger.info(f"Created recursive prompt: {prompt}")
-        print("Prompt: " + prompt)
 
         max_output_tokens = llm_chain.check_context_size(prompt, self.model_name)
         if max_output_tokens <= 0:
