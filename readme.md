@@ -83,7 +83,7 @@ options:
 
 Example for using BENCHMARK mode:
 ```bash
-python ansible_generator.py -m codestral -e llamafile benchmark -d example -tt exact -p prompts/llamafile_codestral_english_exact/example
+python ansible_generator.py -m gpt-oss:20b -e ollama benchmark -d benchmark100 -tt exact -p prompts/ollama_gpt-oss:20b_english_exact/benchmark100
 ```
 
 **Ansible Generator Generation Mode**
