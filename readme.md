@@ -85,6 +85,42 @@ Example for using BENCHMARK mode:
 ```bash
 python ansible_generator.py -m codestral -e llamafile benchmark -d example -tt exact -p prompts/llamafile_codestral_english_exact/example
 ```
+
+**Ansible Generator Generation Mode**
+```bash
+usage: ansible_generator.py generation [-h] [-y MAX_YAMLLINT_ITERATIONS] [-a MAX_ANSIBLELINT_ITERATIONS] [-s MAX_SYNTAXCHECK_ITERATIONS]
+                                       [-o OUTPUT_PATH] [-tt TEMPLATE_TYPE] [-i INVENTORY]
+
+options:
+  -h, --help            show this help message and exit
+  -y MAX_YAMLLINT_ITERATIONS, --max_yamllint_iterations MAX_YAMLLINT_ITERATIONS
+                        Number of maximum iterations for yamllint quality assurance loop. If the generated YAML file does not pass the
+                        yamllint check the last generated file will be returned. If no value is provided, yamllint quality assurance
+                        will continued until, either a file passes or the process is manually stopped.
+  -a MAX_ANSIBLELINT_ITERATIONS, --max_ansiblelint_iterations MAX_ANSIBLELINT_ITERATIONS
+                        Number of maximum iterations for ansiblelint quality assurance loop. If the generated YAML file does not pass
+                        the ansiblelint check the last generated file will be returned. If no value is provided, ansiblelint quality
+                        assurance will continued until, either a file passes or the process is manually stopped.
+  -s MAX_SYNTAXCHECK_ITERATIONS, --max_syntaxcheck_iterations MAX_SYNTAXCHECK_ITERATIONS
+                        Number of maximum iterations for ansible-playbook --syntax-check quality assurance loop. If the generated YAML
+                        file does not pass the syntax check the last generated file will be returned. If no value is provided, syntax
+                        check quality assurance will continued until, either a file passes or the process is manually stopped. Note that
+                        syntax check is only effective for template_type playbook.
+  -o OUTPUT_PATH, --output_path OUTPUT_PATH
+                        Path to output directory where generated files will be saved. Full path from root directory. Default
+  -tt TEMPLATE_TYPE, --template_type TEMPLATE_TYPE
+                        Type of the prompt to use for Ansible-YAML generation. Template type defines if the generated YAML files are
+                        task files or playbooks. Possible types are: task_file, playbook. Default: task_file
+  -i INVENTORY, --inventory INVENTORY
+                        file path to the Ansible inventory file. If not provided, it will be assumed the only inventories in the ansible
+                        src/ file will be used. Specification highly recoomended.
+```
+
+Example for using GENERATION mode:
+```bash
+python ansible_generator.py -m gpt-oss:20b -e ollama generation -tt playbook -i /home/user/documents/ansible_bench/src/inventory/inventory.ini -y 5 -s 5 -a 5
+```
+
 # 1. Extending the Repository with New Models
 
 This repository is designed to benchmark the ability of various local LLMs to reconstruct and generate Ansible automation code. To support a broad and evolving ecosystem of models, the system was built to be modular. Adding new models is straightforward, provided that the tokenizer and model directory structure follow the expected conventions.
