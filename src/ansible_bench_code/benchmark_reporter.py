@@ -215,4 +215,3 @@ class Reporter:
                 f.write(f"{entry}\n")
             for entry in self._passed_all_stages:
                 f.write(f"{entry}\n") 
-        print(f"Report written to {report_file}")
