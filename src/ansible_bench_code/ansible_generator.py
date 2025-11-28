@@ -24,6 +24,7 @@ import logging
 from benchmarkOperationsManager import BenchmarkOperationManager
 from promptOperationManager import PromptOperationManager
 from baseOperationsManager import BaseOperationManager
+from generationOperationsManager import GenerationOperationManager
 
 setup_logging()
 logger = logging.getLogger(__name__)
@@ -33,13 +34,13 @@ def main(args: CLIArgumentsBase, config: Config):
     if args.operation_mode == "benchmark":
         operationManager = BenchmarkOperationManager(args, config)
     elif args.operation_mode == "generation":
-        raise NotImplementedError
-        #operationManager = GenerationOperationManager(args, config)
+        operationManager = GenerationOperationManager(args, config)
     elif args.operation_mode == "prompt":
         operationManager = PromptOperationManager(args, config)
+
     else:
         raise ValueError(f"The operation_mode='{args.operation_mode}' does not exist. Use a valid operation_mode: prompt, generation, benchmark")
-
+    
     operationManager.setup_files()
 
     operationManager.setup_llm()
@@ -104,7 +105,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "-l",
         "--language",
-        help="Prompt languages available. Possible languages are: english, german",
+        help="Prompt languages available. Possible languages are: english, german. Not all languages are supported, right now only english is fully supported. Default: english",
         required=False,
         default="english",
         type=str,
@@ -128,7 +129,7 @@ if __name__ == "__main__":
     parser_prompt.add_argument(
         "-tt",
         "--template_type",
-        help="Type of the prompt template to use for code translation. Possible types are: exact, precise, approximate. Default: exact",
+        help="Type of the prompt to use for Ansible-YAML generateion. Template type defines the level of detail in the generated YAML files. Possible types are: exact, precise, approximate. Default: exact",
         required=False,
         default="exact",
         type=str,
@@ -152,7 +153,7 @@ if __name__ == "__main__":
     parser_benchmark.add_argument(
         "-tt",
         "--template_type",
-        help="Type of the prompt template to use for code translation. Possible types are: exact, precise, approximate. Default: exact",
+        help="Type of the prompt to use for Ansible-YAML generateion. Template type defines the level of detail in the generated YAML files. Possible types are: exact, precise, approximate. Default: exact",
         required=False,
         default="exact",
         type=str,
@@ -167,10 +168,58 @@ if __name__ == "__main__":
     )
 
     # Parser for Generation Mode
-    parser_benchmark = subparsers.add_parser(
+    parser_generation = subparsers.add_parser(
         "generation",
         help = "Generate Ansible YAML files based on user-provided prompts, followed by an automated quality check using YAML-Lint, Ansible Playbook syntax check, and Ansible-Lint."
     )
+
+    parser_generation.add_argument(
+        "-y",
+        "--max_yamllint_iterations",
+        help="Number of maximum iterations for yamllint quality assurance loop. If the generated YAML file does not pass the yamllint check the last generated file will be returned. If no value is provided, yamllint quality assurance will continued until, either a file passes or the process is manually stopped.",
+        type=int,
+    )
+
+    parser_generation.add_argument(
+        "-a",
+        "--max_ansiblelint_iterations",
+        help="Number of maximum iterations for ansiblelint quality assurance loop. If the generated YAML file does not pass the ansiblelint check the last generated file will be returned. If no value is provided, ansiblelint quality assurance will continued until, either a file passes or the process is manually stopped.",
+        type=int,
+    )
+
+    parser_generation.add_argument(
+        "-s",
+        "--max_syntaxcheck_iterations",
+        help="Number of maximum iterations for ansible-playbook --syntax-check quality assurance loop. If the generated YAML file does not pass the syntax check the last generated file will be returned. If no value is provided, syntax check quality assurance will continued until, either a file passes or the process is manually stopped. Note that syntax check is only effective for template_type playbook.",
+        type=int,
+    )
+
+    parser_generation.add_argument(
+        "-o",
+        "--output_path",
+        help="Path to output directory where generated files will be saved. Full path from root directory. Default ",
+        type=str,
+    )
+
+    parser_generation.add_argument(
+        "-tt",
+        "--template_type",
+        help="Type of the prompt to use for Ansible-YAML generation. Template type defines if the generated YAML files are task files or playbooks. Possible types are: task_file, playbook. Default: task_file",
+        required=False,
+        default="task_file",
+        type=str,
+    )
+
+    parser_generation.add_argument(
+        "-i",
+        "--inventory",
+        help="file path to the Ansible inventory file. If not provided, it will be assumed the only inventories in the ansible src/ file will be used. Specification highly recoomended.",
+        required=False,
+        type=str,
+    )
+
+
+
 
     # nsp = CLIArgumentsGeneration()
     # args = parser.parse_args(namespace=nsp)

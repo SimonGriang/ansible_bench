@@ -28,7 +28,6 @@ class BenchmarkOperationManager(BaseOperationManager):
             logger.info(f"Removed existing temporary directory: {self.tmp_dir}")
         self.tmp_dir.mkdir()
         logger.info(f"Created temporary directory: {self.tmp_dir}")
-        print(f"\nTemporary directory for benchmark run created: {self.tmp_dir}")
 
     def setup_test_directory(self):
         """
@@ -40,9 +39,7 @@ class BenchmarkOperationManager(BaseOperationManager):
                 if target.exists():
                     shutil.rmtree(target)
                 shutil.copytree(role_dir, target)
-                logger.info(f"Copied role directory {role_dir} to {target}")
-                print(f"Copied {role_dir.name} to {target}.")
-    
+                logger.info(f"Copied role directory {role_dir} to {target}")    
     
     def setup_files(self):
         """
@@ -158,13 +155,10 @@ class BenchmarkOperationManager(BaseOperationManager):
                     return error_msg
                 logger.info("Invoking prompt chain for benchmark")
                 raw_outputs = self.invoke_prompt_chain(template, p_str)
-                print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
                 logger.info(f"Raw LLM output: {raw_outputs}")
                 cleaned_outputs = self.clean_text(raw_outputs)
-                print(f"_______________________________________Cleaned LLM Output:_______________________________________ \n{cleaned_outputs}")
                 logger.info(f"Cleaned LLM output: {cleaned_outputs}")
                 t1 = time.perf_counter()
-                print(f"\n{time.ctime()}: {yaml_path} Total generation time:", t1 - t0)
                 logger.info(f"Total generation time for {yaml_path}: {t1 - t0} seconds")
 
                 logger.info(f"Writing cleaned output to YAML file: {yaml_path}")
@@ -185,7 +179,6 @@ class BenchmarkOperationManager(BaseOperationManager):
                     logger.info("setting status_flag_yamllint to False")
                     for i in range(1,max_iterations_yamllint+1): 
                         logger.info(f"Yamllint iteration {i}")
-                        print(f"________________________________________Yamllint Run: {i}________________________________________\n")
                         yamllint_check_results: Tuple[bool, str] = check_yamllint(yaml_path)
                         reporter.yamllint_runs += 1
                         f_yamllint_runs += 1
@@ -195,7 +188,6 @@ class BenchmarkOperationManager(BaseOperationManager):
                             break
                         else: 
                             logger.info(f"Yamllint failed at iteration {i} with message: {yamllint_check_results[1]}")
-                            print(f"{i}. Iteration in a row: Generated Ansible-YAML did not pass quality gate 'yamllint'")
                             template, p_str, recursive_str, error_str, error_msg = self.create_recursive_prompt_validate_context(prompt_str, cleaned_outputs, yamllint_check_results[1], "recursive_yamllint")
                             logger.info("Created recursive prompt for yamllint")
                             if error_msg:
@@ -203,13 +195,10 @@ class BenchmarkOperationManager(BaseOperationManager):
                                 return error_msg
                             raw_outputs = self.invoke_recursive_chain(template, p_str, cleaned_outputs, yamllint_check_results[1])
                             logger.info("Invoked recursive prompt chain for yamllint")
-                            print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
                             logger.info(f"Raw LLM output after yamllint: {raw_outputs}")
                             cleaned_outputs = self.clean_text(raw_outputs)
                             logger.info("Cleaned LLM output after yamllint")
-                            print(f"_______________________________________Cleaned LLM Output:_______________________________________ \n{cleaned_outputs}")
                             t1 = time.perf_counter()
-                            print(f"\n{time.ctime()}: {yaml_path} Total generation time:", t1 - t0)
                             logger.info(f"Total generation time for {yaml_path}: {t1 - t0} seconds")
 
                             with yaml_path.open("w", encoding="utf-8") as f:
@@ -217,17 +206,14 @@ class BenchmarkOperationManager(BaseOperationManager):
                             logger.info(f"Wrote cleaned output to YAML file: {yaml_path}")
                     else:
                         logger.info(f"Yamllint did not pass after {max_iterations_yamllint} iterations, breaking loop.")
-                        print(f"Error: Generated Ansible-YAML did not pass quality gate 'yamllint' after defined maximum of {max_iterations_yamllint} iterations in a row!")
 
                     if i < 2:
                         logger.info("Yamllint passed without iteration")
                         reporter.yamllint_passed_without_iteration += 1
                         f_yamllint_passed_without_iteration += 1
-                        print(f"yamllint_passed_without_iteration increased to {reporter.yamllint_passed_without_iteration}")
                         if errors_ansiblelint == 0:
                             reporter.yamllint_passed_at_first_attempt += 1
                             f_yamllint_passed_at_first_attempt += 1
-                            print(f"yamllint_passed_at_first_attempt increased to {reporter.yamllint_passed_at_first_attempt}")
 
                     if not status_flag_yamllint:
                         logger.error("Yamllint failed, exiting while loop")
@@ -235,7 +221,6 @@ class BenchmarkOperationManager(BaseOperationManager):
                         logger.error(f"Generation of playbook '{yaml_path}' failed at stage 'ansiblelint'")
 
                         if(errors_ansiblelint>0):
-                            print(f"Note: {errors_ansiblelint} ansible-lint iterations were done before!")
                             reporter.failed_at_stage_ansiblelint.append(yaml_path)
                             logger.error(f"Note: {errors_ansiblelint} ansible-lint iterations were done before!")
                         else:
@@ -255,27 +240,23 @@ class BenchmarkOperationManager(BaseOperationManager):
                         logger.info(f"Ansiblelint errors so far: {errors_ansiblelint}")
                         if errors_ansiblelint > max_iterations_ansiblelint:
                             logger.info(f"Ansiblelint did not pass after {max_iterations_ansiblelint} iterations, breaking loop.")
-                            print(f"Error: Generated Ansible-YAML did not pass quality gate 'ansiblelint' after defined maximum of {max_iterations_ansiblelint} iterations!")
                             print(f"\nGeneration of playbook '{yaml_path}' failed at stage 'ansiblelint'")
                             reporter.failed_at_stage_ansiblelint.append(yaml_path)
                             logger.info(f"added {yaml_path} to failed_at_stage_ansiblelint list")
                             break
-                        print(f"{errors_ansiblelint}. Iteration: Generated Ansible-YAML did not pass quality gate 'ansiblelint'")
+                        logger.info(f"{errors_ansiblelint}. Iteration: Generated Ansible-YAML did not pass quality gate 'ansiblelint'")
                         logger.info("Creating recursive prompt for ansiblelint")
                         template, p_str, recursive_str, error_str, error_msg = self.create_recursive_prompt_validate_context(prompt_str, cleaned_outputs, ansiblelint_check[1], "recursive_ansiblelint")
                         if error_msg:
                             logger.info(f"Error in creating recursive prompt or validating context: {error_msg}")
-                            print(f"Error: {error_msg}")
+                            logger.error(f"Error: {error_msg}")
                             return error_msg
                         logger.info("Invoking recursive prompt chain for ansiblelint")
                         raw_outputs = self.invoke_recursive_chain(template, p_str, cleaned_outputs, ansiblelint_check[1])
-                        print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs}")
                         logger.info(f"Raw LLM output after ansiblelint: {raw_outputs}")
                         cleaned_outputs = self.clean_text(raw_outputs)
-                        print(f"_______________________________________Cleaned LLM Output:_______________________________________ \n{cleaned_outputs}")
                         logger.info("Cleaned LLM output after ansiblelint")
                         t1 = time.perf_counter()
-                        print(f"\n{time.ctime()}: {yaml_path} Total generation time:", t1 - t0)
                         logger.info(f"Total generation time for {yaml_path}: {t1 - t0} seconds")
                         # copy generated file into molecule test directory
                         with yaml_path.open("w", encoding="utf-8") as f:
@@ -287,7 +268,6 @@ class BenchmarkOperationManager(BaseOperationManager):
                         ansiblelint_passed_at_first_attempt += 1
                         f_ansiblelint_passed_at_first_attempt += 1
                         logger.info(f"Ansiblelint passed at first attempt, total so far: {ansiblelint_passed_at_first_attempt}")
-                        print(f"ansiblelint_passed_at_first_attempt increased to {ansiblelint_passed_at_first_attempt}")
                     print("################################# Quality Gate 'ansiblelint' passed! ################################")
                     logger.info("Ansiblelint passed, proceeding to molecule test")
                     errors_ansiblelint = 0
@@ -307,11 +287,9 @@ class BenchmarkOperationManager(BaseOperationManager):
                         break
             except (ValueError, FileNotFoundError) as e:
                 logger.error(f"Exception occurred: {e}")
-                print(e)
                 continue
             except (ResponseError, Exception) as e:
                 logger.error(f"LLM Exception occurred: {e}")
-                print(f"LLM Exception: {e}")
                 reporter.failed_with_exception.append(yaml_path)
                 # correct stats:
                 reporter.yamllint_runs -= f_yamllint_runs
@@ -320,14 +298,12 @@ class BenchmarkOperationManager(BaseOperationManager):
                 reporter.ansiblelint_runs -= f_ansiblelint_runs
                 reporter.ansiblelint_passed_at_first_attempt -= f_ansiblelint_passed_at_first_attempt
                 logger.info("Corrected statistics after exception")
-                print(f"{yaml_path} was added to failed_with_exception list")
                 logger.info(f"added {yaml_path} to failed_with_exception list")
                 continue
             if tmp_copy.exists():  
                 logger.info(f"Restoring original YAML file from temporary location {tmp_copy} to {yaml_path}")
                 shutil.copy2(tmp_copy, yaml_path) 
                 tmp_copy.unlink()
-                print(f"Original YAML file '{yaml_path}' was copied from temp into molecule_test directory.")
         logger.info("Benchmark run completed, generating final report.")
         reporter.reports()
 

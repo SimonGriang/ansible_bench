@@ -1,7 +1,6 @@
+import logging
 from ansible_generator_config import TOKENIZER_MODELS_PATH
 from langchain.prompts import PromptTemplate
-#from langchain.chains import LLMChain, SequentialChain
-#from langchain.schema import RunnableSequence
 from langchain.schema.runnable import RunnableLambda
 from langchain_core.language_models.llms import LLM
 from pathlib import Path
@@ -17,17 +16,20 @@ from prompt_templates import (
     prompt_approximate_german_template,
     benchmark_exact_english_first_yamllint_template,
     benchmark_precise_english_first_yamllint_template,
-    benchmark_approximate_english_first_yamllint_template,
+    benchmark_generation_approximate_english_first_yamllint_template,
     benchmark_exact_english_recursive_yamllint_template,
     benchmark_precise_english_recursive_yamllint_template,
-    benchmark_approximate_english_recursive_yamllint_template,
-    benchmark_exact_english_recursive_syntax_template,
-    benchmark_precise_english_recursive_syntax_template,
-    benchmark_approximate_english_recursive_syntax_template,
+    benchmark_generation_approximate_english_recursive_yamllint_template,
     benchmark_exact_english_recursive_ansiblelint_template,
     benchmark_precise_english_recursive_ansiblelint_template,
-    benchmark_approximate_english_recursive_ansiblelint_template,
+    benchmark_generation_approximate_english_recursive_ansiblelint_template,
+    generation_playbook_exact_english_first_yamllint_template,
+    generation_playbook_exact_english_recursive_yamllint_template,
+    generation_playbook_exact_english_recursive_syntax_template,
+    generation_playbook_exact_english_recursive_ansiblelint_template
 )
+
+logger = logging.getLogger(__name__)
 
 def hf_modelfiles_path_for(model_name: str) -> Path:
     model_name = model_name.lower()
@@ -78,10 +80,9 @@ def apply_chat_template_to_text(text: str, model_name: str) -> str:
 def check_context_size(text: str, model_name: str) -> int:
     tokenizer = AutoTokenizer.from_pretrained(hf_modelfiles_path_for(model_name))
     tokens = tokenizer.encode(text)
-    # print(tokens)
 
     total_input_tokens = len(tokens)
-    print("Total input tokens:", total_input_tokens)
+    logger.info(f"Total input tokens: {total_input_tokens}")
     if model_name in LLAMAFILE_CTX_SIZE.keys():
         model_max_length = LLAMAFILE_CTX_SIZE[model_name]
     elif model_name in OLLAMA_CTX_SIZE.keys():
@@ -180,51 +181,63 @@ def create_prompt_template(operation_mode: str, language:str, template_type: str
                 "exact": {
                     "first_yamllint": benchmark_exact_english_first_yamllint_template,
                     "recursive_yamllint": benchmark_exact_english_recursive_yamllint_template,
-                    "recursive_syntaxcheck": benchmark_exact_english_recursive_syntax_template,
                     "recursive_ansiblelint": benchmark_exact_english_recursive_ansiblelint_template,
                 },
                 "precise": {
                     "first_yamllint": benchmark_precise_english_first_yamllint_template,
                     "recursive_yamllint": benchmark_precise_english_recursive_yamllint_template,
-                    "recursive_syntaxcheck": benchmark_precise_english_recursive_syntax_template,
                     "recursive_ansiblelint": benchmark_precise_english_recursive_ansiblelint_template,
                 },
                 "approximate": {
-                    "first_yamllint": benchmark_approximate_english_first_yamllint_template,
-                    "recursive_yamllint": benchmark_approximate_english_recursive_yamllint_template,
-                    "recursive_syntaxcheck": benchmark_approximate_english_recursive_syntax_template,
-                    "recursive_ansiblelint": benchmark_approximate_english_recursive_ansiblelint_template,
+                    "first_yamllint": benchmark_generation_approximate_english_first_yamllint_template,
+                    "recursive_yamllint": benchmark_generation_approximate_english_recursive_yamllint_template,
+                    "recursive_ansiblelint": benchmark_generation_approximate_english_recursive_ansiblelint_template,
                 },
             },
             "german": {
                 "exact": {
                     #"first_yamllint": ,
                     #"recursive_yamllint": ,
-                    #"first_syntaxcheck": ,
-                    #"recursive_syntaxcheck": ,
-                    #"first_ansiblelint": ,
                     #"recursive_ansiblelint": ,
                 },
                 "precise": {
                     #"first_yamllint": ,
                     #"recursive_yamllint": ,
-                    #"first_syntaxcheck": ,
-                    #"recursive_syntaxcheck": ,
-                    #"first_ansiblelint": ,
                     #"recursive_ansiblelint": ,
                 },
                 "approximate": {
                     #"first_yamllint": ,
                     #"recursive_yamllint": ,
-                    #"first_syntaxcheck": ,
-                    #"recursive_syntaxcheck": ,
-                    #"first_ansiblelint": ,
                     #"recursive_ansiblelint": ,
                 },
             },
         },
         "generation": {
-            # TODO: später generation-Templates hier definieren
+            "english": {
+                "task_file": {
+                    "first_yamllint": benchmark_generation_approximate_english_first_yamllint_template,
+                    "recursive_yamllint": benchmark_generation_approximate_english_recursive_yamllint_template,
+                    "recursive_ansiblelint": benchmark_generation_approximate_english_recursive_ansiblelint_template,
+                },
+                "playbook": {
+                    "first_yamllint": generation_playbook_exact_english_first_yamllint_template,
+                    "recursive_yamllint": generation_playbook_exact_english_recursive_yamllint_template,
+                    "recursive_syntaxcheck": generation_playbook_exact_english_recursive_syntax_template,
+                    "recursive_ansiblelint": generation_playbook_exact_english_recursive_ansiblelint_template,
+                },
+            },
+            "german": {
+                "task_file": {
+                    #"first_yamllint": ,
+                    #"recursive_yamllint": ,
+                    #"recursive_ansiblelint": ,
+                },
+                "playbook": {
+                    #"first_yamllint": ,
+                    #"recursive_yamllint": ,
+                    #"recursive_ansiblelint": ,
+                },
+            },
         },
     }
 

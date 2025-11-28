@@ -123,7 +123,6 @@ Hier ist das Ansible-Playbook:
 {input_str}
 """
 
-
 benchmark_exact_english_first_yamllint_template = """You are a professional developer. Your task is to generate an Ansible Playbook that strictly adheres to the given instructions.  
 The playbook must: 
 - Begin with '---' on the very first line.  
@@ -155,7 +154,7 @@ Guidelines:
 Output only the final YAML playbook. Do not include explanations or comments.  
 """
 
-benchmark_approximate_english_first_yamllint_template = """You are a professional developer. I want you to generate an Ansible Playbook that captures the overall intent of the following instructions.  
+benchmark_generation_approximate_english_first_yamllint_template = """You are a professional developer. I want you to generate an Ansible Playbook that captures the overall intent of the following instructions.  
 The playbook should:  
 - Be valid YAML, conforming to yamllint and ansible-lint standards.  
 - Be usable within an Ansible Role.  
@@ -220,7 +219,7 @@ Guidelines:
 - The playbook must start with '---' and a linebreak
 """
 
-benchmark_approximate_english_recursive_yamllint_template = """You are a professional developer. The Ansible Playbook generated from the prompt below did not pass yamllint checks.  
+benchmark_generation_approximate_english_recursive_yamllint_template = """You are a professional developer. The Ansible Playbook generated from the prompt below did not pass yamllint checks.  
 Your task is to interpret the intent of the original instructions and the faulty playbook, and generate a corrected, working playbook.
 
 Requirements:
@@ -236,79 +235,6 @@ Inputs:
 {recursive_str}
 
 - Error messages from yamllint checks: 
-{error_str}
-
-Instructions:
-- Produce a corrected, fully functional YAML playbook.
-- Do not include explanations or any content outside of the YAML.
-"""
-
-benchmark_exact_english_recursive_syntax_template = """You are a professional developer. The Ansible Playbook generated from the prompt below did not pass ansible-playbook --syntax-check.  
-Your task is to automatically correct the playbook while strictly adhering to the original instructions.
-
-Requirements:
-- Generate a valid YAML playbook that passes ansible-playbook --syntax-check.
-- Follow the original task names and order exactly.
-- Only fix syntax issues reported; do not alter the functional intent or add/remove tasks.
-- Output must consist solely of the corrected YAML playbook.
-
-Inputs:
-- Original generation prompt:
-{input_str}
-
-- Last generated (faulty) playbook:
-{recursive_str}
-
-- Error messages from ansible syntax check:
-{error_str}
-
-Important:  
-- Keep all task names, variables, and custom identifiers exactly as in the faulty playbook unless necessary to fix syntax errors.
-- Use the exact task names and module calls as specified.  
-- Do not add, omit, or modify tasks.  
-- The output must consist only of the complete YAML playbook, without explanations, comments, or formatting outside of YAML.
-- The playbook must start with '---' and a linebreak
-"""
-
-benchmark_precise_english_recursive_syntax_template = """You are a professional developer. The Ansible Playbook generated from the prompt below failed ansible-playbook --syntax-check.  
-Your task is to correct it while maintaining the same functional intent and structure.
-
-Requirements:
-- Generate a valid YAML playbook that passes syntax checks.
-- Implement the tasks in the same general order as in the faulty playbook.
-- Minor adjustments to task names or descriptions are allowed if required to fix syntax errors, but do not change the intent.
-
-Inputs:
-- Original generation prompt:
-{input_str}
-
-- Last generated (faulty) playbook:
-{recursive_str}
-
-- Error messages from ansible syntax check:
-{error_str}
-
-Guidelines:
-- Preserve variables, handlers, and custom names unless absolutely necessary to fix errors.
-- Output only the corrected YAML playbook; do not include explanations or comments.
-"""
-
-benchmark_approximate_english_recursive_syntax_template = """You are a professional developer. The Ansible Playbook generated from the prompt below did not pass ansible-playbook --syntax-check.  
-Your task is to interpret the intent of the original instructions and the faulty playbook, and generate a corrected, working playbook.
-
-Requirements:
-- The playbook must be valid YAML and pass ansible-playbook --syntax-check.
-- Maintain the overall intent of the original instructions.
-- You may adjust task names, module choices, handlers, and variables as needed to fix syntax errors.
-
-Inputs:
-- Original generation prompt:
-{input_str}
-
-- Last generated (faulty) playbook:
-{recursive_str}
-
-- Error messages from ansible syntax check:
 {error_str}
 
 Instructions:
@@ -366,7 +292,7 @@ Guidelines:
 - Output only the corrected YAML playbook; do not include explanations or comments.
 """
 
-benchmark_approximate_english_recursive_ansiblelint_template = """You are a professional developer. The Ansible Playbook generated from the prompt below did not pass ansible-lint.  
+benchmark_generation_approximate_english_recursive_ansiblelint_template = """You are a professional developer. The Ansible Playbook generated from the prompt below did not pass ansible-lint.  
 Your task is to interpret the intent of the original instructions and the faulty playbook, and generate a corrected, working playbook.
 
 Requirements:
@@ -389,6 +315,85 @@ Instructions:
 - Do not include explanations or any content outside of the YAML.
 """
 
+generation_playbook_exact_english_first_yamllint_template = """You are a professional developer. I want you to generate a complete Ansible Playbook that captures the overall intent of the following instructions.
+The playbook should:
+  - Be valid YAML, conforming to yamllint, ansible-playbook --syntax-check and ansible-lint standards.
+  - Be structured as a full playbook (including hosts, become, vars, roles, tasks, handlers as appropriate).
+  - Be compatible for use within a larger Ansible project or role structure.
 
+The description of the tasks is intentionally approximate. Interpret the intent and create a coherent, functional playbook that fulfills the described outcome.
+You may choose appropriate module names, handlers, and variables as necessary.
 
+Instruction:
+{input_str}
+
+Provide only the YAML playbook as output.
+"""
+
+generation_playbook_exact_english_recursive_yamllint_template = """You are a professional developer. The Ansible Playbook generated from the prompt below did not pass yamllint checks.
+Your task is to interpret the intent of the original instructions and the faulty playbook, and generate a corrected, fully functional Ansible Playbook.
+
+The playbook must:
+  - Be valid YAML, conforming to yamllint, ansible-playbook --syntax-check and ansible-lint standards.
+  - Be structured as a complete playbook (including hosts, become, vars, roles, tasks, handlers as appropriate).
+  - Preserve the intent of the original instructions.
+  - Allow reasonable adjustments to task names, module choices, handlers, and variables to ensure correctness.
+
+Inputs:
+- Original generation prompt:
+{input_str}
+
+- Last generated (faulty) playbook:
+{recursive_str}
+
+- Error messages from yamllint check:
+{error_str}
+
+Provide only the corrected YAML playbook as output.
+"""
+
+generation_playbook_exact_english_recursive_ansiblelint_template = """You are a professional developer. The Ansible Playbook generated from the prompt below did not pass ansible-lint.
+Your task is to interpret the intent of the original instructions and the faulty playbook, and generate a corrected, fully functional Ansible Playbook.
+
+The playbook must:
+  - Be valid YAML and pass ansible-lint standards.
+  - Be structured as a complete playbook (hosts, become, vars, roles, tasks, handlers as needed).
+  - Preserve the intent of the original instructions.
+  - Allow adjustments to task names, module choices, handlers, and variables to fix lint errors.
+
+Inputs:
+- Original generation prompt:
+{input_str}
+
+- Last generated (faulty) playbook:
+{recursive_str}
+
+- Error messages from ansiblelint check:
+{error_str}
+
+Provide only the corrected YAML playbook as output.
+"""
+
+generation_playbook_exact_english_recursive_syntax_template = """You are a professional developer. The Ansible Playbook generated from the prompt below did not pass ansible-playbook --syntax-check.  
+Your task is to interpret the intent of the original instructions and the faulty playbook, and generate a corrected, working playbook.
+
+Requirements:
+- The playbook must be valid YAML and pass ansible-playbook --syntax-check.
+- Maintain the overall intent of the original instructions.
+- You may adjust task names, module choices, handlers, and variables as needed to fix syntax errors.
+
+Inputs:
+- Original generation prompt:
+{input_str}
+
+- Last generated (faulty) playbook:
+{recursive_str}
+
+- Error messages from ansible syntax check:
+{error_str}
+
+Instructions:
+- Produce a corrected, fully functional YAML playbook.
+- Do not include explanations or any content outside of the YAML.
+"""
 

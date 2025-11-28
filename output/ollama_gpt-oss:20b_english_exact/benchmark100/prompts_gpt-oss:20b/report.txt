@@ -12,6 +12,15 @@ YAMLLint Score = 1.2500
 Ansible-Lint Score = 1.2026
 Benchmark-Score = 0.4509
 
+====== KPIs ======
+Computed Metrics:
+Yamllint passed = 89
+Ansible-lint passed = 88
+Molecule passed = 32
+YAMLLint Score = 1.2500
+Ansible-Lint Score = 1.2026
+Benchmark-Score = 0.4509
+
 ====== Stage Counts ======
 yamllint failures   : 11
 ansiblelint failures: 1
