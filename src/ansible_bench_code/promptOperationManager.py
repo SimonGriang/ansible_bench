@@ -61,8 +61,6 @@ class PromptOperationManager(BaseOperationManager):
                 logger.info("Invoking prompt chain")
                 raw_outputs = self.invoke_prompt_chain(template, pb_str)
                 
-                print(f"___________________________________________LLM Output:___________________________________________ \n{raw_outputs.content}")
-
                 if self.model_name in {"gpt-oss:20b", 
                                        "qwen2.5:14b", 
                                        "granite-code:20b", 
@@ -87,13 +85,12 @@ class PromptOperationManager(BaseOperationManager):
                 base_name = f_path.stem
                 out_file = target_dir / f"{base_name}_prompt.txt"
 
-                print(f"\n{time.ctime()}: {out_file} Total generation time:", t1 - t0)
                 logger.info(f"Total generation time for {out_file}: {t1 - t0} seconds")
                 with open(out_file, "w") as fot:
                     print(cleaned_outputs, file=fot)
 
             except (ValueError, FileNotFoundError, Exception) as e:
-                print(e)
+                logger.error(f"Error processing file {f}: {e}")
 
                 continue
     

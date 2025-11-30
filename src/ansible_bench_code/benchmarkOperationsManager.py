@@ -228,8 +228,6 @@ class BenchmarkOperationManager(BaseOperationManager):
                             logger.error(f"added {yaml_path} to failed_at_stage_yamllint list")
                         break
                     
-                    print("################################# Quality Gate 'yamllint' passed! ################################")
-
                     ansiblelint_check: Tuple[bool, str] = check_ansible_lint(yaml_path)
                     reporter.ansiblelint_runs += 1
                     f_ansiblelint_runs += 1
@@ -268,7 +266,6 @@ class BenchmarkOperationManager(BaseOperationManager):
                         ansiblelint_passed_at_first_attempt += 1
                         f_ansiblelint_passed_at_first_attempt += 1
                         logger.info(f"Ansiblelint passed at first attempt, total so far: {ansiblelint_passed_at_first_attempt}")
-                    print("################################# Quality Gate 'ansiblelint' passed! ################################")
                     logger.info("Ansiblelint passed, proceeding to molecule test")
                     errors_ansiblelint = 0
                     
@@ -280,7 +277,6 @@ class BenchmarkOperationManager(BaseOperationManager):
                         break
                     else: 
                         logger.info("Molecule test failed")
-                        print(f"Error: Generated Ansible-YAML did not pass quality gate 'molecule-test'!")
                         print(f"\nGeneration of playbook '{yaml_path}' failed at stage 'molecule-test'")
                         reporter.failed_at_stage_molecule_test.append(yaml_path)
                         logger.info(f"added {yaml_path} to failed_at_stage_molecule_test list")
@@ -306,5 +302,6 @@ class BenchmarkOperationManager(BaseOperationManager):
                 tmp_copy.unlink()
         logger.info("Benchmark run completed, generating final report.")
         reporter.reports()
+        print(f"Report written to {self.main_output_path}/report.txt")
 
 

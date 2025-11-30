@@ -1,3 +1,4 @@
+import logging
 import re
 import subprocess
 from pathlib import Path
@@ -7,6 +8,7 @@ from typing import Tuple
 from yamllint import linter
 from yamllint.config import YamlLintConfig
 
+logger = logging.getLogger(__name__)
 
 # -------------------------------
 # YAML-Lint Checking
@@ -176,28 +178,28 @@ def check_molecule(task_path: Path) -> bool:
             return False
 
         for scenario in scenarios:
-            print(f"Molecule test role '{role_dir.name}' for Scenario '{scenario}':____________________________\n")
+            logger.info(f"Molecule test role '{role_dir.name}' for Scenario '{scenario}':____________________________\n")
             result = subprocess.run(
                 ["molecule", "test", "-s", scenario],
                 cwd=str(role_dir),
-                capture_output=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
                 text=True,
                 check=False
             )
             output = result.stdout + "\n" + result.stderr
-            print(output)
             
             failed_matches = re.findall(r"failed=(\d+)", output)
             scenario_success = result.returncode == 0 and all(int(x) == 0 for x in failed_matches)
-            print(f"Molecule test role '{role_dir.name}' for Scenario '{scenario}' was {scenario_success}")
+            logger.info(f"Molecule test role '{role_dir.name}' for Scenario '{scenario}' was {scenario_success}")
             if not scenario_success:
                 overall_success = False
-                print("Scenario failed, stopping further tests. Overall result will be False.")
+                logger.info("Scenario failed, stopping further tests. Overall result will be False.")
                 break  # If one scenario fails, no need to continue
 
-        print(f"Overall Molecule test result for role '{role_dir.name}': {overall_success}")        
+        logger.info(f"Overall Molecule test result for role '{role_dir.name}': {overall_success}")        
         return overall_success
 
     except FileNotFoundError:
-        print("Molecule executable not found.")
+        logger.error("Molecule executable not found.")
         return False
