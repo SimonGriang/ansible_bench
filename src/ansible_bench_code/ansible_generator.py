@@ -213,7 +213,7 @@ if __name__ == "__main__":
     parser_generation.add_argument(
         "-i",
         "--inventory",
-        help="file path to the Ansible inventory file. If not provided, it will be assumed the only inventories in the ansible src/ file will be used. Specification highly recoomended.",
+        help="file path to the Ansible inventory file. If not provided, it will be assumed the only inventories in the ansible src/ file will be used. Specification highly recomended.",
         required=False,
         type=str,
     )

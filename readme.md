@@ -47,7 +47,7 @@ operation_mode:
 
 **Ansible Generator Prompt Mode**
 ```bash
-python ansible_generator.py -m codestral -e llamafile prompt -h                                    
+python ansible_generator.py -m llama3.1:8b -e ollama prompt -h                                    
 usage: ansible_generator.py prompt [-h] [-d DATASET] [-tt TEMPLATE_TYPE]
 
 options:
@@ -83,8 +83,44 @@ options:
 
 Example for using BENCHMARK mode:
 ```bash
-python ansible_generator.py -m codestral -e llamafile benchmark -d example -tt exact -p prompts/llamafile_codestral_english_exact/example
+python ansible_generator.py -m llama3.1:8b -e ollama benchmark -d benchmark100 -tt exact -p prompts/ollama_gpt-oss:20b_english_exact/benchmark100
 ```
+
+**Ansible Generator Generation Mode**
+```bash
+python ansible_generator.py -m llama3.1:8b -e ollama generation -h    
+usage: ansible_generator.py generation [-h] [-y MAX_YAMLLINT_ITERATIONS] [-a MAX_ANSIBLELINT_ITERATIONS] [-s MAX_SYNTAXCHECK_ITERATIONS] [-o OUTPUT_PATH]
+                                       [-tt TEMPLATE_TYPE] [-i INVENTORY]
+
+options:
+  -h, --help            show this help message and exit
+  -y MAX_YAMLLINT_ITERATIONS, --max_yamllint_iterations MAX_YAMLLINT_ITERATIONS
+                        Number of maximum iterations for yamllint quality assurance loop. If the generated YAML file does not pass the yamllint check the last
+                        generated file will be returned. If no value is provided, yamllint quality assurance will continued until, either a file passes or the
+                        process is manually stopped.
+  -a MAX_ANSIBLELINT_ITERATIONS, --max_ansiblelint_iterations MAX_ANSIBLELINT_ITERATIONS
+                        Number of maximum iterations for ansiblelint quality assurance loop. If the generated YAML file does not pass the ansiblelint check the last
+                        generated file will be returned. If no value is provided, ansiblelint quality assurance will continued until, either a file passes or the
+                        process is manually stopped.
+  -s MAX_SYNTAXCHECK_ITERATIONS, --max_syntaxcheck_iterations MAX_SYNTAXCHECK_ITERATIONS
+                        Number of maximum iterations for ansible-playbook --syntax-check quality assurance loop. If the generated YAML file does not pass the syntax
+                        check the last generated file will be returned. If no value is provided, syntax check quality assurance will continued until, either a file
+                        passes or the process is manually stopped. Note that syntax check is only effective for template_type playbook.
+  -o OUTPUT_PATH, --output_path OUTPUT_PATH
+                        Path to output directory where generated files will be saved. Full path from root directory. Default value is parent directory as output.yml
+  -tt TEMPLATE_TYPE, --template_type TEMPLATE_TYPE
+                        Type of the prompt to use for Ansible-YAML generation. Template type defines if the generated YAML files are task files or playbooks.
+                        Possible types are: task_file, playbook. Default: task_file
+  -i INVENTORY, --inventory INVENTORY
+                        file path to the Ansible inventory file. If not provided, it will be assumed the only inventories in the ansible src/ file will be used.
+                        Specification highly recomended otherwise ansible-lint test stage will most likely fail.
+```
+
+Example for using GENERATION mode:
+```bash
+python ansible_generator.py -m llama3.1:8b -e ollama generation -tt playbook -i /home/studgoetsi5301/documents/ansible_bench/src/inventory/inventory.ini
+```
+
 # 1. Extending the Repository with New Models
 
 This repository is designed to benchmark the ability of various local LLMs to reconstruct and generate Ansible automation code. To support a broad and evolving ecosystem of models, the system was built to be modular. Adding new models is straightforward, provided that the tokenizer and model directory structure follow the expected conventions.
@@ -322,4 +358,27 @@ This approach guarantees a clean dataset where errors during the benchmark are a
 ---
 
 
+
+# Commands for final Presentation
+
+Create Prompts with llama for example dataset
+```bash
+python ansible_generator.py -m llama3.1:8b -e ollama prompt -d example -tt exact   
+```
+
+Run benchmark with llama for example dataset
+```bash
+python ansible_generator.py -m llama3.1:8b -e ollama benchmark -d example -tt exact -p prompts/ollama_llama3.1:8b_english_exact/example
+```
+
+Run generation mode as demo
+```bash
+python ansible_generator.py -m llama3.1:8b -e ollama generation -tt playbook -i /home/studgoetsi5301/documents/ansible_bench/src/inventory/inventory.ini
+```
+
+With e.g. the following prompt
+
+```bash
+Create me a Playbook for Hosts group "webservers" that installs git on those rhel machines.
+```
 

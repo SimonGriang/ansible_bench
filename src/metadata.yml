@@ -1,8 +1,0 @@
-llm_engine: ollama
-llm_name: gpt-oss:20b
-repeat_penalty: 1
-temperature: 0.7
-template_types:
-- playbook
-top_k: 50
-top_p: 0.95

@@ -173,6 +173,40 @@ class Reporter:
             )
             f.write(f"TOTAL entries       : {total}\n\n")
 
+            if (total > 0):
+                yamllint_passed = len(self._failed_at_stage_ansiblelint) + len(self._failed_at_stage_molecule_test) + len(self._passed_all_stages)
+                ansible_lint_passed = len(self._failed_at_stage_molecule_test) + len(self._passed_all_stages)
+
+                yamllint_score = 1 + (
+                    (self._yamllint_passed_without_iteration + self._yamllint_passed_at_first_attempt)
+                    / (2 * self._yamllint_runs)
+                    if self._yamllint_runs > 0 else 0
+                )
+
+                ansiblelint_score = 1 + (
+                    (self._ansiblelint_passed_at_first_attempt / self._ansiblelint_runs)
+                    if self._ansiblelint_runs > 0 else 0
+                )
+
+                molecule_passed = len(self._passed_all_stages) 
+
+                benchmark_score = (
+                    (yamllint_score * (yamllint_passed / total))
+                    + 2 * (ansiblelint_score * (ansible_lint_passed / total))
+                    + 4 * (molecule_passed / total)
+                ) / (1 * 2 + 2 * 2 + 4)
+
+
+                f.write("====== KPIs ======\n")
+                f.write(f"Yamllint passed         :  {yamllint_passed}\n")
+                f.write(f"Ansible-lint passed     :  {ansible_lint_passed}\n")
+                f.write(f"Molecule passed         :  {molecule_passed}\n")
+                f.write(f"YAMLLint Score          :  {yamllint_score:.4f}\n")
+                f.write(f"Ansible-Lint Score      :  {ansiblelint_score:.4f}\n")
+                f.write(f"Benchmark-Score         :  {benchmark_score:.4f}\n\n")
+            else:
+                f.write("No entries were processed, so no KPIs can be calculated.\n\n")
+
             f.write("====== Detailed Entries ======\n")
             if len(self._failed_initial_molecule_test) > 0:
                 f.write("\nInitial Molecule Test Statistics: \n")

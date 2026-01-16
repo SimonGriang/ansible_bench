@@ -134,7 +134,6 @@ class GenerationOperationManager(BaseOperationManager):
                             print(f"Last generated YAML: \n {cleaned_outputs}")
                             print("------------------------------------------------------")
                             return None
-                        print(f"{errors_syntax+1}. Iteration: Generated Ansible-YAML did not pass quality gate 'ansible-playbook --syntax-check'")
                         template, p_str, recursive_str, error_str, error_msg = self.create_recursive_prompt_validate_context(prompt_str, cleaned_outputs, syntax_check[1], "recursive_syntaxcheck")
                         if error_msg:
                             return error_msg

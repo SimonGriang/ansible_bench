@@ -263,9 +263,9 @@ class BenchmarkOperationManager(BaseOperationManager):
                         logger.info("Continuing while loop for next ansiblelint iteration")
                         continue
                     if errors_ansiblelint < 1:
-                        ansiblelint_passed_at_first_attempt += 1
+                        reporter.ansiblelint_passed_at_first_attempt += 1
                         f_ansiblelint_passed_at_first_attempt += 1
-                        logger.info(f"Ansiblelint passed at first attempt, total so far: {ansiblelint_passed_at_first_attempt}")
+                        logger.info(f"Ansiblelint passed at first attempt, total so far: {reporter.ansiblelint_passed_at_first_attempt}")
                     logger.info("Ansiblelint passed, proceeding to molecule test")
                     errors_ansiblelint = 0
                     
